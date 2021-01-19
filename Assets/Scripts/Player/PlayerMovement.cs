@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private int speed;
+    [SerializeField] private Grid grid;
 
-    private Vector2 _targetPos;
     private bool _moving;
     private Animator _animator;
+    private Tilemap _obstructions;
+    private Vector3Int _cell;
+    private Vector3Int _targetCell;
+    public Transform grass;
 
     private enum Direction
     {
@@ -24,32 +29,45 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        _targetPos = transform.position;
         _animator = GetComponent<Animator>();
+        _cell = grid.WorldToCell(transform.position);
+        transform.position = grid.GetCellCenterWorld(_targetCell);
+        _targetCell = _cell;
+        _obstructions = grid.transform.Find("Obstructions").GetComponent<Tilemap>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        Vector2 translationVector;
-        translationVector.x = Input.GetAxisRaw("Horizontal");
-        translationVector.y = translationVector.x != 0.0f ? 0.0f : Input.GetAxisRaw("Vertical");
+        _animator.SetBool(AnimatorMoving, _moving);
+        
+        var position = transform.position;
+        var curCell = grid.WorldToCell(position);
 
-        if (translationVector == Vector2.zero) return;
+        if (_moving)
+        {
+            var curCellPos = grid.GetCellCenterWorld(curCell);
+            if (grass.position == curCellPos)
+            {
+                grass.GetChild(0).gameObject.SetActive(true);
+            }
+        }
+        Vector3Int translationVector = Vector3Int.zero;
+        translationVector.x = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
+        translationVector.y = translationVector.x != 0.0f ? 0 : Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
 
-        var heading = (int) ((translationVector.x + 3) * Math.Abs(translationVector.x) +
-                             (translationVector.y + 2) * Math.Abs(translationVector.y));
+        if (translationVector == Vector3Int.zero) return;
+
+        var heading = (translationVector.x + 3) * Math.Abs(translationVector.x) +
+                      (translationVector.y + 2) * Math.Abs(translationVector.y);
 
         if (heading == _facing)
         {
-            var position = transform.position;
-            var curCell = new Vector2Int((int) position.x, (int) position.y);
-
-            _targetPos = new Vector2(curCell.x + 0.5f, curCell.y + 0.5f) + translationVector;
+            _targetCell = curCell + translationVector;
         }
-        
+
         if (_moving) return;
-        Debug.Log("Not moving WITH input");
+        
         if (_facing != heading)
         {
             _facing = heading;
@@ -57,31 +75,33 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        StartCoroutine(Move());
+        var isObstructed = _obstructions.GetTile(_targetCell);
+        if (isObstructed) return;
+        
+        var targetPos = grid.GetCellCenterWorld(_targetCell);
+        StartCoroutine(Move(targetPos));
     }
 
     public void OnDrawGizmos()
     {
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(_targetPos, 0.1f);
+        Gizmos.DrawSphere(grid.CellToWorld(_targetCell), 0.1f);
     }
 
-    private IEnumerator Move()
+    private IEnumerator Move(Vector3 targetPos)
     {
         _moving = true;
-        _animator.SetBool(AnimatorMoving, true);
+        _animator.SetBool(AnimatorMoving, _moving);
 
-        while ((_targetPos - (Vector2) transform.position).sqrMagnitude > Mathf.Epsilon)
+        while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _targetPos, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             yield return null;
         }
 
-        transform.position = _targetPos;
+        transform.position = targetPos;
 
         _moving = false;
-
-        _animator.SetBool(AnimatorMoving, false);
     }
 }
