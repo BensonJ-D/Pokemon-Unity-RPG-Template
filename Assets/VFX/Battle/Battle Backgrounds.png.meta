@@ -1,0 +1,718 @@
+fileFormatVersion: 2
+guid: 5e92e4381a92d5649bd2246f7decdb7b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1769429448931828106
+    second: Battle Backgrounds_0
+  - first:
+      213: -4732131389061371210
+    second: Battle Backgrounds_1
+  - first:
+      213: -4277343822309770070
+    second: Battle Backgrounds_2
+  - first:
+      213: -657182110463708883
+    second: Battle Backgrounds_3
+  - first:
+      213: -1827526445838835693
+    second: Battle Backgrounds_4
+  - first:
+      213: 4422032505096542742
+    second: Battle Backgrounds_5
+  - first:
+      213: 2754896833546307751
+    second: Battle Backgrounds_6
+  - first:
+      213: 1106511937541109406
+    second: Battle Backgrounds_7
+  - first:
+      213: 5627729976014493891
+    second: Battle Backgrounds_8
+  - first:
+      213: 560493919683478708
+    second: Battle Backgrounds_9
+  - first:
+      213: 4463900163318786688
+    second: Battle Backgrounds_10
+  - first:
+      213: 5237200589228584036
+    second: Battle Backgrounds_11
+  - first:
+      213: 5433300846546681538
+    second: Battle Backgrounds_0
+  - first:
+      213: 6266026979396214756
+    second: Battle Backgrounds_1
+  - first:
+      213: 6782681307248083641
+    second: Battle Backgrounds_2
+  - first:
+      213: -8596578978872422130
+    second: Battle Backgrounds_3
+  - first:
+      213: 2347908606500751109
+    second: Battle Backgrounds_4
+  - first:
+      213: -660722635481796556
+    second: Battle Backgrounds_5
+  - first:
+      213: 7202596345366958878
+    second: Battle Backgrounds_6
+  - first:
+      213: -5236495601089215899
+    second: Battle Backgrounds_7
+  - first:
+      213: 7794445538842505165
+    second: Battle Backgrounds_8
+  - first:
+      213: 9052646300058251707
+    second: Battle Backgrounds_9
+  - first:
+      213: 1126010488199765924
+    second: Battle Backgrounds_10
+  - first:
+      213: -4547115699411856621
+    second: Battle Backgrounds_11
+  - first:
+      213: 4668144616907170614
+    second: Battle Backgrounds_12
+  - first:
+      213: 9056444590351782283
+    second: Battle Backgrounds_13
+  - first:
+      213: -5394503266477377019
+    second: Battle Backgrounds_14
+  - first:
+      213: -2567325491231914466
+    second: Battle Backgrounds_15
+  - first:
+      213: -6891217761088744585
+    second: Battle Backgrounds_16
+  - first:
+      213: -629722231662176578
+    second: Battle Backgrounds_17
+  - first:
+      213: 4715017219275358104
+    second: Battle Backgrounds_18
+  - first:
+      213: 673733987910714988
+    second: Battle Backgrounds_19
+  - first:
+      213: 5583429490744396804
+    second: Battle Backgrounds_20
+  - first:
+      213: -4528190574712782680
+    second: Battle Backgrounds_21
+  - first:
+      213: 8433409083992274014
+    second: Battle Backgrounds_22
+  - first:
+      213: -6028363629922017602
+    second: Battle Backgrounds_23
+  - first:
+      213: 8417692700044275148
+    second: Battle Backgrounds_24
+  - first:
+      213: 9095859546998686422
+    second: Battle Backgrounds_25
+  - first:
+      213: -2486371628121858974
+    second: Battle Backgrounds_26
+  - first:
+      213: -6143402205736619804
+    second: Battle Backgrounds_27
+  - first:
+      213: 2503802146852722562
+    second: Battle Backgrounds_28
+  - first:
+      213: 2071352113908764390
+    second: Battle Backgrounds_29
+  - first:
+      213: 473988383534335703
+    second: Battle Backgrounds_30
+  - first:
+      213: -1202500367766782541
+    second: Battle Backgrounds_31
+  - first:
+      213: -2431808000449816356
+    second: Battle Backgrounds_32
+  - first:
+      213: 3852782160805805897
+    second: Battle Backgrounds_33
+  - first:
+      213: -5192189819822861658
+    second: Battle Backgrounds_34
+  - first:
+      213: 5965186967695454006
+    second: Battle Backgrounds_35
+  - first:
+      213: 3053787429459024584
+    second: Battle Backgrounds_36
+  - first:
+      213: -3605987094828976593
+    second: Battle Backgrounds_37
+  - first:
+      213: 8727207585841653009
+    second: Battle Backgrounds_38
+  - first:
+      213: 7690334898038617899
+    second: Battle Backgrounds_39
+  - first:
+      213: -3395471523129205365
+    second: Battle Backgrounds_40
+  - first:
+      213: -710349163102223475
+    second: Battle Backgrounds_41
+  - first:
+      213: 6223391267464921891
+    second: Battle Backgrounds_42
+  - first:
+      213: 6258705971412561022
+    second: Battle Backgrounds_43
+  - first:
+      213: -8172663435498109585
+    second: Battle Backgrounds_44
+  - first:
+      213: -9069781742290376072
+    second: Battle Backgrounds_45
+  - first:
+      213: 1760063528847218260
+    second: Battle Backgrounds_46
+  - first:
+      213: 2906234453499770206
+    second: Battle Backgrounds_47
+  - first:
+      213: 2647786771927915637
+    second: Battle Backgrounds_48
+  - first:
+      213: -3758392675259398884
+    second: Battle Backgrounds_49
+  - first:
+      213: -8412780074416430959
+    second: Battle Backgrounds_50
+  - first:
+      213: -5797414800205836236
+    second: Battle Backgrounds_51
+  - first:
+      213: -513779510495920060
+    second: Battle Backgrounds_52
+  - first:
+      213: -3993853277918820401
+    second: Battle Backgrounds_53
+  - first:
+      213: 6686770791671960236
+    second: Battle Backgrounds_54
+  - first:
+      213: 4348817908188117698
+    second: Battle Backgrounds_55
+  - first:
+      213: -8341114941989857189
+    second: Battle Backgrounds_56
+  - first:
+      213: -3877172307304358020
+    second: Battle Backgrounds_57
+  - first:
+      213: -2085465088278710071
+    second: Battle Backgrounds_58
+  - first:
+      213: -7254757828474509585
+    second: Battle Backgrounds_59
+  - first:
+      213: 4016429384293931883
+    second: Battle Backgrounds_60
+  - first:
+      213: -6896629579351901816
+    second: Battle Backgrounds_61
+  - first:
+      213: -2530687528959593051
+    second: Battle Backgrounds_62
+  - first:
+      213: 6053470975664994439
+    second: Battle Backgrounds_63
+  - first:
+      213: -5712599525247149058
+    second: Battle Backgrounds_64
+  - first:
+      213: -4044891274132618220
+    second: Battle Backgrounds_65
+  - first:
+      213: -5648166326655471076
+    second: Battle Backgrounds_66
+  - first:
+      213: -8666749951934049315
+    second: Battle Backgrounds_67
+  - first:
+      213: 6547974510199988677
+    second: Battle Backgrounds_68
+  - first:
+      213: 8694886964212978811
+    second: Battle Backgrounds_69
+  - first:
+      213: -7279727557631341784
+    second: Battle Backgrounds_70
+  - first:
+      213: -2158018644886699895
+    second: Battle Backgrounds_71
+  - first:
+      213: 847850411433301683
+    second: Battle Backgrounds_72
+  - first:
+      213: 8462010072575979165
+    second: Battle Backgrounds_73
+  - first:
+      213: 5978144624679379975
+    second: Battle Backgrounds_74
+  - first:
+      213: -6437509579176907446
+    second: Battle Backgrounds_75
+  - first:
+      213: -5224595113345513724
+    second: Battle Backgrounds_76
+  - first:
+      213: -308271763537535938
+    second: Battle Backgrounds_77
+  - first:
+      213: 136752169460553630
+    second: Battle Backgrounds_78
+  - first:
+      213: -3629509677587849506
+    second: Battle Backgrounds_79
+  - first:
+      213: -6695967471092401535
+    second: Battle Backgrounds_80
+  - first:
+      213: 6098851328808636446
+    second: Battle Backgrounds_81
+  - first:
+      213: -7854567121176906167
+    second: Battle Backgrounds_82
+  - first:
+      213: -6211858729085100804
+    second: Battle Backgrounds_83
+  - first:
+      213: -1948468711945194396
+    second: Battle Backgrounds_84
+  - first:
+      213: -8580875871853243844
+    second: Battle Backgrounds_85
+  - first:
+      213: 4095509923545045746
+    second: Battle Backgrounds_86
+  - first:
+      213: 5506748625428420767
+    second: Battle Backgrounds_87
+  - first:
+      213: -1457868147944711066
+    second: Battle Backgrounds_88
+  - first:
+      213: 242497976288126508
+    second: Battle Backgrounds_89
+  - first:
+      213: 5279782220489484646
+    second: Battle Backgrounds_90
+  - first:
+      213: -8782031076842580482
+    second: Battle Backgrounds_91
+  - first:
+      213: 8663347207989717413
+    second: Battle Backgrounds_92
+  - first:
+      213: -6761254511423080028
+    second: Battle Backgrounds_93
+  - first:
+      213: 8798494346502043558
+    second: Battle Backgrounds_94
+  - first:
+      213: -4445239025930372594
+    second: Battle Backgrounds_95
+  - first:
+      213: -1850773607637094395
+    second: Battle Backgrounds_96
+  - first:
+      213: 433189607696937531
+    second: Battle Backgrounds_97
+  - first:
+      213: 1458986994546313246
+    second: Battle Backgrounds_98
+  - first:
+      213: 2962301330452164757
+    second: Battle Backgrounds_99
+  - first:
+      213: 3536693405716380957
+    second: Battle Backgrounds_100
+  - first:
+      213: -1178586304829767785
+    second: Battle Backgrounds_101
+  - first:
+      213: -398248905029425668
+    second: Battle Backgrounds_102
+  - first:
+      213: -2051263142628960963
+    second: Battle Backgrounds_103
+  - first:
+      213: -3440164534107584367
+    second: Battle Backgrounds_104
+  - first:
+      213: 3474217562160065111
+    second: Battle Backgrounds_105
+  - first:
+      213: -8393192361395763574
+    second: Battle Backgrounds_106
+  - first:
+      213: -29414630862240741
+    second: Battle Backgrounds_107
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Battle Backgrounds_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 439
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ce7e344556f66b40800000000000000
+      internalID: 5433300846546681538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_1
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 439
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4efdce3c65665f650800000000000000
+      internalID: 6266026979396214756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_2
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 439
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b2443776bce02e50800000000000000
+      internalID: 6782681307248083641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 293
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0118b027f0d2b880800000000000000
+      internalID: -8596578978872422130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_4
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 293
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5074f871072759020800000000000000
+      internalID: 2347908606500751109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_5
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 293
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4303c018344a4d6f0800000000000000
+      internalID: -660722635481796556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 147
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e13df121733c4f360800000000000000
+      internalID: 7202596345366958878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_7
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 147
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5628e25befa3457b0800000000000000
+      internalID: -5236495601089215899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_8
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 147
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcfe5dbbbee6b2c60800000000000000
+      internalID: 7794445538842505165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_9
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb1f930d8d571ad70800000000000000
+      internalID: 9052646300058251707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_10
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 1
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4afd28ab29460af00800000000000000
+      internalID: 1126010488199765924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Backgrounds_11
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 1
+        width: 257
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31354ffec5665e0c0800000000000000
+      internalID: -4547115699411856621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

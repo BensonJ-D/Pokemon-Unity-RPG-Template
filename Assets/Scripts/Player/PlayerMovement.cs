@@ -13,7 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private Tilemap _obstructions;
     private Vector3Int _cell;
     private Vector3Int _targetCell;
-    public Transform grass;
+
+    [HideInInspector] public string nextEncounter;
+    [HideInInspector] public bool encounter;
 
     private enum Direction
     {
@@ -41,17 +43,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator.SetBool(AnimatorMoving, _moving);
         
-        var position = transform.position;
-        var curCell = grid.WorldToCell(position);
-
-        if (_moving)
-        {
-            var curCellPos = grid.GetCellCenterWorld(curCell);
-            if (grass.position == curCellPos)
-            {
-                grass.GetChild(0).gameObject.SetActive(true);
-            }
-        }
         Vector3Int translationVector = Vector3Int.zero;
         translationVector.x = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
         translationVector.y = translationVector.x != 0.0f ? 0 : Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
@@ -63,6 +54,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (heading == _facing)
         {
+            var position = transform.position;
+            var curCell = grid.WorldToCell(position);
+            
             _targetCell = curCell + translationVector;
         }
 
@@ -82,13 +76,6 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(Move(targetPos));
     }
 
-    public void OnDrawGizmos()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(grid.CellToWorld(_targetCell), 0.1f);
-    }
-
     private IEnumerator Move(Vector3 targetPos)
     {
         _moving = true;
@@ -103,5 +90,15 @@ public class PlayerMovement : MonoBehaviour
         transform.position = targetPos;
 
         _moving = false;
+        CheckForEncounter();
+    }
+
+    private void CheckForEncounter()
+    {
+        if (!encounter) return;
+        
+        Debug.Log("Wild encounter! " + nextEncounter);
+        encounter = false;
+        nextEncounter = "";
     }
 }
