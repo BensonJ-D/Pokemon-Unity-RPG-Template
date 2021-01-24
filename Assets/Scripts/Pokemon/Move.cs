@@ -1,12 +1,15 @@
-public class Move
+namespace Pokemon
 {
-    public MoveBase Base { get; set; }
-    public int PP { get; set; }
-
-    public Move(MoveBase pBase)
+    public class Move
     {
-        Base = pBase;
-        PP = pBase.PP;
-    }
+        public MoveBase Base { get; set; }
+        public int Pp { get; set; }
 
+        public Move(MoveBase pBase)
+        {
+            Base = pBase;
+            Pp = pBase.Pp;
+        }
+
+    }
 }

@@ -908,6 +908,66 @@ TextureImporter:
   - first:
       213: 5421729461583315368
     second: Pokemon_Gen1_Back_150
+  - first:
+      213: 7004984133078753977
+    second: Pokemon_Gen1_Back_151
+  - first:
+      213: 380310336605019761
+    second: Pokemon_Gen1_Back_152
+  - first:
+      213: 8133363754218960072
+    second: Pokemon_Gen1_Back_153
+  - first:
+      213: 3640251642651818629
+    second: Pokemon_Gen1_Back_154
+  - first:
+      213: -474905503233396483
+    second: Pokemon_Gen1_Back_155
+  - first:
+      213: -4027634741212013746
+    second: Pokemon_Gen1_Back_156
+  - first:
+      213: -1431425387700858866
+    second: Pokemon_Gen1_Back_157
+  - first:
+      213: 2201667006326774017
+    second: Pokemon_Gen1_Back_158
+  - first:
+      213: 6395404417247495117
+    second: Pokemon_Gen1_Back_159
+  - first:
+      213: 3176860355111300068
+    second: Pokemon_Gen1_Back_160
+  - first:
+      213: 4034049586523175707
+    second: Pokemon_Gen1_Back_161
+  - first:
+      213: -7593381569692136697
+    second: Pokemon_Gen1_Back_162
+  - first:
+      213: -8189313963981854592
+    second: Pokemon_Gen1_Back_163
+  - first:
+      213: -5073105628673940977
+    second: Pokemon_Gen1_Back_164
+  - first:
+      213: 1379839070495303306
+    second: Pokemon_Gen1_Back_165
+  - first:
+      213: 2676712778570469590
+    second: Pokemon_Gen1_Back_166
+  - first:
+      213: 4708640832000693420
+    second: Pokemon_Gen1_Back_167
+  - first:
+      213: 9099611297077969734
+    second: Pokemon_Gen1_Back_168
+  - first:
+      213: 5768825574235160354
+    second: Pokemon_Gen1_Back_169
+  - first:
+      213: 7174925887115473305
+    second: Pokemon_Gen1_Back_170
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -948,7 +1008,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -971,9 +1031,9 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 0
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
@@ -983,9 +1043,9 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 0
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
