@@ -1,20 +1,20 @@
-﻿using UnityEngine;
+﻿using PokemonScripts;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Battle
 {
     public class HealthBar : MonoBehaviour
     {
-        [SerializeField] private GameObject health;
         [SerializeField] private Text hpLabel;
         [SerializeField] private Text maxHpLabel;
-
-        private Image _healthImage;
+        [SerializeField] private Image healthImage;
+        
         private Gradient _gradient;
         public int Hp { get; private set; }
         public int MaxHp { get; set; }
 
-        public void Setup(Pokemon.Pokemon pokemon)
+        public void Setup(Pokemon pokemon)
         {
             _gradient = new Gradient();
 
@@ -38,7 +38,6 @@ namespace Battle
             alphaKey[1].time = 1.0f;
 
             _gradient.SetKeys(colorKey, alphaKey);
-            _healthImage = health.GetComponent<Image>();
             
             SetHp(pokemon.Hp, pokemon.MaxHp);
         }
@@ -53,8 +52,8 @@ namespace Battle
             maxHpLabel.text = MaxHp.ToString();
             
             var hpNormalise = (float) Hp / MaxHp;
-            health.transform.localScale = new Vector3(hpNormalise, 1f, 1f);
-            _healthImage.color = _gradient.Evaluate(hpNormalise);
+            healthImage.transform.localScale = new Vector3(hpNormalise, 1f, 1f);
+            healthImage.color = _gradient.Evaluate(hpNormalise);
         }
     }
 }

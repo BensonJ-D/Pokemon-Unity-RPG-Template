@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using Pokemon;
+﻿﻿using System.Collections;
+using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,53 +7,62 @@ namespace Battle
 {
     public class BattlePokemon : MonoBehaviour
     {
-        [SerializeField] private PokemonBase @base;
-        [SerializeField] private int level;
         [SerializeField] private bool displayFront;
-    
-        public Pokemon.Pokemon Pokemon { get; set; }
-        private Image _image;
-        // private Vector3 _battlePosition;
-
-        private void Awake()
-        {
-            _image = GetComponentInChildren<Image>();
-            // _battlePosition = _image.transform.localPosition;
-        }
-
-        public void Setup()
-        {
-            Pokemon = new Pokemon.Pokemon(@base, level);
-            _image.sprite = displayFront ? Pokemon.Base.FrontSprite : Pokemon.Base.BackSprite;
-        }
-        
-        public void Setup(Pokemon.Pokemon pokemon)
+        [SerializeField] private Image image;
+        [SerializeField] private Animator animator;
+        private static readonly int Reset = Animator.StringToHash("Reset");
+        public Pokemon Pokemon { get; set; }
+        public void Setup(Pokemon pokemon)
         {
             Pokemon = pokemon;
-            _image.sprite = displayFront ? Pokemon.Base.FrontSprite : Pokemon.Base.BackSprite;
-            
+            image.sprite = displayFront ? Pokemon.Base.FrontSprite : Pokemon.Base.BackSprite;
         }
 
-        // public IEnumerator PlayEnterAnimation(int speed, float xOffset, float direction)
-        // {
-        //     var animating = true;
-        //     
-        //     Vector3 newPosition = _image.transform.localPosition;
-        //     newPosition.x = xOffset;
-        //     
-        //     while (animating)
-        //     {
-        //         var translationFactor = speed * Time.deltaTime;
-        //         if (Mathf.Abs(newPosition.x - _battlePosition.x) < translationFactor) {
-        //             animating = false;
-        //             newPosition = _battlePosition;
-        //         }
-        //         else {
-        //             newPosition.x += direction * translationFactor;
-        //         }
-        //         _image.transform.localPosition = newPosition;
-        //         yield return null;
-        //     }
-        // }
+        private IEnumerator PlayAnimation(string animationName, bool reset = true)
+        {
+            animator.Play(animationName, 0);
+
+            yield return null;
+            yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+            
+            if(reset) animator.SetTrigger(Reset);
+        }
+        
+        public IEnumerator PlayEnterAnimation()
+        {
+            var animationName = displayFront ? "Enter Right" : "Enter Left";
+            yield return PlayAnimation(animationName);
+        }
+        
+        public IEnumerator PlayDamageAnimation()
+        {
+            var animationName = "Damage Blink";
+            yield return PlayAnimation(animationName);
+        }
+        
+        public IEnumerator PlayBasicHitAnimation()
+        {
+            var animationName = displayFront ? "Basic Attack Front" : "Basic Attack Back";
+            yield return PlayAnimation(animationName);
+        }
+        
+        public IEnumerator PlayFaintAnimation()
+        {
+            var animationName = "Faint";
+            yield return PlayAnimation(animationName, false);
+        }
+
+        public IEnumerator ResetAnimation()
+        {
+            animator.SetTrigger(Reset);
+            
+            yield return null;
+            yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+        }
+
+        public void HideSprite()
+        {
+            image.enabled = false;
+        }
     }
 }

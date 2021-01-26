@@ -1,0 +1,295 @@
+fileFormatVersion: 2
+guid: 6dd7d8895a3c4d44ea1383b136182ced
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4901283889905050374
+    second: PartyMenu_0
+  - first:
+      213: -1912148219794915465
+    second: PartyMenu_1
+  - first:
+      213: 1216473936592943449
+    second: PartyMenu_2
+  - first:
+      213: -5472022648689359154
+    second: PartyMenu_3
+  - first:
+      213: 8612569889814643947
+    second: PartyMenu_4
+  - first:
+      213: 8594202935690934942
+    second: PartyMenu_5
+  - first:
+      213: 4430335590275461215
+    second: PartyMenu_6
+  - first:
+      213: 3788987586286117345
+    second: PartyMenu_7
+  - first:
+      213: 5411439217014833534
+    second: PartyMenu_8
+  - first:
+      213: -4925631417825162493
+    second: PartyMenu_9
+  - first:
+      213: -4531726722898600119
+    second: PartyMenu_10
+  - first:
+      213: 5248846272577599421
+    second: PartyMenu_11
+  - first:
+      213: 5124126961918126055
+    second: PartyMenu_12
+  - first:
+      213: -5148377509708941138
+    second: PartyMenu_13
+  - first:
+      213: -8945427939431271043
+    second: PartyMenu_14
+  - first:
+      213: 5809775299234383660
+    second: PartyMenu_15
+  - first:
+      213: 5841423262873772743
+    second: PartyMenu_16
+  - first:
+      213: 8525997149343876282
+    second: PartyMenu_17
+  - first:
+      213: -8622578169276065166
+    second: PartyMenu_18
+  - first:
+      213: 6927476984566407530
+    second: PartyMenu_19
+  - first:
+      213: -4166142568034730494
+    second: PartyMenu_20
+  - first:
+      213: 7554726254234848217
+    second: PartyMenu_21
+  - first:
+      213: -3733701581700398732
+    second: PartyMenu_22
+  - first:
+      213: -5506247257642024584
+    second: PartyMenu_23
+  - first:
+      213: 8773532317683859188
+    second: PartyMenu_24
+  - first:
+      213: -1122480573840346670
+    second: PartyMenu_25
+  - first:
+      213: 2552011924406349892
+    second: PartyMenu_26
+  - first:
+      213: 7468295009678125624
+    second: PartyMenu_27
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PartyMenu_0
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 123
+        width: 240
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc5dde25442bfbb0800000000000000
+      internalID: -4901283889905050374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyMenu_1
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 61
+        width: 84
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f7a39335fa675e0800000000000000
+      internalID: -1912148219794915465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyMenu_2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 86
+        width: 150
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 959b425a998c1e010800000000000000
+      internalID: 1216473936592943449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyMenu_3
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 61
+        width: 150
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec68afd94687f04b0800000000000000
+      internalID: -5472022648689359154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyMenu_4
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 61
+        width: 84
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be480a5feaef58770800000000000000
+      internalID: 8612569889814643947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Pokemon;
+using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +34,8 @@ namespace Battle
             }
         }
     
+        public void ClearText() { dialogText.text = ""; }
+        public void SetText(string text) { dialogText.text = text; }
         public IEnumerator TypeDialog(string dialog)
         {
             _lettersPerSecondMultiplier = 1f;
@@ -60,11 +62,11 @@ namespace Battle
             moveDetails.SetActive(enable);
         }
     
-        public void UpdateActionSelection(Action selectedAction)
+        public void UpdateActionSelection(ActionChoice selectedAction)
         {
-            foreach (var action in actionTexts)
+            foreach (var actionOption in actionTexts)
             {
-                action.color = action.text == Enum.GetName(typeof(Action), selectedAction) ? Color.blue : Color.black;
+                actionOption.color = actionTexts.IndexOf(actionOption) == (int) selectedAction ? Color.blue : Color.black;
             }
         }
     

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Pokemon
+namespace PokemonScripts
 {
     [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new pokemon")]
     public class PokemonBase : ScriptableObject

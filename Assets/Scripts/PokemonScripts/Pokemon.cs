@@ -3,31 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Pokemon
+namespace PokemonScripts
 {
+    [Serializable]
     public class Pokemon
     {
-        public PokemonBase Base { get; }
+        [SerializeField] private PokemonBase _base;
+        [SerializeField] private int _level;
 
-        public int Level { get; }
+        public PokemonBase Base
+        {
+            get => _base;
+            private set => _base = value;
+        }
+
+        public int Level
+        {
+            get => _level;
+            private set => _level = value;
+        }
 
         public int Hp { get; set; }
-        public List<Move> Moves { get; }
+        public List<Move> Moves { get; private set; }
 
-        public Pokemon(PokemonBase pBase, int pLevel)
+        public void Initialization()
         {
-            Base = pBase;
-            Level = pLevel;
-            Hp = MaxHp;
+            Initialization(_base, _level);
+        }
         
+        public void Initialization(PokemonBase @base, int level)
+        {
+            _base = @base;
+            _level = level;
+            
+            Hp = MaxHp;
+
             Moves = new List<Move>();
             foreach (var move in Base.LearnableMoves)
             {
                 if (move.Level > Level) break;
-        
+
+                if (Moves.Exists(oldMove => move.Base.Number == oldMove.Base.Number)) continue;
+
                 Move newMove = new Move(move.Base);
                 Moves.Add(newMove);
-        
+
                 if (Moves.Count > 4) Moves.RemoveAt(0);
             }
         }
@@ -35,12 +55,13 @@ namespace Pokemon
         public DamageDetails TakeDamage(Move move, Pokemon attacker)
         {
             var critical = (Random.value <= 0.0625f);
-            var effectiveness = MoveBase.TypeChart[(move.Base.Type, Base.Type1)] * MoveBase.TypeChart[(move.Base.Type, Base.Type2)];
-            var typeAdvantage = MoveBase.GetEffectiveness(effectiveness);
+            var effectivenessMultiplier = MoveBase.TypeChart[(move.Base.Type, Base.Type1)] *
+                                          MoveBase.TypeChart[(move.Base.Type, Base.Type2)];
+            var typeAdvantage = MoveBase.GetEffectiveness(effectivenessMultiplier);
 
-            var criticalModifier = critical ? 2.0f : 1.0f;
+            var criticalMultiplier = critical ? 2.0f : 1.0f;
             var variability = Random.Range(0.85f, 1f);
-        
+
             var atkVsDef = 0f;
             switch (move.Base.DamageType)
             {
@@ -56,16 +77,17 @@ namespace Pokemon
                     throw new ArgumentOutOfRangeException();
             }
 
+            var multiplier = effectivenessMultiplier * criticalMultiplier;
             var a = (2 * attacker.Level + 10) / 250f;
             var d = a * move.Base.Power * atkVsDef + 2;
-            var damage = Mathf.FloorToInt(d * variability * effectiveness * criticalModifier);
-            var fainted = Hp < damage;
+            var damage = Mathf.FloorToInt(d * variability * multiplier);
+            var fainted = Hp <= damage;
 
             Hp = fainted ? 0 : Hp - damage;
-        
-            return new DamageDetails(critical, typeAdvantage, fainted, damage);
+
+            return new DamageDetails(critical, typeAdvantage, fainted, damage, multiplier);
         }
-    
+
         public int MaxHp => Mathf.FloorToInt((2 * Base.MaxHp * Level) / 100f) + 10 + Level;
         public int Attack => Mathf.FloorToInt((2 * Base.Attack * Level) / 100f) + 5;
         public int Defence => Mathf.FloorToInt((2 * Base.Defence * Level) / 100f) + 5;
@@ -79,13 +101,16 @@ namespace Pokemon
             public readonly AttackEffectiveness Effective;
             public readonly bool Fainted;
             public readonly int DamageDealt;
+            public readonly float Multiplier;
 
-            public DamageDetails(bool critical, AttackEffectiveness effective, bool fainted, int damageDealt)
+            public DamageDetails(bool critical, AttackEffectiveness effective, bool fainted, int damageDealt,
+                float multiplier)
             {
                 Critical = critical;
                 Effective = effective;
                 Fainted = fainted;
                 DamageDealt = damageDealt;
+                Multiplier = multiplier;
             }
         }
     }

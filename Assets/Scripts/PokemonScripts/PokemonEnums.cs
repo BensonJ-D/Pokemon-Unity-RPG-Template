@@ -1,4 +1,4 @@
-namespace Pokemon
+namespace PokemonScripts
 {
     public enum PokemonType
     {

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Caterpie_Route1
   m_EditorClassIdentifier: 
   pokemon: {fileID: 11400000, guid: 0407289250d91254895719355bbd31fe, type: 2}
-  encounterChance: 100
+  encounterChance: 25
   minimumLevel: 2
   maximumLevel: 5

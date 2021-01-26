@@ -1,26 +1,19 @@
-using Pokemon;
+using PokemonScripts;
 using UnityEngine;
 
 namespace Encounters
 {
-    [CreateAssetMenu(fileName = "Encounter", menuName = "Encounter/New encounter", order = 0)]
-    public class Encounter : ScriptableObject
+    [System.Serializable]
+    public class Encounter
     {
-        [SerializeField] private PokemonBase pokemon;
-        [SerializeField] private int encounterChance;
+        [SerializeField] private PokemonBase encounterPokemonBase;
+        [SerializeField] private int encounterThreshold;
         [SerializeField] private int minimumLevel;
         [SerializeField] private int maximumLevel;
 
-        public PokemonBase Pokemon => pokemon;
-        public int EncounterChance
-        {
-            get => encounterChance;
-            set => encounterChance = value;
-        }
-
+        public PokemonBase Pokemon => encounterPokemonBase;
         public int MinimumLevel => minimumLevel;
         public int MaximumLevel => maximumLevel;
-        
-        public int EncounterThreshold { get; set; }
+        public int EncounterThreshold => encounterThreshold;
     }
 }

@@ -1,11 +1,16 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using PokemonScripts;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private int speed;
     [SerializeField] private Grid grid;
+    [SerializeField] private PokemonParty party;
+
+    public PokemonParty Party => party;
 
     private bool _moving;
     private bool _stopMovement;
@@ -28,15 +33,12 @@ public class PlayerMovement : MonoBehaviour
         _obstructions = grid.transform.Find("Obstructions").GetComponent<Tilemap>();
     }
 
-    private void Update()
+    public IEnumerator HandleMovement()
     {
         _animator.SetBool(AnimatorMoving, _moving);
-
-        if (Game.State != GameState.Moving) return;
-        if (_moving) return;
         
         var movementVector = GetInputVector();
-        if (movementVector == Vector3Int.zero) return;
+        if (movementVector == Vector3Int.zero) yield break;
 
         var moveDirection = GetDirection(movementVector);
 
@@ -50,14 +52,14 @@ public class PlayerMovement : MonoBehaviour
         {
             _direction = moveDirection;
             _animator.SetFloat(AnimatorDirection, (float)_direction);
-            return;
+            yield break;
         }
 
         var isObstructed = _obstructions.GetTile(_targetCell);
-        if (isObstructed) return;
+        if (isObstructed) yield break;
         
         var targetPos = grid.GetCellCenterWorld(_targetCell);
-        StartCoroutine(Move(targetPos));
+        yield return Move(targetPos);
     }
 
     private static Vector3Int GetInputVector()
@@ -94,5 +96,6 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = targetPos;
         _moving = false;
+        if(GameController.GameState != GameState.Moving) { _animator.SetBool(AnimatorMoving, _moving); }
     }
 }
