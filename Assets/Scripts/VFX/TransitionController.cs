@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace VFX
 {
-    public class Transition : MonoBehaviour
+    public class TransitionController : MonoBehaviour
     {
         [SerializeField] private Animator transition;
 

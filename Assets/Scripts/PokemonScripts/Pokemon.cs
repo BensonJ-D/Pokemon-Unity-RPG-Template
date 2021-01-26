@@ -10,6 +10,8 @@ namespace PokemonScripts
     {
         [SerializeField] private PokemonBase _base;
         [SerializeField] private int _level;
+        
+        public string Name { get; private set; }
 
         public PokemonBase Base
         {
@@ -35,6 +37,7 @@ namespace PokemonScripts
         {
             _base = @base;
             _level = level;
+            Name = _base.Species;
             
             Hp = MaxHp;
 

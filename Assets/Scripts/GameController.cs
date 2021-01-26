@@ -13,9 +13,9 @@ public enum TransitionState { None, Start, End }
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private BattleSystem battleSystem;
+    [SerializeField] private BattleController battleController;
     [SerializeField] private PlayerController player;
-    [SerializeField] private Transition transition;
+    [SerializeField] private TransitionController transitionController;
     
     public static GameState GameState { get; private set; } = GameState.Moving;
     public static TransitionState TransitionState { get; private set; } = TransitionState.None;
@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
             region.OnEncountered += wildPokemon => StartCoroutine(StartBattle(player.Party, wildPokemon));
         }
 
-        battleSystem.OnBattleOver += won => StartCoroutine(EndBattle(won));
+        battleController.OnBattleOver += won => StartCoroutine(EndBattle(won));
     }
     
     private void Update()
@@ -62,13 +62,13 @@ public class GameController : MonoBehaviour
         GameState = GameState.Battle;
      
         TransitionState = TransitionState.Start;
-        yield return transition.StartTransition();
+        yield return transitionController.StartTransition();
         
-        battleSystem.gameObject.SetActive(true);
-        StartCoroutine(battleSystem.SetupBattle(playerPokemon, wildPokemon));
+        battleController.gameObject.SetActive(true);
+        StartCoroutine(battleController.SetupBattle(playerPokemon, wildPokemon));
         
         TransitionState = TransitionState.End;
-        yield return transition.EndTransition();
+        yield return transitionController.EndTransition();
         
         TransitionState = TransitionState.None;
     }
@@ -76,12 +76,12 @@ public class GameController : MonoBehaviour
     private IEnumerator EndBattle(bool won)
     {
         TransitionState = TransitionState.Start;
-        yield return transition.StartTransition();
+        yield return transitionController.StartTransition();
 
-        yield return battleSystem.Reset();
+        yield return battleController.Reset();
         
         TransitionState = TransitionState.End;
-        yield return transition.EndTransition();
+        yield return transitionController.EndTransition();
         
         GameState = GameState.Moving;
         TransitionState = TransitionState.None;

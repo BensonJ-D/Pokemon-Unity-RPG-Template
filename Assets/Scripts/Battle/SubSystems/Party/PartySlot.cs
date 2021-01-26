@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
-public class PartyMemberUI : MonoBehaviour
+public class PartySlot : MonoBehaviour
 {
     [SerializeField] private Text nameText;
     [SerializeField] private Text levelText;

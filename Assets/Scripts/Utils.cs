@@ -42,7 +42,7 @@ public static class Utils
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentChoice > 0)
         {
-            newChoice = currentChoice - 1;
+            newChoice = 0;
         }
 
         return newChoice;

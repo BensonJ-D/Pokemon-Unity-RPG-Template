@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Battle.SubSystems;
 using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
@@ -62,15 +63,15 @@ namespace Battle
             moveDetails.SetActive(enable);
         }
     
-        public void UpdateActionSelection(ActionChoice selectedAction)
+        public void UpdateActionSelection(int selectedAction)
         {
             foreach (var actionOption in actionTexts)
             {
-                actionOption.color = actionTexts.IndexOf(actionOption) == (int) selectedAction ? Color.blue : Color.black;
+                actionOption.color = actionTexts.IndexOf(actionOption) == selectedAction ? Color.blue : Color.black;
             }
         }
     
-        public void UpdateMoveSelection(MoveChoice selectedMove, Move move)
+        public void UpdateMoveSelection(MoveMenu.MoveChoice selectedMove, Move move)
         {
             foreach (var moveOption in moveTexts)
             {
