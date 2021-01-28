@@ -14,10 +14,10 @@ namespace PokemonScripts
         
         private void Start()
         {
+            BattlePokemon = new List<int>();
             foreach (var pokemon in party)
             {
                 pokemon.Initialization();
-                BattlePokemon = new List<int>();
                 ResetBattleOrder();
             }
         }

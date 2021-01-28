@@ -4283,25 +4283,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2067044161}
-  framesPerSecond: 10
-  animatedTile:
-  - {fileID: 11400000, guid: f9bea003926c8d24cb4e3ae7e63ad5ac, type: 2}
-  - {fileID: 11400000, guid: 1439ba087dba93440a88ed74c8abe9ca, type: 2}
-  - {fileID: 11400000, guid: dd36adb57de42c14099d6e4a70dafbfe, type: 2}
-  - {fileID: 11400000, guid: 410d5e19948a0db46a2a8d1abcdae5cb, type: 2}
-  - {fileID: 11400000, guid: e79d43ad451fee5498714d1d56a5d6c1, type: 2}
   encounterRate: 10
   encounters:
-  - encounterPokemonBase: {fileID: 11400000, guid: d56e49705f4d1b645960c762b5279e13,
-      type: 2}
+  - encounterPokemonBase: {fileID: 0}
     encounterThreshold: 50
     minimumLevel: 5
     maximumLevel: 10
-  - encounterPokemonBase: {fileID: 11400000, guid: d73402c190f2b1e4492298ba5d8adc9a,
-      type: 2}
+  - encounterPokemonBase: {fileID: 0}
     encounterThreshold: 100
     minimumLevel: 5
     maximumLevel: 10
+  spriteToEncounterTileLookup:
+  - indexSprite: {fileID: -1347532211411968617, guid: 82c77a428b4032a41807019e01ba10b8,
+      type: 3}
+    encounterTile: {fileID: 3849099300589921038, guid: 0445e50f887103548affdc30548d43c5,
+      type: 3}
 --- !u!114 &395637118 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 149988451066207406, guid: 3c4fbcf39471c304eb3f17af4a5a2b78,
@@ -9256,15 +9252,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   party:
-  - _base: {fileID: 11400000, guid: 8a665c2cc46faec4998a36edfd243822, type: 2}
+  - _base: {fileID: 0}
     _level: 10
-  - _base: {fileID: 11400000, guid: 80cd9630e09d30c44811859110d642b2, type: 2}
+  - _base: {fileID: 0}
     _level: 5
-  - _base: {fileID: 11400000, guid: e2256edeff93b8442bf25d57dc1c1857, type: 2}
+  - _base: {fileID: 0}
     _level: 7
-  - _base: {fileID: 11400000, guid: 79a9bafe3f140104383fd61aa84af20b, type: 2}
+  - _base: {fileID: 0}
     _level: 40
-  - _base: {fileID: 11400000, guid: 8cdcb10432d1bdf468ff0bf602aabb1e, type: 2}
+  - _base: {fileID: 0}
     _level: 1
 --- !u!1001 &1301262119617360871
 PrefabInstance:
