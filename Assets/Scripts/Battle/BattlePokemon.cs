@@ -59,10 +59,5 @@ namespace Battle
             yield return null;
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         }
-
-        public void HideSprite()
-        {
-            image.enabled = false;
-        }
     }
 }

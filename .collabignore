@@ -31,8 +31,3 @@ ehthumbs.db
 [Bb]uild
 sysinfo.txt
 *.stackdump
-
-# Generated assets
-# ================
-Assets/Game/Resources/Moves/**
-Assets/Game/Resources/Pokemon/**

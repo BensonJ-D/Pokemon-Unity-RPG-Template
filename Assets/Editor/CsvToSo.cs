@@ -128,9 +128,10 @@ namespace Editor
                     accuracy = 0;
                 }
 
-                DamageType damageType = (DamageType) int.Parse(splitString[8]);
+                MoveCategory moveCategory = (MoveCategory) int.Parse(splitString[8]);
 
-                move.InitialiseInstance(number, name, type, power, pp, accuracy, damageType);
+                
+                move.InitialiseInstance(number, name, type, power, pp, accuracy, moveCategory, new List<EffectType>(), MoveTarget.Foe, 0);
 
                 AssetDatabase.CreateAsset(move, $"Assets/Game/Resources/Moves/{move.Number}_{move.Name}.asset");
             }

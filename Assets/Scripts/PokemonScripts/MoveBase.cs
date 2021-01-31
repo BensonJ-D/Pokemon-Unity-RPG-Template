@@ -1,10 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace PokemonScripts
 {
     [CreateAssetMenu(fileName = "Move", menuName = "Pokemon/Create new move")]
+    [SuppressMessage("ReSharper", "ParameterHidesMember")]
     public class MoveBase : ScriptableObject
     {
         [SerializeField] private int number;
@@ -16,18 +20,24 @@ namespace PokemonScripts
         [SerializeField] private int power;
         [SerializeField] private int pp;
         [SerializeField] private int accuracy;
-        [SerializeField] private DamageType damageType;
+        [SerializeField] private MoveCategory category;
+        [SerializeField] private List<EffectType> effects;
+        [SerializeField] private MoveTarget target;
+        [SerializeField] private int effectChance;
 
-        public void InitialiseInstance(int newNumber, string newName, PokemonType newType,
-            int newPower, int newPp, int newAccuracy, DamageType newDamageType)
+        public void InitialiseInstance(int number, string moveName, PokemonType type, int power, int pp, int accuracy,
+            MoveCategory category, List<EffectType> effects, MoveTarget target, int effectChance)
         {
-            this.number = newNumber;
-            this.moveName = newName;
-            this.type = newType;
-            this.power = newPower;
-            this.pp = newPp;
-            this.accuracy = newAccuracy;
-            this.damageType = newDamageType;
+            this.number = number;
+            this.moveName = moveName;
+            this.type = type;
+            this.power = power;
+            this.pp = pp;
+            this.accuracy = accuracy;
+            this.category = category;
+            this.effects = effects;
+            this.target = target;
+            this.effectChance = effectChance;
         }
 
         public int Number => number;
@@ -36,7 +46,10 @@ namespace PokemonScripts
         public int Power => power;
         public int Accuracy => accuracy;
         public int Pp => pp;
-        public DamageType DamageType => damageType;
+        public MoveCategory Category => category;
+        public List<EffectType> Effects => effects;
+        public MoveTarget Target => target;
+        public int EffectChance => effectChance;
 
         public static readonly ReadOnlyDictionary<(PokemonType, PokemonType), float> TypeChart =
             new ReadOnlyDictionary<(PokemonType, PokemonType), float>(
@@ -389,8 +402,8 @@ namespace PokemonScripts
 
         public static AttackEffectiveness GetEffectiveness(float modifier) => AttackEffectivenessLookup[modifier];
 
-        private static readonly ReadOnlyDictionary<float, AttackEffectiveness> AttackEffectivenessLookup = 
-            new ReadOnlyDictionary<float,AttackEffectiveness>(
+        private static readonly ReadOnlyDictionary<float, AttackEffectiveness> AttackEffectivenessLookup =
+            new ReadOnlyDictionary<float, AttackEffectiveness>(
                 new Dictionary<float, AttackEffectiveness>()
                 {
                     {0f, AttackEffectiveness.NoEffect},
@@ -401,7 +414,7 @@ namespace PokemonScripts
                     {4f, AttackEffectiveness.SuperEffective}
                 }
             );
-    }    
+    }
 
     public enum AttackEffectiveness
     {
@@ -409,5 +422,11 @@ namespace PokemonScripts
         NotVeryEffective = 1,
         NormallyEffective = 2,
         SuperEffective = 3
+    }
+
+    public enum MoveTarget
+    {
+        Self,
+        Foe
     }
 }

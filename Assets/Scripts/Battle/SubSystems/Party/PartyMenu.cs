@@ -42,8 +42,8 @@ namespace Battle
             State[Participant.Player] = SubsystemState.Closed;
             State[Participant.Opponent] = SubsystemState.Closed;
         }
-        
-        public void SetPartyData(PokemonParty newParty)
+
+        private void SetPartyData(PokemonParty newParty)
         {
             party = newParty;
             orderOfPokemon = party.GetCurrentBattleOrder();
@@ -74,7 +74,7 @@ namespace Battle
             State[participant] = SubsystemState.Open;
         }
 
-        public void CloseWindow(Participant participant)
+        private void CloseWindow(Participant participant)
         {
             if (participant == Participant.Player)
             {

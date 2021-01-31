@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973c8cb149ad4d2da346270365ce8329, type: 3}
+  m_Name: 15_Beedrill
+  m_EditorClassIdentifier: 
+  species: Beedrill
+  description: 
+  front: {fileID: -7727642167140455891, guid: 268e117737c0306468d076ae19e56b2a, type: 3}
+  back: {fileID: 8445876047965447090, guid: ac86e4a4b39cf534fa919ffb3af93409, type: 3}
+  number: 15
+  type1: 7
+  type2: 4
+  maxHp: 65
+  attack: 90
+  defence: 40
+  spAttack: 45
+  spDefence: 80
+  speed: 75
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: a9ba9c30e2450b1458336654393eb67d, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: a9ba9c30e2450b1458336654393eb67d, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: bff654266231e1048a4dc1981d546661, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: bff654266231e1048a4dc1981d546661, type: 2}
+    level: 11
+  - moveBase: {fileID: 11400000, guid: 99ec97759fd3e1d479cc75db4c2757a3, type: 2}
+    level: 14
+  - moveBase: {fileID: 11400000, guid: 37e6c065e1313724a8ab7359bdcbc753, type: 2}
+    level: 17
+  - moveBase: {fileID: 11400000, guid: 952fcab24b02f7741a6f0bd6e631e1ca, type: 2}
+    level: 20
+  - moveBase: {fileID: 11400000, guid: a967f39863909d4438b3229172f5b48b, type: 2}
+    level: 23
+  - moveBase: {fileID: 11400000, guid: c58ed6d64ee2aec4faec1098c05543a2, type: 2}
+    level: 26
+  - moveBase: {fileID: 11400000, guid: 4360f72d9546a8f4c8585f28ca24c8a0, type: 2}
+    level: 29
+  - moveBase: {fileID: 11400000, guid: 411a7b7e52019d74db8c7aedc2c84238, type: 2}
+    level: 32
+  - moveBase: {fileID: 11400000, guid: 1af774e20d93dee47977d53d7ec7210f, type: 2}
+    level: 35
+  - moveBase: {fileID: 11400000, guid: d3561ea400104e444bb61ed012216caa, type: 2}
+    level: 38
+  - moveBase: {fileID: 11400000, guid: 4e330b296c5e37c448ae56e4454f3aba, type: 2}
+    level: 41
+  - moveBase: {fileID: 11400000, guid: 57ed469be27195942ba3ab45934e18ba, type: 2}
+    level: 44

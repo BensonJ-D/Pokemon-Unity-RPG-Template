@@ -18,13 +18,14 @@ namespace Battle
             hpBar.Setup(pokemon);
         }
 
-        public IEnumerator UpdateHealthBar(Pokemon.DamageDetails damageDetails)
+        public IEnumerator UpdateHealthBar(DamageDetails dmgDetails)
         {
-            var newHp = hpBar.Hp - damageDetails.DamageDealt > 0 ? hpBar.Hp - damageDetails.DamageDealt : 0;
-            while(hpBar.Hp > newHp )
+            var targetHp = hpBar.Hp - dmgDetails.DamageDealt > 0 ? hpBar.Hp - dmgDetails.DamageDealt : 0;
+            while(hpBar.Hp > targetHp)
             {
-                hpBar.SetHp(hpBar.Hp - 1);
-                yield return new WaitForSeconds(0.05f / damageDetails.Multiplier);
+                var newHp = hpBar.Hp - (hpBar.MaxHp / 100f) > 0 ? hpBar.Hp - (hpBar.MaxHp / 100f) : 0;
+                hpBar.SetHp(newHp);
+                yield return new WaitForSeconds(0.05f / dmgDetails.Multiplier);
             }
         }
     }

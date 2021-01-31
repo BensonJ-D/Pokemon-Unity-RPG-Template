@@ -11,7 +11,7 @@ namespace Battle
         [SerializeField] private Image healthImage;
         
         private Gradient _gradient;
-        public int Hp { get; private set; }
+        public float Hp { get; private set; }
         public int MaxHp { get; set; }
 
         public void Setup(Pokemon pokemon)
@@ -42,16 +42,16 @@ namespace Battle
             SetHp(pokemon.Hp, pokemon.MaxHp);
         }
 
-        public void SetHp(int hp) { SetHp(hp, MaxHp); }
+        public void SetHp(float hp) { SetHp(hp, MaxHp); }
 
-        private void SetHp(int hp, int maxHp)
+        private void SetHp(float hp, int maxHp)
         {
             Hp = hp;
             MaxHp = maxHp;
-            hpLabel.text = Hp.ToString();
-            maxHpLabel.text = MaxHp.ToString();
+            hpLabel.text = $"{Mathf.Round(Hp)}";
+            maxHpLabel.text = $"{MaxHp}";
             
-            var hpNormalise = (float) Hp / MaxHp;
+            var hpNormalise = Hp / MaxHp;
             healthImage.transform.localScale = new Vector3(hpNormalise, 1f, 1f);
             healthImage.color = _gradient.Evaluate(hpNormalise);
         }

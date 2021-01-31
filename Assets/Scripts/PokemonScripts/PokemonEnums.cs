@@ -23,7 +23,7 @@ namespace PokemonScripts
         Fairy = 18
     }
 
-    public enum DamageType
+    public enum MoveCategory
     {
         Status = 1,
         Physical = 2,
