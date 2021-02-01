@@ -4284,10 +4284,10 @@ MonoBehaviour:
   player: {fileID: 2067044161}
   encounterRate: 10
   encounters:
-  - encounterPokemonBase: {fileID: 11400000, guid: 00b3e6bfb111f1441a32de25b1a29f56,
+  - encounterPokemonBase: {fileID: 11400000, guid: c51e6167fe08ff345a0186abe0370ca4,
       type: 2}
     encounterThreshold: 50
-    level: 5
+    level: 10
   - encounterPokemonBase: {fileID: 11400000, guid: 6965a5de7d8b63d4f8e7ef5b7b7ff86b,
       type: 2}
     encounterThreshold: 100
@@ -9134,15 +9134,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   party:
   - _base: {fileID: 11400000, guid: d56e49705f4d1b645960c762b5279e13, type: 2}
-    _level: 10
-  - _base: {fileID: 11400000, guid: d73402c190f2b1e4492298ba5d8adc9a, type: 2}
     _level: 5
+  - _base: {fileID: 11400000, guid: d73402c190f2b1e4492298ba5d8adc9a, type: 2}
+    _level: 10
   - _base: {fileID: 11400000, guid: 80cd9630e09d30c44811859110d642b2, type: 2}
-    _level: 7
-  - _base: {fileID: 11400000, guid: 84f5d1cd4950080428e6612111d943b8, type: 2}
-    _level: 40
-  - _base: {fileID: 11400000, guid: 4a6f9794c447ae047b015a11469c988d, type: 2}
-    _level: 1
+    _level: 15
 --- !u!1001 &1301262119617360871
 PrefabInstance:
   m_ObjectHideFlags: 0

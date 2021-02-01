@@ -26,33 +26,13 @@ MonoBehaviour:
   spDefence: 80
   speed: 75
   learnableMoves:
-  - moveBase: {fileID: 11400000, guid: a9ba9c30e2450b1458336654393eb67d, type: 2}
+  - moveBase: {fileID: 11400000, guid: 5be758af998deb944ba8f7774af240cb, type: 2}
     level: 0
   - moveBase: {fileID: 11400000, guid: a9ba9c30e2450b1458336654393eb67d, type: 2}
     level: 1
-  - moveBase: {fileID: 11400000, guid: bff654266231e1048a4dc1981d546661, type: 2}
+  - moveBase: {fileID: 0}
     level: 1
-  - moveBase: {fileID: 11400000, guid: bff654266231e1048a4dc1981d546661, type: 2}
+  - moveBase: {fileID: 0}
     level: 11
-  - moveBase: {fileID: 11400000, guid: 99ec97759fd3e1d479cc75db4c2757a3, type: 2}
+  - moveBase: {fileID: 0}
     level: 14
-  - moveBase: {fileID: 11400000, guid: 37e6c065e1313724a8ab7359bdcbc753, type: 2}
-    level: 17
-  - moveBase: {fileID: 11400000, guid: 952fcab24b02f7741a6f0bd6e631e1ca, type: 2}
-    level: 20
-  - moveBase: {fileID: 11400000, guid: a967f39863909d4438b3229172f5b48b, type: 2}
-    level: 23
-  - moveBase: {fileID: 11400000, guid: c58ed6d64ee2aec4faec1098c05543a2, type: 2}
-    level: 26
-  - moveBase: {fileID: 11400000, guid: 4360f72d9546a8f4c8585f28ca24c8a0, type: 2}
-    level: 29
-  - moveBase: {fileID: 11400000, guid: 411a7b7e52019d74db8c7aedc2c84238, type: 2}
-    level: 32
-  - moveBase: {fileID: 11400000, guid: 1af774e20d93dee47977d53d7ec7210f, type: 2}
-    level: 35
-  - moveBase: {fileID: 11400000, guid: d3561ea400104e444bb61ed012216caa, type: 2}
-    level: 38
-  - moveBase: {fileID: 11400000, guid: 4e330b296c5e37c448ae56e4454f3aba, type: 2}
-    level: 41
-  - moveBase: {fileID: 11400000, guid: 57ed469be27195942ba3ab45934e18ba, type: 2}
-    level: 44

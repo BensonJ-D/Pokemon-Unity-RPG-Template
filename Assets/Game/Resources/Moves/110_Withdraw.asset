@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 507e4ebad5d741bb88ce591d6d6f930c, type: 3}
-  m_Name: Move
+  m_Name: 110_Withdraw
   m_EditorClassIdentifier: 
-  number: 0
-  moveName: 
-  type: 0
+  number: 110
+  moveName: Withdraw
+  type: 11
   power: 0
-  pp: 0
+  pp: 40
   accuracy: 0
-  category: 0
-  effects:
-    statChanges: []
+  category: 1
+  effects: 
   target: 0
-  effectChance: 0
+  effectChance: 100

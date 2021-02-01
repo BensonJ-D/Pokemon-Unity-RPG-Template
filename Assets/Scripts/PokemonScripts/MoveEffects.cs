@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace PokemonScripts
 {
-    public enum EffectType { PoisonTarget, LowerTargetsAttack }
+    public enum EffectType { PoisonTarget, LowerTargetsAttackOneStage }
 
     public interface IMoveEffect
     {
@@ -20,15 +20,15 @@ namespace PokemonScripts
                 new Dictionary<EffectType, IMoveEffect>()
                 {
                     { EffectType.PoisonTarget, new PoisonTarget() },
-                    { EffectType.LowerTargetsAttack, new LowerTargetsAttack() }
+                    { EffectType.LowerTargetsAttackOneStage, new LowerTargetsAttackOneStage() }
                 }
             );
     }
     
     public class PoisonTarget : IMoveEffect
     {
-        public virtual void ApplyEffect(Pokemon user, Pokemon target) { }
-        public virtual void ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect) { }
+        public void ApplyEffect(Pokemon user, Pokemon target) { }
+        public void ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect) { }
     }
     
     public class ModifyStat : IMoveEffect
@@ -39,6 +39,14 @@ namespace PokemonScripts
             target.StatBoosts[(Stat) effect1] = 
                 Mathf.Clamp(target.StatBoosts[(Stat) effect1] + effect2, -6, 6);
             Debug.Log("Base effect called");
+        }
+    }
+    
+    public class LowerTargetsAttackOneStage : ModifyStat
+    {
+        public override void ApplyEffect(Pokemon user, Pokemon target) { 
+            Debug.Log("Child effect called");
+            base.ApplyEffect(user, target, (int) Stat.Attack, -1);
         }
     }
     

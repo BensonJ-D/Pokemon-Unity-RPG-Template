@@ -36,21 +36,3 @@ MonoBehaviour:
     level: 9
   - moveBase: {fileID: 11400000, guid: df003b63a6673fc4e854b20bd036deed, type: 2}
     level: 13
-  - moveBase: {fileID: 11400000, guid: c25c138923c21144b959d06e5e997d69, type: 2}
-    level: 13
-  - moveBase: {fileID: 11400000, guid: 9482fd8254a3e374aa2f636f5a2a5091, type: 2}
-    level: 15
-  - moveBase: {fileID: 11400000, guid: e504cfaeaeb3b0843b53163070718eae, type: 2}
-    level: 19
-  - moveBase: {fileID: 11400000, guid: 1e9f6c68d1afd054c8af84922f7d82fe, type: 2}
-    level: 21
-  - moveBase: {fileID: 11400000, guid: f9f703e42f1f53c4899f5e40dfa3a6c2, type: 2}
-    level: 25
-  - moveBase: {fileID: 11400000, guid: b816fe1b882814b47822f0b10b7d2d36, type: 2}
-    level: 27
-  - moveBase: {fileID: 11400000, guid: 04662e5001907094ca987a725db2e715, type: 2}
-    level: 31
-  - moveBase: {fileID: 11400000, guid: 9526d6d55c2b37f45ae62173471473cd, type: 2}
-    level: 33
-  - moveBase: {fileID: 11400000, guid: 44bc71c5959e2f940b64cc2373563120, type: 2}
-    level: 37
