@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
+using PokemonScripts.Moves.Effects;
 using UnityEngine;
 using UnityEngine.Events;
 

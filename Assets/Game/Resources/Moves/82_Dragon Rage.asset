@@ -19,7 +19,6 @@ MonoBehaviour:
   pp: 10
   accuracy: 100
   category: 3
-  effects:
-    statChanges: []
+  effects: 
   target: 1
   effectChance: 0

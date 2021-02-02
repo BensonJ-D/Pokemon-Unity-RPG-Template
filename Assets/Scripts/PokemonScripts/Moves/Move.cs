@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using PokemonScripts.Moves.Effects;
 
 namespace PokemonScripts
 {
@@ -17,9 +19,8 @@ namespace PokemonScripts
         {
             var target = Base.Target == MoveTarget.Self ? user : opponent;
             List<string> messages = new List<string>();
-            foreach (var effect in Base.Effects)
+            foreach (var func in Base.Effects.Select(effect => MoveEffectLookup.MoveEffectFunctions[effect]))
             {
-                var func = MoveEffectLookup.MoveEffectFunctions[effect];
                 func.ApplyEffect(user, target);
             }
 

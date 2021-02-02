@@ -19,6 +19,6 @@ MonoBehaviour:
   pp: 40
   accuracy: 0
   category: 1
-  effects: 
+  effects: 07000000
   target: 0
   effectChance: 100
