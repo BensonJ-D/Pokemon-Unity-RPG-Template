@@ -22,24 +22,10 @@ namespace PokemonScripts
         [SerializeField] private int pp;
         [SerializeField] private int accuracy;
         [SerializeField] private MoveCategory category;
-        [SerializeField] private List<EffectType> effects;
+        [SerializeField] private List<PrimaryStatusEffect> primaryStatusEffects;
+        [SerializeField] private List<StatModifierEffect> statModifierEffects;
         [SerializeField] private MoveTarget target;
         [SerializeField] private int effectChance;
-
-        public void InitialiseInstance(int number, string moveName, PokemonType type, int power, int pp, int accuracy,
-            MoveCategory category, List<EffectType> effects, MoveTarget target, int effectChance)
-        {
-            this.number = number;
-            this.moveName = moveName;
-            this.type = type;
-            this.power = power;
-            this.pp = pp;
-            this.accuracy = accuracy;
-            this.category = category;
-            this.effects = effects;
-            this.target = target;
-            this.effectChance = effectChance;
-        }
 
         public int Number => number;
         public string Name => moveName;
@@ -48,9 +34,11 @@ namespace PokemonScripts
         public int Accuracy => accuracy;
         public int Pp => pp;
         public MoveCategory Category => category;
-        public List<EffectType> Effects => effects;
         public MoveTarget Target => target;
+        
         public int EffectChance => effectChance;
+        public List<StatModifierEffect> StatModifierEffects => statModifierEffects;
+        public List<PrimaryStatusEffect> PrimaryStatusEffects => primaryStatusEffects;
 
         public static readonly ReadOnlyDictionary<(PokemonType, PokemonType), float> TypeChart =
             new ReadOnlyDictionary<(PokemonType, PokemonType), float>(

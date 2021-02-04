@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using PokemonScripts;
+using PokemonScripts.Moves;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using PokemonScripts.Moves;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace PokemonScripts
 {
     public enum Stat { HP, Attack, Defence, SpAttack, SpDefence, Speed, Accuracy, Evasion }
+    public enum PrimaryStatusCondition { Poison, Burn, Paralyse, Freeze, Sleep }
+    public enum SecondaryStatusCondition { Confuse, Infatuate, }
 
     [Serializable]
     public class Pokemon
@@ -80,8 +83,8 @@ namespace PokemonScripts
         public int BoostedSpDefence => GetBoostedStat(Stat.SpDefence, SpDefence);
         public int BoostedSpeed => GetBoostedStat(Stat.Speed, Speed);
 
-        private float[] statChangePenalties = new float[7] {1.0f, 0.66f, 0.5f, 0.4f, 0.33f, 0.285f, 0.25f}; 
-        private float[] statChangeBonuses = new float[7] {1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f};
+        private float[] statChangePenalties = {1.0f, 0.66f, 0.5f, 0.4f, 0.33f, 0.285f, 0.25f}; 
+        private float[] statChangeBonuses = {1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f};
 
         private int GetBoostedStat(Stat statType, int statValue) => (int) (StatBoosts[statType] < 0
             ? statValue * statChangePenalties[Mathf.Abs(StatBoosts[statType])]

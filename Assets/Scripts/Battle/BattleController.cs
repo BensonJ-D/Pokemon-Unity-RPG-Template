@@ -5,6 +5,7 @@ using System.Linq;
 using Battle.SubSystems;
 using Misc;
 using PokemonScripts;
+using PokemonScripts.Moves;
 using UnityEngine;
 using VFX;
 using Random = UnityEngine.Random;

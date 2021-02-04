@@ -26,29 +26,6 @@ namespace PokemonScripts
 
         [SerializeField] private LearnableMove[] learnableMoves;
 
-        public void InitialiseInstance(Sprite _front, Sprite _back, int _number, string _name, PokemonType _type1, PokemonType _type2, 
-            int _maxHP, int _attack, int _defence, int _spAttack, int _spDefence, int _speed, List<LearnableMove> _learnableMoves)
-        {
-            this.front = _front;
-            this.back = _back;
-            this.number = _number;
-            this.species = _name;
-            this.type1 = _type1;
-            this.type2 = _type2;
-            this.maxHp = _maxHP;
-            this.attack = _attack;
-            this.defence = _defence;
-            this.spAttack = _spAttack;
-            this.spDefence = _spDefence;
-            this.speed = _speed;
-        
-            learnableMoves = new LearnableMove[_learnableMoves.Count];
-            for (var i = 0; i < _learnableMoves.Count; i++)
-            {
-                learnableMoves[i] = _learnableMoves[i];
-            }
-        }
-
         public int Number => number;
         public string Species => species;
         public string Description => description;

@@ -1,31 +1,45 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using PokemonScripts.Moves.Effects;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace PokemonScripts
+namespace PokemonScripts.Moves
 {
-    public interface IMoveEffect
+    public class MoveEffect
     {
-        void ApplyEffect(Pokemon user, Pokemon target);
-        void ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect2);
+        public virtual string ApplyEffect(Pokemon user, Pokemon target) { return ""; }
+        public virtual string ApplyEffect(Pokemon user, Pokemon target, int effect1) { return ""; }
+        public virtual string ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect2) { return ""; }
     }
     
-    public class PoisonTarget : IMoveEffect
+    public class ModifyStatus : MoveEffect
     {
-        public void ApplyEffect(Pokemon user, Pokemon target) { }
-        public void ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect) { }
+        public override string ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect) { return ""; }
     }
     
-    public class ModifyStat : IMoveEffect
+    public class ModifyStat : MoveEffect
     {
-        public virtual void ApplyEffect(Pokemon user, Pokemon target) { }
-        public virtual void ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect2)
+        private readonly string[] increasedPhrase = { "", "rose", "rose sharply", "rose drastically" };
+        private readonly string[] decreasedPhrase = { "", "fell", "fell harshly", "fell severely" };
+        private readonly string statMinOrMaxPhrase = "won't go any ";
+            
+        public override string ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect2)
         {
+            var message = $"{target.Base.Species}'s {(Stat) effect1} ";
+            var currentLevel = target.StatBoosts[(Stat) effect1];
+            var decreasing = currentLevel < 0;
+            if (Mathf.Abs(currentLevel) == 6)
+            {
+                message += statMinOrMaxPhrase;
+                message += decreasing ? "lower!" : "higher!";
+            }
+            else
+            {
+                var phraseIndex = Mathf.Clamp(Mathf.Abs(currentLevel), 0, 3);
+                message += decreasing ? decreasedPhrase[phraseIndex] : increasedPhrase[phraseIndex];
+            }
+
             target.StatBoosts[(Stat) effect1] = 
                 Mathf.Clamp(target.StatBoosts[(Stat) effect1] + effect2, -6, 6);
+
+            return message;
         }
     }
 }

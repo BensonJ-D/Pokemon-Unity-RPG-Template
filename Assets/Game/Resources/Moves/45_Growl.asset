@@ -19,6 +19,10 @@ MonoBehaviour:
   pp: 40
   accuracy: 100
   category: 1
-  effects: 00000000
+  primaryStatusEffects: []
+  statModifierEffects:
+  - target: 1
+    stat: 1
+    modifier: -1
   target: 1
   effectChance: 101

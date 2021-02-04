@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using PokemonScripts.Moves.Effects;
 
-namespace PokemonScripts
+namespace PokemonScripts.Moves
 {
     public class Move
     {
@@ -14,14 +13,24 @@ namespace PokemonScripts
             Base = pBase;
             Pp = pBase.Pp;
         }
-        
+
         public List<string> ApplyEffects(Pokemon user, Pokemon opponent)
         {
-            var target = Base.Target == MoveTarget.Self ? user : opponent;
             List<string> messages = new List<string>();
-            foreach (var func in Base.Effects.Select(effect => MoveEffectLookup.MoveEffectFunctions[effect]))
+            foreach (var statModifier in Base.StatModifierEffects)
             {
-                func.ApplyEffect(user, target);
+                var target = statModifier.Target == MoveTarget.Self ? user : opponent;
+                var message = StatModifiers.GetEffectClass[statModifier.Stat]
+                    .ApplyEffect(user, target, (int) statModifier.Stat, statModifier.Modifier);
+                if(message.Length > 0) { messages.Add(message); }
+            }
+
+            foreach (var primaryCondition in Base.PrimaryStatusEffects)
+            {
+                var target = Base.Target == MoveTarget.Self ? user : opponent;
+                var message = PrimaryStatuses.GetEffectClass[primaryCondition.StatusCondition]
+                    .ApplyEffect(user, target);
+                if(message.Length > 0) { messages.Add(message); }
             }
 
             return messages;

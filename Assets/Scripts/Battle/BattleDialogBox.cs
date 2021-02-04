@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Battle.SubSystems;
 using PokemonScripts;
+using PokemonScripts.Moves;
 using UnityEngine;
 using UnityEngine.UI;
 
