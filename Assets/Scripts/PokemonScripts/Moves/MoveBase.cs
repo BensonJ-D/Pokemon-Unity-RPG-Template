@@ -21,6 +21,7 @@ namespace PokemonScripts
         [SerializeField] private int power;
         [SerializeField] private int pp;
         [SerializeField] private int accuracy;
+        [SerializeField] private int priority;
         [SerializeField] private MoveCategory category;
         [SerializeField] private List<PrimaryStatusEffect> primaryStatusEffects;
         [SerializeField] private List<StatModifierEffect> statModifierEffects;
@@ -31,8 +32,9 @@ namespace PokemonScripts
         public string Name => moveName;
         public PokemonType Type => type;
         public int Power => power;
-        public int Accuracy => accuracy;
         public int Pp => pp;
+        public int Accuracy => accuracy;
+        public int Priority => priority;
         public MoveCategory Category => category;
         public MoveTarget Target => target;
         

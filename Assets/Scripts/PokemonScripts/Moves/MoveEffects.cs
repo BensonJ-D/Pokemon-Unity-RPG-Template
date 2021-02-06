@@ -5,13 +5,16 @@ namespace PokemonScripts.Moves
     public class MoveEffect
     {
         public virtual string ApplyEffect(Pokemon user, Pokemon target) { return ""; }
-        public virtual string ApplyEffect(Pokemon user, Pokemon target, int effect1) { return ""; }
-        public virtual string ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect2) { return ""; }
+        public virtual string ApplyEffect(Pokemon user, Pokemon target, object effect1) { return ""; }
+        public virtual string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect2) { return ""; }
     }
     
     public class ModifyStatus : MoveEffect
     {
-        public override string ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect) { return ""; }
+        public override string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect)
+        {
+            return "";
+        }
     }
     
     public class ModifyStat : MoveEffect
@@ -20,7 +23,7 @@ namespace PokemonScripts.Moves
         private readonly string[] decreasedPhrase = { "", "fell", "fell harshly", "fell severely" };
         private readonly string statMinOrMaxPhrase = "won't go any ";
             
-        public override string ApplyEffect(Pokemon user, Pokemon target, int effect1, int effect2)
+        public override string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect2)
         {
             var message = $"{target.Base.Species}'s {(Stat) effect1} ";
             var currentLevel = target.StatBoosts[(Stat) effect1];
@@ -37,7 +40,7 @@ namespace PokemonScripts.Moves
             }
 
             target.StatBoosts[(Stat) effect1] = 
-                Mathf.Clamp(target.StatBoosts[(Stat) effect1] + effect2, -6, 6);
+                Mathf.Clamp(target.StatBoosts[(Stat) effect1] + (int) effect2, -6, 6);
 
             return message;
         }

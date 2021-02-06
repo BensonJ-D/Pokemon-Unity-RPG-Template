@@ -16,6 +16,7 @@ namespace Battle
     public enum BattleState { Start, Turn, Battle, End }
     public enum SubsystemState { Open, Closed }
     public enum TurnState { Busy, Ready }
+    public enum BattleAction { Weather = -3, NewPokemon = -2, PersistentDamage = -1, Move = 0, Item = 1, Switch = 2, Run = 3 }
 
     public class BattleController : MonoBehaviour
     {
@@ -33,6 +34,7 @@ namespace Battle
         private Dictionary<Participant, TurnState> _turnState;
         private Dictionary<Participant, BattlePokemon> _pokemon;
         private Dictionary<Participant, BattleStatus> _status;
+        private List<(BattleAction, IEnumerator, Participant)> _actions;
 
         private DamageDetails _attackResult;
 
@@ -58,7 +60,8 @@ namespace Battle
                 {Participant.Player, null},
                 {Participant.Opponent, null}
             };
-
+            _actions = new List<(BattleAction, IEnumerator, Participant)>();
+            
             actionMenu.Init();
             moveMenu.Init();
             partyMenu.Init();
@@ -171,6 +174,7 @@ namespace Battle
                     StartCoroutine(ChooseAction(participant));
                     break;
                 default:
+                    _actions.Add((BattleAction.Move, PerformMove(participant), participant));
                     _turnState[participant] = TurnState.Ready;
                     break;
             }
@@ -191,6 +195,7 @@ namespace Battle
                     StartCoroutine(ChooseAction(participant));
                     break;
                 default:
+                    _actions.Add((BattleAction.Switch, PerformSwitch(participant), participant));
                     _turnState[participant] = TurnState.Ready;
                     break;
             }
@@ -198,22 +203,14 @@ namespace Battle
 
         private IEnumerator HandleBattle()
         {
-            if (actionMenu.Choice[Participant.Player] == ActionMenu.ActionChoice.Pokemon)
-            {
-                yield return PerformSwitch(Participant.Player);
-                yield return PerformMove(Participant.Opponent);
-            }
-            else if (_pokemon[Participant.Player].Pokemon.BoostedSpeed > _pokemon[Participant.Opponent].Pokemon.BoostedSpeed)
-            {
-                yield return PerformMove(Participant.Player);
-                yield return PerformMove(Participant.Opponent);
-            }
-            else
-            {
-                yield return PerformMove(Participant.Opponent);
-                yield return PerformMove(Participant.Player);
-            }
+            _actions.Sort(PrioritizeActions);
 
+            while (_actions.Count > 0)
+            {
+                yield return _actions[0].Item2;
+                _actions.RemoveAt(0);
+            }
+            
             if (BattleState == BattleState.Battle) BattleState = BattleState.Start;
             StartTurn();
         }
@@ -395,7 +392,7 @@ namespace Battle
             var fainted = defender.Hp <= damage;
 
             List<string> messages = new List<string>();
-            if (!fainted && move.Base.EffectChance > 0)
+            if (!fainted && move.Base.EffectChance >= Random.Range(1, 101))
             {
                 messages = move.ApplyEffects(attacker, defender);
             }
@@ -404,8 +401,37 @@ namespace Battle
             
             return new DamageDetails(critical, typeAdvantage, fainted, damage, multiplier, messages);
         }
-    }
+        
+        // public enum BattleAction { Weather = -3, NewPokemon = -2, PersistentDamage = -1, Move = 0, Item = 1, Switch = 2, Run = 3 }
+        private int PrioritizeActions((BattleAction, IEnumerator, Participant) b, (BattleAction, IEnumerator, Participant) a)
+        {
+            var (action2, _, participant2) = b;
+            var (action1, _, participant1) = a;
+            if (action2 != action1) { return action1 - action2; }
+            
+            var coinFlip = Random.Range(0, 2) == 0 ? -1 : 1;
+            
+            if (action1 == BattleAction.Switch || action1 == BattleAction.Item) { return coinFlip; }
 
+            var pokemon2 = _pokemon[participant2].Pokemon;
+            var pokemon1 = _pokemon[participant1].Pokemon;
+            var speed2 = pokemon2.BoostedSpeed;
+            var speed1 = pokemon1.BoostedSpeed;
+            var moveChoice2 = (int) moveMenu.Choice[participant2];
+            var moveChoice1 = (int) moveMenu.Choice[participant1];
+            var move2 = pokemon1.Moves[moveChoice2];
+            var move1 = pokemon1.Moves[moveChoice1];
+            
+            if (action1 == BattleAction.Move)
+            {
+                if(move2.Base.Priority != move1.Base.Priority) { return move1.Base.Priority - move2.Base.Priority; }
+            }
+
+            if(speed2 != speed1) { return speed1 - speed2; }
+            return coinFlip;
+        }
+    }
+    
     public readonly struct DamageDetails
     {
         public readonly bool Critical;

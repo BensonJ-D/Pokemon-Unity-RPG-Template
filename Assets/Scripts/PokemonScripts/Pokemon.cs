@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 namespace PokemonScripts
 {
     public enum Stat { HP, Attack, Defence, SpAttack, SpDefence, Speed, Accuracy, Evasion }
-    public enum PrimaryStatusCondition { Poison, Burn, Paralyse, Freeze, Sleep }
+    public enum PrimaryStatusCondition { None, Poison, Burn, Paralyse, Freeze, Sleep }
     public enum SecondaryStatusCondition { Confuse, Infatuate, }
 
     [Serializable]
@@ -66,6 +66,7 @@ namespace PokemonScripts
             private set => _level = value;
         }
 
+        public PrimaryStatusCondition PrimaryCondition { get; private set; } = PrimaryStatusCondition.None;
         public int Hp { get; set; }
         public List<Move> Moves { get; private set; }
 
@@ -92,5 +93,11 @@ namespace PokemonScripts
 
         public void ApplyStatChange(Stat stat, int steps) =>
             StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] + steps, -6, 6);
+
+        public void ApplyPrimaryCondition(PrimaryStatusCondition newCondition)
+        {
+            if (PrimaryCondition != PrimaryStatusCondition.None) return;
+            PrimaryCondition = newCondition;
+        }
     }
 }

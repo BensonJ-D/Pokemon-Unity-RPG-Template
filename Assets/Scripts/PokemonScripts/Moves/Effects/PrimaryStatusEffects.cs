@@ -14,7 +14,7 @@ namespace PokemonScripts.Moves.Effects
     public class PoisonTarget : ModifyStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target, (int) PrimaryStatusCondition.Poison);
+            base.ApplyEffect(user, target,  PrimaryStatusCondition.Poison);
             return $"{target.Base.Species} was poisoned!";
         }
     }
@@ -22,7 +22,7 @@ namespace PokemonScripts.Moves.Effects
     public class BurnTarget : ModifyStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target, (int) PrimaryStatusCondition.Burn);
+            base.ApplyEffect(user, target,  PrimaryStatusCondition.Burn);
             return $"{target.Base.Species} was burned!";
         }
     }
@@ -30,7 +30,7 @@ namespace PokemonScripts.Moves.Effects
     public class ParalyseTarget : ModifyStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target, (int) PrimaryStatusCondition.Paralyse);
+            base.ApplyEffect(user, target,  PrimaryStatusCondition.Paralyse);
             return $"{target.Base.Species} was paralysed!";
         }
     }
@@ -38,7 +38,7 @@ namespace PokemonScripts.Moves.Effects
     public class FreezeTarget : ModifyStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target, (int) PrimaryStatusCondition.Freeze);
+            base.ApplyEffect(user, target,  PrimaryStatusCondition.Freeze);
             return $"{target.Base.Species} was frozen!";
         }
     }
