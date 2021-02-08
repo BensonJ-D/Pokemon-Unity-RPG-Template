@@ -25,9 +25,11 @@ namespace PokemonScripts.Moves
             
         public override string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect2)
         {
-            var message = $"{target.Base.Species}'s {(Stat) effect1} ";
-            var currentLevel = target.StatBoosts[(Stat) effect1];
-            var decreasing = currentLevel < 0;
+            var stat = (Stat) effect1;
+            var modifier = (int) effect2;
+            var message = $"{target.Base.Species}'s {stat} ";
+            var currentLevel = target.StatBoosts[stat];
+            var decreasing = modifier < 0;
             if (Mathf.Abs(currentLevel) == 6)
             {
                 message += statMinOrMaxPhrase;
@@ -35,12 +37,12 @@ namespace PokemonScripts.Moves
             }
             else
             {
-                var phraseIndex = Mathf.Clamp(Mathf.Abs(currentLevel), 0, 3);
+                var phraseIndex = Mathf.Abs(modifier);
                 message += decreasing ? decreasedPhrase[phraseIndex] : increasedPhrase[phraseIndex];
             }
 
             target.StatBoosts[(Stat) effect1] = 
-                Mathf.Clamp(target.StatBoosts[(Stat) effect1] + (int) effect2, -6, 6);
+                Mathf.Clamp(target.StatBoosts[stat] + modifier, -6, 6);
 
             return message;
         }
