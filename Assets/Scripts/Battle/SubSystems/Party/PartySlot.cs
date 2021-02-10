@@ -28,7 +28,7 @@ public class PartySlot : MonoBehaviour
 
     public void SetSelected(bool selected)
     {
-        if(_pokemon.Hp <= 0) { image.sprite = selected ? selectedFaintedSprite : notSelectedFaintedSprite; } 
+        if(_pokemon.CurrentHp <= 0) { image.sprite = selected ? selectedFaintedSprite : notSelectedFaintedSprite; } 
         else { image.sprite = selected ? selectedSprite : notSelectedSprite; }
     }
 }

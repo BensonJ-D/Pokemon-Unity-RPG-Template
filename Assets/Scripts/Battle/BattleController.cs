@@ -389,7 +389,7 @@ namespace Battle
             var damage = move.Base.Category != MoveCategory.Status 
                 ? Mathf.FloorToInt(d * variability * multiplier)
                 : 0;
-            var fainted = defender.Hp <= damage;
+            var fainted = defender.CurrentHp <= damage;
 
             List<string> messages = new List<string>();
             if (!fainted && move.Base.EffectChance >= Random.Range(1, 101))
@@ -397,7 +397,7 @@ namespace Battle
                 messages = move.ApplyEffects(attacker, defender);
             }
             
-            defender.Hp = fainted ? 0 : defender.Hp - damage;
+            defender.CurrentHp = fainted ? 0 : defender.CurrentHp - damage;
             
             return new DamageDetails(critical, typeAdvantage, fainted, damage, multiplier, messages);
         }

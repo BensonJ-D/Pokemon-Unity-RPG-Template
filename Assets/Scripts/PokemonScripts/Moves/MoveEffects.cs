@@ -9,7 +9,15 @@ namespace PokemonScripts.Moves
         public virtual string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect2) { return ""; }
     }
     
-    public class ModifyStatus : MoveEffect
+    public class ModifyPrimaryStatus : MoveEffect
+    {
+        public override string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect)
+        {
+            return "";
+        }
+    }
+    
+    public class ModifySecondaryStatus : MoveEffect
     {
         public override string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect)
         {

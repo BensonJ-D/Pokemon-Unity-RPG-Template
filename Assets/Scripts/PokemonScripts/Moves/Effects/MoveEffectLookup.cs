@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using PokemonScripts.Conditions;
 
 namespace PokemonScripts.Moves.Effects
 {
 
     public static class PrimaryStatuses {
-        public enum EffectType { None, PoisonTarget = PrimaryStatusCondition.Poison, 
-            BurnTarget = PrimaryStatusCondition.Burn, ParalyseTarget = PrimaryStatusCondition.Paralyse, 
-            FreezeTarget = PrimaryStatusCondition.Freeze, SleepTarget = PrimaryStatusCondition.Sleep }
+        public enum EffectType { None, PoisonTarget = PrimaryConditions.PrimaryStatusCondition.Poison, 
+            BurnTarget = PrimaryConditions.PrimaryStatusCondition.Burn, ParalyseTarget = PrimaryConditions.PrimaryStatusCondition.Paralyse, 
+            FreezeTarget = PrimaryConditions.PrimaryStatusCondition.Freeze, SleepTarget = PrimaryConditions.PrimaryStatusCondition.Sleep }
 
         public static readonly ReadOnlyDictionary<EffectType, MoveEffect> GetEffectClass =
             new ReadOnlyDictionary<EffectType, MoveEffect>(
@@ -18,6 +19,21 @@ namespace PokemonScripts.Moves.Effects
                     { EffectType.ParalyseTarget, new ParalyseTarget() },
                     { EffectType.FreezeTarget, new FreezeTarget() },
                     { EffectType.SleepTarget, new SleepTarget() }
+                }
+            );
+    }
+    
+    
+    public static class SecondaryStatuses {
+        public enum EffectType { None, ConfuseTarget = SecondaryConditions.SecondaryStatusCondition.Confusion, 
+            FlinchTarget = SecondaryConditions.SecondaryStatusCondition.Flinched }
+
+        public static readonly ReadOnlyDictionary<EffectType, MoveEffect> GetEffectClass =
+            new ReadOnlyDictionary<EffectType, MoveEffect>(
+                new Dictionary<EffectType, MoveEffect>()
+                {
+                    { EffectType.ConfuseTarget, new ConfuseTarget() },
+                    { EffectType.FlinchTarget, new FlinchTarget() }
                 }
             );
     }

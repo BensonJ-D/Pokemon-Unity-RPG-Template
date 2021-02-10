@@ -9,6 +9,7 @@ namespace PokemonScripts
     public class PokemonParty : MonoBehaviour
     {
         [SerializeField] private List<Pokemon> party;
+        
         public List<Pokemon> Party => party;
         private List<int> BattlePokemon { get; set; }
         
@@ -33,7 +34,7 @@ namespace PokemonScripts
 
         public Pokemon GetFirstBattleReadyPokemon()
         {
-            var indexOfFirstHealthyPokemon = BattlePokemon.FindIndex(index => party[index].Hp > 0);
+            var indexOfFirstHealthyPokemon = BattlePokemon.FindIndex(index => party[index].CurrentHp > 0);
             if (indexOfFirstHealthyPokemon != 0) { SetPokemonToBattleLeader(indexOfFirstHealthyPokemon); }
             return party[BattlePokemon[0]];
         }

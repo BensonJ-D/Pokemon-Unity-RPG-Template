@@ -1,4 +1,5 @@
 using System;
+using PokemonScripts.Conditions;
 using UnityEngine;
 
 namespace PokemonScripts.Moves.Effects
@@ -11,42 +12,42 @@ namespace PokemonScripts.Moves.Effects
         public PrimaryStatuses.EffectType StatusCondition => statusCondition;
     }
     
-    public class PoisonTarget : ModifyStatus
+    public class PoisonTarget : ModifyPrimaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target,  PrimaryStatusCondition.Poison);
+            base.ApplyEffect(user, target,  PrimaryConditions.PrimaryStatusCondition.Poison);
             return $"{target.Base.Species} was poisoned!";
         }
     }
     
-    public class BurnTarget : ModifyStatus
+    public class BurnTarget : ModifyPrimaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target,  PrimaryStatusCondition.Burn);
+            base.ApplyEffect(user, target,  PrimaryConditions.PrimaryStatusCondition.Burn);
             return $"{target.Base.Species} was burned!";
         }
     }
 
-    public class ParalyseTarget : ModifyStatus
+    public class ParalyseTarget : ModifyPrimaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target,  PrimaryStatusCondition.Paralyse);
+            base.ApplyEffect(user, target,  PrimaryConditions.PrimaryStatusCondition.Paralyse);
             return $"{target.Base.Species} was paralysed!";
         }
     }
 
-    public class FreezeTarget : ModifyStatus
+    public class FreezeTarget : ModifyPrimaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target,  PrimaryStatusCondition.Freeze);
+            base.ApplyEffect(user, target,  PrimaryConditions.PrimaryStatusCondition.Freeze);
             return $"{target.Base.Species} was frozen!";
         }
     }
     
-    public class SleepTarget : ModifyStatus
+    public class SleepTarget : ModifyPrimaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target, (int) PrimaryStatusCondition.Sleep);
+            base.ApplyEffect(user, target, (int) PrimaryConditions.PrimaryStatusCondition.Sleep);
             return $"{target.Base.Species} fell asleep!";
         }
     }
