@@ -6,7 +6,8 @@ namespace PokemonScripts.Moves.Effects
 {
 
     public static class PrimaryStatuses {
-        public enum EffectType { None, PoisonTarget = PrimaryConditions.PrimaryStatusCondition.Poison, 
+        public enum EffectType { 
+            None = PrimaryConditions.PrimaryStatusCondition.None, PoisonTarget = PrimaryConditions.PrimaryStatusCondition.Poison, 
             BurnTarget = PrimaryConditions.PrimaryStatusCondition.Burn, ParalyseTarget = PrimaryConditions.PrimaryStatusCondition.Paralyse, 
             FreezeTarget = PrimaryConditions.PrimaryStatusCondition.Freeze, SleepTarget = PrimaryConditions.PrimaryStatusCondition.Sleep }
 
@@ -14,6 +15,7 @@ namespace PokemonScripts.Moves.Effects
             new ReadOnlyDictionary<EffectType, MoveEffect>(
                 new Dictionary<EffectType, MoveEffect>()
                 {
+                    {EffectType.None, null },
                     { EffectType.PoisonTarget, new PoisonTarget() },
                     { EffectType.BurnTarget, new BurnTarget() },
                     { EffectType.ParalyseTarget, new ParalyseTarget() },

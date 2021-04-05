@@ -15,7 +15,7 @@ namespace PokemonScripts.Moves.Effects
     public class ConfuseTarget : ModifySecondaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target,  SecondaryConditions.SecondaryStatusCondition.Confusion);
+            var success = ApplySecondaryCondition(user, target,  SecondaryConditions.SecondaryStatusCondition.Confusion);
             return $"{target.Name} became confused!";
         }
     }
@@ -23,7 +23,7 @@ namespace PokemonScripts.Moves.Effects
     public class FlinchTarget : ModifySecondaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            base.ApplyEffect(user, target,  SecondaryConditions.SecondaryStatusCondition.Flinched);
+            var success = ApplySecondaryCondition(user, target,  SecondaryConditions.SecondaryStatusCondition.Flinched);
             return $"{target.Name} flinched and was unable to act!";
         }
     }

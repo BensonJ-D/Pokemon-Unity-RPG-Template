@@ -16,7 +16,7 @@ namespace Battle
     public enum BattleState { Start, Turn, Battle, End }
     public enum SubsystemState { Open, Closed }
     public enum TurnState { Busy, Ready }
-    public enum BattleAction { Weather = -3, NewPokemon = -2, PersistentDamage = -1, Move = 0, Item = 1, Switch = 2, Run = 3 }
+    public enum BattleAction { NewPokemon = -3, Weather = -2, PersistentDamage = -1, Move = 0, Item = 1, Switch = 2, Run = 3 }
 
     public class BattleController : MonoBehaviour
     {
@@ -218,6 +218,7 @@ namespace Battle
         private IEnumerator PerformMove(Participant participant)
         {
             if (BattleState != BattleState.Battle) yield break;
+            
 
             var defendingParticipant = (Participant) (((int) participant + 1) % 2);
             var attacker = _pokemon[participant];
@@ -402,7 +403,7 @@ namespace Battle
             return new DamageDetails(critical, typeAdvantage, fainted, damage, multiplier, messages);
         }
         
-        // public enum BattleAction { Weather = -3, NewPokemon = -2, PersistentDamage = -1, Move = 0, Item = 1, Switch = 2, Run = 3 }
+        // public enum BattleAction { NewPokemon = -3, Weather = -2, PersistentDamage = -1, Move = 0, Item = 1, Switch = 2, Run = 3 }
         private int PrioritizeActions((BattleAction, IEnumerator, Participant) b, (BattleAction, IEnumerator, Participant) a)
         {
             var (action2, _, participant2) = b;

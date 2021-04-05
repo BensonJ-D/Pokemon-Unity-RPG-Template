@@ -1,3 +1,4 @@
+using PokemonScripts.Conditions;
 using UnityEngine;
 
 namespace PokemonScripts.Moves
@@ -11,17 +12,19 @@ namespace PokemonScripts.Moves
     
     public class ModifyPrimaryStatus : MoveEffect
     {
-        public override string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect)
+        protected static bool ApplyPrimaryCondition(Pokemon user, Pokemon target, PrimaryConditions.PrimaryStatusCondition condition)
         {
-            return "";
+            target.ApplyPrimaryCondition(condition);
+            return false;
         }
     }
     
     public class ModifySecondaryStatus : MoveEffect
     {
-        public override string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect)
+        protected static bool ApplySecondaryCondition(Pokemon user, Pokemon target, SecondaryConditions.SecondaryStatusCondition condition)
         {
-            return "";
+            target.ApplySecondaryCondition(condition);
+            return false;
         }
     }
     
