@@ -18,8 +18,10 @@ MonoBehaviour:
   power: 0
   pp: 35
   accuracy: 75
+  priority: 0
   category: 1
-  primaryStatusEffects: []
+  primaryStatusEffects:
+  - statusCondition: 1
   statModifierEffects: []
   target: 1
   effectChance: 100

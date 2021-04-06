@@ -1,5 +1,4 @@
 using System;
-using PokemonScripts.Conditions;
 using UnityEngine;
 
 namespace PokemonScripts.Moves.Effects
@@ -7,15 +6,15 @@ namespace PokemonScripts.Moves.Effects
     [Serializable]
     public class PrimaryStatusEffect
     {
-        [SerializeField] private PrimaryStatuses.EffectType statusCondition;
+        [SerializeField] private PrimaryStatusEffects.EffectType statusCondition;
 
-        public PrimaryStatuses.EffectType StatusCondition => statusCondition;
+        public PrimaryStatusEffects.EffectType StatusCondition => statusCondition;
     }
     
     public class PoisonTarget : ModifyPrimaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            var success = ApplyPrimaryCondition(user, target,  PrimaryConditions.PrimaryStatusCondition.Poison);
+            var success = ApplyPrimaryCondition(user, target,  PrimaryStatusCondition.Poison);
             return success ? $"{target.Base.Species} was poisoned!" : "It had no effect ...";
         }
     }
@@ -23,7 +22,7 @@ namespace PokemonScripts.Moves.Effects
     public class BurnTarget : ModifyPrimaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            var success = ApplyPrimaryCondition(user, target,  PrimaryConditions.PrimaryStatusCondition.Burn);
+            var success = ApplyPrimaryCondition(user, target,  PrimaryStatusCondition.Burn);
             return success ? $"{target.Base.Species} was burned!" : "It had no effect ...";
         }
     }
@@ -31,7 +30,7 @@ namespace PokemonScripts.Moves.Effects
     public class ParalyseTarget : ModifyPrimaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            var success = ApplyPrimaryCondition(user, target,  PrimaryConditions.PrimaryStatusCondition.Paralyse);
+            var success = ApplyPrimaryCondition(user, target,  PrimaryStatusCondition.Paralyse);
             return success ? $"{target.Base.Species} was paralysed!" : "It had no effect ...";
         }
     }
@@ -39,7 +38,7 @@ namespace PokemonScripts.Moves.Effects
     public class FreezeTarget : ModifyPrimaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            var success = ApplyPrimaryCondition(user, target,  PrimaryConditions.PrimaryStatusCondition.Freeze);
+            var success = ApplyPrimaryCondition(user, target,  PrimaryStatusCondition.Freeze);
             return success ? $"{target.Base.Species} was frozen!" : "It had no effect ...";
         }
     }
@@ -47,7 +46,7 @@ namespace PokemonScripts.Moves.Effects
     public class SleepTarget : ModifyPrimaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            var success = ApplyPrimaryCondition(user, target, PrimaryConditions.PrimaryStatusCondition.Sleep);
+            var success = ApplyPrimaryCondition(user, target, PrimaryStatusCondition.Sleep);
             return success ? $"{target.Base.Species} fell asleep!" : "It had no effect ...";
         }
     }

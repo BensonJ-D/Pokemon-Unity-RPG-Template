@@ -1,5 +1,4 @@
 using System;
-using PokemonScripts.Conditions;
 using UnityEngine;
 
 namespace PokemonScripts.Moves.Effects
@@ -7,15 +6,15 @@ namespace PokemonScripts.Moves.Effects
     [Serializable]
     public class SecondaryStatusEffect
     {
-        [SerializeField] private SecondaryStatuses.EffectType statusCondition;
+        [SerializeField] private SecondaryStatusEffects.EffectType statusCondition;
 
-        public SecondaryStatuses.EffectType StatusCondition => statusCondition;
+        public SecondaryStatusEffects.EffectType StatusCondition => statusCondition;
     }
     
     public class ConfuseTarget : ModifySecondaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            var success = ApplySecondaryCondition(user, target,  SecondaryConditions.SecondaryStatusCondition.Confusion);
+            var success = ApplySecondaryCondition(user, target,  SecondaryStatusCondition.Confusion);
             return $"{target.Name} became confused!";
         }
     }
@@ -23,7 +22,7 @@ namespace PokemonScripts.Moves.Effects
     public class FlinchTarget : ModifySecondaryStatus
     {
         public override string ApplyEffect(Pokemon user, Pokemon target) { 
-            var success = ApplySecondaryCondition(user, target,  SecondaryConditions.SecondaryStatusCondition.Flinched);
+            var success = ApplySecondaryCondition(user, target,  SecondaryStatusCondition.Flinched);
             return $"{target.Name} flinched and was unable to act!";
         }
     }

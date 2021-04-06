@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using PokemonScripts.Conditions;
 using PokemonScripts.Moves;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace PokemonScripts
 {
@@ -61,8 +59,8 @@ namespace PokemonScripts
 
         public int Level { get; private set; }
 
-        public PrimaryConditions.PrimaryStatusCondition PrimaryCondition { get; private set; } = PrimaryConditions.PrimaryStatusCondition.None;
-        public List<SecondaryConditions.SecondaryStatusCondition> SecondaryConditions { get; private set; } = new List<SecondaryConditions.SecondaryStatusCondition>();
+        public PrimaryStatusCondition PrimaryCondition { get; private set; } = PrimaryStatusCondition.None;
+        public List<SecondaryStatusCondition> SecondaryConditions { get; private set; } = new List<SecondaryStatusCondition>();
 
         public int MaxHp => Mathf.FloorToInt((2 * Base.MaxHp * Level) / 100f) + 10 + Level;
         public int Attack => Mathf.FloorToInt((2 * Base.Attack * Level) / 100f) + 5;
@@ -91,13 +89,13 @@ namespace PokemonScripts
         public void ApplyStatChange(Stat stat, int steps) =>
             StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] + steps, -6, 6);
 
-        public void ApplyPrimaryCondition(PrimaryConditions.PrimaryStatusCondition newCondition)
+        public void ApplyPrimaryCondition(PrimaryStatusCondition newCondition)
         {
-            if (PrimaryCondition != PrimaryConditions.PrimaryStatusCondition.None) return;
+            if (PrimaryCondition != PrimaryStatusCondition.None) return;
             PrimaryCondition = newCondition;
         }
         
-        public void ApplySecondaryCondition(SecondaryConditions.SecondaryStatusCondition newCondition)
+        public void ApplySecondaryCondition(SecondaryStatusCondition newCondition)
         {
             if (SecondaryConditions.Contains(newCondition)) return;
             SecondaryConditions.Add(newCondition);

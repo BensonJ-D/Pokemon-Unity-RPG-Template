@@ -20,7 +20,7 @@ namespace PokemonScripts.Moves
             foreach (var statModifier in Base.StatModifierEffects)
             {
                 var target = statModifier.Target == MoveTarget.Self ? user : opponent;
-                var message = StatModifiers.GetEffectClass[statModifier.Stat]
+                var message = StatModifierEffects.GetEffectClass[statModifier.Stat]
                     .ApplyEffect(user, target, (int) statModifier.Stat, statModifier.Modifier);
                 if(message.Length > 0) { messages.Add(message); }
             }
@@ -28,7 +28,7 @@ namespace PokemonScripts.Moves
             foreach (var primaryCondition in Base.PrimaryStatusEffects)
             {
                 var target = Base.Target == MoveTarget.Self ? user : opponent;
-                var message = PrimaryStatuses.GetEffectClass[primaryCondition.StatusCondition]
+                var message = PrimaryStatusEffects.GetEffectClass[primaryCondition.StatusCondition]
                     .ApplyEffect(user, target);
                 if(message.Length > 0) { messages.Add(message); }
             }

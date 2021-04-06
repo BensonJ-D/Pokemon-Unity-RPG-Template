@@ -7,11 +7,11 @@ namespace PokemonScripts.Moves.Effects
     public class StatModifierEffect
     {
         [SerializeField] private MoveTarget target;
-        [SerializeField] private StatModifiers.EffectType stat;
+        [SerializeField] private StatModifierEffects.EffectType stat;
         [SerializeField] private int modifier;
 
         public MoveTarget Target => target;
-        public StatModifiers.EffectType Stat => stat;
+        public StatModifierEffects.EffectType Stat => stat;
         public int Modifier => modifier;
     }
     

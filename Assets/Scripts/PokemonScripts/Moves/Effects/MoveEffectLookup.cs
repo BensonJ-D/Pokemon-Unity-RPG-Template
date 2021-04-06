@@ -1,15 +1,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using PokemonScripts.Conditions;
 
 namespace PokemonScripts.Moves.Effects
 {
 
-    public static class PrimaryStatuses {
+    public static class PrimaryStatusEffects {
         public enum EffectType { 
-            None = PrimaryConditions.PrimaryStatusCondition.None, PoisonTarget = PrimaryConditions.PrimaryStatusCondition.Poison, 
-            BurnTarget = PrimaryConditions.PrimaryStatusCondition.Burn, ParalyseTarget = PrimaryConditions.PrimaryStatusCondition.Paralyse, 
-            FreezeTarget = PrimaryConditions.PrimaryStatusCondition.Freeze, SleepTarget = PrimaryConditions.PrimaryStatusCondition.Sleep }
+            None = PrimaryStatusCondition.None, PoisonTarget = PrimaryStatusCondition.Poison, 
+            BurnTarget = PrimaryStatusCondition.Burn, ParalyseTarget = PrimaryStatusCondition.Paralyse, 
+            FreezeTarget = PrimaryStatusCondition.Freeze, SleepTarget = PrimaryStatusCondition.Sleep }
 
         public static readonly ReadOnlyDictionary<EffectType, MoveEffect> GetEffectClass =
             new ReadOnlyDictionary<EffectType, MoveEffect>(
@@ -26,9 +25,10 @@ namespace PokemonScripts.Moves.Effects
     }
     
     
-    public static class SecondaryStatuses {
-        public enum EffectType { None, ConfuseTarget = SecondaryConditions.SecondaryStatusCondition.Confusion, 
-            FlinchTarget = SecondaryConditions.SecondaryStatusCondition.Flinched }
+    public static class SecondaryStatusEffects {
+        public enum EffectType { 
+            None = SecondaryStatusCondition.None, ConfuseTarget = SecondaryStatusCondition.Confusion, 
+            FlinchTarget = SecondaryStatusCondition.Flinched }
 
         public static readonly ReadOnlyDictionary<EffectType, MoveEffect> GetEffectClass =
             new ReadOnlyDictionary<EffectType, MoveEffect>(
@@ -40,7 +40,7 @@ namespace PokemonScripts.Moves.Effects
             );
     }
     
-    public static class StatModifiers {
+    public static class StatModifierEffects {
         public enum EffectType { ModifyAttack = Stat.Attack, 
             ModifyDefence = Stat.Defence, ModifySpAttack = Stat.SpAttack, 
             ModifySpDefence = Stat.SpDefence, ModifySpeed = Stat.Speed }
