@@ -9,10 +9,7 @@ using UnityEngine;
 using VFX;
 using Random = UnityEngine.Random;
 
-public enum GameState { Start, Moving, Talking, Battle, Menu }
-public enum TransitionState { None, Start, End }
-
-public class GameController : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private BattleController battleController;
     [SerializeField] private PlayerController player;
