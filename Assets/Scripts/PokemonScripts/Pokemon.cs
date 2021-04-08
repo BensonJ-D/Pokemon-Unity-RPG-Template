@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PokemonScripts.Conditions;
 using PokemonScripts.Moves;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace PokemonScripts
         public void Initialization(PokemonBase @base, int level)
         {
             _base = @base;
-            this.level = level;
+            Level = level;
             Name = _base.Species;
 
             CurrentHp = MaxHp;

@@ -1,4 +1,5 @@
 using System;
+using PokemonScripts.Conditions;
 using UnityEngine;
 
 namespace PokemonScripts.Moves.Effects

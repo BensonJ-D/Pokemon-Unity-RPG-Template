@@ -10,11 +10,16 @@ namespace Battle
         [SerializeField] private bool displayFront;
         [SerializeField] private Image image;
         [SerializeField] private Animator animator;
+        [SerializeField] private BattleStatus hud;
+        
         private static readonly int Reset = Animator.StringToHash("Reset");
         public Pokemon Pokemon { get; set; }
+        
         public void Setup(Pokemon pokemon)
         {
             Pokemon = pokemon;
+            hud.SetData(pokemon);
+            
             image.sprite = displayFront ? Pokemon.Base.FrontSprite : Pokemon.Base.BackSprite;
         }
 
@@ -36,7 +41,7 @@ namespace Battle
         
         public IEnumerator PlayDamageAnimation()
         {
-            var animationName = "Damage Blink";
+            const string animationName = "Damage Blink";
             yield return PlayAnimation(animationName);
         }
         
@@ -48,7 +53,7 @@ namespace Battle
         
         public IEnumerator PlayFaintAnimation()
         {
-            var animationName = "Faint";
+            const string animationName = "Faint";
             yield return PlayAnimation(animationName, false);
         }
 
@@ -58,6 +63,12 @@ namespace Battle
             
             yield return null;
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+        }
+
+        public IEnumerator UpdateHealth(DamageDetails damageDetails)
+        {
+            Pokemon.CurrentHp = damageDetails.Fainted ? 0 : Pokemon.CurrentHp - damageDetails.DamageDealt;
+            yield return hud.UpdateHealthBar(damageDetails);
         }
     }
 }

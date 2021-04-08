@@ -1,10 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using PokemonScripts.Conditions;
-using PokemonScripts.Moves;
-using PokemonScripts.Moves.Effects;
+using Battle;
+using Misc;
+using UnityEngine;
 
-namespace PokemonScripts
+namespace PokemonScripts.Conditions
 {
     public enum PrimaryStatusCondition { None, Poison, Burn, Paralyse, Freeze, Sleep }
 
@@ -14,16 +15,26 @@ namespace PokemonScripts
             new ReadOnlyDictionary<PrimaryStatusCondition, StatusCondition>(
                 new Dictionary<PrimaryStatusCondition, StatusCondition>()
                 {
-                    { PrimaryStatusCondition.None, null },
-                    { PrimaryStatusCondition.Poison, new StatusCondition()
-                    {
-                        OnAfterTurn = (Pokemon pokemon) =>
-                        {
-                            pokemon.CurrentHp -= pokemon.MaxHp / 8;
-                            return true;
-                        }
-                    } }
+                    { PrimaryStatusCondition.None, new NoStatusCondition() },
+                    { PrimaryStatusCondition.Poison, new PoisonCondition() }
                 }
             );
+    }
+
+    public class NoStatusCondition : StatusCondition { }
+
+    public class PoisonCondition : StatusCondition
+    {
+        public override IEnumerator OnAfterTurn(BattlePokemon battlePokemon, BattleDialogBox battleDialogBox)
+        {
+            var pokemon = battlePokemon.Pokemon;
+            var damage = pokemon.MaxHp / 8;
+            var fainted = damage >= pokemon.CurrentHp;
+            DamageDetails dmgDetails = new DamageDetails(fainted, damage);
+            Task updateHealthBar = new Task(battlePokemon.UpdateHealth(dmgDetails));
+            Task playDamageAnimation = new Task(battlePokemon.PlayDamageAnimation());
+            yield return new WaitWhile(() => updateHealthBar.Running || playDamageAnimation.Running);
+            yield return battleDialogBox.TypeDialog($"{pokemon.Name} is hurt by poison!");
+        }
     }
 }

@@ -1,10 +1,12 @@
-using System;
+using System.Collections;
+using Battle;
 
 namespace PokemonScripts.Conditions
 {
-    public class StatusCondition
+    public abstract class StatusCondition
     {
-        public Action<Pokemon> OnBeforeAction;
-        public Func<Pokemon, bool> OnAfterTurn;
+        public virtual IEnumerator OnBeforeAction(BattlePokemon battlePokemon, BattleDialogBox battleDialogBox) { yield break; }
+
+        public virtual IEnumerator OnAfterTurn(BattlePokemon battlePokemon, BattleDialogBox battleDialogBox) { yield break; }
     }
 }

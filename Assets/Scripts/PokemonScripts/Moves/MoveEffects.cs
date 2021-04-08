@@ -1,3 +1,4 @@
+using PokemonScripts.Conditions;
 using UnityEngine;
 
 namespace PokemonScripts.Moves
@@ -14,7 +15,7 @@ namespace PokemonScripts.Moves
         protected static bool ApplyPrimaryCondition(Pokemon user, Pokemon target, PrimaryStatusCondition condition)
         {
             target.ApplyPrimaryCondition(condition);
-            return false;
+            return true;
         }
     }
     

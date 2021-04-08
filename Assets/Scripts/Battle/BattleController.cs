@@ -5,6 +5,7 @@ using System.Linq;
 using Battle.SubSystems;
 using Misc;
 using PokemonScripts;
+using PokemonScripts.Conditions;
 using PokemonScripts.Moves;
 using UnityEngine;
 using VFX;
@@ -33,22 +34,14 @@ namespace Battle
         private Dictionary<Participant, PokemonParty> _party;
         private Dictionary<Participant, TurnState> _turnState;
         private Dictionary<Participant, BattlePokemon> _pokemon;
-        private Dictionary<Participant, BattleStatus> _status;
         private List<(BattleAction, IEnumerator, Participant)> _actions;
-
-        private DamageDetails _attackResult;
-
+        
         private void Start()
         {
             _pokemon = new Dictionary<Participant, BattlePokemon>
             {
                 {Participant.Player, player.GetComponentInChildren<BattlePokemon>()},
                 {Participant.Opponent, opponent.GetComponentInChildren<BattlePokemon>()}
-            };
-            _status = new Dictionary<Participant, BattleStatus>
-            {
-                {Participant.Player, player.GetComponentInChildren<BattleStatus>()},
-                {Participant.Opponent, opponent.GetComponentInChildren<BattleStatus>()}
             };
             _turnState = new Dictionary<Participant, TurnState>
             {
@@ -82,9 +75,6 @@ namespace Battle
 
             _pokemon[Participant.Player].Setup(_party[Participant.Player].GetFirstBattleReadyPokemon());
             _pokemon[Participant.Opponent].Setup(wildPokemon);
-
-            _status[Participant.Player].SetData(_pokemon[Participant.Player].Pokemon);
-            _status[Participant.Opponent].SetData(_pokemon[Participant.Opponent].Pokemon);
 
             dialogBox.ClearText();
 
@@ -203,6 +193,8 @@ namespace Battle
 
         private IEnumerator HandleBattle()
         {
+            _actions.Add((BattleAction.PersistentDamage, HandleStatusConditionsAfterTurn(Participant.Opponent), Participant.Opponent));
+            _actions.Add((BattleAction.PersistentDamage, HandleStatusConditionsAfterTurn(Participant.Player), Participant.Player));
             _actions.Sort(PrioritizeActions);
 
             while (_actions.Count > 0)
@@ -223,22 +215,37 @@ namespace Battle
             var defendingParticipant = (Participant) (((int) participant + 1) % 2);
             var attacker = _pokemon[participant];
             var defender = _pokemon[defendingParticipant];
-            var defendersHud = _status[defendingParticipant];
             var moveChoice = (int) moveMenu.Choice[participant];
             var move = attacker.Pokemon.Moves[moveChoice];
+            var damageDetails = CalculateDamage(move, attacker.Pokemon, defender.Pokemon);
             yield return DisplayText($"{attacker.Pokemon.Base.Species} used {move.Base.Name}!");
             yield return attacker.PlayBasicHitAnimation();
             yield return defender.PlayDamageAnimation();
-            yield return DealDamage(participant, defendersHud, move, attacker, defender);
+            yield return ApplyDamage(defender, damageDetails);
+            yield return CheckForFaintedPokemon(defender, damageDetails);
+            yield return ApplyEffects(move, attacker, defender, damageDetails);
+
+            // 
         }
 
-        private IEnumerator DealDamage(Participant attackingTrainer, BattleStatus display, Move move,
-            BattlePokemon attacker, BattlePokemon defender)
+        private IEnumerator ApplyEffects(Move move, BattlePokemon attacker, 
+            BattlePokemon defender, DamageDetails damageDetails)
         {
-            _attackResult = CalculateDamage(move, attacker.Pokemon, defender.Pokemon);
-            yield return display.UpdateHealthBar(_attackResult);
+            if (move.Base.EffectChance >= Random.Range(1, 101))
+            {
+                var result = move.ApplyEffects(attacker.Pokemon, defender.Pokemon);
+                foreach (var s in result)
+                {
+                    yield return DisplayText(s);
+                }
+            }
+        }
+        
+        private IEnumerator ApplyDamage(BattlePokemon defender, DamageDetails attackResult)
+        {
+            yield return defender.UpdateHealth(attackResult);
 
-            switch (_attackResult.Effective)
+            switch (attackResult.Effective)
             {
                 case AttackEffectiveness.NoEffect:
                     yield return DisplayText("The move had no effect ...");
@@ -255,48 +262,45 @@ namespace Battle
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (_attackResult.Critical)
+            if (attackResult.Critical)
             {
                 yield return DisplayText("It's a critical hit!");
             }
+        }
 
-            if (_attackResult.Fainted)
+        private IEnumerator CheckForFaintedPokemon(BattlePokemon defender, DamageDetails attackResult)
+        {
+            if (!attackResult.Fainted) yield break;
+            
+            yield return defender.PlayFaintAnimation();
+            yield return DisplayText($"{defender.Pokemon.Base.Species} fainted!!");
+            yield return new WaitForSeconds(1f);
+
+            var won = defender == _pokemon[Participant.Opponent];
+            if (won)
             {
-                yield return defender.PlayFaintAnimation();
-                yield return DisplayText($"{defender.Pokemon.Base.Species} fainted!!");
-                yield return new WaitForSeconds(1f);
-
-                var won = attackingTrainer == Participant.Player;
-                if (won)
-                {
-                    _party[Participant.Player].ResetBattleOrder();
-                    BattleState = BattleState.End;
-                    OnBattleOver?.Invoke(true);
-                    yield break;
-                }
-
-                var nextPokemon = _party[Participant.Player].Party[1];
-                if (nextPokemon == null)
-                {
-                    BattleState = BattleState.End;
-                    OnBattleOver?.Invoke(false);
-                    yield break;
-                }
-
-                partyMenu.OpenMenu(Participant.Player, _party[Participant.Player]);
-                while (partyMenu.State[Participant.Player] == SubsystemState.Open)
-                {
-                    yield return partyMenu.HandlePokemonSelection(Participant.Player, false);
-                }
-
-                yield return PerformSwitchIn(Participant.Player);
-                BattleState = BattleState.Start;
+                _party[Participant.Player].ResetBattleOrder();
+                BattleState = BattleState.End;
+                OnBattleOver?.Invoke(true);
+                yield break;
             }
 
-            foreach (var message in _attackResult.Messages)
+            var nextPokemon = _party[Participant.Player].Party[1];
+            if (nextPokemon == null)
             {
-                yield return DisplayText(message);
+                BattleState = BattleState.End;
+                OnBattleOver?.Invoke(false);
+                yield break;
             }
+
+            partyMenu.OpenMenu(Participant.Player, _party[Participant.Player]);
+            while (partyMenu.State[Participant.Player] == SubsystemState.Open)
+            {
+                yield return partyMenu.HandlePokemonSelection(Participant.Player, false);
+            }
+
+            yield return PerformSwitchIn(Participant.Player);
+            BattleState = BattleState.Start;
         }
 
         private IEnumerator PerformSwitch(Participant participant)
@@ -312,7 +316,6 @@ namespace Battle
         {
             var newPokemon = _party[participant].GetFirstBattleReadyPokemon();
             _pokemon[participant].Setup(newPokemon);
-            _status[participant].SetData(_pokemon[participant].Pokemon);
             Task enterAnimation = new Task(_pokemon[participant].PlayEnterAnimation());
             Task enterText =
                 new Task(dialogBox.TypeDialog($"Let's go, {_pokemon[participant].Pokemon.Base.Species}!!"));
@@ -320,6 +323,13 @@ namespace Battle
             yield return new WaitForSeconds(1f);
         }
 
+        private IEnumerator HandleStatusConditionsAfterTurn(Participant participant)
+        {
+            var primaryCondition = _pokemon[participant].Pokemon.PrimaryCondition;
+            yield return PrimaryStatusConditions.GetEffectClass[primaryCondition]
+                .OnAfterTurn(_pokemon[participant], dialogBox);
+        }
+        
         private IEnumerator WaitForParticipantsReady()
         {
             _turnState[Participant.Opponent] = TurnState.Ready;
@@ -392,15 +402,7 @@ namespace Battle
                 : 0;
             var fainted = defender.CurrentHp <= damage;
 
-            List<string> messages = new List<string>();
-            if (!fainted && move.Base.EffectChance >= Random.Range(1, 101))
-            {
-                messages = move.ApplyEffects(attacker, defender);
-            }
-            
-            defender.CurrentHp = fainted ? 0 : defender.CurrentHp - damage;
-            
-            return new DamageDetails(critical, typeAdvantage, fainted, damage, multiplier, messages);
+            return new DamageDetails(critical, typeAdvantage, fainted, damage, multiplier);
         }
         
         // public enum BattleAction { NewPokemon = -3, Weather = -2, PersistentDamage = -1, Move = 0, Item = 1, Switch = 2, Run = 3 }
@@ -420,7 +422,7 @@ namespace Battle
             var speed1 = pokemon1.BoostedSpeed;
             var moveChoice2 = (int) moveMenu.Choice[participant2];
             var moveChoice1 = (int) moveMenu.Choice[participant1];
-            var move2 = pokemon1.Moves[moveChoice2];
+            var move2 = pokemon2.Moves[moveChoice2];
             var move1 = pokemon1.Moves[moveChoice1];
             
             if (action1 == BattleAction.Move)
@@ -440,17 +442,24 @@ namespace Battle
         public readonly bool Fainted;
         public readonly int DamageDealt;
         public readonly float Multiplier;
-        public readonly List<string> Messages;
 
         public DamageDetails(bool critical, AttackEffectiveness effective, bool fainted, int damageDealt,
-            float multiplier, List<string> messages)
+            float multiplier)
         {
             Critical = critical;
             Effective = effective;
             Fainted = fainted;
             DamageDealt = damageDealt;
             Multiplier = multiplier;
-            Messages = messages;
+        }
+        
+        public DamageDetails(bool fainted, int damageDealt)
+        {
+            Critical = false;
+            Effective = AttackEffectiveness.NormallyEffective;
+            Fainted = fainted;
+            DamageDealt = damageDealt;
+            Multiplier = 1f;
         }
     }
 }
