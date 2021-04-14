@@ -26,6 +26,7 @@ namespace PokemonScripts
             Name = _base.Species;
 
             CurrentHp = MaxHp;
+            Experience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][level - 1];
 
             Moves = new List<Move>();
             foreach (var move in Base.LearnableMoves)
@@ -59,6 +60,7 @@ namespace PokemonScripts
         }
 
         public int Level { get; private set; }
+        public int Experience { get; private set; }
 
         public PrimaryStatusCondition PrimaryCondition { get; private set; } = PrimaryStatusCondition.None;
         public List<SecondaryStatusCondition> SecondaryConditions { get; private set; } = new List<SecondaryStatusCondition>();
@@ -90,10 +92,11 @@ namespace PokemonScripts
         public void ApplyStatChange(Stat stat, int steps) =>
             StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] + steps, -6, 6);
 
-        public void ApplyPrimaryCondition(PrimaryStatusCondition newCondition)
+        public bool ApplyPrimaryCondition(PrimaryStatusCondition newCondition)
         {
-            if (PrimaryCondition != PrimaryStatusCondition.None) return;
+            if (PrimaryCondition != PrimaryStatusCondition.None) return false;
             PrimaryCondition = newCondition;
+            return true;
         }
         
         public void ApplySecondaryCondition(SecondaryStatusCondition newCondition)

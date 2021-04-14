@@ -46,6 +46,7 @@ namespace Battle
                     statusCondition.sprite = statusIcons[0];
                     break;
                 case PrimaryStatusCondition.Burn:
+                    statusCondition.sprite = statusIcons[1];
                     break;
                 case PrimaryStatusCondition.Paralyse:
                     break;

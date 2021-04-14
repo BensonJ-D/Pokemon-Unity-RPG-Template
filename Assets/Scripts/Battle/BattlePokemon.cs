@@ -1,6 +1,7 @@
 ﻿﻿using System.Collections;
 using PokemonScripts;
-using UnityEngine;
+ using PokemonScripts.Conditions;
+ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Battle
@@ -14,7 +15,7 @@ namespace Battle
         
         private static readonly int Reset = Animator.StringToHash("Reset");
         public Pokemon Pokemon { get; set; }
-        
+
         public void Setup(Pokemon pokemon)
         {
             Pokemon = pokemon;
@@ -69,6 +70,11 @@ namespace Battle
         {
             Pokemon.CurrentHp = damageDetails.Fainted ? 0 : Pokemon.CurrentHp - damageDetails.DamageDealt;
             yield return hud.UpdateHealthBar(damageDetails);
+        }
+
+        public void UpdateStatus()
+        {
+            hud.UpdateStatus(this.Pokemon);
         }
     }
 }

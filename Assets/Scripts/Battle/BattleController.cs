@@ -224,8 +224,6 @@ namespace Battle
             yield return ApplyDamage(defender, damageDetails);
             yield return CheckForFaintedPokemon(defender, damageDetails);
             yield return ApplyEffects(move, attacker, defender, damageDetails);
-
-            // 
         }
 
         private IEnumerator ApplyEffects(Move move, BattlePokemon attacker, 
@@ -233,7 +231,7 @@ namespace Battle
         {
             if (move.Base.EffectChance >= Random.Range(1, 101))
             {
-                var result = move.ApplyEffects(attacker.Pokemon, defender.Pokemon);
+                var result = move.ApplyEffects(attacker, defender);
                 foreach (var s in result)
                 {
                     yield return DisplayText(s);

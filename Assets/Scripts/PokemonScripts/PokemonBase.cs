@@ -23,6 +23,8 @@ namespace PokemonScripts
         [SerializeField] private int spAttack;
         [SerializeField] private int spDefence;
         [SerializeField] private int speed;
+        
+        [SerializeField] private ExperienceGroup experienceGroup;
 
         [SerializeField] private LearnableMove[] learnableMoves;
 
@@ -40,6 +42,7 @@ namespace PokemonScripts
         public int SpDefence => spDefence;
         public int Speed => speed;
 
+        public ExperienceGroup ExperienceGroup => experienceGroup;
         public LearnableMove[] LearnableMoves => learnableMoves;
     }
 

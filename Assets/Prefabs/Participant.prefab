@@ -1080,6 +1080,10 @@ MonoBehaviour:
   hpBar: {fileID: 1301262118719541604}
   statusIcons:
   - {fileID: -7846951704758066578, guid: 378111192074db14daf2abf492064af7, type: 3}
+  - {fileID: -4105374878383749928, guid: 378111192074db14daf2abf492064af7, type: 3}
+  - {fileID: 3667133744217399008, guid: 378111192074db14daf2abf492064af7, type: 3}
+  - {fileID: 5614815078833240123, guid: 378111192074db14daf2abf492064af7, type: 3}
+  - {fileID: -479554778843493664, guid: 378111192074db14daf2abf492064af7, type: 3}
 --- !u!1 &1301262119914746226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,7 +1214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6826472320238156664
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1245,7 +1249,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2327806215992114102}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

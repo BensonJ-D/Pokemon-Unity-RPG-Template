@@ -1,4 +1,5 @@
 using System;
+using Battle;
 using UnityEngine;
 
 namespace PokemonScripts.Moves.Effects
@@ -13,17 +14,17 @@ namespace PokemonScripts.Moves.Effects
     
     public class ConfuseTarget : ModifySecondaryStatus
     {
-        public override string ApplyEffect(Pokemon user, Pokemon target) { 
+        public override string ApplyEffect(BattlePokemon user, BattlePokemon target) { 
             var success = ApplySecondaryCondition(user, target,  SecondaryStatusCondition.Confusion);
-            return $"{target.Name} became confused!";
+            return $"{target.Pokemon.Name} became confused!";
         }
     }
     
     public class FlinchTarget : ModifySecondaryStatus
     {
-        public override string ApplyEffect(Pokemon user, Pokemon target) { 
+        public override string ApplyEffect(BattlePokemon user, BattlePokemon target) { 
             var success = ApplySecondaryCondition(user, target,  SecondaryStatusCondition.Flinched);
-            return $"{target.Name} flinched and was unable to act!";
+            return $"{target.Pokemon.Name} flinched and was unable to act!";
         }
     }
 }

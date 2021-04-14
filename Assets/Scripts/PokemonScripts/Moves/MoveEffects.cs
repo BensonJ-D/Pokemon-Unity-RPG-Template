@@ -1,3 +1,4 @@
+using Battle;
 using PokemonScripts.Conditions;
 using UnityEngine;
 
@@ -5,55 +6,57 @@ namespace PokemonScripts.Moves
 {
     public class MoveEffect
     {
-        public virtual string ApplyEffect(Pokemon user, Pokemon target) { return ""; }
-        public virtual string ApplyEffect(Pokemon user, Pokemon target, object effect1) { return ""; }
-        public virtual string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect2) { return ""; }
+        public virtual string ApplyEffect(BattlePokemon user, BattlePokemon target) { return ""; }
+        public virtual string ApplyEffect(BattlePokemon user, BattlePokemon target, object effect1) { return ""; }
+        public virtual string ApplyEffect(BattlePokemon user, BattlePokemon target, object effect1, object effect2) { return ""; }
     }
     
     public class ModifyPrimaryStatus : MoveEffect
     {
-        protected static bool ApplyPrimaryCondition(Pokemon user, Pokemon target, PrimaryStatusCondition condition)
+        protected static bool ApplyPrimaryCondition(BattlePokemon user, BattlePokemon target, PrimaryStatusCondition condition)
         {
-            target.ApplyPrimaryCondition(condition);
-            return true;
+            var success = target.Pokemon.ApplyPrimaryCondition(condition);
+            target.UpdateStatus();
+            return success;
         }
     }
     
     public class ModifySecondaryStatus : MoveEffect
     {
-        protected static bool ApplySecondaryCondition(Pokemon user, Pokemon target, SecondaryStatusCondition condition)
+        protected static bool ApplySecondaryCondition(BattlePokemon user, BattlePokemon target, SecondaryStatusCondition condition)
         {
-            target.ApplySecondaryCondition(condition);
+            target.Pokemon.ApplySecondaryCondition(condition);
             return false;
         }
     }
     
     public class ModifyStat : MoveEffect
     {
-        private readonly string[] increasedPhrase = { "", "rose", "rose sharply", "rose drastically" };
-        private readonly string[] decreasedPhrase = { "", "fell", "fell harshly", "fell severely" };
-        private readonly string statMinOrMaxPhrase = "won't go any ";
-            
-        public override string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect2)
+        private readonly string[] _increasedPhrase = { "", "rose", "rose sharply", "rose drastically" };
+        private readonly string[] _decreasedPhrase = { "", "fell", "fell harshly", "fell severely" };
+        private const string StatMinOrMaxPhrase = "won't go any ";
+
+        public override string ApplyEffect(BattlePokemon user, BattlePokemon target, object effect1, object effect2)
         {
             var stat = (Stat) effect1;
             var modifier = (int) effect2;
-            var message = $"{target.Base.Species}'s {stat} ";
-            var currentLevel = target.StatBoosts[stat];
+            var targetPokemon = target.Pokemon;
+            var message = $"{targetPokemon.Base.Species}'s {stat} ";
+            var currentLevel = targetPokemon.StatBoosts[stat];
             var decreasing = modifier < 0;
             if (Mathf.Abs(currentLevel) == 6)
             {
-                message += statMinOrMaxPhrase;
+                message += StatMinOrMaxPhrase;
                 message += decreasing ? "lower!" : "higher!";
             }
             else
             {
                 var phraseIndex = Mathf.Abs(modifier);
-                message += decreasing ? decreasedPhrase[phraseIndex] : increasedPhrase[phraseIndex];
+                message += decreasing ? _decreasedPhrase[phraseIndex] : _increasedPhrase[phraseIndex];
             }
 
-            target.StatBoosts[(Stat) effect1] = 
-                Mathf.Clamp(target.StatBoosts[stat] + modifier, -6, 6);
+            targetPokemon.StatBoosts[(Stat) effect1] = 
+                Mathf.Clamp(targetPokemon.StatBoosts[stat] + modifier, -6, 6);
 
             return message;
         }

@@ -16,7 +16,8 @@ namespace PokemonScripts.Conditions
                 new Dictionary<PrimaryStatusCondition, StatusCondition>()
                 {
                     { PrimaryStatusCondition.None, new NoStatusCondition() },
-                    { PrimaryStatusCondition.Poison, new PoisonCondition() }
+                    { PrimaryStatusCondition.Poison, new PoisonCondition() },
+                    { PrimaryStatusCondition.Burn, new BurnCondition() }
                 }
             );
     }
@@ -30,11 +31,26 @@ namespace PokemonScripts.Conditions
             var pokemon = battlePokemon.Pokemon;
             var damage = pokemon.MaxHp / 8;
             var fainted = damage >= pokemon.CurrentHp;
-            DamageDetails dmgDetails = new DamageDetails(fainted, damage);
-            Task updateHealthBar = new Task(battlePokemon.UpdateHealth(dmgDetails));
-            Task playDamageAnimation = new Task(battlePokemon.PlayDamageAnimation());
+            var dmgDetails = new DamageDetails(fainted, damage);
+            var updateHealthBar = new Task(battlePokemon.UpdateHealth(dmgDetails));
+            var playDamageAnimation = new Task(battlePokemon.PlayDamageAnimation());
             yield return new WaitWhile(() => updateHealthBar.Running || playDamageAnimation.Running);
             yield return battleDialogBox.TypeDialog($"{pokemon.Name} is hurt by poison!");
+        }
+    }
+    
+    public class BurnCondition : StatusCondition
+    {
+        public override IEnumerator OnAfterTurn(BattlePokemon battlePokemon, BattleDialogBox battleDialogBox)
+        {
+            var pokemon = battlePokemon.Pokemon;
+            var damage = pokemon.MaxHp / 8;
+            var fainted = damage >= pokemon.CurrentHp;
+            var dmgDetails = new DamageDetails(fainted, damage);
+            var updateHealthBar = new Task(battlePokemon.UpdateHealth(dmgDetails));
+            var playDamageAnimation = new Task(battlePokemon.PlayDamageAnimation());
+            yield return new WaitWhile(() => updateHealthBar.Running || playDamageAnimation.Running);
+            yield return battleDialogBox.TypeDialog($"{pokemon.Name} is hurt by burn!");
         }
     }
 }

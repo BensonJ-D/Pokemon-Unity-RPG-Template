@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Battle;
 using PokemonScripts.Moves.Effects;
 
 namespace PokemonScripts.Moves
@@ -14,7 +15,7 @@ namespace PokemonScripts.Moves
             Pp = pBase.Pp;
         }
 
-        public List<string> ApplyEffects(Pokemon user, Pokemon opponent)
+        public List<string> ApplyEffects(BattlePokemon user, BattlePokemon opponent)
         {
             List<string> messages = new List<string>();
             foreach (var statModifier in Base.StatModifierEffects)
