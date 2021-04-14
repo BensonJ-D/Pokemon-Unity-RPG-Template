@@ -10,7 +10,6 @@ using VFX;
 using Random = UnityEngine.Random;
 
 public enum GameState { Start, Moving, Talking, Battle, Menu }
-public enum TransitionState { None, Start, End }
 
 public class GameController : MonoBehaviour
 {
@@ -19,7 +18,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TransitionController transitionController;
     
     public static GameState GameState { get; private set; } = GameState.Moving;
-    public static TransitionState TransitionState { get; private set; } = TransitionState.None;
+    public static TransitionState TransitionState { get; set; } = TransitionState.None;
 
     private Task _playerMovement;
 
@@ -61,28 +60,23 @@ public class GameController : MonoBehaviour
     private IEnumerator StartBattle(PokemonParty playerPokemon, Pokemon wildPokemon)
     {
         GameState = GameState.Battle;
-     
-        TransitionState = TransitionState.Start;
-        yield return transitionController.StartTransition();
+
+        StartCoroutine(transitionController.MoveToScreen(Transition.BattleEnter, CanvasView.BattleView));
+        yield return new WaitUntil(() => TransitionState == TransitionState.Pause);
         
         battleController.gameObject.SetActive(true);
         StartCoroutine(battleController.SetupBattle(playerPokemon, wildPokemon));
-        
-        TransitionState = TransitionState.End;
-        yield return transitionController.EndTransition();
-        
-        TransitionState = TransitionState.None;
     }
 
     private IEnumerator EndBattle(bool won)
     {
         TransitionState = TransitionState.Start;
-        yield return transitionController.StartTransition();
+        yield return transitionController.StartTransition(Transition.BattleEnter);
 
         yield return battleController.Reset();
         
         TransitionState = TransitionState.End;
-        yield return transitionController.EndTransition();
+        yield return transitionController.EndTransition(Transition.BattleEnter);
         
         GameState = GameState.Moving;
         TransitionState = TransitionState.None;
