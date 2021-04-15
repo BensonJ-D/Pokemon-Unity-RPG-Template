@@ -81,7 +81,7 @@ namespace Battle
             var enterPokemon1 = new Task(_pokemon[Participant.Player].PlayEnterAnimation());
             var enterPokemon2 = new Task(_pokemon[Participant.Opponent].PlayEnterAnimation());
 
-            yield return new WaitWhile(() => GameController.TransitionState != TransitionState.None
+            yield return new WaitWhile(() => TransitionController.TransitionState != TransitionState.None
                                              || enterPokemon1.Running || enterPokemon2.Running);
 
             yield return DisplayText($"A wild {_pokemon[Participant.Opponent].Pokemon.Base.Species} appeared!");

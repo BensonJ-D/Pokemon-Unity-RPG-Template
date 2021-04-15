@@ -16,9 +16,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private BattleController battleController;
     [SerializeField] private PlayerController player;
     [SerializeField] private TransitionController transitionController;
+    [SerializeField] private SceneController sceneController;
     
     public static GameState GameState { get; private set; } = GameState.Moving;
-    public static TransitionState TransitionState { get; set; } = TransitionState.None;
 
     private Task _playerMovement;
 
@@ -60,25 +60,28 @@ public class GameController : MonoBehaviour
     private IEnumerator StartBattle(PokemonParty playerPokemon, Pokemon wildPokemon)
     {
         GameState = GameState.Battle;
-
-        StartCoroutine(transitionController.MoveToScreen(Transition.BattleEnter, CanvasView.BattleView));
-        yield return new WaitUntil(() => TransitionState == TransitionState.Pause);
         
-        battleController.gameObject.SetActive(true);
-        StartCoroutine(battleController.SetupBattle(playerPokemon, wildPokemon));
+        yield return transitionController.RunTransition(Transition.BattleEnter,
+            OnTransitionPeak: () =>
+            {
+                battleController.gameObject.SetActive(true);
+                StartCoroutine(battleController.SetupBattle(playerPokemon, wildPokemon));
+                sceneController.SetActiveScene(Scene.BattleView);
+            }
+        );
     }
 
     private IEnumerator EndBattle(bool won)
     {
-        TransitionState = TransitionState.Start;
-        yield return transitionController.StartTransition(Transition.BattleEnter);
-
-        yield return battleController.Reset();
-        
-        TransitionState = TransitionState.End;
-        yield return transitionController.EndTransition(Transition.BattleEnter);
-        
-        GameState = GameState.Moving;
-        TransitionState = TransitionState.None;
+        yield return transitionController.RunTransition(Transition.BattleEnter,
+            () =>
+            {
+                StartCoroutine(battleController.Reset());
+                sceneController.SetActiveScene(Scene.WorldView);
+            },
+            () =>
+            {
+                GameState = GameState.Moving;
+            });
     }
 }
