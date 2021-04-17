@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Misc;
 using UnityEngine;
 
 namespace VFX
@@ -10,11 +11,24 @@ namespace VFX
     public enum TransitionState { None, Start, Pause, End }
     
     public class TransitionController : MonoBehaviour
-    {
+    {        
+        #region Singleton setup
+        private static TransitionController _instance;
+        public static TransitionController Instance { get { return _instance; } }
+
+        private void Awake()
+        {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(this.gameObject);
+            } else {
+                _instance = this;
+            }
+        }
+        #endregion
+        
         [SerializeField] private Animator transitions;
-
         public static TransitionState TransitionState { get; set; } = TransitionState.None;
-
 
         public IEnumerator StartTransition(Transition transition)
         {
@@ -49,7 +63,7 @@ namespace VFX
             OnTransitionFinish?.Invoke();
             TransitionState = TransitionState.None;
         }
-
+        
         public IEnumerator WaitForTransitionPeak()
         {
             if (TransitionState == TransitionState.End || TransitionState == TransitionState.None)

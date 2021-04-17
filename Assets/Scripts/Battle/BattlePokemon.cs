@@ -71,6 +71,11 @@ namespace Battle
             Pokemon.CurrentHp = damageDetails.Fainted ? 0 : Pokemon.CurrentHp - damageDetails.DamageDealt;
             yield return hud.UpdateHealthBar(damageDetails);
         }
+        
+        public IEnumerator UpdateExperience(int experienceGain)
+        {
+            yield return hud.UpdateExperienceBar(experienceGain);
+        }
 
         public void UpdateStatus()
         {

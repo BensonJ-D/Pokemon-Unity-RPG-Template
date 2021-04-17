@@ -14,6 +14,7 @@ namespace Battle
         [SerializeField] private Text levelText;
         [SerializeField] private Image statusCondition;
         [SerializeField] private HealthBar hpBar;
+        [SerializeField] private ExperienceBar expBar;
         [SerializeField] private List<Sprite> statusIcons;
 
         public void SetData(Pokemon pokemon)
@@ -21,6 +22,7 @@ namespace Battle
             nameText.text = pokemon.Base.Species;
             levelText.text = pokemon.Level.ToString();
             hpBar.Setup(pokemon);
+            expBar.Setup(pokemon);
             UpdateStatus(pokemon);
         }
 
@@ -32,6 +34,18 @@ namespace Battle
                 var newHp = hpBar.Hp - (hpBar.MaxHp / 100f) > 0 ? hpBar.Hp - (hpBar.MaxHp / 100f) : 0;
                 hpBar.SetHp(newHp);
                 yield return new WaitForSeconds(0.05f / dmgDetails.Multiplier);
+            }
+        }
+        
+        public IEnumerator UpdateExperienceBar(int experienceGained)
+        {
+            var targetExp = expBar.CurrentExperience + experienceGained;
+            while(expBar.CurrentExperience < targetExp)
+            {
+                var expStep = (expBar.NextLevelExperience - expBar.BaseLevelExperience) / 100f;
+                var newExp = expBar.CurrentExperience + expStep;
+                expBar.SetExp(newExp);
+                yield return new WaitForSeconds(0.05f);
             }
         }
         

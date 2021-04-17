@@ -1,10 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Scene { WorldView, PartyView, BattleView }
+public enum Scene { WorldView, SummaryView, PartyView, BattleView }
 
 public class SceneController : MonoBehaviour
 {
+    #region Singleton setup
+    private static SceneController _instance;
+    public static SceneController Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        } else {
+            _instance = this;
+        }
+    }
+    #endregion
+    
     private struct SceneState
     {
         public Scene Scene;

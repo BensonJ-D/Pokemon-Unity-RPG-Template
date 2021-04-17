@@ -26,7 +26,9 @@ namespace PokemonScripts
             Name = _base.Species;
 
             CurrentHp = MaxHp;
-            Experience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][level - 1];
+            BaseLevelExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][level - 1];
+            CurrentExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][level - 1];
+            NextLevelExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][level];
 
             Moves = new List<Move>();
             foreach (var move in Base.LearnableMoves)
@@ -60,7 +62,9 @@ namespace PokemonScripts
         }
 
         public int Level { get; private set; }
-        public int Experience { get; private set; }
+        public int CurrentExperience { get; set; }
+        public int BaseLevelExperience { get; private set; }
+        public int NextLevelExperience { get; private set; }
 
         public PrimaryStatusCondition PrimaryCondition { get; private set; } = PrimaryStatusCondition.None;
         public List<SecondaryStatusCondition> SecondaryConditions { get; private set; } = new List<SecondaryStatusCondition>();
@@ -80,6 +84,8 @@ namespace PokemonScripts
         public int BoostedSpAttack => GetBoostedStat(Stat.SpAttack, SpAttack);
         public int BoostedSpDefence => GetBoostedStat(Stat.SpDefence, SpDefence);
         public int BoostedSpeed => GetBoostedStat(Stat.Speed, Speed);
+
+        public int ExperienceYield => Mathf.FloorToInt(Level * Base.ExperienceYield / 7f);
 
         public Dictionary<Stat, int> StatBoosts { get; private set; }
         private static float[] _statChangePenalties = {1.0f, 0.66f, 0.5f, 0.4f, 0.33f, 0.285f, 0.25f}; 

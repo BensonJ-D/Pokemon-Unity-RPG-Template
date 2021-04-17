@@ -7,6 +7,7 @@ using Misc;
 using PokemonScripts;
 using PokemonScripts.Conditions;
 using PokemonScripts.Moves;
+using UnityEditor;
 using UnityEngine;
 using VFX;
 using Random = UnityEngine.Random;
@@ -172,7 +173,7 @@ namespace Battle
 
         private IEnumerator ChoosePokemon(Participant participant)
         {
-            partyMenu.OpenMenu(participant, _party[participant]);
+            yield return partyMenu.OpenMenu(participant, _party[participant]);
 
             while (partyMenu.State[participant] == SubsystemState.Open)
             {
@@ -222,7 +223,7 @@ namespace Battle
             yield return attacker.PlayBasicHitAnimation();
             yield return defender.PlayDamageAnimation();
             yield return ApplyDamage(defender, damageDetails);
-            yield return CheckForFaintedPokemon(defender, damageDetails);
+            yield return CheckForFaintedPokemon(attacker, defender, damageDetails);
             yield return ApplyEffects(move, attacker, defender, damageDetails);
         }
 
@@ -266,12 +267,17 @@ namespace Battle
             }
         }
 
-        private IEnumerator CheckForFaintedPokemon(BattlePokemon defender, DamageDetails attackResult)
+        private IEnumerator CheckForFaintedPokemon(BattlePokemon attacker, BattlePokemon defender, DamageDetails attackResult)
         {
             if (!attackResult.Fainted) yield break;
             
             yield return defender.PlayFaintAnimation();
             yield return DisplayText($"{defender.Pokemon.Base.Species} fainted!!");
+            yield return new WaitForSeconds(1f);
+
+            yield return DisplayText($"{attacker.Pokemon.Name} gained {defender.Pokemon.ExperienceYield} exp.");
+            yield return attacker.UpdateExperience(defender.Pokemon.ExperienceYield);
+            attacker.Pokemon.CurrentExperience += defender.Pokemon.ExperienceYield;
             yield return new WaitForSeconds(1f);
 
             var won = defender == _pokemon[Participant.Opponent];
@@ -291,7 +297,7 @@ namespace Battle
                 yield break;
             }
 
-            partyMenu.OpenMenu(Participant.Player, _party[Participant.Player]);
+            yield return partyMenu.OpenMenu(Participant.Player, _party[Participant.Player]);
             while (partyMenu.State[Participant.Player] == SubsystemState.Open)
             {
                 yield return partyMenu.HandlePokemonSelection(Participant.Player, false);
