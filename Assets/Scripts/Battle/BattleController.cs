@@ -279,7 +279,7 @@ namespace Battle
             yield return attacker.UpdateExperience(defender.Pokemon.ExperienceYield);
             attacker.Pokemon.CurrentExperience += defender.Pokemon.ExperienceYield;
             yield return new WaitForSeconds(1f);
-
+            
             var won = defender == _pokemon[Participant.Opponent];
             if (won)
             {
@@ -462,7 +462,7 @@ namespace Battle
             Critical = false;
             Effective = AttackEffectiveness.NormallyEffective;
             Fainted = fainted;
-            DamageDealt = damageDealt;
+            DamageDealt  = damageDealt;
             Multiplier = 1f;
         }
     }
