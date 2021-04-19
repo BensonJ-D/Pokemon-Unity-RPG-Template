@@ -37,6 +37,11 @@ namespace Battle
             }
         }
         
+        public void ResetExperienceBar(Pokemon pokemon)
+        {
+            expBar.Setup(pokemon);
+        }
+        
         public IEnumerator UpdateExperienceBar(int experienceGained)
         {
             var targetExp = expBar.CurrentExperience + experienceGained;

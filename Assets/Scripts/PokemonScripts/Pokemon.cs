@@ -26,9 +26,7 @@ namespace PokemonScripts
             Name = _base.Species;
 
             CurrentHp = MaxHp;
-            BaseLevelExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][level - 1];
             CurrentExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][level - 1];
-            NextLevelExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][level];
 
             Moves = new List<Move>();
             foreach (var move in Base.LearnableMoves)
@@ -63,8 +61,8 @@ namespace PokemonScripts
 
         public int Level { get; private set; }
         public int CurrentExperience { get; set; }
-        public int BaseLevelExperience { get; private set; }
-        public int NextLevelExperience { get; private set; }
+        public int BaseLevelExperience => ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1];
+        public int NextLevelExperience => ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level];
 
         public PrimaryStatusCondition PrimaryCondition { get; private set; } = PrimaryStatusCondition.None;
         public List<SecondaryStatusCondition> SecondaryConditions { get; private set; } = new List<SecondaryStatusCondition>();
@@ -109,6 +107,17 @@ namespace PokemonScripts
         {
             if (SecondaryConditions.Contains(newCondition)) return;
             SecondaryConditions.Add(newCondition);
+        }
+
+        public bool CheckForLevel()
+        {
+            if (CurrentExperience >= NextLevelExperience)
+            {
+                ++Level;
+                return true;
+            }
+            
+            return false;
         }
     }
 }

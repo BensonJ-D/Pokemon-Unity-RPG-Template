@@ -277,7 +277,6 @@ namespace Battle
 
             yield return DisplayText($"{attacker.Pokemon.Name} gained {defender.Pokemon.ExperienceYield} exp.");
             yield return attacker.UpdateExperience(defender.Pokemon.ExperienceYield);
-            attacker.Pokemon.CurrentExperience += defender.Pokemon.ExperienceYield;
             yield return new WaitForSeconds(1f);
             
             var won = defender == _pokemon[Participant.Opponent];

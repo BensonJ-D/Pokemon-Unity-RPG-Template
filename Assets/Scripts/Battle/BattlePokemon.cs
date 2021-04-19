@@ -78,8 +78,20 @@ namespace Battle
             {
                 var expToLevel = Pokemon.NextLevelExperience - Pokemon.CurrentExperience;
                 var expStep = experienceGain;
-                if(expStep > expToLevel) {expStep = expToLevel}
-                yield return hud.UpdateExperienceBar(experienceGain);
+                if (expStep > expToLevel)
+                {
+                    expStep = expToLevel;
+                }
+
+                experienceGain -= expStep;
+                yield return hud.UpdateExperienceBar(expStep);
+                Pokemon.CurrentExperience += expStep;
+                var levelUp = Pokemon.CheckForLevel();
+
+                if (levelUp)
+                {
+                    hud.SetData(Pokemon);
+                }
             }
         }
 
