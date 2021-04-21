@@ -15,6 +15,8 @@ namespace PokemonScripts.Moves
     {
         protected static bool ApplyPrimaryCondition(BattlePokemon user, BattlePokemon target, PrimaryStatusCondition condition)
         {
+            if (target.Pokemon.CurrentHp <= 0) return false;
+            
             var success = target.Pokemon.ApplyPrimaryCondition(condition);
             target.UpdateStatus();
             return success;
@@ -38,6 +40,8 @@ namespace PokemonScripts.Moves
 
         public override string ApplyEffect(BattlePokemon user, BattlePokemon target, object effect1, object effect2)
         {
+            if (target.Pokemon.CurrentHp <= 0) return "";
+            
             var stat = (Stat) effect1;
             var modifier = (int) effect2;
             var targetPokemon = target.Pokemon;

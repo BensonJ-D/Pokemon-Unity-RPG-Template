@@ -19,14 +19,14 @@ namespace PokemonScripts
             Initialization(_base, level);
         }
 
-        public void Initialization(PokemonBase @base, int level)
+        public void Initialization(PokemonBase @base, int initialLevel)
         {
             _base = @base;
-            Level = level;
+            Level = initialLevel;
             Name = _base.Species;
 
             CurrentHp = MaxHp;
-            CurrentExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][level - 1];
+            CurrentExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][initialLevel - 1];
 
             Moves = new List<Move>();
             foreach (var move in Base.LearnableMoves)
@@ -111,13 +111,11 @@ namespace PokemonScripts
 
         public bool CheckForLevel()
         {
-            if (CurrentExperience >= NextLevelExperience)
-            {
-                ++Level;
-                return true;
-            }
+            if (CurrentExperience < NextLevelExperience) return false;
             
-            return false;
+            ++Level;
+            return true;
+
         }
     }
 }

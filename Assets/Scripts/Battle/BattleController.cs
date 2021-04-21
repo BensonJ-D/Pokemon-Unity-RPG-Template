@@ -70,7 +70,8 @@ namespace Battle
             actionMenu.Reset();
             moveMenu.Reset();
             partyMenu.Reset();
-
+            _actions.Clear();
+            
             _party[Participant.Player] = playerPokemon;
             _party[Participant.Player].ResetBattleOrder();
 

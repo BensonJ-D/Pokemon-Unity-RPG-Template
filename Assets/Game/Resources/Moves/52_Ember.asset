@@ -24,4 +24,4 @@ MonoBehaviour:
   - statusCondition: 2
   statModifierEffects: []
   target: 1
-  effectChance: 10
+  effectChance: 100
