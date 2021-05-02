@@ -11,7 +11,7 @@ namespace PokemonScripts
         public int SpDefence;
         public int Speed;
 
-        public static Stats operator -(Stats a, Stats b)
+        public static Stats operator -(Stats b, Stats a)
         {
             return new Stats
             {

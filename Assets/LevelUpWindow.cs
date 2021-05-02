@@ -9,6 +9,7 @@ public class LevelUpWindow : MonoBehaviour
 {
     [SerializeField] private Transform window;
     [SerializeField] private Canvas canvas;
+    [SerializeField] private GameObject changeLabels;
     [SerializeField] private Text maxHpValue;
     [SerializeField] private Text attackValue;
     [SerializeField] private Text defenceValue;
@@ -34,20 +35,22 @@ public class LevelUpWindow : MonoBehaviour
     public IEnumerator ShowWindow(Stats before, Stats after, Vector3 pos)
     {
         window.position = pos;
+        changeLabels.SetActive(false);
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
 
         SetStatLabels(before);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
+        changeLabels.SetActive(true);
+        SetStatLabels(after - before);
         
-        SetStatLabels(after - before, '+');
-        
+        yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
-        
+        changeLabels.SetActive(false);
         SetStatLabels(after);
         
+        yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
-
         yield return HideWindow();
 
     }
@@ -59,13 +62,13 @@ public class LevelUpWindow : MonoBehaviour
         yield break;
     }
 
-    public void SetStatLabels(Stats stats, char leadingSymbol = ' ')
+    public void SetStatLabels(Stats stats)
     {
-        maxHpValue.text = $"{leadingSymbol}{stats.MaxHp}";
-        attackValue.text = $"{leadingSymbol}{stats.Attack}";
-        defenceValue.text = $"{leadingSymbol}{stats.Defence}";
-        spAtkValue.text = $"{leadingSymbol}{stats.SpAttack}";
-        spDefValue.text = $"{leadingSymbol}{stats.SpDefence}";
-        speedValue.text = $"{leadingSymbol}{stats.Speed}";
+        maxHpValue.text = $"{stats.MaxHp}";
+        attackValue.text = $"{stats.Attack}";
+        defenceValue.text = $"{stats.Defence}";
+        spAtkValue.text = $"{stats.SpAttack}";
+        spDefValue.text = $"{stats.SpDefence}";
+        speedValue.text = $"{stats.Speed}";
     }
 }

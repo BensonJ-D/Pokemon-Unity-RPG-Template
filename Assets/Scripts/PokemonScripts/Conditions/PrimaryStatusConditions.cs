@@ -29,7 +29,7 @@ namespace PokemonScripts.Conditions
         public override IEnumerator OnAfterTurn(BattlePokemon battlePokemon, BattleDialogBox battleDialogBox)
         {
             var pokemon = battlePokemon.Pokemon;
-            var damage = pokemon.MaxHp / 8;
+            var damage = pokemon.MaxHp() / 8;
             var fainted = damage >= pokemon.CurrentHp;
             var dmgDetails = new DamageDetails(fainted, damage);
             var updateHealthBar = new Task(battlePokemon.UpdateHealth(dmgDetails));
@@ -44,7 +44,7 @@ namespace PokemonScripts.Conditions
         public override IEnumerator OnAfterTurn(BattlePokemon battlePokemon, BattleDialogBox battleDialogBox)
         {
             var pokemon = battlePokemon.Pokemon;
-            var damage = pokemon.MaxHp / 8;
+            var damage = pokemon.MaxHp() / 8;
             var fainted = damage >= pokemon.CurrentHp;
             var dmgDetails = new DamageDetails(fainted, damage);
             var updateHealthBar = new Task(battlePokemon.UpdateHealth(dmgDetails));

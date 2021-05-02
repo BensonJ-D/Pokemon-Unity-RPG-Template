@@ -13,8 +13,10 @@ namespace Battle
         [SerializeField] private Animator animator;
         [SerializeField] private BattleStatus hud;
         
+        private LevelUpWindow LevelUpWindow { get; set; }
+
         private static readonly int Reset = Animator.StringToHash("Reset");
-        public Pokemon Pokemon { get; set; }
+        public Pokemon Pokemon { get; private set; }
 
         public void Setup(Pokemon pokemon)
         {
@@ -22,6 +24,7 @@ namespace Battle
             hud.SetData(pokemon);
             
             image.sprite = displayFront ? Pokemon.Base.FrontSprite : Pokemon.Base.BackSprite;
+            LevelUpWindow = FindObjectOfType<LevelUpWindow>();
         }
 
         private IEnumerator PlayAnimation(string animationName, bool reset = true)
@@ -88,10 +91,10 @@ namespace Battle
                 Pokemon.CurrentExperience += expStep;
                 var levelUp = Pokemon.CheckForLevel();
 
-                if (levelUp)
-                {
-                    hud.SetData(Pokemon);
-                }
+                if (!levelUp) continue;
+                hud.SetData(Pokemon);
+                yield return new WaitForSeconds(1f);
+                yield return LevelUpWindow.ShowWindow(Pokemon.GetStats(Pokemon.Level - 1), Pokemon.GetStats());
             }
         }
 

@@ -26,7 +26,7 @@ namespace PokemonScripts
             Name = @base.Species;
 
             CurrentHp = MaxHp();
-            CurrentExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][initialLevel - 1];
+            CurrentExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1];
 
             Moves = new List<Move>();
             foreach (var move in Base.LearnableMoves)
@@ -65,10 +65,10 @@ namespace PokemonScripts
         
         private int MaxHp(int level) => Mathf.FloorToInt((2 * Base.MaxHp * level) / 100f) + 10 + level;
         private int Attack(int level) => Mathf.FloorToInt((2 * Base.Attack * level) / 100f) + 5; 
-        private int Defence(int level) => Mathf.FloorToInt((2 * Base.Defence * Level) / 100f) + 5; 
-        private int SpAttack(int level) => Mathf.FloorToInt((2 * Base.SpAttack * Level) / 100f) + 5;
-        private int SpDefence(int level) => Mathf.FloorToInt((2 * Base.SpDefence * Level) / 100f) + 5; 
-        private int Speed(int level) => Mathf.FloorToInt((2 * Base.Speed * Level) / 100f) + 5; 
+        private int Defence(int level) => Mathf.FloorToInt((2 * Base.Defence * level) / 100f) + 5; 
+        private int SpAttack(int level) => Mathf.FloorToInt((2 * Base.SpAttack * level) / 100f) + 5;
+        private int SpDefence(int level) => Mathf.FloorToInt((2 * Base.SpDefence * level) / 100f) + 5; 
+        private int Speed(int level) => Mathf.FloorToInt((2 * Base.Speed * level) / 100f) + 5; 
 
         public int MaxHp() => MaxHp(Level);
         public int Attack() => Attack(Level);

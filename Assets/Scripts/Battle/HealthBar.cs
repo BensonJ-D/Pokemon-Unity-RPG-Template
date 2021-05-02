@@ -39,7 +39,7 @@ namespace Battle
 
             _gradient.SetKeys(colorKey, alphaKey);
             
-            SetHp(pokemon.CurrentHp, pokemon.MaxHp);
+            SetHp(pokemon.CurrentHp, pokemon.MaxHp());
         }
 
         public void SetHp(float hp) { SetHp(hp, MaxHp); }

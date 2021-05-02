@@ -21,11 +21,11 @@ public class SummaryMenu : MonoBehaviour
     {
         pokemonSprite.sprite = pokemon.Base.FrontSprite;
         healthBar.Setup(pokemon);
-        attackText.text = pokemon.Attack.ToString();
-        defenceText.text = pokemon.Defence.ToString();
-        spAtkText.text = pokemon.SpAttack.ToString();
-        spDefText.text = pokemon.SpDefence.ToString();
-        speedText.text = pokemon.Speed.ToString();
+        attackText.text = pokemon.Attack().ToString();
+        defenceText.text = pokemon.Defence().ToString();
+        spAtkText.text = pokemon.SpAttack().ToString();
+        spDefText.text = pokemon.SpDefence().ToString();
+        speedText.text = pokemon.Speed().ToString();
         expBar.Setup(pokemon);
     }
 
