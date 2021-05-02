@@ -11,21 +11,21 @@ namespace PokemonScripts
     [Serializable]
     public class Pokemon
     {
-        [SerializeField] private PokemonBase _base;
-        [SerializeField] private int level;
+        [SerializeField] private PokemonBase pokemonBase;
+        [SerializeField] private int initialLevel;
 
         public void Initialization()
         {
-            Initialization(_base, level);
+            Initialization(pokemonBase, initialLevel);
         }
 
-        public void Initialization(PokemonBase @base, int initialLevel)
+        public void Initialization(PokemonBase @base, int level)
         {
-            _base = @base;
-            Level = initialLevel;
-            Name = _base.Species;
+            Base = @base;
+            Level = level;
+            Name = @base.Species;
 
-            CurrentHp = MaxHp;
+            CurrentHp = MaxHp();
             CurrentExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][initialLevel - 1];
 
             Moves = new List<Move>();
@@ -53,11 +53,7 @@ namespace PokemonScripts
 
         public string Name { get; private set; }
 
-        public PokemonBase Base
-        {
-            get => _base;
-            private set => _base = value;
-        }
+        public PokemonBase Base { get; private set; }
 
         public int Level { get; private set; }
         public int CurrentExperience { get; set; }
@@ -66,22 +62,29 @@ namespace PokemonScripts
 
         public PrimaryStatusCondition PrimaryCondition { get; private set; } = PrimaryStatusCondition.None;
         public List<SecondaryStatusCondition> SecondaryConditions { get; private set; } = new List<SecondaryStatusCondition>();
-
-        public int MaxHp => Mathf.FloorToInt((2 * Base.MaxHp * Level) / 100f) + 10 + Level;
-        public int Attack => Mathf.FloorToInt((2 * Base.Attack * Level) / 100f) + 5;
-        public int Defence => Mathf.FloorToInt((2 * Base.Defence * Level) / 100f) + 5;
-        public int SpAttack => Mathf.FloorToInt((2 * Base.SpAttack * Level) / 100f) + 5;
-        public int SpDefence => Mathf.FloorToInt((2 * Base.SpDefence * Level) / 100f) + 5;
-        public int Speed => Mathf.FloorToInt((2 * Base.Speed * Level) / 100f) + 5;
         
+        private int MaxHp(int level) => Mathf.FloorToInt((2 * Base.MaxHp * level) / 100f) + 10 + level;
+        private int Attack(int level) => Mathf.FloorToInt((2 * Base.Attack * level) / 100f) + 5; 
+        private int Defence(int level) => Mathf.FloorToInt((2 * Base.Defence * Level) / 100f) + 5; 
+        private int SpAttack(int level) => Mathf.FloorToInt((2 * Base.SpAttack * Level) / 100f) + 5;
+        private int SpDefence(int level) => Mathf.FloorToInt((2 * Base.SpDefence * Level) / 100f) + 5; 
+        private int Speed(int level) => Mathf.FloorToInt((2 * Base.Speed * Level) / 100f) + 5; 
+
+        public int MaxHp() => MaxHp(Level);
+        public int Attack() => Attack(Level);
+        public int Defence() => Defence(Level);
+        public int SpAttack() => SpAttack(Level);
+        public int SpDefence() => SpDefence(Level);
+        public int Speed() => Speed(Level);
+
         public List<Move> Moves { get; private set; }
 
         public int CurrentHp { get; set; }
-        public int BoostedAttack => GetBoostedStat(Stat.Attack, Attack);
-        public int BoostedDefence => GetBoostedStat(Stat.Defence, Defence);
-        public int BoostedSpAttack => GetBoostedStat(Stat.SpAttack, SpAttack);
-        public int BoostedSpDefence => GetBoostedStat(Stat.SpDefence, SpDefence);
-        public int BoostedSpeed => GetBoostedStat(Stat.Speed, Speed);
+        public int BoostedAttack => GetBoostedStat(Stat.Attack, Attack());
+        public int BoostedDefence => GetBoostedStat(Stat.Defence, Defence());
+        public int BoostedSpAttack => GetBoostedStat(Stat.SpAttack, SpAttack());
+        public int BoostedSpDefence => GetBoostedStat(Stat.SpDefence, SpDefence());
+        public int BoostedSpeed => GetBoostedStat(Stat.Speed, Speed());
 
         public int ExperienceYield => Mathf.FloorToInt(Level * Base.ExperienceYield / 7f);
 
@@ -116,6 +119,32 @@ namespace PokemonScripts
             ++Level;
             return true;
 
+        }
+
+        public Stats GetStats()
+        {
+            return new Stats
+            {
+                MaxHp = MaxHp(),
+                Attack = Attack(),
+                Defence = Defence(),
+                SpAttack = SpAttack(),
+                SpDefence = SpDefence(),
+                Speed = Speed()
+            };
+        }
+        
+        public Stats GetStats(int level)
+        {
+            return new Stats
+            {
+                MaxHp = MaxHp(level),
+                Attack = Attack(level),
+                Defence = Defence(level),
+                SpAttack = SpAttack(level),
+                SpDefence = SpDefence(level),
+                Speed = Speed(level)
+            };
         }
     }
 }
