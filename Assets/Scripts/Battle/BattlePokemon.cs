@@ -1,4 +1,5 @@
-﻿﻿using System.Collections;
+﻿﻿using System;
+ using System.Collections;
 using PokemonScripts;
  using PokemonScripts.Conditions;
  using UnityEngine;
@@ -20,6 +21,7 @@ namespace Battle
 
         public void Setup(Pokemon pokemon)
         {
+            animator.ResetTrigger(Reset);
             Pokemon = pokemon;
             hud.SetData(pokemon);
             
@@ -32,6 +34,7 @@ namespace Battle
             animator.Play(animationName, 0);
 
             yield return null;
+            Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
             
             if(reset) animator.SetTrigger(Reset);

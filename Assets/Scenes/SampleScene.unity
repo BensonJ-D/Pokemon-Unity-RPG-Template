@@ -13353,7 +13353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   party:
   - pokemonBase: {fileID: 11400000, guid: d73402c190f2b1e4492298ba5d8adc9a, type: 2}
-    initialLevel: 30
+    initialLevel: 10
   - pokemonBase: {fileID: 11400000, guid: 0f175abe53e5a0f4e865edb14a9e117f, type: 2}
     initialLevel: 30
 --- !u!1 &2069525553

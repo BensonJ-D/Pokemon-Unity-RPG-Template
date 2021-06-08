@@ -373,6 +373,16 @@ namespace Battle
             gameObject.SetActive(false);
         }
 
+        private static int ApplyCriticalBonus(int damage)
+        {
+            return damage * 3 / 2;
+        }
+        
+        private static int ApplySameTypeAttackBonus(int damage)
+        {
+            return damage * 3 / 2;
+        }
+        
         private static DamageDetails CalculateDamage(Move move, Pokemon attacker, Pokemon defender)
         {
             var critical = (Random.value <= 0.0625f);
@@ -383,14 +393,17 @@ namespace Battle
             var criticalMultiplier = critical ? 2.0f : 1.0f;
             var variability = Random.Range(0.85f, 1f);
 
-            var atkVsDef = 0f;
+            var attack = 0;
+            var defence = 0;
             switch (move.Base.Category)
             {
                 case MoveCategory.Physical:
-                    atkVsDef = (float) attacker.BoostedAttack / attacker.BoostedDefence;
+                    attack = attacker.BoostedAttack;
+                    defence = defender.BoostedDefence;
                     break;
                 case MoveCategory.Special:
-                    atkVsDef = (float) attacker.BoostedSpAttack / attacker.BoostedSpDefence;
+                    attack = attacker.BoostedAttack;
+                    defence = defender.BoostedDefence;
                     break;
                 case MoveCategory.Status:
                     break;
@@ -399,13 +412,15 @@ namespace Battle
             }
 
             var multiplier = effectivenessMultiplier * criticalMultiplier;
-            var a = (2 * attacker.Level + 10) / 250f;
-            var d = a * move.Base.Power * atkVsDef + 2;
+            var a = 2 * attacker.Level / 5;
+            var b = a * move.Base.Power * attack / defence;
+            var c = b / 50 + 2;
             var damage = move.Base.Category != MoveCategory.Status 
-                ? Mathf.FloorToInt(d * variability * multiplier)
+                ? Mathf.FloorToInt(c * variability * multiplier)
                 : 0;
             var fainted = defender.CurrentHp <= damage;
 
+            Debug.Log(damage);
             return new DamageDetails(critical, typeAdvantage, fainted, damage, multiplier);
         }
         
