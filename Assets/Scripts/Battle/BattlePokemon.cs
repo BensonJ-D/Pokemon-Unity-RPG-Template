@@ -16,12 +16,11 @@ namespace Battle
         
         private LevelUpWindow LevelUpWindow { get; set; }
 
-        private static readonly int Reset = Animator.StringToHash("Reset");
+        private static readonly int ReturnToIdle = Animator.StringToHash("ReturnToIdle");
         public Pokemon Pokemon { get; private set; }
 
         public void Setup(Pokemon pokemon)
         {
-            animator.ResetTrigger(Reset);
             Pokemon = pokemon;
             hud.SetData(pokemon);
             
@@ -31,13 +30,13 @@ namespace Battle
 
         private IEnumerator PlayAnimation(string animationName, bool reset = true)
         {
+            animator.ResetTrigger(ReturnToIdle);
             animator.Play(animationName, 0);
 
             yield return null;
-            Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
             
-            if(reset) animator.SetTrigger(Reset);
+            if(reset) animator.SetTrigger(ReturnToIdle);
         }
         
         public IEnumerator PlayEnterAnimation()
@@ -66,7 +65,7 @@ namespace Battle
 
         public IEnumerator ResetAnimation()
         {
-            animator.SetTrigger(Reset);
+            animator.SetTrigger(ReturnToIdle);
             
             yield return null;
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
