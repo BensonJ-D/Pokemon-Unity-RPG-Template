@@ -9,8 +9,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int speed;
     [SerializeField] private Grid grid;
     [SerializeField] private PokemonParty party;
+    [SerializeField] private Inventory.Inventory inventory;
 
     public PokemonParty Party => party;
+    public Inventory.Inventory Inventory => inventory;
 
     private bool _moving;
     private bool _stopMovement;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Battle.SubSystems;
+using Inventory;
 using Misc;
 using PokemonScripts;
 using PokemonScripts.Conditions;
@@ -27,12 +28,14 @@ namespace Battle
         [SerializeField] private ActionMenu actionMenu;
         [SerializeField] private MoveMenu moveMenu;
         [SerializeField] private PartyMenu partyMenu;
+        [SerializeField] private InventoryMenu inventoryMenu;
         [SerializeField] private BattleDialogBox dialogBox;
 
         public event Action<bool> OnBattleOver;
 
         private BattleState BattleState { get; set; } = BattleState.Start;
         private Dictionary<Participant, PokemonParty> _party;
+        private Dictionary<Participant, Inventory.Inventory> _inventory;
         private Dictionary<Participant, TurnState> _turnState;
         private Dictionary<Participant, BattlePokemon> _pokemon;
         private List<(BattleAction, IEnumerator, Participant)> _actions;
@@ -54,16 +57,23 @@ namespace Battle
                 {Participant.Player, null},
                 {Participant.Opponent, null}
             };
+            _inventory = new Dictionary<Participant, Inventory.Inventory>
+            {
+                {Participant.Player, null},
+                {Participant.Opponent, null}
+            };
+            
             _actions = new List<(BattleAction, IEnumerator, Participant)>();
             
             actionMenu.Init();
             moveMenu.Init();
             partyMenu.Init();
+            inventoryMenu.Init();
 
             gameObject.SetActive(false);
         }
 
-        public IEnumerator SetupBattle(PokemonParty playerPokemon, Pokemon wildPokemon)
+        public IEnumerator SetupBattle(PokemonParty playerPokemon, Inventory.Inventory playerInventory, Pokemon wildPokemon)
         {
             BattleState = BattleState.Start;
 
@@ -74,6 +84,8 @@ namespace Battle
             
             _party[Participant.Player] = playerPokemon;
             _party[Participant.Player].ResetBattleOrder();
+
+            _inventory[Participant.Player] = playerInventory;
 
             _pokemon[Participant.Player].Setup(_party[Participant.Player].GetFirstBattleReadyPokemon());
             _pokemon[Participant.Opponent].Setup(wildPokemon);
@@ -127,6 +139,7 @@ namespace Battle
                     StartCoroutine(ChooseMove(participant));
                     break;
                 case ActionMenu.ActionChoice.Bag:
+                    StartCoroutine(ChooseItem(participant));
                     break;
                 case ActionMenu.ActionChoice.Pokemon:
                     StartCoroutine(ChoosePokemon(participant));
@@ -193,6 +206,16 @@ namespace Battle
             }
         }
 
+        private IEnumerator ChooseItem(Participant participant)
+        {
+            yield return inventoryMenu.OpenMenu(participant, _inventory[participant]);
+
+            while (inventoryMenu.State[participant] == SubsystemState.Open)
+            {
+                yield return inventoryMenu.HandleItemSelection(participant);
+            }
+        }
+        
         private IEnumerator HandleBattle()
         {
             _actions.Add((BattleAction.PersistentDamage, HandleStatusConditionsAfterTurn(Participant.Opponent), Participant.Opponent));

@@ -22,8 +22,8 @@ namespace Battle
         public Dictionary<Participant, PokemonChoice> Choice { get; private set; }
         public Dictionary<Participant, SubsystemState> State { get; private set; }
         
-        private List<int> _orderOfPokemon;
-        private PokemonParty _party;
+        private List<int> orderOfPokemon;
+        private PokemonParty party;
 
         public void Init()
         {
@@ -48,13 +48,13 @@ namespace Battle
 
         private void SetPartyData(PokemonParty newParty)
         {
-            _party = newParty;
-            _orderOfPokemon = _party.GetCurrentBattleOrder();
+            party = newParty;
+            orderOfPokemon = party.GetCurrentBattleOrder();
             
-            var slotAndPokemon = _orderOfPokemon.Zip(partySlots, (p, s) => new {p, s});
+            var slotAndPokemon = orderOfPokemon.Zip(partySlots, (p, s) => new {p, s});
             foreach (var pair in slotAndPokemon)
             {
-                pair.s.SetData(_party.Party[pair.p]);
+                pair.s.SetData(party.Party[pair.p]);
                 pair.s.gameObject.SetActive(true);
             }
 
@@ -70,7 +70,7 @@ namespace Battle
                     {
                         SetPartyData(partyPokemon);
 
-                        _orderOfPokemon.ForEach(slot => partySlots[slot].SetSelected(false));
+                        orderOfPokemon.ForEach(slot => partySlots[slot].SetSelected(false));
                         partySlots[0].SetSelected(true);
                         Choice[participant] = PokemonChoice.Pokemon1;
                         State[participant] = SubsystemState.Open;
@@ -102,7 +102,7 @@ namespace Battle
             if (participant == Participant.Player)
             {
                 var oldSelection = (int) Choice[participant];
-                var newSelection = Utils.GetPokemonOption((int) Choice[participant], _party.Party.Count);
+                var newSelection = Utils.GetPokemonOption((int) Choice[participant], party.Party.Count);
                 if (oldSelection != newSelection)
                 {
                     partySlots[oldSelection].SetSelected(false);
@@ -119,9 +119,9 @@ namespace Battle
                 
                 if (!Input.GetKeyDown(KeyCode.Z)) yield break;
 
-                List<int> battleOrder = _party.GetCurrentBattleOrder();
+                List<int> battleOrder = party.GetCurrentBattleOrder();
                 var indexForNewPokemon = battleOrder[newSelection];
-                var selectedPokemon = _party.Party[indexForNewPokemon];
+                var selectedPokemon = party.Party[indexForNewPokemon];
                 yield return summaryMenu.OpenMenu(selectedPokemon);
                 //
                 // if (selectedPokemon.CurrentHp <= 0)

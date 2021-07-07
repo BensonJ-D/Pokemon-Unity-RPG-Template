@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
 
         foreach (var region in encounterRegions)
         {
-            region.OnEncountered += wildPokemon => StartCoroutine(StartBattle(player.Party, wildPokemon));
+            region.OnEncountered += wildPokemon => StartCoroutine(StartBattle(player.Party, player.Inventory, wildPokemon));
         }
 
         battleController.OnBattleOver += won => StartCoroutine(EndBattle(won));
@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private IEnumerator StartBattle(PokemonParty playerPokemon, Pokemon wildPokemon)
+    private IEnumerator StartBattle(PokemonParty playerPokemon, Inventory.Inventory playerInventory, Pokemon wildPokemon)
     {
         GameState = GameState.Battle;
         
@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour
             OnTransitionPeak: () =>
             {
                 battleController.gameObject.SetActive(true);
-                StartCoroutine(battleController.SetupBattle(playerPokemon, wildPokemon));
+                StartCoroutine(battleController.SetupBattle(playerPokemon, playerInventory, wildPokemon));
                 sceneController.SetActiveScene(Scene.BattleView);
             }
         );

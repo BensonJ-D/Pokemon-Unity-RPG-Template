@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Scene { WorldView, SummaryView, PartyView, BattleView }
+public enum Scene { WorldView, SummaryView, PartyView, BattleView, InventoryView }
 
 public class SceneController : MonoBehaviour
 {
