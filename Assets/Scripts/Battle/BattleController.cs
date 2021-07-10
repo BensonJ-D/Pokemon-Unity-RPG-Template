@@ -187,7 +187,7 @@ namespace Battle
 
         private IEnumerator ChoosePokemon(Participant participant)
         {
-            yield return partyMenu.OpenMenu(participant, _party[participant]);
+            yield return partyMenu.OpenMenu(participant, _party[participant], Scene.BattleView);
 
             while (partyMenu.State[participant] == SubsystemState.Open)
             {
@@ -208,12 +208,15 @@ namespace Battle
 
         private IEnumerator ChooseItem(Participant participant)
         {
-            yield return inventoryMenu.OpenMenu(participant, _inventory[participant]);
+            inventoryMenu.SetInventoryData(_inventory[participant]);
+            yield return inventoryMenu.OpenMenu(participant, Scene.BattleView);
 
             while (inventoryMenu.State[participant] == SubsystemState.Open)
             {
                 yield return inventoryMenu.HandleItemSelection(participant);
             }
+            
+            StartCoroutine(ChooseAction(participant));
         }
         
         private IEnumerator HandleBattle()
@@ -320,7 +323,7 @@ namespace Battle
                 yield break;
             }
 
-            yield return partyMenu.OpenMenu(Participant.Player, _party[Participant.Player]);
+            yield return partyMenu.OpenMenu(Participant.Player, _party[Participant.Player], Scene.BattleView);
             while (partyMenu.State[Participant.Player] == SubsystemState.Open)
             {
                 yield return partyMenu.HandlePokemonSelection(Participant.Player, false);

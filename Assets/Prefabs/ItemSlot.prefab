@@ -298,4 +298,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: {fileID: 7437312865938734892}
+  itemMultiplier: {fileID: 1116267285867099451}
   itemQuantity: {fileID: 7227086837187209385}

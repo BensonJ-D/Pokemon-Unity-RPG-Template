@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using PokemonScripts;
 using PokemonScripts.Conditions;
@@ -13,8 +14,8 @@ namespace Inventory
         [SerializeField] private List<SecondaryStatusCondition> secondaryStatusConditionsHealed;
 
         private Pokemon target;
-        
-        public override void BeforeUse() {  }
+
+        public override IEnumerator BeforeUse() { yield return null; }
         public override bool ValidateUse() { return true; }
         public override void OnUse() {}
         public override void AfterUse() {}

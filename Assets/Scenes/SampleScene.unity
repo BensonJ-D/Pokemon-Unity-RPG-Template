@@ -5519,8 +5519,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49.5, y: -212}
-  m_SizeDelta: {x: 630.36926, y: 104.137375}
+  m_AnchoredPosition: {x: 48, y: -209.93}
+  m_SizeDelta: {x: 630.36926, y: 119.764145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &440879739
 MonoBehaviour:
@@ -5544,11 +5544,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4b8b6386a3ed9534ba5ba611634ce86b, type: 3}
-    m_FontSize: 40
+    m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -5633,6 +5633,10 @@ MonoBehaviour:
   - {fileID: 1311604321}
   - {fileID: 1006440146}
   - {fileID: 1534483401}
+  icon: {fileID: 1581139389}
+  description: {fileID: 440879739}
+  partyMenu: {fileID: 1774106485}
+  player: {fileID: 2067044161}
 --- !u!114 &461905314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14448,6 +14452,7 @@ MonoBehaviour:
   speed: 5
   grid: {fileID: 428642646}
   party: {fileID: 2067044165}
+  inventory: {fileID: 2067044166}
 --- !u!212 &2067044162
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14562,17 +14567,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30084df4fbb16164781c9a33189a2dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory:
-  - item: {fileID: 0}
-    quantity: 0
-  - item: {fileID: 0}
-    quantity: 0
-  - item: {fileID: 0}
-    quantity: 0
-  - item: {fileID: 0}
-    quantity: 0
-  - item: {fileID: 0}
-    quantity: 0
+  items:
+  - item: {fileID: 11400000, guid: 91130ea51f07e1547b5ced559d1cb730, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 5ab44254a0f8b4b4e9de7794a0b49e5e, type: 2}
+    quantity: 3
+  - item: {fileID: 11400000, guid: 91130ea51f07e1547b5ced559d1cb730, type: 2}
+    quantity: 12
+  - item: {fileID: 11400000, guid: 5ab44254a0f8b4b4e9de7794a0b49e5e, type: 2}
+    quantity: 2
+  - item: {fileID: 11400000, guid: f101abb40560440d890e05a2382b7be8, type: 2}
+    quantity: 42
+  - item: {fileID: 11400000, guid: 5ab44254a0f8b4b4e9de7794a0b49e5e, type: 2}
+    quantity: 3
+  - item: {fileID: 11400000, guid: f101abb40560440d890e05a2382b7be8, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 91130ea51f07e1547b5ced559d1cb730, type: 2}
+    quantity: 11
+  - item: {fileID: 11400000, guid: 91130ea51f07e1547b5ced559d1cb730, type: 2}
+    quantity: 3
+  - item: {fileID: 11400000, guid: 5ab44254a0f8b4b4e9de7794a0b49e5e, type: 2}
+    quantity: 2
+  - item: {fileID: 11400000, guid: 5ab44254a0f8b4b4e9de7794a0b49e5e, type: 2}
+    quantity: 2
 --- !u!1 &2069525553
 GameObject:
   m_ObjectHideFlags: 0

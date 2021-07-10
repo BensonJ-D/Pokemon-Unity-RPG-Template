@@ -24,6 +24,7 @@ namespace Battle
         
         private List<int> orderOfPokemon;
         private PokemonParty party;
+        private Scene source;
 
         public void Init()
         {
@@ -61,13 +62,14 @@ namespace Battle
             messageText.text = "Choose a Pokemon.";
         }
 
-        public IEnumerator OpenMenu(Participant participant, PokemonParty partyPokemon)
+        public IEnumerator OpenMenu(Participant participant, PokemonParty partyPokemon, Scene sourceScene)
         {
             if (participant == Participant.Player)
             {
                 yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
                     OnTransitionPeak: () =>
                     {
+                        source = sourceScene;
                         SetPartyData(partyPokemon);
 
                         orderOfPokemon.ForEach(slot => partySlots[slot].SetSelected(false));
@@ -89,7 +91,7 @@ namespace Battle
                 yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
                     OnTransitionPeak: () =>
                     {
-                        SceneController.Instance.SetActiveScene(Scene.BattleView);
+                        SceneController.Instance.SetActiveScene(source);
                         messageText.text = "";
                     }
                 );

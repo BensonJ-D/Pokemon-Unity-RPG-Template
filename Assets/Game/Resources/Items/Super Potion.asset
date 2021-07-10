@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f074a60e69a4d2c8d3dd33042b63704, type: 3}
-  m_Name: Potion
+  m_Name: Super Potion
   m_EditorClassIdentifier: 
-  itemName: Potion
-  description: Heals a small amount of HP.
-  amountHealed: 20
+  itemName: Super Potion
+  description: Heals a moderate amount of HP.
+  amountHealed: 60
   primaryStatusConditionsHealed: 
   secondaryStatusConditionsHealed: 
