@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Battle;
+using DefaultNamespace;
 using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
 using VFX;
 
-public class SummaryMenu : MonoBehaviour
+public class SummaryMenu : SceneWindow
 {
     [SerializeField] private Image pokemonSprite;
     [SerializeField] private HealthBar healthBar;
@@ -17,7 +18,13 @@ public class SummaryMenu : MonoBehaviour
     [SerializeField] private Text speedText;
     [SerializeField] private ExperienceBar expBar;
 
-    private void SetPokemonData(Pokemon pokemon)
+    public override void Init()
+    {
+        self = Scene.SummaryView;
+        base.Init();
+    }
+
+    public void SetPokemonData(Pokemon pokemon)
     {
         pokemonSprite.sprite = pokemon.Base.FrontSprite;
         healthBar.Setup(pokemon);
@@ -27,16 +34,5 @@ public class SummaryMenu : MonoBehaviour
         spDefText.text = pokemon.SpDefence().ToString();
         speedText.text = pokemon.Speed().ToString();
         expBar.Setup(pokemon);
-    }
-
-    public IEnumerator OpenMenu(Pokemon pokemon)
-    {
-        yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
-            OnTransitionPeak: () =>
-            {
-                SetPokemonData(pokemon);
-                SceneController.Instance.SetActiveScene(Scene.SummaryView);
-            }
-        );
     }
 }

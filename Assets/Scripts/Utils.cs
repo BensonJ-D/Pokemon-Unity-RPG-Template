@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public static class Utils 
@@ -23,6 +24,22 @@ public static class Utils
         }
 
         return newChoice;
+    }
+    
+    public static (int, int) GetGridOption((int, int) currentChoice, int rows, int cols)
+    {
+        var (row, col) = currentChoice;
+        if (Input.GetKeyDown(KeyCode.DownArrow)){
+            row = Mathf.Min(row + 1, rows - 1);
+        } else if (Input.GetKeyDown(KeyCode.UpArrow)){
+            row = Mathf.Max(0, row - 1);
+        } else if (Input.GetKeyDown(KeyCode.RightArrow)){
+            col = Mathf.Min(col + 1, cols - 1);
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow)){
+            col = Mathf.Max(0, col - 1);
+        }
+
+        return (row, col);
     }
     
     public static int GetPokemonOption(int currentChoice, int totalOptions)

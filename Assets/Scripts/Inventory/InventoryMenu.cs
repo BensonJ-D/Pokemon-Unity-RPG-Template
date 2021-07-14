@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Battle;
 using DefaultNamespace;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using VFX;
@@ -24,6 +25,13 @@ namespace Inventory
         private int _inventorySize;
         private Inventory _inventory;
 
+        private static class MenuOptions
+        {
+            public const string 
+                Use = "USE",
+                Cancel = "CANCEL";
+        }
+        
         public override void Init()
         {
             self = Scene.InventoryView;
@@ -81,14 +89,28 @@ namespace Inventory
                 } else if (Input.GetKeyDown(KeyCode.X)) {
                     yield return CloseWindow(participant);
                 } else if (Input.GetKeyDown(KeyCode.Z)) {
-                    if (_inventoryPosition == _inventory.Items.Count) {
-                        yield return CloseWindow(participant);
-                    } else
+                    OptionWindow.Instance.SetOptions(new[,]
                     {
-                        yield return partyMenu.OpenMenu(participant, player.Party, Scene.InventoryView);
-                        while (partyMenu.State[participant] == SubsystemState.Open)
+                        {MenuOptions.Use},
+                        {MenuOptions.Cancel}
+                    });
+                    yield return OptionWindow.Instance.ShowWindow();
+
+                    if (OptionWindow.Instance.Choice == MenuOptions.Use)
+                    {
+
+                        if (_inventoryPosition == _inventory.Items.Count)
                         {
-                            yield return partyMenu.HandlePokemonSelection(participant);
+                            yield return CloseWindow(participant);
+                        }
+                        else
+                        {
+                            partyMenu.SetPartyData(player.Party);
+                            yield return partyMenu.OpenMenu(participant, Scene.InventoryView);
+                            while (partyMenu.State[participant] == SubsystemState.Open)
+                            {
+                                yield return partyMenu.HandlePokemonSelection(participant);
+                            }
                         }
                     }
                 }

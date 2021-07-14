@@ -10,7 +10,7 @@ namespace DefaultNamespace
     public class SceneWindow : MonoBehaviour
     {
         public Dictionary<Participant, SubsystemState> State { get; private set; }
-        protected Scene source;
+        private Scene source;
         protected Scene self; 
         
         public virtual void Init()
