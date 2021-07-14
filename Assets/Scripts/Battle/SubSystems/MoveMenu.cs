@@ -20,8 +20,13 @@ namespace Battle.SubSystems
 
         private List<Move> moves;
 
+        private InputMap Keyboard;
+        
         public void Init()
         {
+            Keyboard = new InputMap();
+            Keyboard.Player.Enable();
+            
             Choice = new Dictionary<Participant, MoveChoice>
             {
                 {Participant.Player, MoveChoice.Move1},
@@ -75,14 +80,14 @@ namespace Battle.SubSystems
             {
                 Choice[participant] = (MoveChoice) Utils.GetGridOption((int) Choice[participant], 2, moves.Count);
 
-                if (Input.GetKeyDown(KeyCode.X))
+                if (Keyboard.Player.Cancel.triggered)
                 {
                     Choice[participant] = MoveChoice.Back;
                     CloseWindow(participant);
                     yield break;
                 }
 
-                if (!Input.GetKeyDown(KeyCode.Z)) yield break;
+                if (!Keyboard.Player.Accept.triggered) yield break;
                 CloseWindow(participant);
             }
             else

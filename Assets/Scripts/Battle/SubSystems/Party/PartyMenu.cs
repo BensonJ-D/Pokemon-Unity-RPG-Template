@@ -115,32 +115,31 @@ namespace Battle
                     Choice[participant] = (PokemonChoice) newSelection;
                 }
                 
-                if (Input.GetKeyDown(KeyCode.X) && isCloseable)
+                if (Keyboard.Player.Cancel.triggered && isCloseable)
                 {
                     Choice[participant] = PokemonChoice.Back;
                     yield return CloseWindow(participant);
                     yield break;
                 }
                 
-                if (!Input.GetKeyDown(KeyCode.Z)) yield break;
+                if (!Keyboard.Player.Accept.triggered) yield break;
 
                 List<int> battleOrder = _party.GetCurrentBattleOrder();
                 var indexForNewPokemon = battleOrder[newSelection];
                 var selectedPokemon = _party.Party[indexForNewPokemon];
-                optionWindow.SetOptions(new[,]
+                yield return optionWindow.ShowWindow(new[,]
                 {
                     {MenuOptions.Switch},
                     {MenuOptions.Summary},
                     {MenuOptions.Cancel}
                 });
-                yield return optionWindow.ShowWindow();
 
                 var action = optionWindow.Choice;
                 if (action == MenuOptions.Summary) {
                     summaryMenu.Init();
                     summaryMenu.SetPokemonData(selectedPokemon);
                     yield return summaryMenu.OpenMenu(participant, Scene.PartyView);
-                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
+                    yield return new WaitUntil(() => Keyboard.Player.Cancel.triggered);
                     yield return summaryMenu.CloseWindow(participant);
                 }
 

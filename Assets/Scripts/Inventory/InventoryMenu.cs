@@ -65,7 +65,9 @@ namespace Inventory
         {
             if (participant == Participant.Player)
             {
-                if (Input.GetKeyDown(KeyCode.DownArrow) && _inventoryPosition < _inventorySize)
+                var move = Keyboard.Player.Move.ReadValue<Vector2>();
+                var y = Mathf.RoundToInt(move.y);
+                if (y > 0 && _inventoryPosition < _inventorySize)
                 {
                     _inventoryPosition = Mathf.Min(_inventoryPosition + 1, _inventorySize);
                     if (++_cursorPosition > _maxCursorPosition) {
@@ -76,7 +78,7 @@ namespace Inventory
                     SetCursorRenderPosition();
                     SetItemDescription();
                 }
-                else if (Input.GetKeyDown(KeyCode.UpArrow) && _inventoryPosition > 0)
+                else if (y < 0 && _inventoryPosition > 0)
                 {
                     _inventoryPosition = Mathf.Max(0, _inventoryPosition - 1);
                     if (--_cursorPosition < 0) {
@@ -86,16 +88,16 @@ namespace Inventory
 
                     SetCursorRenderPosition();
                     SetItemDescription();
-                } else if (Input.GetKeyDown(KeyCode.X)) {
+                } else if (Keyboard.Player.Cancel.triggered) {
                     yield return CloseWindow(participant);
-                } else if (Input.GetKeyDown(KeyCode.Z)) {
-                    OptionWindow.Instance.SetOptions(new[,]
+                } else if (Keyboard.Player.Accept.triggered) {
+                    
+                    yield return OptionWindow.Instance.ShowWindow(new[,]
                     {
                         {MenuOptions.Use},
                         {MenuOptions.Cancel}
                     });
-                    yield return OptionWindow.Instance.ShowWindow();
-
+                    
                     if (OptionWindow.Instance.Choice == MenuOptions.Use)
                     {
 

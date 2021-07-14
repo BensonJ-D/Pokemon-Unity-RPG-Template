@@ -5,6 +5,7 @@ using Battle.SubSystems;
 using PokemonScripts;
 using PokemonScripts.Moves;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Battle
@@ -28,9 +29,17 @@ namespace Battle
         private float _lettersPerSecondMultiplier = 1f;
         private bool _typing;
         private int _moveChoice;
+        private InputMap Keyboard;
+        
+        public void Start()
+        {
+            Keyboard = new InputMap();
+            Keyboard.Player.Enable();
+        }
+
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Z) && _typing)
+            if (Keyboard.Player.Cancel.triggered && _typing)
             {
                 _lettersPerSecondMultiplier = 10f;
             }

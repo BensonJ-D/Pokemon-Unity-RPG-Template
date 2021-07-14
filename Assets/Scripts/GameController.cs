@@ -21,9 +21,14 @@ public class GameController : MonoBehaviour
     public static GameState GameState { get; private set; } = GameState.Moving;
 
     private Task _playerMovement;
-
-    private void Start()
+    private Task _popupMenu;
+    private InputMap Keyboard;
+    private Vector2Int arrowInput;
+    
+    public void Start()
     {
+        Keyboard = new InputMap();
+        Keyboard.Player.Enable();
         EncounterRegion[] encounterRegions = FindObjectsOfType<EncounterRegion>();
 
         foreach (var region in encounterRegions)
@@ -40,8 +45,25 @@ public class GameController : MonoBehaviour
         {
             case GameState.Moving:
             {
-                var isNotMoving = _playerMovement is null || !_playerMovement.Running;
-                if (isNotMoving) { _playerMovement = new Task(player.HandleMovement()); }
+                var isNotMoving = _playerMovement is null || !_playerMovement.Running || (_popupMenu != null && _popupMenu.Running);
+                if (isNotMoving)
+                {
+                    if (_popupMenu != null && _popupMenu.Running) { break; }
+                    
+                    if(Keyboard.Player.Accept.triggered){
+                        _popupMenu = new Task(OptionWindow.Instance.ShowWindow(new[,]
+                        {
+                            {"FUCK"},
+                            {"YOU"},
+                            {"INVENTORY"},
+                            {"DIGIMON"},
+                            {"SAVE"},
+                            {"CUCK"}
+                        }));
+                    } else {
+                        _playerMovement = new Task(player.HandleMovement());
+                    }
+                }
                 break;
             }
             case GameState.Battle:

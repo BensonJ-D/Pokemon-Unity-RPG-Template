@@ -20,9 +20,13 @@ public class LevelUpWindow : MonoBehaviour
     private bool WindowOpen { get; set; } = false;
     private Vector3 DefaultPosition { get; set; } = Vector3.zero;
     private Vector3 CanvasOrigin { get; set; }
-    
+    private InputMap Keyboard;
+        
     public void Start()
     {
+        Keyboard = new InputMap();
+        Keyboard.Player.Enable();
+        
         DefaultPosition = window.position;
         CanvasOrigin = canvas.transform.position;
     }
@@ -40,17 +44,17 @@ public class LevelUpWindow : MonoBehaviour
 
         SetStatLabels(before);
 
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
+        yield return new WaitUntil(() => Keyboard.Player.Accept.triggered);
         changeLabels.SetActive(true);
         SetStatLabels(after - before);
         
         yield return new WaitForSeconds(0.5f);
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
+        yield return new WaitUntil(() => Keyboard.Player.Accept.triggered);
         changeLabels.SetActive(false);
         SetStatLabels(after);
         
         yield return new WaitForSeconds(0.5f);
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
+        yield return new WaitUntil(() => Keyboard.Player.Accept.triggered);
         yield return HideWindow();
 
     }

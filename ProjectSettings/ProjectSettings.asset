@@ -654,7 +654,7 @@ PlayerSettings:
   projectName: Pokemanz
   organizationId: james-benson-9aa5c7f7-104e-4f38-bcf7-07e64f78c1aa
   cloudEnabled: 0
-  enableNativePlatformBackendsForNewInputSystem: 0
-  disableOldInputManagerSupport: 0
+  enableNativePlatformBackendsForNewInputSystem: 1
+  disableOldInputManagerSupport: 1
   legacyClampBlendShapeWeights: 0
   virtualTexturingSupportEnabled: 0

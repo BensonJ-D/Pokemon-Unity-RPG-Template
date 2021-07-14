@@ -460,20 +460,24 @@ namespace Battle
             if (action2 != action1) { return action1 - action2; }
             
             var coinFlip = Random.Range(0, 2) == 0 ? -1 : 1;
-            
-            if (action1 == BattleAction.Switch || action1 == BattleAction.Item) { return coinFlip; }
+
+            if (action1 == BattleAction.Switch ||
+                action1 == BattleAction.Item) {
+                return coinFlip;
+            }
 
             var pokemon2 = _pokemon[participant2].Pokemon;
             var pokemon1 = _pokemon[participant1].Pokemon;
             var speed2 = pokemon2.BoostedSpeed;
             var speed1 = pokemon1.BoostedSpeed;
-            var moveChoice2 = (int) moveMenu.Choice[participant2];
-            var moveChoice1 = (int) moveMenu.Choice[participant1];
-            var move2 = pokemon2.Moves[moveChoice2];
-            var move1 = pokemon1.Moves[moveChoice1];
             
             if (action1 == BattleAction.Move)
             {
+                var moveChoice2 = (int) moveMenu.Choice[participant2];
+                var moveChoice1 = (int) moveMenu.Choice[participant1];
+                var move2 = pokemon2.Moves[moveChoice2];
+                var move1 = pokemon1.Moves[moveChoice1];
+                
                 if(move2.Base.Priority != move1.Base.Priority) { return move1.Base.Priority - move2.Base.Priority; }
             }
 

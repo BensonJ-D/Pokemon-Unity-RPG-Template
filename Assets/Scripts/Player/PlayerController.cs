@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         _animator.SetBool(AnimatorMoving, _moving);
         
-        var movementVector = GetInputVector();
+        var movementVector = Utils.GetInputVector();
         if (movementVector == Vector3Int.zero) yield break;
 
         var moveDirection = GetDirection(movementVector);
@@ -62,15 +62,6 @@ public class PlayerController : MonoBehaviour
         
         var targetPos = grid.GetCellCenterWorld(_targetCell);
         yield return Move(targetPos);
-    }
-
-    private static Vector3Int GetInputVector()
-    {
-        Vector3Int translationVector = Vector3Int.zero;
-        translationVector.x = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
-        translationVector.y = translationVector.x != 0.0f ? 0 : Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
-        
-        return translationVector;
     }
 
     private static Direction GetDirection(Vector3Int movementVector)

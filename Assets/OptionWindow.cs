@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PokemonScripts;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
@@ -49,9 +50,12 @@ public class OptionWindow : MonoBehaviour
     private Vector3 CanvasOrigin { get; set; }
 
     public string Choice { get; private set; }
-
+    private InputMap Keyboard;
+    private Vector2Int arrowInput;
+    
     public void Start()
     {
+        Keyboard = new InputMap();
         DefaultPosition = window.position;
         CanvasOrigin = canvas.transform.position;
         _optionsMatrix = new Dictionary<(int, int), Option>();
@@ -82,35 +86,32 @@ public class OptionWindow : MonoBehaviour
             option.Text.fontSize = fontSize;
         }
 
-        var cursorPos = _optionsMatrix[(0, 0)].Transform.localPosition;
-        cursorPos.x = -20;
-        cursor.transform.localPosition = cursorPos;
+        SetCursorPosition(0, 0);
     }
 
-    public IEnumerator ShowWindow(bool isCancellable = true)
+    public IEnumerator ShowWindow(string[,] options, bool isCancellable = true)
     {
-        yield return ShowWindow(DefaultPosition);
+        yield return ShowWindow(options, DefaultPosition, isCancellable);
     }
     
-    public IEnumerator ShowWindow(Vector2 pos, bool isCancellable = true)
+    public IEnumerator ShowWindow(string[,] options, Vector2 pos, bool isCancellable = true)
     {
+        Keyboard.Player.Enable();
+        SetOptions(options);
+        
         window.position = pos;
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
-        yield return null;
 
         while (Choice == null)
         {
-            _currentChoice = Utils.GetGridOption(_currentChoice, _optionsRows, _optionsCols);
-            var (row, col) = _currentChoice;
-            var cursorPos = _optionsMatrix[(row, col)].Transform.localPosition;
-            cursorPos.x = -20;
-            cursor.transform.localPosition = cursorPos;
+            var (row, col) = Utils.GetGridOption(_currentChoice, _optionsRows, _optionsCols);
+            SetCursorPosition(row, col);
 
-            if (Input.GetKeyDown(KeyCode.Z)) {
-                Choice = _optionsMatrix[(row, col)].Value;
-            } 
+            // if (Keyboard.Player.Move.) {
+            //     Choice = _optionsMatrix[(row, col)].Value;
+            // } 
             
-            if (Input.GetKeyDown(KeyCode.X) && isCancellable) {
+            if (Keyboard.Player.Cancel.triggered && isCancellable) {
                 Choice = _optionsMatrix[(_optionsRows - 1, _optionsCols - 1)].Value;
             }
             yield return null;
@@ -118,17 +119,25 @@ public class OptionWindow : MonoBehaviour
 
         yield return HideWindow();
     }
-    
+
     private IEnumerator HideWindow()
     {
+        Keyboard.Player.Disable();
         canvas.renderMode = RenderMode.WorldSpace;
         canvas.transform.position = CanvasOrigin;
         
-        foreach (var pair in _optionsMatrix) {
+        foreach (KeyValuePair<(int, int), Option> pair in _optionsMatrix) {
             Destroy(pair.Value.Transform.gameObject);
         }
         
         _optionsMatrix.Clear();
         yield break;
+    }
+
+    private void SetCursorPosition(int row, int col)
+    {
+        var cursorPos = _optionsMatrix[(row, col)].Transform.localPosition;
+        cursorPos.x = -20;
+        cursor.transform.localPosition = cursorPos;
     }
 }

@@ -13,9 +13,13 @@ namespace Battle.SubSystems
         public enum ActionChoice { Fight = 0, Bag = 1, Pokemon = 2, Run = 3 }
         public Dictionary<Participant, ActionChoice> Choice { get; private set; }
         public Dictionary<Participant, SubsystemState> State { get; private set; }
-
+        private InputMap Keyboard;
+        
         public void Init()
         {
+            Keyboard = new InputMap();
+            Keyboard.Player.Enable();
+            
             Choice = new Dictionary<Participant, ActionChoice> {
                 {Participant.Player, ActionChoice.Fight}, 
                 {Participant.Opponent, ActionChoice.Fight}
@@ -63,7 +67,7 @@ namespace Battle.SubSystems
             {
                 Choice[participant] = (ActionChoice)Utils.GetGridOption((int) Choice[participant], 2, 4);
 
-                if (!Input.GetKeyDown(KeyCode.Z)) yield break;
+                if (!Keyboard.Player.Accept.triggered) yield break;
                 CloseWindow(participant);
             }
             else

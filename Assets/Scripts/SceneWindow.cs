@@ -12,9 +12,12 @@ namespace DefaultNamespace
         public Dictionary<Participant, SubsystemState> State { get; private set; }
         private Scene source;
         protected Scene self; 
-        
+        protected InputMap Keyboard;
+
         public virtual void Init()
         {
+            Keyboard = new InputMap();
+            Keyboard.Player.Enable();
             // Disable unity MonoBehaviour update events without removing Inspector properties
             // TODO: Custom inspector for non-MonoBehaviour
             this.enabled = false;
