@@ -10,18 +10,21 @@ public static class Utils
         Keyboard.Player.Enable();
         Vector3Int input = Vector3Int.zero;
         var vector = Keyboard.Player.Move.ReadValue<Vector2>();
-        Debug.Log(vector);
         input.x = Mathf.RoundToInt(vector.x);
         input.y = input.x != 0 ? 0 : Mathf.RoundToInt(vector.y);
         return input;
     }
-    
-    public static int GetGridOption(int currentChoice, int columns, int totalOptions)
+
+    public static int GetGridOption(int currentChoice, int rows, int cols)
     {
+        var x = currentChoice % cols;
+        var y = currentChoice / rows;
         var input = GetInputVector();
-        var newChoice = currentChoice + input.x + (columns * input.y);
         
-        return Mathf.Clamp(newChoice, 0, totalOptions);
+        x = Mathf.Clamp(x + input.x, 0, cols - 1);
+        y = Mathf.Clamp(y - input.y, 0, rows - 1);
+        Debug.Log("row: " + x + ", col: " + y + ", (rows, cols): (" + rows + "," + cols +")");
+        return x + y * cols;
     }
     
     public static (int, int) GetGridOption((int, int) currentChoice, int rows, int cols)

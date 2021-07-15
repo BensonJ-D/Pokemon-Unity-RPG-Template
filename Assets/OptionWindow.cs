@@ -107,9 +107,9 @@ public class OptionWindow : MonoBehaviour
             var (row, col) = Utils.GetGridOption(_currentChoice, _optionsRows, _optionsCols);
             SetCursorPosition(row, col);
 
-            // if (Keyboard.Player.Move.) {
-            //     Choice = _optionsMatrix[(row, col)].Value;
-            // } 
+            if (Keyboard.Player.Accept.triggered) {
+                Choice = _optionsMatrix[(row, col)].Value;
+            } 
             
             if (Keyboard.Player.Cancel.triggered && isCancellable) {
                 Choice = _optionsMatrix[(_optionsRows - 1, _optionsCols - 1)].Value;

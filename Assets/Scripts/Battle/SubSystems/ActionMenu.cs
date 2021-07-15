@@ -65,7 +65,7 @@ namespace Battle.SubSystems
         {
             if (participant == Participant.Player)
             {
-                Choice[participant] = (ActionChoice)Utils.GetGridOption((int) Choice[participant], 2, 4);
+                Choice[participant] = (ActionChoice)Utils.GetGridOption((int) Choice[participant], 2, 2);
 
                 if (!Keyboard.Player.Accept.triggered) yield break;
                 CloseWindow(participant);
