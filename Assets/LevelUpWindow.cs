@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelUpWindow : MonoBehaviour
+public class LevelUpWindow : Window
 {
-    [SerializeField] private Transform window;
-    [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject changeLabels;
     [SerializeField] private Text maxHpValue;
     [SerializeField] private Text attackValue;
@@ -17,28 +13,22 @@ public class LevelUpWindow : MonoBehaviour
     [SerializeField] private Text spDefValue;
     [SerializeField] private Text speedValue;
 
-    private bool WindowOpen { get; set; } = false;
-    private Vector3 DefaultPosition { get; set; } = Vector3.zero;
-    private Vector3 CanvasOrigin { get; set; }
-    
     public void Start()
     {
-        DefaultPosition = window.position;
-        CanvasOrigin = canvas.transform.position;
+        Initiate();
     }
-
+    
     public IEnumerator ShowWindow(Stats before, Stats after)
     {
         yield return ShowWindow(before, after, DefaultPosition);
     }
     
-    public IEnumerator ShowWindow(Stats before, Stats after, Vector3 pos)
+    private IEnumerator ShowWindow(Stats before, Stats after, Vector3 pos)
     {
-        window.position = pos;
-        changeLabels.SetActive(false);
-        canvas.renderMode = RenderMode.ScreenSpaceCamera;
+        yield return base.ShowWindow(pos);
 
         SetStatLabels(before);
+        changeLabels.SetActive(false);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
         changeLabels.SetActive(true);
@@ -51,18 +41,11 @@ public class LevelUpWindow : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
-        yield return HideWindow();
+        HideWindow();
 
     }
-    
-    public IEnumerator HideWindow()
-    {
-        canvas.renderMode = RenderMode.WorldSpace;
-        canvas.transform.position = CanvasOrigin;
-        yield break;
-    }
 
-    public void SetStatLabels(Stats stats)
+    private void SetStatLabels(Stats stats)
     {
         maxHpValue.text = $"{stats.MaxHp}";
         attackValue.text = $"{stats.Attack}";

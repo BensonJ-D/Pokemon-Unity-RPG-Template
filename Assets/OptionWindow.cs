@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
-using Image = UnityEngine.UI.Image;
-using Object = UnityEngine.Object;
 
-public class OptionWindow : MonoBehaviour
+public class OptionWindow : Window
 {
     #region Singleton setup
     private static OptionWindow _instance;
@@ -25,9 +20,6 @@ public class OptionWindow : MonoBehaviour
     }
     #endregion
     
-    [SerializeField] private Transform window;
-    [SerializeField] private Canvas canvas;
-    [SerializeField] private Image background;
     [SerializeField] private GameObject choices;
     [SerializeField] private GameObject label;
     [SerializeField] private Image cursor;
@@ -44,16 +36,11 @@ public class OptionWindow : MonoBehaviour
     private int _optionsRows;
     private int _optionsCols;
 
-    private bool WindowOpen { get; set; } = false;
-    private Vector3 DefaultPosition { get; set; } = Vector3.zero;
-    private Vector3 CanvasOrigin { get; set; }
-
     public string Choice { get; private set; }
 
     public void Start()
     {
-        DefaultPosition = window.position;
-        CanvasOrigin = canvas.transform.position;
+        Initiate();
         _optionsMatrix = new Dictionary<(int, int), Option>();
     }
 
@@ -63,9 +50,8 @@ public class OptionWindow : MonoBehaviour
         _currentChoice = (0, 0);
         _optionsRows = options.GetLength(0);
         _optionsCols = options.GetLength(1);
-        background.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width * _optionsCols);
-        background.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height * _optionsRows);
-        background.rectTransform.ForceUpdateRectTransforms();
+        
+        SetSize(width * _optionsCols, height * _optionsRows);
 
         for(var i = 0; i < _optionsRows; i++)
         {
@@ -87,16 +73,14 @@ public class OptionWindow : MonoBehaviour
         cursor.transform.localPosition = cursorPos;
     }
 
-    public IEnumerator ShowWindow(bool isCancellable = true)
+    public override IEnumerator ShowWindow(bool isCancellable = true)
     {
         yield return ShowWindow(DefaultPosition);
     }
-    
-    public IEnumerator ShowWindow(Vector2 pos, bool isCancellable = true)
+
+    protected override IEnumerator ShowWindow(Vector2 pos, bool isCancellable = true)
     {
-        window.position = pos;
-        canvas.renderMode = RenderMode.ScreenSpaceCamera;
-        yield return null;
+        yield return base.ShowWindow(pos, isCancellable);
 
         while (Choice == null)
         {
@@ -116,19 +100,16 @@ public class OptionWindow : MonoBehaviour
             yield return null;
         }
 
-        yield return HideWindow();
+        HideWindow();
+        ClearOptions();
     }
     
-    private IEnumerator HideWindow()
+    private void ClearOptions()
     {
-        canvas.renderMode = RenderMode.WorldSpace;
-        canvas.transform.position = CanvasOrigin;
-        
         foreach (var pair in _optionsMatrix) {
             Destroy(pair.Value.Transform.gameObject);
         }
         
         _optionsMatrix.Clear();
-        yield break;
     }
 }
