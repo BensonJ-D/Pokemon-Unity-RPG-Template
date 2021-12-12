@@ -10,8 +10,8 @@ namespace DefaultNamespace
     public class SceneWindow : MonoBehaviour
     {
         public Dictionary<Participant, SubsystemState> State { get; private set; }
-        private Scene source;
-        protected Scene self; 
+        private Scene _sourceScene;
+        protected Scene Scene; 
         
         public virtual void Init()
         {
@@ -26,17 +26,17 @@ namespace DefaultNamespace
 
         protected virtual void OnOpen(Participant participant) {
             State[participant] = SubsystemState.Open;
-            SceneController.Instance.SetActiveScene(self);
+            SceneController.Instance.SetActiveScene(Scene);
         }
 
         protected virtual void OnClose(Participant participant) {
             State[participant] = SubsystemState.Closed;
-            SceneController.Instance.SetActiveScene(source);
+            SceneController.Instance.SetActiveScene(_sourceScene);
         }
         
         public virtual IEnumerator OpenMenu(Participant participant, Scene sourceScene)
         {
-            source = sourceScene;
+            _sourceScene = sourceScene;
             yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
                 OnTransitionPeak: () => OnOpen(participant)
             );

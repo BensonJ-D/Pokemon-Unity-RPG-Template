@@ -34,7 +34,7 @@ namespace Inventory
         
         public override void Init()
         {
-            self = Scene.InventoryView;
+            Scene = Scene.InventoryView;
             _cursorPosition = 0;
             _inventoryPosition = 0;
             itemSlots.Sort((a, b) => (int)(b.transform.position.y - a.transform.position.y));

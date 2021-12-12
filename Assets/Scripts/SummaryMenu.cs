@@ -20,7 +20,7 @@ public class SummaryMenu : SceneWindow
 
     public override void Init()
     {
-        self = Scene.SummaryView;
+        Scene = Scene.SummaryView;
         base.Init();
     }
 

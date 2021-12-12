@@ -35,7 +35,7 @@ namespace Battle
         
         public override void Init()
         {
-            self = Scene.PartyView;
+            Scene = Scene.PartyView;
             Choice = new Dictionary<Participant, PokemonChoice> {
                 {Participant.Player, PokemonChoice.Pokemon1}, 
                 {Participant.Opponent, PokemonChoice.Pokemon1}
