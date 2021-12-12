@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using PokemonScripts;
 using PokemonScripts.Moves;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Battle.SubSystems
 {
@@ -59,7 +56,7 @@ namespace Battle.SubSystems
             State[participant] = SubsystemState.Open;
         }
 
-        public void CloseWindow(Participant participant)
+        private void CloseWindow(Participant participant)
         {
             if (participant == Participant.Player)
             {

@@ -12,7 +12,7 @@ public class Window : MonoBehaviour
     protected Vector3 DefaultPosition { get; private set; } = Vector3.zero;
     private Vector3 CanvasOrigin { get; set; }
 
-    public void Initiate()
+    protected void Initiate()
     {
         DefaultPosition = window.position;
         CanvasOrigin = canvas.transform.position;

@@ -4,10 +4,10 @@ using System.Collections;
 using Battle;
 using Encounters;
 using Misc;
+using Player;
 using PokemonScripts;
 using UnityEngine;
 using VFX;
-using Random = UnityEngine.Random;
 
 public enum GameState { Start, Moving, Talking, Battle, Menu }
 
@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     
     public static GameState GameState { get; private set; } = GameState.Moving;
 
-    private Task _playerMovement;
+    private Task playerMovement;
 
     private void Start()
     {
@@ -40,8 +40,8 @@ public class GameController : MonoBehaviour
         {
             case GameState.Moving:
             {
-                var isNotMoving = _playerMovement is null || !_playerMovement.Running;
-                if (isNotMoving) { _playerMovement = new Task(player.HandleMovement()); }
+                var isNotMoving = playerMovement is null || !playerMovement.Running;
+                if (isNotMoving) { playerMovement = new Task(player.HandleMovement()); }
                 break;
             }
             case GameState.Battle:
@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour
         GameState = GameState.Battle;
         
         yield return transitionController.RunTransition(Transition.BattleEnter,
-            OnTransitionPeak: () =>
+            () =>
             {
                 battleController.gameObject.SetActive(true);
                 StartCoroutine(battleController.SetupBattle(playerPokemon, playerInventory, wildPokemon));

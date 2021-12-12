@@ -1,27 +1,13 @@
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Battle;
-using Encounters;
-using Misc;
-using PokemonScripts;
 using UnityEngine;
-using VFX;
-using Random = UnityEngine.Random;
 
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private BattleDialogBox battleDialog;
-    
-    private void Start()
-    {
-    }
-    
-    private void Update()
-    {
-    }
 
     public IEnumerator TypeBattleDialog(string dialog)
     {

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Misc;
 using UnityEngine;
 
 namespace VFX
@@ -13,33 +10,31 @@ namespace VFX
     public class TransitionController : MonoBehaviour
     {        
         #region Singleton setup
-        private static TransitionController _instance;
-        public static TransitionController Instance { get { return _instance; } }
+        public static TransitionController Instance { get; private set; }
 
         private void Awake()
         {
-            if (_instance != null && _instance != this)
+            if (Instance != null && Instance != this)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             } else {
-                _instance = this;
+                Instance = this;
             }
         }
         #endregion
         
         [SerializeField] private Animator transitions;
-        public static TransitionState TransitionState { get; set; } = TransitionState.None;
+        public static TransitionState TransitionState { get; private set; } = TransitionState.None;
 
-        public IEnumerator StartTransition(Transition transition)
+        private IEnumerator StartTransition(Transition transition)
         {
-            Debug.Log(transition.ToString());
             transitions.Play($"{transition.ToString()}_Start", 0);
 
             yield return null;
             yield return new WaitUntil(() => transitions.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         }
 
-        public IEnumerator EndTransition(Transition transition)
+        private IEnumerator EndTransition(Transition transition)
         {
             transitions.Play($"{transition.ToString()}_End", 0);
 
@@ -47,20 +42,20 @@ namespace VFX
             yield return new WaitUntil(() =>transitions.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         }
 
-        public IEnumerator RunTransition(Transition effect, Action OnTransitionPeak = null, 
-            Action OnTransitionFinish = null, float delay = 0.1f)
+        public IEnumerator RunTransition(Transition effect, Action onTransitionPeak = null, 
+            Action onTransitionFinish = null, float delay = 0.1f)
         {
             TransitionState = TransitionState.Start;
             yield return StartTransition(effect);
             
             TransitionState = TransitionState.Pause;
-            OnTransitionPeak?.Invoke();
+            onTransitionPeak?.Invoke();
             yield return new WaitForSeconds(delay);
             
             TransitionState = TransitionState.End;
             yield return EndTransition(effect);
         
-            OnTransitionFinish?.Invoke();
+            onTransitionFinish?.Invoke();
             TransitionState = TransitionState.None;
         }
         

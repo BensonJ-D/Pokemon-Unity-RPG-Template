@@ -6,16 +6,15 @@ public enum Scene { WorldView, SummaryView, PartyView, BattleView, InventoryView
 public class SceneController : MonoBehaviour
 {
     #region Singleton setup
-    private static SceneController _instance;
-    public static SceneController Instance { get { return _instance; } }
+    public static SceneController Instance { get; private set; }
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         } else {
-            _instance = this;
+            Instance = this;
         }
     }
     #endregion
@@ -28,7 +27,7 @@ public class SceneController : MonoBehaviour
     }
     
     [SerializeField] private List<Canvas> sceneCanvases;
-    private SceneState _currentSceneState = new SceneState{
+    private SceneState currentSceneState = new SceneState{
         Scene = Scene.WorldView,
         Position = Vector3.zero,
         RenderMode = RenderMode.WorldSpace
@@ -36,16 +35,16 @@ public class SceneController : MonoBehaviour
 
     public void SetActiveScene(Scene newScene)
     {
-        var oldView = GetSceneCanvas(_currentSceneState.Scene);
+        var oldView = GetSceneCanvas(currentSceneState.Scene);
         if (oldView != null)
         {
-            oldView.renderMode = _currentSceneState.RenderMode;
-            oldView.transform.position = _currentSceneState.Position;
+            oldView.renderMode = currentSceneState.RenderMode;
+            oldView.transform.position = currentSceneState.Position;
         }
 
         var newView = GetSceneCanvas(newScene);
         
-        _currentSceneState = new SceneState{
+        currentSceneState = new SceneState{
             Scene = newScene,
             Position = newView.transform.position,
             RenderMode = newView.renderMode

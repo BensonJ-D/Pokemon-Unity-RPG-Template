@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class OptionWindow : Window
 {
     #region Singleton setup
-    private static OptionWindow _instance;
-    public static OptionWindow Instance { get { return _instance; } }
+
+    public static OptionWindow Instance { get; private set; }
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         } else {
-            _instance = this;
+            Instance = this;
         }
     }
     #endregion
@@ -31,44 +31,44 @@ public class OptionWindow : Window
         public Text Text;
     }
 
-    private (int, int) _currentChoice;
-    private Dictionary<(int, int), Option> _optionsMatrix;
-    private int _optionsRows;
-    private int _optionsCols;
+    private (int, int) currentChoice;
+    private Dictionary<(int, int), Option> optionsMatrix;
+    private int optionsRows;
+    private int optionsCols;
 
     public string Choice { get; private set; }
 
     public void Start()
     {
         Initiate();
-        _optionsMatrix = new Dictionary<(int, int), Option>();
+        optionsMatrix = new Dictionary<(int, int), Option>();
     }
 
     public void SetOptions(string[,] options, int width = 300, int height = 60, int fontSize = 45, int spacing = 55)
     {
         Choice = null;
-        _currentChoice = (0, 0);
-        _optionsRows = options.GetLength(0);
-        _optionsCols = options.GetLength(1);
+        currentChoice = (0, 0);
+        optionsRows = options.GetLength(0);
+        optionsCols = options.GetLength(1);
         
-        SetSize(width * _optionsCols, height * _optionsRows);
+        SetSize(width * optionsCols, height * optionsRows);
 
-        for(var i = 0; i < _optionsRows; i++)
+        for(var i = 0; i < optionsRows; i++)
         {
             var newLabel = Instantiate(label, Vector3.zero, Quaternion.identity);
             var labelText = newLabel.GetComponent<Text>();
             
             var option = new Option{ Value = options[i, 0], Transform = newLabel.transform, Text = labelText };
-            _optionsMatrix.Add((i, 0), option);
+            optionsMatrix.Add((i, 0), option);
             
             option.Transform.parent = choices.transform;
-            option.Transform.localPosition = new Vector3(0, (_optionsRows - 1 - i) * spacing);
+            option.Transform.localPosition = new Vector3(0, (optionsRows - 1 - i) * spacing);
             option.Transform.localScale = Vector3.one;
             option.Text.text = options[i, 0];
             option.Text.fontSize = fontSize;
         }
 
-        var cursorPos = _optionsMatrix[(0, 0)].Transform.localPosition;
+        var cursorPos = optionsMatrix[(0, 0)].Transform.localPosition;
         cursorPos.x = -20;
         cursor.transform.localPosition = cursorPos;
     }
@@ -84,18 +84,18 @@ public class OptionWindow : Window
 
         while (Choice == null)
         {
-            _currentChoice = Utils.GetGridOption(_currentChoice, _optionsRows, _optionsCols);
-            var (row, col) = _currentChoice;
-            var cursorPos = _optionsMatrix[(row, col)].Transform.localPosition;
+            currentChoice = Utils.GetGridOption(currentChoice, optionsRows, optionsCols);
+            var (row, col) = currentChoice;
+            var cursorPos = optionsMatrix[(row, col)].Transform.localPosition;
             cursorPos.x = -20;
             cursor.transform.localPosition = cursorPos;
 
             if (Input.GetKeyDown(KeyCode.Z)) {
-                Choice = _optionsMatrix[(row, col)].Value;
+                Choice = optionsMatrix[(row, col)].Value;
             } 
             
             if (Input.GetKeyDown(KeyCode.X) && isCancellable) {
-                Choice = _optionsMatrix[(_optionsRows - 1, _optionsCols - 1)].Value;
+                Choice = optionsMatrix[(optionsRows - 1, optionsCols - 1)].Value;
             }
             yield return null;
         }
@@ -106,10 +106,10 @@ public class OptionWindow : Window
     
     private void ClearOptions()
     {
-        foreach (var pair in _optionsMatrix) {
+        foreach (var pair in optionsMatrix) {
             Destroy(pair.Value.Transform.gameObject);
         }
         
-        _optionsMatrix.Clear();
+        optionsMatrix.Clear();
     }
 }

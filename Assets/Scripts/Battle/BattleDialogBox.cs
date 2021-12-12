@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Battle.SubSystems;
-using PokemonScripts;
 using PokemonScripts.Moves;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,14 +23,14 @@ namespace Battle
         [SerializeField] private Text maxPpText;
         [SerializeField] private Text typeText;
 
-        private float _lettersPerSecondMultiplier = 1f;
-        private bool _typing;
-        private int _moveChoice;
+        private float lettersPerSecondMultiplier = 1f;
+        private bool typing;
+        private int moveChoice;
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Z) && _typing)
+            if (Input.GetKeyDown(KeyCode.Z) && typing)
             {
-                _lettersPerSecondMultiplier = 10f;
+                lettersPerSecondMultiplier = 10f;
             }
         }
     
@@ -40,20 +38,20 @@ namespace Battle
         public void SetText(string text) { dialogText.text = text; }
         public IEnumerator TypeDialog(string dialog)
         {
-            _lettersPerSecondMultiplier = 1f;
+            lettersPerSecondMultiplier = 1f;
             dialogText.text = "";
             yield return new WaitForSeconds(1f / lettersPerSecond);
         
             foreach (var letter in dialog.ToCharArray())
             {
-                _typing = true;
+                typing = true;
                 dialogText.text += letter;
             
-                yield return new WaitForSeconds(1f / lettersPerSecond / _lettersPerSecondMultiplier);
+                yield return new WaitForSeconds(1f / lettersPerSecond / lettersPerSecondMultiplier);
             }
 
-            yield return new WaitForSeconds(1f / _lettersPerSecondMultiplier);
-            _typing = false;
+            yield return new WaitForSeconds(1f / lettersPerSecondMultiplier);
+            typing = false;
         }
 
         public void EnableDialogText(bool enable) => dialogText.enabled = enable;

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,8 +45,8 @@ namespace Battle.SubSystems
             Choice[participant] = ActionChoice.Fight;
             State[participant] = SubsystemState.Open;
         }
-        
-        public void CloseWindow(Participant participant)
+
+        private void CloseWindow(Participant participant)
         {
             if (participant == Participant.Player)
             {

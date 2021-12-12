@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Battle;
-using DefaultNamespace;
+using Player;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;

@@ -1,34 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Battle;
+﻿using System;
 using PokemonScripts;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
-public class PartySlot : MonoBehaviour
+namespace Battle.SubSystems.Party
 {
-    [SerializeField] private Text nameText;
-    [SerializeField] private Text levelText;
-    [SerializeField] private HealthBar hpBar;
-    [SerializeField] private Sprite notSelectedSprite;
-    [SerializeField] private Sprite selectedSprite;
-    [SerializeField] private Sprite notSelectedFaintedSprite;
-    [SerializeField] private Sprite selectedFaintedSprite;
-    [SerializeField] private Image image;
-
-    private Pokemon _pokemon;
-    public void SetData(Pokemon pokemon)
+    public class PartySlot : MonoBehaviour
     {
-        _pokemon = pokemon;
-        nameText.text = pokemon.Base.Species;
-        levelText.text = pokemon.Level.ToString();
-        hpBar.Setup(pokemon);
-    }
+        [SerializeField] private Text nameText;
+        [SerializeField] private Text levelText;
+        [SerializeField] private HealthBar hpBar;
+        [SerializeField] private Sprite notSelectedSprite;
+        [SerializeField] private Sprite selectedSprite;
+        [SerializeField] private Sprite notSelectedFaintedSprite;
+        [SerializeField] private Sprite selectedFaintedSprite;
+        [SerializeField] private Image image;
 
-    public void SetSelected(bool selected)
-    {
-        if(_pokemon.CurrentHp <= 0) { image.sprite = selected ? selectedFaintedSprite : notSelectedFaintedSprite; } 
-        else { image.sprite = selected ? selectedSprite : notSelectedSprite; }
+        private bool fainted;
+        public void SetData(Pokemon pokemon)
+        {
+            fainted = pokemon.CurrentHp <= 0;
+            nameText.text = pokemon.Base.Species;
+            levelText.text = pokemon.Level.ToString();
+            hpBar.Setup(pokemon);
+        }
+
+        public void SetSelected(bool selected)
+        {
+            if(fainted) { image.sprite = selected ? selectedFaintedSprite : notSelectedFaintedSprite; } 
+            else { image.sprite = selected ? selectedSprite : notSelectedSprite; }
+        }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Battle;
-using DefaultNamespace;
+﻿using Battle;
 using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;

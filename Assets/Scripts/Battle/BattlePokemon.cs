@@ -1,11 +1,9 @@
-﻿﻿using System;
- using System.Collections;
-using PokemonScripts;
- using PokemonScripts.Conditions;
+﻿using System.Collections;
+ using PokemonScripts;
  using UnityEngine;
-using UnityEngine.UI;
+ using UnityEngine.UI;
 
-namespace Battle
+ namespace Battle
 {
     public class BattlePokemon : MonoBehaviour
     {
@@ -102,7 +100,7 @@ namespace Battle
 
         public void UpdateStatus()
         {
-            hud.UpdateStatus(this.Pokemon);
+            hud.UpdateStatus(Pokemon);
         }
     }
 }

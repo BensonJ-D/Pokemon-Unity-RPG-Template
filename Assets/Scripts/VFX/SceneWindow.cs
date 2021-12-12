@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Battle;
-using UnityEditor.Callbacks;
 using UnityEngine;
-using VFX;
 
-namespace DefaultNamespace
+namespace VFX
 {
     public class SceneWindow : MonoBehaviour
     {
         public Dictionary<Participant, SubsystemState> State { get; private set; }
-        private Scene _sourceScene;
+        private Scene parentScene;
         protected Scene Scene; 
         
         public virtual void Init()
@@ -31,14 +29,14 @@ namespace DefaultNamespace
 
         protected virtual void OnClose(Participant participant) {
             State[participant] = SubsystemState.Closed;
-            SceneController.Instance.SetActiveScene(_sourceScene);
+            SceneController.Instance.SetActiveScene(parentScene);
         }
         
-        public virtual IEnumerator OpenMenu(Participant participant, Scene sourceScene)
+        public virtual IEnumerator OpenMenu(Participant participant, Scene newParentScene)
         {
-            _sourceScene = sourceScene;
+            parentScene = newParentScene;
             yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
-                OnTransitionPeak: () => OnOpen(participant)
+                onTransitionPeak: () => OnOpen(participant)
             );
         }
 
@@ -47,7 +45,7 @@ namespace DefaultNamespace
             if (participant == Participant.Player)
             {
                 yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
-                    OnTransitionPeak: () => OnClose(participant)
+                    onTransitionPeak: () => OnClose(participant)
                 );
             }
         }

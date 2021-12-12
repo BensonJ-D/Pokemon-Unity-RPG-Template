@@ -1,5 +1,4 @@
-﻿using System;
-using PokemonScripts;
+﻿using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,8 +26,8 @@ namespace Battle
             CurrentExperience = exp;
             BaseLevelExperience = baseLevelExperience;
             NextLevelExperience = nextLevelExperience;
-            if(totalExperienceLabel != null) totalExperienceLabel.text = $"{Mathf.Round(CurrentExperience)}";
-            if(nextLevelExperienceLabel != null) nextLevelExperienceLabel.text = $"{NextLevelExperience - CurrentExperience}";
+            totalExperienceLabel.text = $"{Mathf.Round(CurrentExperience)}";
+            nextLevelExperienceLabel.text = $"{NextLevelExperience - CurrentExperience}";
             
             var expNormalise = Mathf.Clamp((CurrentExperience - BaseLevelExperience) / (NextLevelExperience - BaseLevelExperience), 0.0f, 1.0f);
             experienceImage.transform.localScale = new Vector3(expNormalise, 1f, 1f);
