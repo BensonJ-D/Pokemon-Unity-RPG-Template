@@ -44,7 +44,7 @@ namespace PokemonScripts
 
         public static readonly ReadOnlyDictionary<(PokemonType, PokemonType), float> TypeChart =
             new ReadOnlyDictionary<(PokemonType, PokemonType), float>(
-                new Dictionary<(PokemonType, PokemonType), float>()
+                new Dictionary<(PokemonType, PokemonType), float>
                 {
                     {(PokemonType.Normal, PokemonType.None), 1.0f},
                     {(PokemonType.Normal, PokemonType.Normal), 1.0f},
@@ -395,7 +395,7 @@ namespace PokemonScripts
 
         private static readonly ReadOnlyDictionary<float, AttackEffectiveness> AttackEffectivenessLookup =
             new ReadOnlyDictionary<float, AttackEffectiveness>(
-                new Dictionary<float, AttackEffectiveness>()
+                new Dictionary<float, AttackEffectiveness>
                 {
                     {0f, AttackEffectiveness.NoEffect},
                     {0.25f, AttackEffectiveness.NotVeryEffective},

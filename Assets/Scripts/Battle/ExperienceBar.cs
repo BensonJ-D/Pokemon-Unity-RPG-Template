@@ -11,8 +11,8 @@ namespace Battle
         [SerializeField] private Image experienceImage;
 
         public float CurrentExperience { get; private set; }
-        public int BaseLevelExperience { get; set; }
-        public int NextLevelExperience { get; set; }
+        public int BaseLevelExperience { get; private set; }
+        public int NextLevelExperience { get; private set; }
 
         public void Setup(Pokemon pokemon)
         {

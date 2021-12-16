@@ -83,7 +83,7 @@ namespace PokemonScripts
                     { ExperienceGroup.MediumFast,  MediumFast },                     
                     { ExperienceGroup.MediumSlow,  MediumSlow },                     
                     { ExperienceGroup.Slow,        Slow },                     
-                    { ExperienceGroup.Fluctuating, Fluctuating },                     
+                    { ExperienceGroup.Fluctuating, Fluctuating }
                 }
             );
     }

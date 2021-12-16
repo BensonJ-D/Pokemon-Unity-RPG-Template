@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,11 +46,11 @@ namespace PokemonScripts
 
         public ExperienceGroup ExperienceGroup => experienceGroup;
         public int ExperienceYield => experienceYield;
-        public LearnableMove[] LearnableMoves => learnableMoves;
+        public IEnumerable<LearnableMove> LearnableMoves => learnableMoves;
     }
 
 
-    [System.Serializable]
+    [Serializable]
     public class LearnableMove
     {
         [SerializeField] private MoveBase moveBase;

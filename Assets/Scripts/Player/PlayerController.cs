@@ -15,53 +15,53 @@ namespace Player
         public PokemonParty Party => party;
         public Inventory.Inventory Inventory => inventory;
 
-        private bool moving;
-        private bool stopMovement;
-        private Animator animator;
-        private Tilemap obstructions;
-        private Vector3Int targetCell;
+        private bool _moving;
+        private bool _stopMovement;
+        private Animator _animator;
+        private Tilemap _obstructions;
+        private Vector3Int _targetCell;
     
         private enum Direction { Unknown = 0, South = 1, West = 2, North = 3, East = 4 }
 
-        private Direction direction = Direction.South;
+        private Direction _direction = Direction.South;
         private static readonly int AnimatorDirection = Animator.StringToHash("Direction");
         private static readonly int AnimatorMoving = Animator.StringToHash("Moving");
 
         private void Start()
         {
-            animator = GetComponent<Animator>();
+            _animator = GetComponent<Animator>();
         
-            targetCell = grid.WorldToCell(transform.position);
-            transform.position = grid.GetCellCenterWorld(targetCell);
-            obstructions = grid.transform.Find("Obstructions").GetComponent<Tilemap>();
+            _targetCell = grid.WorldToCell(transform.position);
+            transform.position = grid.GetCellCenterWorld(_targetCell);
+            _obstructions = grid.transform.Find("Obstructions").GetComponent<Tilemap>();
         }
 
         public IEnumerator HandleMovement()
         {
-            animator.SetBool(AnimatorMoving, moving);
+            _animator.SetBool(AnimatorMoving, _moving);
         
             var movementVector = GetInputVector();
             if (movementVector == Vector3Int.zero) yield break;
 
             var moveDirection = GetDirection(movementVector);
 
-            if (moveDirection == direction)
+            if (moveDirection == _direction)
             {
                 var position = transform.position;
                 var curCell = grid.WorldToCell(position);
             
-                targetCell = curCell + movementVector;
+                _targetCell = curCell + movementVector;
             } else
             {
-                direction = moveDirection;
-                animator.SetFloat(AnimatorDirection, (float)direction);
+                _direction = moveDirection;
+                _animator.SetFloat(AnimatorDirection, (float)_direction);
                 yield break;
             }
 
-            var isObstructed = obstructions.GetTile(targetCell);
+            var isObstructed = _obstructions.GetTile(_targetCell);
             if (isObstructed) yield break;
         
-            var targetPos = grid.GetCellCenterWorld(targetCell);
+            var targetPos = grid.GetCellCenterWorld(_targetCell);
             yield return Move(targetPos);
         }
 
@@ -88,8 +88,8 @@ namespace Player
     
         private IEnumerator Move(Vector3 targetPos)
         {
-            moving = true;
-            animator.SetBool(AnimatorMoving, moving);
+            _moving = true;
+            _animator.SetBool(AnimatorMoving, _moving);
 
             while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
             {
@@ -98,9 +98,9 @@ namespace Player
             }
 
             transform.position = targetPos;
-            moving = false;
+            _moving = false;
         
-            if(GameController.GameState != GameState.Moving) { animator.SetBool(AnimatorMoving, moving); }
+            if(GameController.GameState != GameState.Moving) { _animator.SetBool(AnimatorMoving, _moving); }
         }
     }
 }

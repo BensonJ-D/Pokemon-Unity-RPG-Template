@@ -9,7 +9,7 @@ namespace Inventory
         [SerializeField] private Text itemMultiplier; 
         [SerializeField] private Text itemQuantity;
 
-        public Item Item { get; private set; }
+        private Item Item { get; set; }
 
         public void SetEmpty()
         {

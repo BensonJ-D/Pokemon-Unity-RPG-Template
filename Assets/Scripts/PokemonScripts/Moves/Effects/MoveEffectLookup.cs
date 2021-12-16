@@ -13,9 +13,9 @@ namespace PokemonScripts.Moves.Effects
 
         public static readonly ReadOnlyDictionary<EffectType, MoveEffect> GetEffectClass =
             new ReadOnlyDictionary<EffectType, MoveEffect>(
-                new Dictionary<EffectType, MoveEffect>()
+                new Dictionary<EffectType, MoveEffect>
                 {
-                    {EffectType.None, null },
+                    { EffectType.None, null },
                     { EffectType.PoisonTarget, new PoisonTarget() },
                     { EffectType.BurnTarget, new BurnTarget() },
                     { EffectType.ParalyseTarget, new ParalyseTarget() },
@@ -33,7 +33,7 @@ namespace PokemonScripts.Moves.Effects
 
         public static readonly ReadOnlyDictionary<EffectType, MoveEffect> GetEffectClass =
             new ReadOnlyDictionary<EffectType, MoveEffect>(
-                new Dictionary<EffectType, MoveEffect>()
+                new Dictionary<EffectType, MoveEffect>
                 {
                     { EffectType.ConfuseTarget, new ConfuseTarget() },
                     { EffectType.FlinchTarget, new FlinchTarget() }
@@ -48,7 +48,7 @@ namespace PokemonScripts.Moves.Effects
         
         public static readonly ReadOnlyDictionary<EffectType, MoveEffect> GetEffectClass =
             new ReadOnlyDictionary<EffectType, MoveEffect>(
-                new Dictionary<EffectType, MoveEffect>()
+                new Dictionary<EffectType, MoveEffect>
                 {
                     { EffectType.ModifyAttack, new ModifyAttack() },
                     { EffectType.ModifyDefence, new ModifyDefence() },

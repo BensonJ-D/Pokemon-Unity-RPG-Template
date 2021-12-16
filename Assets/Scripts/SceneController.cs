@@ -27,7 +27,7 @@ public class SceneController : MonoBehaviour
     }
     
     [SerializeField] private List<Canvas> sceneCanvases;
-    private SceneState currentSceneState = new SceneState{
+    private SceneState _currentSceneState = new SceneState{
         Scene = Scene.WorldView,
         Position = Vector3.zero,
         RenderMode = RenderMode.WorldSpace
@@ -35,16 +35,16 @@ public class SceneController : MonoBehaviour
 
     public void SetActiveScene(Scene newScene)
     {
-        var oldView = GetSceneCanvas(currentSceneState.Scene);
+        var oldView = GetSceneCanvas(_currentSceneState.Scene);
         if (oldView != null)
         {
-            oldView.renderMode = currentSceneState.RenderMode;
-            oldView.transform.position = currentSceneState.Position;
+            oldView.renderMode = _currentSceneState.RenderMode;
+            oldView.transform.position = _currentSceneState.Position;
         }
 
         var newView = GetSceneCanvas(newScene);
         
-        currentSceneState = new SceneState{
+        _currentSceneState = new SceneState{
             Scene = newScene,
             Position = newView.transform.position,
             RenderMode = newView.renderMode

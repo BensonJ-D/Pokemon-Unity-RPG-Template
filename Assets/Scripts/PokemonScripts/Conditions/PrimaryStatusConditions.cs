@@ -13,7 +13,7 @@ namespace PokemonScripts.Conditions
     {
         public static readonly ReadOnlyDictionary<PrimaryStatusCondition, StatusCondition> GetEffectClass =
             new ReadOnlyDictionary<PrimaryStatusCondition, StatusCondition>(
-                new Dictionary<PrimaryStatusCondition, StatusCondition>()
+                new Dictionary<PrimaryStatusCondition, StatusCondition>
                 {
                     { PrimaryStatusCondition.None, new NoStatusCondition() },
                     { PrimaryStatusCondition.Poison, new PoisonCondition() },

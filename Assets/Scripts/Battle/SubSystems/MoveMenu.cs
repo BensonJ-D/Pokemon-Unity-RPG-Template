@@ -15,7 +15,7 @@ namespace Battle.SubSystems
         public Dictionary<Participant, MoveChoice> Choice { get; private set; }
         public Dictionary<Participant, SubsystemState> State { get; private set; }
 
-        private List<Move> moves;
+        private List<Move> _moves;
 
         public void Init()
         {
@@ -52,7 +52,7 @@ namespace Battle.SubSystems
                 dialogBox.ClearText();
             }
 
-            moves = moveList;
+            _moves = moveList;
             State[participant] = SubsystemState.Open;
         }
 
@@ -70,7 +70,7 @@ namespace Battle.SubSystems
         {
             if (participant == Participant.Player)
             {
-                Choice[participant] = (MoveChoice) Utils.GetGridOption((int) Choice[participant], 2, moves.Count);
+                Choice[participant] = (MoveChoice) Utils.GetGridOption((int) Choice[participant], 2, _moves.Count);
 
                 if (Input.GetKeyDown(KeyCode.X))
                 {
@@ -84,7 +84,7 @@ namespace Battle.SubSystems
             }
             else
             {
-                Choice[participant] = (MoveChoice) Random.Range(0, moves.Count - 1);
+                Choice[participant] = (MoveChoice) Random.Range(0, _moves.Count - 1);
                 CloseWindow(participant);
             }
         }

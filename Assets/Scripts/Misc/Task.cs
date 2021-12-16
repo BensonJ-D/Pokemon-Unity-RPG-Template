@@ -7,38 +7,38 @@ namespace Misc
 {
 	public class Task 
 	{
-		public bool Running => task.Running;
+		public bool Running => _task.Running;
 
-		public bool Paused => task.Paused;
+		public bool Paused => _task.Paused;
 
 		public Task(IEnumerator c, bool autoStart = true)
 		{
-			task = TaskController.CreateTask(c);
+			_task = TaskController.CreateTask(c);
 			if(autoStart)
 				Start();
 		}
-	
-		public void Start()
+
+		private void Start()
 		{
-			task.Start();
+			_task.Start();
 		}
 
 		public void Stop()
 		{
-			task.Stop();
+			_task.Stop();
 		}
 	
 		public void Pause()
 		{
-			task.Pause();
+			_task.Pause();
 		}
 	
 		public void Unpause()
 		{
-			task.Unpause();
+			_task.Unpause();
 		}
 
-		private readonly TaskController.TaskState task;
+		private readonly TaskController.TaskState _task;
 	}
 
 	internal class TaskController : MonoBehaviour
@@ -49,11 +49,11 @@ namespace Misc
 
 			public bool Paused { get; private set; }
 
-			private readonly IEnumerator coroutine;
+			private readonly IEnumerator _coroutine;
 
 			public TaskState(IEnumerator c)
 			{
-				coroutine = c;
+				_coroutine = c;
 			}
 		
 			public void Pause()
@@ -80,7 +80,7 @@ namespace Misc
 			private IEnumerator CallWrapper()
 			{
 				yield return null;
-				IEnumerator e = coroutine;
+				IEnumerator e = _coroutine;
 				while(Running) {
 					if(Paused)
 						yield return null;

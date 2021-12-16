@@ -31,44 +31,44 @@ public class OptionWindow : Window
         public Text Text;
     }
 
-    private (int, int) currentChoice;
-    private Dictionary<(int, int), Option> optionsMatrix;
-    private int optionsRows;
-    private int optionsCols;
+    private (int, int) _currentChoice;
+    private Dictionary<(int, int), Option> _optionsMatrix;
+    private int _optionsRows;
+    private int _optionsCols;
 
     public string Choice { get; private set; }
 
     public void Start()
     {
         Initiate();
-        optionsMatrix = new Dictionary<(int, int), Option>();
+        _optionsMatrix = new Dictionary<(int, int), Option>();
     }
 
     public void SetOptions(string[,] options, int width = 300, int height = 60, int fontSize = 45, int spacing = 55)
     {
         Choice = null;
-        currentChoice = (0, 0);
-        optionsRows = options.GetLength(0);
-        optionsCols = options.GetLength(1);
+        _currentChoice = (0, 0);
+        _optionsRows = options.GetLength(0);
+        _optionsCols = options.GetLength(1);
         
-        SetSize(width * optionsCols, height * optionsRows);
+        SetSize(width * _optionsCols, height * _optionsRows);
 
-        for(var i = 0; i < optionsRows; i++)
+        for(var i = 0; i < _optionsRows; i++)
         {
             var newLabel = Instantiate(label, Vector3.zero, Quaternion.identity);
             var labelText = newLabel.GetComponent<Text>();
             
             var option = new Option{ Value = options[i, 0], Transform = newLabel.transform, Text = labelText };
-            optionsMatrix.Add((i, 0), option);
+            _optionsMatrix.Add((i, 0), option);
             
             option.Transform.parent = choices.transform;
-            option.Transform.localPosition = new Vector3(0, (optionsRows - 1 - i) * spacing);
+            option.Transform.localPosition = new Vector3(0, (_optionsRows - 1 - i) * spacing);
             option.Transform.localScale = Vector3.one;
             option.Text.text = options[i, 0];
             option.Text.fontSize = fontSize;
         }
 
-        var cursorPos = optionsMatrix[(0, 0)].Transform.localPosition;
+        var cursorPos = _optionsMatrix[(0, 0)].Transform.localPosition;
         cursorPos.x = -20;
         cursor.transform.localPosition = cursorPos;
     }
@@ -84,18 +84,18 @@ public class OptionWindow : Window
 
         while (Choice == null)
         {
-            currentChoice = Utils.GetGridOption(currentChoice, optionsRows, optionsCols);
-            var (row, col) = currentChoice;
-            var cursorPos = optionsMatrix[(row, col)].Transform.localPosition;
+            _currentChoice = Utils.GetGridOption(_currentChoice, _optionsRows, _optionsCols);
+            var (row, col) = _currentChoice;
+            var cursorPos = _optionsMatrix[(row, col)].Transform.localPosition;
             cursorPos.x = -20;
             cursor.transform.localPosition = cursorPos;
 
             if (Input.GetKeyDown(KeyCode.Z)) {
-                Choice = optionsMatrix[(row, col)].Value;
+                Choice = _optionsMatrix[(row, col)].Value;
             } 
             
             if (Input.GetKeyDown(KeyCode.X) && isCancellable) {
-                Choice = optionsMatrix[(optionsRows - 1, optionsCols - 1)].Value;
+                Choice = _optionsMatrix[(_optionsRows - 1, _optionsCols - 1)].Value;
             }
             yield return null;
         }
@@ -106,10 +106,10 @@ public class OptionWindow : Window
     
     private void ClearOptions()
     {
-        foreach (var pair in optionsMatrix) {
+        foreach (KeyValuePair<(int, int), Option> pair in _optionsMatrix) {
             Destroy(pair.Value.Transform.gameObject);
         }
         
-        optionsMatrix.Clear();
+        _optionsMatrix.Clear();
     }
 }

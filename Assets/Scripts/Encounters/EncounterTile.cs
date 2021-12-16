@@ -4,16 +4,16 @@ namespace Encounters
 {
     public class EncounterTile : MonoBehaviour
     {
-        private Animator animator;
+        private Animator _animator;
 
         public void Init()
         {
-            animator = GetComponent<Animator>();
+            _animator = GetComponent<Animator>();
         }
         
         public void Animate()
         {
-            animator.Play("Rustle");
+            _animator.Play("Rustle");
         }
     }
 }

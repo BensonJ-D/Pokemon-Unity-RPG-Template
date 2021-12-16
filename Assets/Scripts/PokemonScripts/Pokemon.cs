@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using PokemonScripts.Conditions;
 using PokemonScripts.Moves;
 using UnityEngine;
 
 namespace PokemonScripts
 {
-    public enum Stat { HP, Attack, Defence, SpAttack, SpDefence, Speed, Accuracy, Evasion }
+    public enum Stat { Hp, Attack, Defence, SpAttack, SpDefence, Speed, Accuracy, Evasion }
 
     [Serializable]
+    [SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
     public class Pokemon
     {
         [SerializeField] private PokemonBase pokemonBase;

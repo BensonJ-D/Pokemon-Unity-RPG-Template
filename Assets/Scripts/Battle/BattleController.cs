@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Battle.SubSystems;
+using Battle.SubSystems.Party;
 using Inventory;
 using Misc;
 using PokemonScripts;
@@ -32,36 +34,36 @@ namespace Battle
         public event Action<bool> OnBattleOver;
 
         private BattleState BattleState { get; set; } = BattleState.Start;
-        private Dictionary<Participant, PokemonParty> party;
-        private Dictionary<Participant, Inventory.Inventory> inventory;
-        private Dictionary<Participant, TurnState> turnState;
-        private Dictionary<Participant, BattlePokemon> pokemon;
-        private List<(BattleAction, IEnumerator, Participant)> actions;
+        private Dictionary<Participant, PokemonParty> _party;
+        private Dictionary<Participant, Inventory.Inventory> _inventory;
+        private Dictionary<Participant, TurnState> _turnState;
+        private Dictionary<Participant, BattlePokemon> _pokemon;
+        private List<(BattleAction, IEnumerator, Participant)> _actions;
         
         private void Start()
         {
-            pokemon = new Dictionary<Participant, BattlePokemon>
+            _pokemon = new Dictionary<Participant, BattlePokemon>
             {
                 {Participant.Player, player.GetComponentInChildren<BattlePokemon>()},
                 {Participant.Opponent, opponent.GetComponentInChildren<BattlePokemon>()}
             };
-            turnState = new Dictionary<Participant, TurnState>
+            _turnState = new Dictionary<Participant, TurnState>
             {
                 {Participant.Player, TurnState.Busy},
                 {Participant.Opponent, TurnState.Busy}
             };
-            party = new Dictionary<Participant, PokemonParty>
+            _party = new Dictionary<Participant, PokemonParty>
             {
                 {Participant.Player, null},
                 {Participant.Opponent, null}
             };
-            inventory = new Dictionary<Participant, Inventory.Inventory>
+            _inventory = new Dictionary<Participant, Inventory.Inventory>
             {
                 {Participant.Player, null},
                 {Participant.Opponent, null}
             };
             
-            actions = new List<(BattleAction, IEnumerator, Participant)>();
+            _actions = new List<(BattleAction, IEnumerator, Participant)>();
             
             actionMenu.Init();
             moveMenu.Init();
@@ -78,25 +80,25 @@ namespace Battle
             actionMenu.Reset();
             moveMenu.Reset();
             partyMenu.Reset();
-            actions.Clear();
+            _actions.Clear();
             
-            party[Participant.Player] = playerPokemon;
-            party[Participant.Player].ResetBattleOrder();
+            _party[Participant.Player] = playerPokemon;
+            _party[Participant.Player].ResetBattleOrder();
 
-            inventory[Participant.Player] = playerInventory;
+            _inventory[Participant.Player] = playerInventory;
 
-            pokemon[Participant.Player].Setup(party[Participant.Player].GetFirstBattleReadyPokemon());
-            pokemon[Participant.Opponent].Setup(wildPokemon);
+            _pokemon[Participant.Player].Setup(_party[Participant.Player].GetFirstBattleReadyPokemon());
+            _pokemon[Participant.Opponent].Setup(wildPokemon);
 
             dialogBox.ClearText();
 
-            var enterPokemon1 = new Task(pokemon[Participant.Player].PlayEnterAnimation());
-            var enterPokemon2 = new Task(pokemon[Participant.Opponent].PlayEnterAnimation());
+            var enterPokemon1 = new Task(_pokemon[Participant.Player].PlayEnterAnimation());
+            var enterPokemon2 = new Task(_pokemon[Participant.Opponent].PlayEnterAnimation());
 
             yield return new WaitWhile(() => TransitionController.TransitionState != TransitionState.None
                                              || enterPokemon1.Running || enterPokemon2.Running);
 
-            yield return DisplayText($"A wild {pokemon[Participant.Opponent].Pokemon.Base.Species} appeared!");
+            yield return DisplayText($"A wild {_pokemon[Participant.Opponent].Pokemon.Base.Species} appeared!");
             yield return new WaitForSeconds(1f);
 
             BattleState = BattleState.Start;
@@ -107,8 +109,8 @@ namespace Battle
         {
             if (BattleState != BattleState.Start) return;
 
-            turnState[Participant.Player] = TurnState.Busy;
-            turnState[Participant.Opponent] = TurnState.Busy;
+            _turnState[Participant.Player] = TurnState.Busy;
+            _turnState[Participant.Opponent] = TurnState.Busy;
 
             BattleState = BattleState.Turn;
             StartCoroutine(ChooseAction(Participant.Player));
@@ -118,7 +120,7 @@ namespace Battle
 
         private IEnumerator ChooseAction(Participant participant)
         {
-            actionMenu.OpenMenu(participant, $"What will {pokemon[participant].Pokemon.Name} do?");
+            actionMenu.OpenMenu(participant, $"What will {_pokemon[participant].Pokemon.Name} do?");
             yield return null;
 
             while (actionMenu.State[participant] == SubsystemState.Open)
@@ -153,11 +155,11 @@ namespace Battle
 
         private IEnumerator ChooseMove(Participant participant)
         {
-            moveMenu.OpenMenu(participant, pokemon[participant].Pokemon.Moves);
+            moveMenu.OpenMenu(participant, _pokemon[participant].Pokemon.Moves);
 
             if (participant == Participant.Player)
             {
-                dialogBox.SetMoveNames(pokemon[participant].Pokemon.Moves);
+                dialogBox.SetMoveNames(_pokemon[participant].Pokemon.Moves);
             }
 
             while (moveMenu.State[participant] == SubsystemState.Open)
@@ -165,27 +167,26 @@ namespace Battle
                 if (participant == Participant.Player)
                 {
                     dialogBox.UpdateMoveSelection(moveMenu.Choice[participant],
-                        pokemon[participant].Pokemon.Moves[(int) moveMenu.Choice[participant]]);
+                        _pokemon[participant].Pokemon.Moves[(int) moveMenu.Choice[participant]]);
                 }
 
                 yield return moveMenu.HandleMoveSelection(participant);
             }
 
-            switch (moveMenu.Choice[participant])
+            if (moveMenu.Choice[participant] == MoveMenu.MoveChoice.Back)
             {
-                case MoveMenu.MoveChoice.Back:
-                    StartCoroutine(ChooseAction(participant));
-                    break;
-                default:
-                    actions.Add((BattleAction.Move, PerformMove(participant), participant));
-                    turnState[participant] = TurnState.Ready;
-                    break;
+                StartCoroutine(ChooseAction(participant));
+            }
+            else
+            {
+                _actions.Add((BattleAction.Move, PerformMove(participant), participant));
+                _turnState[participant] = TurnState.Ready;
             }
         }
 
         private IEnumerator ChoosePokemon(Participant participant)
         {
-            partyMenu.SetPartyData(party[participant]);
+            partyMenu.SetPartyData(_party[participant]);
             yield return partyMenu.OpenMenu(participant, Scene.BattleView);
 
             while (partyMenu.State[participant] == SubsystemState.Open)
@@ -193,21 +194,20 @@ namespace Battle
                 yield return partyMenu.HandlePokemonSelection(participant);
             }
 
-            switch (partyMenu.Choice[participant])
+            if (partyMenu.Choice[participant] == PartyMenu.PokemonChoice.Back)
             {
-                case PartyMenu.PokemonChoice.Back:
-                    StartCoroutine(ChooseAction(participant));
-                    break;
-                default:
-                    actions.Add((BattleAction.Switch, PerformSwitch(participant), participant));
-                    turnState[participant] = TurnState.Ready;
-                    break;
+                StartCoroutine(ChooseAction(participant));
+            }
+            else
+            {
+                _actions.Add((BattleAction.Switch, PerformSwitch(participant), participant));
+                _turnState[participant] = TurnState.Ready;
             }
         }
 
         private IEnumerator ChooseItem(Participant participant)
         {
-            inventoryMenu.SetInventoryData(inventory[participant]);
+            inventoryMenu.SetInventoryData(_inventory[participant]);
             yield return inventoryMenu.OpenMenu(participant, Scene.BattleView);
 
             while (inventoryMenu.State[participant] == SubsystemState.Open)
@@ -220,14 +220,14 @@ namespace Battle
         
         private IEnumerator HandleBattle()
         {
-            actions.Add((BattleAction.PersistentDamage, HandleStatusConditionsAfterTurn(Participant.Opponent), Participant.Opponent));
-            actions.Add((BattleAction.PersistentDamage, HandleStatusConditionsAfterTurn(Participant.Player), Participant.Player));
-            actions.Sort(PrioritizeActions);
+            _actions.Add((BattleAction.PersistentDamage, HandleStatusConditionsAfterTurn(Participant.Opponent), Participant.Opponent));
+            _actions.Add((BattleAction.PersistentDamage, HandleStatusConditionsAfterTurn(Participant.Player), Participant.Player));
+            _actions.Sort(PrioritizeActions);
 
-            while (actions.Count > 0)
+            while (_actions.Count > 0)
             {
-                yield return actions[0].Item2;
-                actions.RemoveAt(0);
+                yield return _actions[0].Item2;
+                _actions.RemoveAt(0);
             }
             
             if (BattleState == BattleState.Battle) BattleState = BattleState.Start;
@@ -240,8 +240,8 @@ namespace Battle
             
 
             var defendingParticipant = (Participant) (((int) participant + 1) % 2);
-            var attacker = pokemon[participant];
-            var defender = pokemon[defendingParticipant];
+            var attacker = _pokemon[participant];
+            var defender = _pokemon[defendingParticipant];
             var moveChoice = (int) moveMenu.Choice[participant];
             var move = attacker.Pokemon.Moves[moveChoice];
             var damageDetails = CalculateDamage(move, attacker.Pokemon, defender.Pokemon);
@@ -256,13 +256,12 @@ namespace Battle
         private IEnumerator ApplyEffects(Move move, BattlePokemon attacker, 
             BattlePokemon defender, DamageDetails damageDetails)
         {
-            if (move.Base.EffectChance >= Random.Range(1, 101))
+            if (move.Base.EffectChance < Random.Range(1, 101)) yield break;
+            
+            IEnumerable<string> result = move.ApplyEffects(attacker, defender);
+            foreach (var s in result)
             {
-                var result = move.ApplyEffects(attacker, defender);
-                foreach (var s in result)
-                {
-                    yield return DisplayText(s);
-                }
+                yield return DisplayText(s);
             }
         }
         
@@ -305,16 +304,16 @@ namespace Battle
             yield return attacker.UpdateExperience(defender.Pokemon.ExperienceYield);
             yield return new WaitForSeconds(1f);
             
-            var won = defender == pokemon[Participant.Opponent];
+            var won = defender == _pokemon[Participant.Opponent];
             if (won)
             {
-                party[Participant.Player].ResetBattleOrder();
+                _party[Participant.Player].ResetBattleOrder();
                 BattleState = BattleState.End;
                 OnBattleOver?.Invoke(true);
                 yield break;
             }
 
-            var nextPokemon = party[Participant.Player].Party[1];
+            var nextPokemon = _party[Participant.Player].Party[1];
             if (nextPokemon == null)
             {
                 BattleState = BattleState.End;
@@ -322,7 +321,7 @@ namespace Battle
                 yield break;
             }
 
-            partyMenu.SetPartyData(party[Participant.Player]);
+            partyMenu.SetPartyData(_party[Participant.Player]);
             yield return partyMenu.OpenMenu(Participant.Player, Scene.BattleView);
             while (partyMenu.State[Participant.Player] == SubsystemState.Open)
             {
@@ -337,32 +336,32 @@ namespace Battle
         {
             if (BattleState != BattleState.Battle) yield break;
 
-            yield return DisplayText($"Good job, {pokemon[participant].Pokemon.Base.Species}!");
-            yield return pokemon[participant].PlayFaintAnimation();
+            yield return DisplayText($"Good job, {_pokemon[participant].Pokemon.Base.Species}!");
+            yield return _pokemon[participant].PlayFaintAnimation();
             yield return PerformSwitchIn(participant);
         }
 
         private IEnumerator PerformSwitchIn(Participant participant)
         {
-            var newPokemon = party[participant].GetFirstBattleReadyPokemon();
-            pokemon[participant].Setup(newPokemon);
-            Task enterAnimation = new Task(pokemon[participant].PlayEnterAnimation());
+            var newPokemon = _party[participant].GetFirstBattleReadyPokemon();
+            _pokemon[participant].Setup(newPokemon);
+            Task enterAnimation = new Task(_pokemon[participant].PlayEnterAnimation());
             Task enterText =
-                new Task(dialogBox.TypeDialog($"Let's go, {pokemon[participant].Pokemon.Base.Species}!!"));
+                new Task(dialogBox.TypeDialog($"Let's go, {_pokemon[participant].Pokemon.Base.Species}!!"));
             yield return new WaitWhile(() => enterAnimation.Running || enterText.Running);
             yield return new WaitForSeconds(1f);
         }
 
         private IEnumerator HandleStatusConditionsAfterTurn(Participant participant)
         {
-            var primaryCondition = pokemon[participant].Pokemon.PrimaryCondition;
+            var primaryCondition = _pokemon[participant].Pokemon.PrimaryCondition;
             yield return PrimaryStatusConditions.GetEffectClass[primaryCondition]
-                .OnAfterTurn(pokemon[participant], dialogBox);
+                .OnAfterTurn(_pokemon[participant], dialogBox);
         }
         
         private IEnumerator WaitForParticipantsReady()
         {
-            turnState[Participant.Opponent] = TurnState.Ready;
+            _turnState[Participant.Opponent] = TurnState.Ready;
             yield return null;
             yield return new WaitUntil(AreBothParticipantsReady);
 
@@ -372,9 +371,9 @@ namespace Battle
 
         private bool AreBothParticipantsReady()
         {
-            return (BattleState == BattleState.Turn &&
-                    turnState[Participant.Player] == TurnState.Ready &&
-                    turnState[Participant.Opponent] == TurnState.Ready);
+            return BattleState == BattleState.Turn &&
+                   _turnState[Participant.Player] == TurnState.Ready &&
+                   _turnState[Participant.Opponent] == TurnState.Ready;
         }
 
         private IEnumerator DisplayText(string text)
@@ -392,10 +391,11 @@ namespace Battle
             dialogBox.ClearText();
         }
 
+        [SuppressMessage("ReSharper", "Unity.IncorrectMethodSignature")]
         public IEnumerator Reset()
         {
-            yield return pokemon[Participant.Opponent].ResetAnimation();
-            yield return pokemon[Participant.Player].ResetAnimation();
+            yield return _pokemon[Participant.Opponent].ResetAnimation();
+            yield return _pokemon[Participant.Player].ResetAnimation();
             gameObject.SetActive(false);
             
             yield return null;
@@ -413,7 +413,7 @@ namespace Battle
         
         private static DamageDetails CalculateDamage(Move move, Pokemon attacker, Pokemon defender)
         {
-            var critical = (Random.value <= 0.0625f);
+            var critical = Random.value <= 0.0625f;
             var effectivenessMultiplier = MoveBase.TypeChart[(move.Base.Type, defender.Base.Type1)] *
                                           MoveBase.TypeChart[(move.Base.Type, defender.Base.Type2)];
             var typeAdvantage = MoveBase.GetEffectiveness(effectivenessMultiplier);
@@ -430,8 +430,8 @@ namespace Battle
                     defence = defender.BoostedDefence;
                     break;
                 case MoveCategory.Special:
-                    attack = attacker.BoostedAttack;
-                    defence = defender.BoostedDefence;
+                    attack = attacker.BoostedSpAttack;
+                    defence = defender.BoostedSpDefence;
                     break;
                 case MoveCategory.Status:
                     break;
@@ -461,8 +461,8 @@ namespace Battle
             
             if (action1 == BattleAction.Switch || action1 == BattleAction.Item) { return coinFlip; }
 
-            var pokemon2 = pokemon[participant2].Pokemon;
-            var pokemon1 = pokemon[participant1].Pokemon;
+            var pokemon2 = _pokemon[participant2].Pokemon;
+            var pokemon1 = _pokemon[participant1].Pokemon;
             var speed2 = pokemon2.BoostedSpeed;
             var speed1 = pokemon1.BoostedSpeed;
             var moveChoice2 = (int) moveMenu.Choice[participant2];

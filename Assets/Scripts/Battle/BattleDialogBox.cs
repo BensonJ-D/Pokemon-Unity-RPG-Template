@@ -23,14 +23,14 @@ namespace Battle
         [SerializeField] private Text maxPpText;
         [SerializeField] private Text typeText;
 
-        private float lettersPerSecondMultiplier = 1f;
-        private bool typing;
-        private int moveChoice;
+        private float _lettersPerSecondMultiplier = 1f;
+        private bool _typing;
+        private int _moveChoice;
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Z) && typing)
+            if (Input.GetKeyDown(KeyCode.Z) && _typing)
             {
-                lettersPerSecondMultiplier = 10f;
+                _lettersPerSecondMultiplier = 10f;
             }
         }
     
@@ -38,20 +38,20 @@ namespace Battle
         public void SetText(string text) { dialogText.text = text; }
         public IEnumerator TypeDialog(string dialog)
         {
-            lettersPerSecondMultiplier = 1f;
+            _lettersPerSecondMultiplier = 1f;
             dialogText.text = "";
             yield return new WaitForSeconds(1f / lettersPerSecond);
         
             foreach (var letter in dialog.ToCharArray())
             {
-                typing = true;
+                _typing = true;
                 dialogText.text += letter;
             
-                yield return new WaitForSeconds(1f / lettersPerSecond / lettersPerSecondMultiplier);
+                yield return new WaitForSeconds(1f / lettersPerSecond / _lettersPerSecondMultiplier);
             }
 
-            yield return new WaitForSeconds(1f / lettersPerSecondMultiplier);
-            typing = false;
+            yield return new WaitForSeconds(1f / _lettersPerSecondMultiplier);
+            _typing = false;
         }
 
         public void EnableDialogText(bool enable) => dialogText.enabled = enable;

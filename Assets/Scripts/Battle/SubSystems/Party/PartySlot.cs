@@ -1,5 +1,4 @@
-﻿using System;
-using PokemonScripts;
+﻿using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,10 +15,10 @@ namespace Battle.SubSystems.Party
         [SerializeField] private Sprite selectedFaintedSprite;
         [SerializeField] private Image image;
 
-        private bool fainted;
+        private bool _fainted;
         public void SetData(Pokemon pokemon)
         {
-            fainted = pokemon.CurrentHp <= 0;
+            _fainted = pokemon.CurrentHp <= 0;
             nameText.text = pokemon.Base.Species;
             levelText.text = pokemon.Level.ToString();
             hpBar.Setup(pokemon);
@@ -27,7 +26,7 @@ namespace Battle.SubSystems.Party
 
         public void SetSelected(bool selected)
         {
-            if(fainted) { image.sprite = selected ? selectedFaintedSprite : notSelectedFaintedSprite; } 
+            if(_fainted) { image.sprite = selected ? selectedFaintedSprite : notSelectedFaintedSprite; } 
             else { image.sprite = selected ? selectedSprite : notSelectedSprite; }
         }
     }

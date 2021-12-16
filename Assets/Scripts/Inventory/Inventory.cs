@@ -13,7 +13,7 @@ namespace Inventory
         public InventoryData(Item item)
         {
             this.item = item;
-            this.quantity = 1;
+            quantity = 1;
         }
         
         public InventoryData(Item item, int quantity)
@@ -24,7 +24,7 @@ namespace Inventory
 
         public override bool Equals(object obj)
         {
-            if (obj == null || this.GetType() != obj.GetType())
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }

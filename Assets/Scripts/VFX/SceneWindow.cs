@@ -8,14 +8,14 @@ namespace VFX
     public class SceneWindow : MonoBehaviour
     {
         public Dictionary<Participant, SubsystemState> State { get; private set; }
-        private Scene parentScene;
+        private Scene _parentScene;
         protected Scene Scene; 
         
         public virtual void Init()
         {
             // Disable unity MonoBehaviour update events without removing Inspector properties
             // TODO: Custom inspector for non-MonoBehaviour
-            this.enabled = false;
+            enabled = false;
             State = new Dictionary<Participant, SubsystemState> {
                 {Participant.Player, SubsystemState.Closed}, 
                 {Participant.Opponent, SubsystemState.Closed}
@@ -29,14 +29,14 @@ namespace VFX
 
         protected virtual void OnClose(Participant participant) {
             State[participant] = SubsystemState.Closed;
-            SceneController.Instance.SetActiveScene(parentScene);
+            SceneController.Instance.SetActiveScene(_parentScene);
         }
         
         public virtual IEnumerator OpenMenu(Participant participant, Scene newParentScene)
         {
-            parentScene = newParentScene;
+            _parentScene = newParentScene;
             yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
-                onTransitionPeak: () => OnOpen(participant)
+                () => OnOpen(participant)
             );
         }
 
@@ -45,7 +45,7 @@ namespace VFX
             if (participant == Participant.Player)
             {
                 yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
-                    onTransitionPeak: () => OnClose(participant)
+                    () => OnClose(participant)
                 );
             }
         }

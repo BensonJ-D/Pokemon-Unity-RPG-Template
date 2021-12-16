@@ -28,7 +28,7 @@ public class LevelUpWindow : Window
         yield return base.ShowWindow(pos);
 
         SetStatLabels(before);
-        changeLabels.SetActive(false);
+        changeLabels.SetActive(false); 
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
         changeLabels.SetActive(true);

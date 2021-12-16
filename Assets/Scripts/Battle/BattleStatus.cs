@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using PokemonScripts;
 using PokemonScripts.Conditions;
 using UnityEngine;
@@ -26,6 +27,7 @@ namespace Battle
             UpdateStatus(pokemon);
         }
 
+        [SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
         public IEnumerator UpdateHealthBar(DamageDetails dmgDetails)
         {
             var targetHp = hpBar.Hp - dmgDetails.DamageDealt > 0 ? hpBar.Hp - dmgDetails.DamageDealt : 0;

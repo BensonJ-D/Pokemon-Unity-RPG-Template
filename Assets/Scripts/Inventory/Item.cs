@@ -1,5 +1,4 @@
 using System.Collections;
-using PokemonScripts;
 using UnityEngine;
 
 namespace Inventory

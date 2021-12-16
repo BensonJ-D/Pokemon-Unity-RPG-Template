@@ -10,13 +10,13 @@ namespace Battle
         [SerializeField] private Text maxHpLabel;
         [SerializeField] private Image healthImage;
         
-        private Gradient gradient;
+        private Gradient _gradient;
         public float Hp { get; private set; }
-        public int MaxHp { get; set; }
+        public int MaxHp { get; private set; }
 
         public void Setup(Pokemon pokemon)
         {
-            gradient = new Gradient();
+            _gradient = new Gradient();
 
             // Populate the color keys at the relative time 0 and 1 (0 and 100%)
             GradientColorKey[] colorKey = new GradientColorKey[5];
@@ -37,7 +37,7 @@ namespace Battle
             alphaKey[1].alpha = 1.0f;
             alphaKey[1].time = 1.0f;
 
-            gradient.SetKeys(colorKey, alphaKey);
+            _gradient.SetKeys(colorKey, alphaKey);
             
             SetHp(pokemon.CurrentHp, pokemon.MaxHp());
         }
@@ -53,7 +53,7 @@ namespace Battle
             
             var hpNormalise = Hp / MaxHp;
             healthImage.transform.localScale = new Vector3(hpNormalise, 1f, 1f);
-            healthImage.color = gradient.Evaluate(hpNormalise);
+            healthImage.color = _gradient.Evaluate(hpNormalise);
         }
     }
 }

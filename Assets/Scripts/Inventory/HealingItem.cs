@@ -13,7 +13,7 @@ namespace Inventory
         [SerializeField] private List<PrimaryStatusCondition> primaryStatusConditionsHealed;
         [SerializeField] private List<SecondaryStatusCondition> secondaryStatusConditionsHealed;
 
-        private Pokemon target;
+        private Pokemon _target;
 
         public override IEnumerator BeforeUse() { yield return null; }
         public override bool ValidateUse() { return true; }

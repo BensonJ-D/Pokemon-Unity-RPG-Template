@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Battle.SubSystems.Party;
 using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
 using VFX;
 
-namespace Battle
+namespace Battle.SubSystems.Party
 {
     
     public class PartyMenu : SceneWindow
@@ -21,8 +20,8 @@ namespace Battle
         public enum PokemonChoice { Pokemon1 = 0, Pokemon2 = 1, Pokemon3 = 2, Pokemon4 = 3, Pokemon5 = 4, Pokemon6 = 5, Back = 6}
         public Dictionary<Participant, PokemonChoice> Choice { get; private set; }
         
-        private List<int> orderOfPokemon;
-        private PokemonParty party;
+        private List<int> _orderOfPokemon;
+        private PokemonParty _party;
 
         private static class MenuOptions
         {
@@ -53,19 +52,19 @@ namespace Battle
 
         public void SetPartyData(PokemonParty newParty)
         {
-            party = newParty;
-            orderOfPokemon = party.GetCurrentBattleOrder();
+            _party = newParty;
+            _orderOfPokemon = _party.GetCurrentBattleOrder();
             
-            var slotAndPokemon = orderOfPokemon.Zip(partySlots, (p, s) => new {p, s});
+            var slotAndPokemon = _orderOfPokemon.Zip(partySlots, (p, s) => new {p, s});
             foreach (var pair in slotAndPokemon)
             {
-                pair.s.SetData(party.Party[pair.p]);
+                pair.s.SetData(_party.Party[pair.p]);
                 pair.s.gameObject.SetActive(true);
             }
         }
 
         protected override void OnOpen(Participant participant) {
-            orderOfPokemon.ForEach(slot => partySlots[slot].SetSelected(false));
+            _orderOfPokemon.ForEach(slot => partySlots[slot].SetSelected(false));
             partySlots[0].SetSelected(true);
             Choice[participant] = PokemonChoice.Pokemon1;
             messageText.text = "Choose a Pokemon.";
@@ -106,7 +105,7 @@ namespace Battle
             if (participant == Participant.Player)
             {
                 var oldSelection = (int) Choice[participant];
-                var newSelection = Utils.GetPokemonOption((int) Choice[participant], party.Party.Count);
+                var newSelection = Utils.GetPokemonOption((int) Choice[participant], _party.Party.Count);
                 if (oldSelection != newSelection)
                 {
                     partySlots[oldSelection].SetSelected(false);
@@ -123,9 +122,9 @@ namespace Battle
                 
                 if (!Input.GetKeyDown(KeyCode.Z)) yield break;
 
-                List<int> battleOrder = party.GetCurrentBattleOrder();
+                List<int> battleOrder = _party.GetCurrentBattleOrder();
                 var indexForNewPokemon = battleOrder[newSelection];
-                var selectedPokemon = party.Party[indexForNewPokemon];
+                var selectedPokemon = _party.Party[indexForNewPokemon];
                 optionWindow.SetOptions(new[,]
                 {
                     {MenuOptions.Switch},
@@ -135,29 +134,25 @@ namespace Battle
                 yield return optionWindow.ShowWindow();
 
                 var action = optionWindow.Choice;
-                if (action == MenuOptions.Summary) {
-                    summaryMenu.Init();
-                    summaryMenu.SetPokemonData(selectedPokemon);
-                    yield return summaryMenu.OpenMenu(participant, Scene.PartyView);
-                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
-                    yield return summaryMenu.CloseWindow(participant);
-                }
-
-                if (action == MenuOptions.Switch)
+                switch (action)
                 {
-                    if (selectedPokemon.CurrentHp <= 0)
-                    {
+                    case MenuOptions.Summary:
+                        summaryMenu.Init();
+                        summaryMenu.SetPokemonData(selectedPokemon);
+                        yield return summaryMenu.OpenMenu(participant, Scene.PartyView);
+                        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
+                        yield return summaryMenu.CloseWindow(participant);
+                        break;
+                    case MenuOptions.Switch when selectedPokemon.CurrentHp <= 0:
                         SetMessageText("You can't send out a fainted pokemon!");
-                    }
-                    else if (newSelection == 0)
-                    {
+                        break;
+                    case MenuOptions.Switch when newSelection == 0:
                         SetMessageText("You can't send out a Pokemon that's already in battle.");
-                    }
-                    else
-                    {
-                        party.SetPokemonToBattleLeader(newSelection);
+                        break;
+                    case MenuOptions.Switch:
+                        _party.SetPokemonToBattleLeader(newSelection);
                         yield return CloseWindow(participant);
-                    }
+                        break;
                 }
             }
             else
@@ -167,7 +162,7 @@ namespace Battle
             }
         }
 
-        public void SetMessageText(string message)
+        private void SetMessageText(string message)
         {
             messageText.text = message;
         }

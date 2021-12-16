@@ -18,47 +18,47 @@ namespace Encounters
         [SerializeField] private List<Encounter> encounters;
         [SerializeField] private List<SpriteToEncounterTilePair> spriteToEncounterTileLookup;
 
-        private Dictionary<Vector3Int, EncounterTile> tiles;
-        private Vector3Int lastPlayerCell;
-        private Tilemap tilemap;
+        private Dictionary<Vector3Int, EncounterTile> _tiles;
+        private Vector3Int _lastPlayerCell;
+        private Tilemap _tilemap;
 
         private void Start()
         {
-            tilemap = transform.Find("Tiles").GetComponent<Tilemap>();
-            tiles = new Dictionary<Vector3Int, EncounterTile>();
-            lastPlayerCell = tilemap.WorldToCell(player.transform.position);
+            _tilemap = transform.Find("Tiles").GetComponent<Tilemap>();
+            _tiles = new Dictionary<Vector3Int, EncounterTile>();
+            _lastPlayerCell = _tilemap.WorldToCell(player.transform.position);
             encounters.Sort((a, b) => a.EncounterThreshold - b.EncounterThreshold);
 
-            var cellBounds = tilemap.cellBounds;
+            var cellBounds = _tilemap.cellBounds;
             foreach (var cellPos in cellBounds.allPositionsWithin)
             {
-                var tile = tilemap.GetTile(cellPos);
+                var tile = _tilemap.GetTile(cellPos);
                 if (tile is null) continue;
 
-                var sprite = tilemap.GetSprite(cellPos);
+                var sprite = _tilemap.GetSprite(cellPos);
                 var prefab = spriteToEncounterTileLookup
                     .First(pair => pair.IndexSprite == sprite)
                     .EncounterTile;
 
                 if (prefab is null) continue;
-                var localPos = tilemap.CellToWorld(cellPos) + tilemap.tileAnchor;
+                var localPos = _tilemap.CellToWorld(cellPos) + _tilemap.tileAnchor;
                 var encounterTile = Instantiate(prefab, localPos, Quaternion.identity);
                 encounterTile.transform.parent = transform;
                 encounterTile.hideFlags = HideFlags.HideInHierarchy;
-                tiles.Add(cellPos, encounterTile.GetComponent<EncounterTile>());
-                tiles.Last().Value.Init();
+                _tiles.Add(cellPos, encounterTile.GetComponent<EncounterTile>());
+                _tiles.Last().Value.Init();
             }
         }
 
         private void Update()
         {
-            var playerCell = tilemap.WorldToCell(player.transform.position);
+            var playerCell = _tilemap.WorldToCell(player.transform.position);
 
-            var isOnEncounterTile = tilemap.GetTile(playerCell);
-            if (!isOnEncounterTile || playerCell == lastPlayerCell) return;
+            var isOnEncounterTile = _tilemap.GetTile(playerCell);
+            if (!isOnEncounterTile || playerCell == _lastPlayerCell) return;
 
-            lastPlayerCell = playerCell;
-            tiles[playerCell].Animate();
+            _lastPlayerCell = playerCell;
+            _tiles[playerCell].Animate();
 
             var isEncounter = Random.Range(0, 100) < encounterRate;
             if (!isEncounter) return;

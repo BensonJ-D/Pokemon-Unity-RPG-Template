@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Battle;
+using Battle.SubSystems.Party;
 using Player;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using VFX;
@@ -42,10 +41,10 @@ namespace Inventory
             base.Init();
         }
 
-        public void Update()
-        {
-            Debug.Log("TEST MESSAGE");
-        }
+        // public void Update()
+        // {
+        //     Debug.Log("TEST MESSAGE");
+        // }
 
         public void SetInventoryData(Inventory newInventory)
         {
@@ -140,12 +139,9 @@ namespace Inventory
             cursor.transform.position = cursorPos;
         }
 
-        private void SetItemDescription() {
-            if (_inventoryPosition < _inventory.Items.Count) {
-                description.text = _inventory.Items[_inventoryPosition].item.Description;
-            } else {
-                description.text = "";
-            }
+        private void SetItemDescription()
+        {
+            description.text = _inventoryPosition < _inventory.Items.Count ? _inventory.Items[_inventoryPosition].item.Description : "";
         }
     }
 }
