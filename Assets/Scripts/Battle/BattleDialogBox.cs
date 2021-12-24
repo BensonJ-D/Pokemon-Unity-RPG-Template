@@ -84,6 +84,7 @@ namespace Battle
 
         public void SetMoveNames(List<Move> moves)
         {
+            // moveTexts.ForEach(obj => obj.text = moveTexts.IndexOf(obj) < moves.Count ? moves[moveTexts.IndexOf(obj)].Base.Name : "-");
             for (var i = 0; i < moveTexts.Count; i++)
             {
                 moveTexts[i].text = i < moves.Count ? moves[i].Base.Name : "-";

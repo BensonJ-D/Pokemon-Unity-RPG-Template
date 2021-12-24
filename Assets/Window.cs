@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Window : MonoBehaviour
 {
+    // [SerializeField] protected Vector2 size;
     [SerializeField] protected Transform window;
     [SerializeField] protected Canvas canvas;
     [SerializeField] protected Image background;
@@ -14,12 +15,13 @@ public class Window : MonoBehaviour
 
     protected void Initiate()
     {
+        // SetSize(size.x, size.y);
         DefaultPosition = window.position;
         CanvasOrigin = canvas.transform.position;
         canvas.enabled = false;
     }
 
-    protected void SetSize(int width, int height)
+    protected void SetSize(float width, float height)
     {
         background.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
         background.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);

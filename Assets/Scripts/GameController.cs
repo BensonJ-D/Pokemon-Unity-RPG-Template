@@ -17,10 +17,20 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private TransitionController transitionController;
     [SerializeField] private SceneController sceneController;
+    [SerializeField] private OptionWindow optionWindow;
+    // [SerializeField] private GridMenu gridMenu;
     
     public static GameState GameState { get; private set; } = GameState.Moving;
+    private static class MenuOptions
+    {
+        public const string 
+            Switch = "SWITCH",
+            Summary = "SUMMARY",
+            Cancel = "CANCEL";
+    }
 
     private Task _playerMovement;
+    private Task _openMenu;
 
     private void Start()
     {
@@ -40,6 +50,8 @@ public class GameController : MonoBehaviour
         {
             case GameState.Moving:
             {
+                // if (Input.GetKeyDown(KeyCode.Q)) { _openMenu = new Task(OpenMenu()); }
+                
                 var isNotMoving = _playerMovement is null || !_playerMovement.Running;
                 if (isNotMoving) { _playerMovement = new Task(player.HandleMovement()); }
                 break;
@@ -84,4 +96,17 @@ public class GameController : MonoBehaviour
                 GameState = GameState.Moving;
             });
     }
+
+    // private IEnumerator OpenMenu()
+    // {
+    //     GameState = GameState.Menu;
+    //     gridMenu.SetOptions(new[,]
+    //     {
+    //         {"A", null, "C", null},
+    //         {"A", "B", "C", "D"},
+    //         {"A", null, "C", null},
+    //     });
+    //     yield return gridMenu.ShowWindow();
+    //     GameState = GameState.Moving;
+    // }
 }

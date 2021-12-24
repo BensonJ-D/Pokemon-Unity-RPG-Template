@@ -26,8 +26,8 @@ namespace Battle
             CurrentExperience = exp;
             BaseLevelExperience = baseLevelExperience;
             NextLevelExperience = nextLevelExperience;
-            totalExperienceLabel.text = $"{Mathf.Round(CurrentExperience)}";
-            nextLevelExperienceLabel.text = $"{NextLevelExperience - CurrentExperience}";
+            if(totalExperienceLabel != null) totalExperienceLabel.text = $"{Mathf.Round(CurrentExperience)}";
+            if(nextLevelExperienceLabel != null) nextLevelExperienceLabel.text = $"{NextLevelExperience - CurrentExperience}";
             
             var expNormalise = Mathf.Clamp((CurrentExperience - BaseLevelExperience) / (NextLevelExperience - BaseLevelExperience), 0.0f, 1.0f);
             experienceImage.transform.localScale = new Vector3(expNormalise, 1f, 1f);

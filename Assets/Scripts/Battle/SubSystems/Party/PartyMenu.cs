@@ -127,9 +127,9 @@ namespace Battle.SubSystems.Party
                 var selectedPokemon = _party.Party[indexForNewPokemon];
                 optionWindow.SetOptions(new[,]
                 {
-                    {MenuOptions.Switch},
-                    {MenuOptions.Summary},
-                    {MenuOptions.Cancel}
+                    {MenuOptions.Summary, MenuOptions.Switch},
+                    {MenuOptions.Summary, null},
+                    {MenuOptions.Cancel, null}
                 });
                 yield return optionWindow.ShowWindow();
 

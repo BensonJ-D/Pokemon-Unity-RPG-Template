@@ -7060,8 +7060,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aca16647cb28496b9ca85f158a95f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: {x: 0, y: 0}
   window: {fileID: 1189124314}
   canvas: {fileID: 1950872377}
+  background: {fileID: 0}
   changeLabels: {fileID: 665489017}
   maxHpValue: {fileID: 1831339518}
   attackValue: {fileID: 1982880798}
@@ -7508,6 +7510,8 @@ MonoBehaviour:
   player: {fileID: 2067044161}
   transitionController: {fileID: 1683768691}
   sceneController: {fileID: 266883375}
+  optionWindow: {fileID: 1941248580}
+  gridMenu: {fileID: 1941248581}
 --- !u!4 &726525402
 Transform:
   m_ObjectHideFlags: 0
@@ -13522,6 +13526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941248579}
   - component: {fileID: 1941248580}
+  - component: {fileID: 1941248581}
   m_Layer: 5
   m_Name: OptionsWindow
   m_TagString: Untagged
@@ -13551,17 +13556,43 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941248578}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50ca77bd2f8b4c7eac6c18e61f69dc42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: {x: 0, y: 0}
   window: {fileID: 435044103}
   canvas: {fileID: 1045294083}
   background: {fileID: 582071087}
   choices: {fileID: 1922356856}
-  label: {fileID: 4972765182355517448, guid: 7758cd2d2a02641a29c15dc09d97a97e, type: 3}
+  label: {fileID: 2610674597036393427, guid: 7758cd2d2a02641a29c15dc09d97a97e, type: 3}
   cursor: {fileID: 1639520245}
+--- !u!114 &1941248581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941248578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f55fa818b9542f88e2b399459047dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 0, y: 0}
+  window: {fileID: 435044103}
+  canvas: {fileID: 1045294083}
+  background: {fileID: 582071087}
+  choices: {fileID: 1922356856}
+  label: {fileID: 2610674597036393427, guid: 7758cd2d2a02641a29c15dc09d97a97e, type: 3}
+  enableHighlight: 1
+  highlightColour: {r: 0.9716981, g: 0, b: 0, a: 1}
+  fontColour: {r: 0, g: 0.9716981, b: 0.035449814, a: 1}
+  hasCursor: 0
+  cursor: {fileID: 1639520245}
+  allowEmptyFields: 1
+  emptyFieldTag: '-'
 --- !u!1 &1944215755
 GameObject:
   m_ObjectHideFlags: 0
