@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Menu;
 using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,7 +42,7 @@ public class LevelUpWindow : Window
         
         yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
-        HideWindow();
+        HideWindow(WindowCloseReason.Complete);
 
     }
 

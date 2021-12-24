@@ -280,6 +280,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &23282793
 Canvas:
   m_ObjectHideFlags: 0
@@ -4691,6 +4692,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &245099089
 Canvas:
   m_ObjectHideFlags: 0
@@ -6612,6 +6614,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
 --- !u!223 &586857115
 Canvas:
   m_ObjectHideFlags: 0
@@ -7060,7 +7063,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aca16647cb28496b9ca85f158a95f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 0, y: 0}
   window: {fileID: 1189124314}
   canvas: {fileID: 1950872377}
   background: {fileID: 0}
@@ -7511,7 +7513,6 @@ MonoBehaviour:
   transitionController: {fileID: 1683768691}
   sceneController: {fileID: 266883375}
   optionWindow: {fileID: 1941248580}
-  gridMenu: {fileID: 1941248581}
 --- !u!4 &726525402
 Transform:
   m_ObjectHideFlags: 0
@@ -8569,7 +8570,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 2
+  serializedVersion: 3
   m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 0
   m_EnableRealtimeLightmaps: 0
@@ -8591,7 +8592,7 @@ LightingSettings:
   m_MixedBakeMode: 2
   m_LightmapsBakeMode: 1
   m_FilterMode: 1
-  m_LightmapParameters: {fileID: 0}
+  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
   m_ExportTrainingData: 0
   m_TrainingDataDestination: TrainingData
   m_RealtimeResolution: 2
@@ -8608,7 +8609,7 @@ LightingSettings:
   m_PVREnvironmentReferencePointCount: 2048
   m_LightProbeSampleCountMultiplier: 4
   m_PVRBounces: 2
-  m_PVRRussianRouletteStartBounce: 2
+  m_PVRMinBounces: 1
   m_PVREnvironmentMIS: 0
   m_PVRFilteringMode: 2
   m_PVRDenoiserTypeDirect: 0
@@ -8743,6 +8744,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1045294083
 Canvas:
   m_ObjectHideFlags: 0
@@ -9270,6 +9272,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1198859863
 Canvas:
   m_ObjectHideFlags: 0
@@ -13480,6 +13483,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!1 &1922356856
 GameObject:
   m_ObjectHideFlags: 0
@@ -13561,7 +13565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ca77bd2f8b4c7eac6c18e61f69dc42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 0, y: 0}
   window: {fileID: 435044103}
   canvas: {fileID: 1045294083}
   background: {fileID: 582071087}
@@ -13825,6 +13828,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1950872377
 Canvas:
   m_ObjectHideFlags: 0
@@ -13924,6 +13928,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1961944233
 Canvas:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ namespace PokemonScripts
     {
         [SerializeField] private int number;
         [SerializeField] private string moveName;
+        [SerializeField] private string description;
 
         // [TextArea] [SerializeField] private string description;
 
@@ -30,6 +31,7 @@ namespace PokemonScripts
 
         public int Number => number;
         public string Name => moveName;
+        public string Description => description;
         public PokemonType Type => type;
         public int Power => power;
         public int Pp => pp;

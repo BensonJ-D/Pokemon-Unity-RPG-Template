@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Menu;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -59,14 +60,9 @@ public class OptionWindow : Window
         cursor.transform.localPosition = cursorPos;
     }
 
-    public override IEnumerator ShowWindow(bool isCancellable = true)
+    protected override IEnumerator ShowWindow(Vector2 pos, bool isCloseable = true)
     {
-        yield return ShowWindow(DefaultPosition);
-    }
-
-    protected override IEnumerator ShowWindow(Vector2 pos, bool isCancellable = true)
-    {
-        yield return base.ShowWindow(pos, isCancellable);
+        yield return base.ShowWindow(pos, isCloseable);
 
         while (Choice == null)
         {
@@ -82,13 +78,13 @@ public class OptionWindow : Window
                 Choice = _optionsMatrix[row, col].Value;
             } 
             
-            if (Input.GetKeyDown(KeyCode.X) && isCancellable) {
+            if (Input.GetKeyDown(KeyCode.X) && isCloseable) {
                 Choice = _optionsMatrix[_optionsRows - 1, _optionsCols - 1].Value;
             }
             yield return null;
         }
 
-        HideWindow();
+        // HideWindow();
         ClearOptions();
     }
     

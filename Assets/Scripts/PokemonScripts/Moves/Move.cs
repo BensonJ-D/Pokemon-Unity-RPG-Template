@@ -8,7 +8,7 @@ namespace PokemonScripts.Moves
     public class Move
     {
         public MoveBase Base { get; }
-        public int Pp { get; }
+        public int Pp { get; set; }
 
         public Move(MoveBase pBase)
         {
@@ -35,6 +35,16 @@ namespace PokemonScripts.Moves
                 select message);
 
             return messages;
+        }
+
+        public override string ToString()
+        {
+            return Base.Name;
+        }
+
+        public string DebugString()
+        {
+            return $"{Base.Name} - {Base.Type} - {Pp}/{Base.Pp}";
         }
     }
 }

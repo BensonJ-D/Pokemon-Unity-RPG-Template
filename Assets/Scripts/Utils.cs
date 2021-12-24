@@ -121,8 +121,6 @@ public static class Utils
         if (!DirectionPressed) return originalChoice;
         
         var curCol = optionsMatrix.GetColumn(col, allowEmptyRows);
-        var curRow = optionsMatrix.GetColumn(col, allowEmptyRows);
-        var allCols = GetRowsFlattened(optionsMatrix, allowEmptyRows);
         var allRows = GetRowsFlattened(optionsMatrix, allowEmptyRows);
         
         if (Input.GetKeyDown(KeyCode.DownArrow))
