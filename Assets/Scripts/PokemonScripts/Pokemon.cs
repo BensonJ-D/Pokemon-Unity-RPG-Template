@@ -56,7 +56,8 @@ namespace PokemonScripts
         public string Name { get; private set; }
 
         public PokemonBase Base { get; private set; }
-
+        public bool IsFainted => CurrentHp == 0;
+        
         public int Level { get; private set; }
         public int CurrentExperience { get; set; }
         public int BaseLevelExperience => ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1];

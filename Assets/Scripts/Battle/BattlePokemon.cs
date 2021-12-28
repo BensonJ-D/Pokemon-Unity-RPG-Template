@@ -10,7 +10,7 @@
         [SerializeField] private bool displayFront;
         [SerializeField] private Image image;
         [SerializeField] private Animator animator;
-        [SerializeField] private BattleStatus hud;
+        [SerializeField] private PartyMenuDetails hud;
         
         private LevelUpWindow LevelUpWindow { get; set; }
 

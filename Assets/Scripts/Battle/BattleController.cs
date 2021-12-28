@@ -25,7 +25,7 @@ namespace Battle
     {
         [SerializeField] private GameObject player;
         [SerializeField] private GameObject opponent;
-        [SerializeField] private ActionMenu actionMenu;
+        [SerializeField] private SubSystems.ActionMenu actionMenu;
         [SerializeField] private MoveMenu moveMenu;
         [SerializeField] private PartyMenu partyMenu;
         [SerializeField] private InventoryMenu inventoryMenu;
@@ -135,16 +135,16 @@ namespace Battle
 
             switch (actionMenu.Choice[participant])
             {
-                case ActionMenu.ActionChoice.Fight:
+                case SubSystems.ActionMenu.ActionChoice.Fight:
                     StartCoroutine(ChooseMove(participant));
                     break;
-                case ActionMenu.ActionChoice.Bag:
+                case SubSystems.ActionMenu.ActionChoice.Bag:
                     StartCoroutine(ChooseItem(participant));
                     break;
-                case ActionMenu.ActionChoice.Pokemon:
+                case SubSystems.ActionMenu.ActionChoice.Pokemon:
                     StartCoroutine(ChoosePokemon(participant));
                     break;
-                case ActionMenu.ActionChoice.Run:
+                case SubSystems.ActionMenu.ActionChoice.Run:
                     BattleState = BattleState.End;
                     OnBattleOver?.Invoke(false);
                     break;

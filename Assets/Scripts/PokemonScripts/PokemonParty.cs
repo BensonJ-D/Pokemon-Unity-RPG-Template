@@ -4,13 +4,17 @@ using UnityEngine;
 
 namespace PokemonScripts
 {
-    [Serializable]
     public class PokemonParty : MonoBehaviour
     {
         [SerializeField] private List<Pokemon> party;
         
         public List<Pokemon> Party => party;
         private List<int> BattlePokemon { get; set; }
+
+        public PokemonParty(List<Pokemon> party)
+        {
+            this.party = party;
+        }
         
         private void Start()
         {

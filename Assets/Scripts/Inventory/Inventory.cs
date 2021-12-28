@@ -10,6 +10,8 @@ namespace Inventory
         public Item item;
         public int quantity;
 
+        public string Name => item.Name;
+
         public InventoryData(Item item)
         {
             this.item = item;
@@ -51,27 +53,27 @@ namespace Inventory
     {
         [SerializeField] private List<InventoryData> items;
         public List<InventoryData> Items => items;
-        
+
         public void Add(InventoryData itemData)
         {
-            var index = items.FindIndex(item => Equals(item, itemData));
+            var index = Items.FindIndex(item => Equals(item, itemData));
             
             if (index == -1) {
-                items.Add(itemData);
+                Items.Add(itemData);
             } else {
-                items[index].quantity += itemData.quantity;
+                Items[index].quantity += itemData.quantity;
             }
         }
         
         public void Remove(InventoryData itemData)
         {
-            var index = items.FindIndex(item => Equals(item, itemData));
+            var index = Items.FindIndex(item => Equals(item, itemData));
 
             if (index == -1) return;
             
-            items[index].quantity -= itemData.quantity;
-            if (items[index].quantity < 1) {
-                items.RemoveAt(index);
+            Items[index].quantity -= itemData.quantity;
+            if (Items[index].quantity < 1) {
+                Items.RemoveAt(index);
             }
         }
     }

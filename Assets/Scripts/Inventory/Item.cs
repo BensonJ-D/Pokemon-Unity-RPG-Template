@@ -7,9 +7,11 @@ namespace Inventory
     {
         [SerializeField] private string itemName;
         [SerializeField] private string description;
+        [SerializeField] private Sprite icon;
 
         public string Name => itemName;
         public string Description => description;
+        public Sprite Icon => icon;
 
         public abstract IEnumerator BeforeUse();
         public abstract bool ValidateUse();

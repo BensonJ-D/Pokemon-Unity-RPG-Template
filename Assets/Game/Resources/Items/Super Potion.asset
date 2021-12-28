@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Super Potion
   description: Heals a moderate amount of HP.
+  icon: {fileID: 0}
   amountHealed: 60
   primaryStatusConditionsHealed: 
   secondaryStatusConditionsHealed: 
