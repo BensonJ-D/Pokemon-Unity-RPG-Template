@@ -1,14 +1,14 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Battle;
 using MyBox;
 using PokemonScripts;
 using PokemonScripts.Conditions;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Battle
+namespace Menus.PartyMenu
 {
     public class PartyMenuDetails : MonoBehaviour
     {

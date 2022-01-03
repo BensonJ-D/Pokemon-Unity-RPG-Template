@@ -1,16 +1,19 @@
 using System.Collections;
+using MyBox;
 using UnityEngine;
 using UnityEngine.UI;
+using VFX;
 
-namespace Menu
+namespace System.Window
 {
     public abstract class Window : MonoBehaviour
     {
+        [Separator("Window Settings")]
         // [SerializeField] protected Vector2 size;
         [SerializeField] protected Canvas canvas;
         [SerializeField] protected Image background;
 
-        public WindowCloseReason CloseReason { get; private set; }
+        public WindowCloseReason CloseReason { get; protected set; }
         
         protected bool WindowOpen { get; private set; }
         protected Vector3 DefaultPosition { get; private set; }
@@ -34,10 +37,7 @@ namespace Menu
             background.rectTransform.ForceUpdateRectTransforms();
         }
 
-        public virtual IEnumerator ShowWindow(bool isCloseable = true)
-        {
-            yield return ShowWindow(DefaultPosition, isCloseable);
-        }
+        public virtual IEnumerator ShowWindow(bool isCloseable = true) => ShowWindow(DefaultPosition, isCloseable);
 
         protected virtual IEnumerator ShowWindow(Vector2 pos, bool isCloseable = true)
         {
@@ -48,23 +48,27 @@ namespace Menu
             WindowOpen = true;
             
             IsCloseable = isCloseable;
+
+            yield return TransitionController.Instance.WaitForTransitionCompletion();
             OnOpen();
         }
-    
-        protected void HideWindow(WindowCloseReason closeReason)
+
+        public virtual IEnumerator CloseWindow(WindowCloseReason closeReason) => HideWindow(closeReason);
+        
+        protected virtual IEnumerator HideWindow(WindowCloseReason closeReason)
         {
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.transform.position = CanvasOrigin;
+            yield return null;
             canvas.enabled = false;
             WindowOpen = false;
 
             CloseReason = closeReason;
             OnClose(closeReason);
         }
-    
-    
-        protected virtual void OnConfirm() { HideWindow(WindowCloseReason.Complete); }
-        protected virtual void OnCancel() { HideWindow(WindowCloseReason.Cancel); }
+        
+        protected virtual IEnumerator OnConfirm() { return HideWindow(WindowCloseReason.Complete); }
+        protected virtual IEnumerator OnCancel() { return HideWindow(WindowCloseReason.Cancel); }
 
         protected virtual void OnOpen() { }
         protected virtual void OnClose(WindowCloseReason closeReason) { }

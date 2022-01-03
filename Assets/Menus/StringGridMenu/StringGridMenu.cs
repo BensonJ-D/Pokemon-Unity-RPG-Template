@@ -1,9 +1,10 @@
 using System.Collections.Generic;
-using Menu;
+using System.Window.Menu;
+using System.Window.Menu.GridMenu;
 using MyBox;
 using UnityEngine;
 
-namespace ActionMenu
+namespace Menus.StringGridMenu
 { 
     public class StringGridMenu : GridMenu<string>
     {

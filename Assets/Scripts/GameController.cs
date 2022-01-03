@@ -73,7 +73,7 @@ public class GameController : MonoBehaviour
     {
         GameState = GameState.Battle;
         
-        yield return transitionController.RunTransition(Transition.BattleEnter,
+        yield return transitionController.RunTransitionWithEffect(Transition.BattleEnter,
             () =>
             {
                 battleController.gameObject.SetActive(true);
@@ -85,7 +85,7 @@ public class GameController : MonoBehaviour
 
     private IEnumerator EndBattle(bool won)
     {
-        yield return transitionController.RunTransition(Transition.BattleEnter,
+        yield return transitionController.RunTransitionWithEffect(Transition.BattleEnter,
             () =>
             {
                 StartCoroutine(battleController.Reset());

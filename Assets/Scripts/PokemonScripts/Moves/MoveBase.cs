@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using PokemonScripts.Moves.Effects;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace PokemonScripts
+namespace PokemonScripts.Moves
 {
     [CreateAssetMenu(fileName = "Move", menuName = "Pokemon/Create new move")]
     [SuppressMessage("ReSharper", "ParameterHidesMember")]

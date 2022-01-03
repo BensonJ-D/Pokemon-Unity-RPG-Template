@@ -347,7 +347,7 @@ namespace Battle
             _pokemon[participant].Setup(newPokemon);
             Task enterAnimation = new Task(_pokemon[participant].PlayEnterAnimation());
             Task enterText =
-                new Task(dialogBox.TypeDialog($"Let's go, {_pokemon[participant].Pokemon.Base.Species}!!"));
+            new Task(dialogBox.TypeDialog($"Let's go, {_pokemon[participant].Pokemon.Base.Species}!!"));
             yield return new WaitWhile(() => enterAnimation.Running || enterText.Running);
             yield return new WaitForSeconds(1f);
         }
@@ -355,6 +355,7 @@ namespace Battle
         private IEnumerator HandleStatusConditionsAfterTurn(Participant participant)
         {
             var primaryCondition = _pokemon[participant].Pokemon.PrimaryCondition;
+            yield return null;
             yield return PrimaryStatusConditions.GetEffectClass[primaryCondition]
                 .OnAfterTurn(_pokemon[participant], dialogBox);
         }

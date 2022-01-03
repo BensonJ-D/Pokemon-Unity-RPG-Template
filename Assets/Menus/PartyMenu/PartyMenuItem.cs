@@ -1,18 +1,15 @@
 using System;
-using System.Collections.Generic;
-using Battle;
-using Menus.PartyMenu;
-using MyBox;
+using System.Window.Menu;
 using PokemonScripts;
-using PokemonScripts.Moves;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu
+namespace Menus.PartyMenu
 {
     [Serializable]
     public class PartyMenuItem : MonoBehaviour, IMenuItem<Pokemon>
     {
+        [SerializeField] private Image pokemonIcon;
         [SerializeField] private PartyMenuDetails pokemonDetails;
         [SerializeField] private PartyMenuItemPlate backplate;
         
@@ -32,6 +29,7 @@ namespace Menu
                 transform.gameObject.SetActive(true);
                 pokemonDetails.SetData(Value); 
                 backplate.SetNotSelected(Value.IsFainted);
+                pokemonIcon.sprite = Value.Base.Icon;
             }
         }
 

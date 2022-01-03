@@ -1,21 +1,22 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Window.Menu;
+using System.Window.Menu.GridMenu;
 using MyBox;
-using PokemonScripts;
 using PokemonScripts.Moves;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-namespace Menu
+namespace Menus.MoveMenu
 { 
     public class MoveMenu : GridMenu<Move>
     {
-        [Separator("Move UI")]
+        [Separator("Move Menu Settings")]
         [SerializeField] private MoveDetails moveDetails;
         [SerializeField] private List<MoveMenuItem> menuItems;
+        
+        [Separator("Test data")] 
+        [SerializeField] private bool useTestData;
         [SerializeField] private List<MoveBase> exampleMoves;
 
         public void Start()
@@ -27,6 +28,8 @@ namespace Menu
                 {menuItems[0], menuItems[2]},
                 {menuItems[1], menuItems[3]}
             };
+
+            if (!useTestData) return;
             
             List<Move> moveTest = exampleMoves
                 .Select(move => new Move(move) {Pp = Random.Range(0, move.Pp)})

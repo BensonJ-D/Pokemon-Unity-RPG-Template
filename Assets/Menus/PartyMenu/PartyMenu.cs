@@ -1,22 +1,26 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.Window;
+using System.Window.Menu;
+using System.Window.Menu.GridMenu;
 using MyBox;
 using PokemonScripts;
-using PokemonScripts.Moves;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
+using VFX;
 
-namespace Menu
+namespace Menus.PartyMenu
 { 
     public class PartyMenu : GridMenu<Pokemon>
     {
-        [Separator("Move UI")]
+        [Separator("Party Menu")]
         [SerializeField] private List<PartyMenuItem> menuItems;
-        [SerializeField] private PokemonParty examplePokemon;
+        [SerializeField] private PartyPopupMenu popupMenu;
+        [SerializeField] private SummaryMenu.SummaryMenu summaryMenu;
 
+        [Separator("Test data")] 
+        [SerializeField] private bool useTestData;
+        [SerializeField] private PokemonParty examplePokemon;
+        
         public void Start()
         {
             Initiate();
@@ -27,7 +31,7 @@ namespace Menu
                 {null, menuItems[1], menuItems[2], menuItems[3], menuItems[4], menuItems[5]}
             };
 
-            StartCoroutine(ShowWindow(examplePokemon));
+            if(useTestData) StartCoroutine(ShowWindow(examplePokemon));
         }
 
         public IEnumerator ShowWindow(PokemonParty pokemon)
@@ -36,6 +40,27 @@ namespace Menu
             yield return base.ShowWindow();
         }
 
+        protected override IEnumerator OnConfirm()
+        {
+            var option = new List<PartyPopupMenuOption> {PartyPopupMenuOption.Shift, PartyPopupMenuOption.Summary};
+            yield return popupMenu.ShowWindow(option, false);
+            
+            if(popupMenu.CloseReason == WindowCloseReason.Cancel) yield break;
+
+            yield return HandlePopupMenuResult();
+            yield return OnConfirm();
+        }
+
+        private IEnumerator HandlePopupMenuResult()
+        {
+            if (popupMenu.Choice.Value == PartyPopupMenuOption.Summary)
+            {
+                StartCoroutine(TransitionController.Instance.RunTransition(Transition.BattleEnter));
+                yield return TransitionController.Instance.WaitForTransitionPeak();
+                yield return summaryMenu.ShowWindow(CurrentOption.Value);
+            }
+        }
+        
         protected override void OnOptionChange(IMenuItem<Pokemon> previousOption, IMenuItem<Pokemon> newOption)
         {
             base.OnOptionChange(previousOption, newOption);

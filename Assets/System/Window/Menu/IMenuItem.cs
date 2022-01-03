@@ -1,13 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Menu
+namespace System.Window.Menu
 {
     public interface IMenuItem<T>
     {
         public T Value { get; }
         public Transform Transform  { get; }
-        public Text Text  { get; }
+        public UnityEngine.UI.Text Text  { get; }
 
         public void SetMenuItem(T itemData);
         

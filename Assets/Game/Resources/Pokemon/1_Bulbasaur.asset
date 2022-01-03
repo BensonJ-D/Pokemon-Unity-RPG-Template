@@ -16,6 +16,7 @@ MonoBehaviour:
   description: 
   front: {fileID: 7362414034501144698, guid: 268e117737c0306468d076ae19e56b2a, type: 3}
   back: {fileID: -8281696393898325102, guid: ac86e4a4b39cf534fa919ffb3af93409, type: 3}
+  icon: {fileID: 1409197665194987906, guid: d41696bb5dec70e43b17f0c04d72b521, type: 3}
   number: 1
   type1: 12
   type2: 4
@@ -25,6 +26,8 @@ MonoBehaviour:
   spAttack: 65
   spDefence: 65
   speed: 45
+  experienceGroup: 0
+  experienceYield: 0
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: 51b094cd4bb2a064a9ff6f384d2f53e7, type: 2}
     level: 1

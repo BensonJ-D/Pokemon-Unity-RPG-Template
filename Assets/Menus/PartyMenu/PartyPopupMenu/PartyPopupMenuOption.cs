@@ -1,8 +1,6 @@
-using System;
 using System.ComponentModel;
-using System.Reflection;
 
-namespace ActionMenu
+namespace Menus.PartyMenu
 {
     public enum PartyPopupMenuOption
     {

@@ -42,20 +42,34 @@ namespace VFX
             yield return new WaitUntil(() =>transitions.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         }
 
-        public IEnumerator RunTransition(Transition effect, Action onTransitionPeak = null, 
+        public IEnumerator RunTransitionWithEffect(Transition effect, Action onTransitionPeak = null, 
             Action onTransitionFinish = null, float delay = 0.1f)
         {
             TransitionState = TransitionState.Start;
             yield return StartTransition(effect);
             
             TransitionState = TransitionState.Pause;
-            onTransitionPeak?.Invoke();
+            // onTransitionPeak?.Invoke();
             yield return new WaitForSeconds(delay);
             
             TransitionState = TransitionState.End;
             yield return EndTransition(effect);
         
             onTransitionFinish?.Invoke();
+            TransitionState = TransitionState.None;
+        }
+        
+        public IEnumerator RunTransition(Transition effect, float delay = 0.1f)
+        {
+            TransitionState = TransitionState.Start;
+            yield return StartTransition(effect);
+            
+            TransitionState = TransitionState.Pause;
+            yield return new WaitForSeconds(delay);
+            
+            TransitionState = TransitionState.End;
+            yield return EndTransition(effect);
+        
             TransitionState = TransitionState.None;
         }
         
@@ -70,10 +84,6 @@ namespace VFX
         
         public IEnumerator WaitForTransitionCompletion()
         {
-            if (TransitionState == TransitionState.None)
-            {
-                throw new MethodAccessException("No transition in progress, waiting will cause unpredictable delays");
-            }
             yield return new WaitUntil(() => TransitionState == TransitionState.None);
         }
     }

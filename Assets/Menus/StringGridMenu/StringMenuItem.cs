@@ -1,11 +1,10 @@
 using System;
-using Menu;
+using System.Window.Menu;
 using MyBox;
-using PokemonScripts.Moves;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ActionMenu
+namespace Menus.StringGridMenu
 {
     [Serializable]
     public class StringMenuItem : MonoBehaviour, IMenuItem<string>

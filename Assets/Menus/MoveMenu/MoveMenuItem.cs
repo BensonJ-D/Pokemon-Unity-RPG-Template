@@ -1,10 +1,10 @@
 using System;
-using System.Collections.Generic;
+using System.Window.Menu;
 using PokemonScripts.Moves;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu
+namespace Menus.MoveMenu
 {
     [Serializable]
     public class MoveMenuItem : MonoBehaviour, IMenuItem<Move>

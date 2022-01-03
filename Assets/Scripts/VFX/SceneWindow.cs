@@ -35,7 +35,7 @@ namespace VFX
         public virtual IEnumerator OpenMenu(Participant participant, Scene newParentScene)
         {
             _parentScene = newParentScene;
-            yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
+            yield return TransitionController.Instance.RunTransitionWithEffect(Transition.BattleEnter,
                 () => OnOpen(participant)
             );
         }
@@ -44,7 +44,7 @@ namespace VFX
         {
             if (participant == Participant.Player)
             {
-                yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
+                yield return TransitionController.Instance.RunTransitionWithEffect(Transition.BattleEnter,
                     () => OnClose(participant)
                 );
             }

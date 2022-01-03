@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Menu
+namespace System.Window.Menu.ScrollMenu
 {
     public class ScrollMenuOption<T> 
     { 
@@ -28,9 +26,9 @@ namespace Menu
             
             var cursorSize = optionMenuItems.Count - 1;
             var scrollSize = scrollMenu.OptionsList.Count - 1;
-            var cursorPosition = scrollMenu.CurrentCursorPosition;
+            var (_, cursorPosition) = scrollMenu.CurrentCursorPosition;
             var scrollPosition = scrollMenu.CurrentListPosition;
-
+            
             var originalChoice = new ScrollMenuOption<T>(cursorPosition, scrollPosition, option);
             var newChoice = new ScrollMenuOption<T>(cursorPosition, scrollPosition, option);
             

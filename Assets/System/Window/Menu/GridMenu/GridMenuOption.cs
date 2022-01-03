@@ -1,9 +1,7 @@
-using System;
 using System.Linq;
-using MyBox;
 using UnityEngine;
 
-namespace Menu
+namespace System.Window.Menu.GridMenu
 {
     public class GridMenuOption<T> 
     { 

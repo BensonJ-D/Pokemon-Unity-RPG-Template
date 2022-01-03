@@ -1,9 +1,8 @@
 using Inventory;
-using PokemonScripts.Moves;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu
+namespace Menus.InventoryMenu
 {
     public class ItemDetails : MonoBehaviour
     {

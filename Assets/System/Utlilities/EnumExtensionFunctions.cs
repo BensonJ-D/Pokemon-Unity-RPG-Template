@@ -1,8 +1,7 @@
-using System;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace Menus.PopupMenu
+namespace System.Utlilities
 {
     public static class EnumExtensionFunctions
     {

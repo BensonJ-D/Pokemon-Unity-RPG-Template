@@ -1,28 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using MyBox;
 using UnityEngine;
 
-namespace Menu
+namespace System.Window.Menu.ScrollMenu
 {
-    public abstract class ScrollMenu<T> : Window
+    public abstract class ScrollMenu<T> : Menu<T>
     {
-        [Separator]
-        [SerializeField] private bool enableHighlight;
-        [ConditionalField(nameof(enableHighlight))] [SerializeField] private Color highlightColour;
-        [ConditionalField(nameof(enableHighlight))] [SerializeField] private Color fontColour;
-    
-        [SerializeField] private bool enableCursor;
-        [ConditionalField(nameof(enableCursor))] [SerializeField] private MenuCursor cursor;
-
         public List<IMenuItem<T>> OptionMenuItems { get; protected set; }
         public List<T> OptionsList { get; protected set; }
         public int CurrentListPosition { get; private set; }
-        public int CurrentCursorPosition { get; private set; }
-        public IMenuItem<T> CurrentOption { get; private set; }
-
-        public IMenuItem<T> Choice { get; private set; }
     
         protected override IEnumerator ShowWindow(Vector2 pos, bool isCloseable = true)
         {
@@ -30,7 +16,7 @@ namespace Menu
 
             var defaultSelection = this.GetInitialScrollPosition();
             CurrentOption = defaultSelection.Option;
-            CurrentCursorPosition = defaultSelection.CursorIndex;
+            CurrentCursorPosition = (0, defaultSelection.CursorIndex);
             CurrentListPosition = defaultSelection.ScrollIndex;
                     
             OnOptionChange(null, CurrentOption, true);
@@ -48,8 +34,9 @@ namespace Menu
             SetVisibleItems();
             
             if (!cursorShifted) return;
-            
-            if (enableCursor) SetCursorPosition(CurrentCursorPosition);
+
+            var (_, cursorPosition) = CurrentCursorPosition;
+            if (enableCursor) SetCursorPosition(cursorPosition);
             if (enableHighlight) SetNewHighlightedOption(previousOption, newOption);
         }
 
@@ -59,15 +46,15 @@ namespace Menu
         
             var previousOption = CurrentOption;
             var previousPosition = CurrentListPosition;
-            CurrentCursorPosition = updatedChoice.CursorIndex;
+            CurrentCursorPosition = (0, updatedChoice.CursorIndex);
             CurrentListPosition = updatedChoice.ScrollIndex;
             CurrentOption = updatedChoice.Option;
 
             if (previousOption != CurrentOption || previousPosition != CurrentListPosition) 
                 OnOptionChange(previousOption, CurrentOption, previousPosition != CurrentListPosition);
 
-            if (Input.GetKeyDown(KeyCode.Z)) OnConfirm();
-            if (Input.GetKeyDown(KeyCode.X) && IsCloseable) OnCancel();
+            if (Input.GetKeyDown(KeyCode.Z)) yield return OnConfirm();
+            if (Input.GetKeyDown(KeyCode.X) && IsCloseable) yield return OnCancel();
             
             yield return null;
         }
@@ -96,26 +83,19 @@ namespace Menu
             cursor.SetPosition(cursorPos.x, cursorPos.y);
         }
     
-        private void SetDefaultFontColor()
+        protected override void SetDefaultFontColor()
         {
             if(!enableHighlight) return;
             
             OptionMenuItems.ForEach(value => value.Text.color = fontColour);
         }
-    
-        private void SetNewHighlightedOption(IMenuItem<T> prev, IMenuItem<T> next)
-        {
-            if(!enableHighlight) return;
-        
-            if(prev != null) prev.Text.color = fontColour;
-            if(next != null) next.Text.color = highlightColour;
-        }
         
         protected virtual void SetVisibleItems()
         {
+            var (_, cursorPosition) = CurrentCursorPosition;
             for (var i = 0; i < OptionMenuItems.Count; i++)
             {
-                var listIndex = CurrentListPosition - CurrentCursorPosition + i;
+                var listIndex = CurrentListPosition - cursorPosition + i;
                 if (listIndex >= OptionsList.Count) { 
                     OptionMenuItems[i].SetMenuItem(default);
                 } else {

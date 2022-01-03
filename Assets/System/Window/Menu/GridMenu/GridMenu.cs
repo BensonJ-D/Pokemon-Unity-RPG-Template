@@ -1,27 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using MyBox;
 using UnityEngine;
 
-namespace Menu
+namespace System.Window.Menu.GridMenu
 {
-    public abstract class GridMenu<T> : Window
+    public abstract class GridMenu<T> : Menu<T>
     {
-        [Separator]
-        [SerializeField] private bool enableHighlight;
-        [ConditionalField(nameof(enableHighlight))] [SerializeField] private Color highlightColour;
-        [ConditionalField(nameof(enableHighlight))] [SerializeField] private Color fontColour;
-    
-        [SerializeField] private bool enableCursor;
-        [ConditionalField(nameof(enableCursor))] [SerializeField] private MenuCursor cursor;
-
         public IMenuItem<T>[,] OptionsGrid { get; protected set; }
-        public (int, int) CurrentCursorPosition { get; private set; }
-        public IMenuItem<T> CurrentOption { get; private set; }
-
-        public IMenuItem<T> Choice { get; private set; }
-
+        
         protected override IEnumerator ShowWindow(Vector2 pos, bool isCloseable = true)
         {
             if (OptionsGrid == null) yield break;
@@ -58,8 +44,8 @@ namespace Menu
             if (previousOption != CurrentOption) 
                 OnOptionChange(previousOption, CurrentOption);
 
-            if (Input.GetKeyDown(KeyCode.Z)) OnConfirm();
-            if (Input.GetKeyDown(KeyCode.X) && IsCloseable) OnCancel();
+            if (Input.GetKeyDown(KeyCode.Z)) yield return OnConfirm();
+            if (Input.GetKeyDown(KeyCode.X) && IsCloseable) yield return OnCancel();
                 
             yield return null;
         }
@@ -79,30 +65,14 @@ namespace Menu
         
             OptionsGrid = new IMenuItem<T>[,]{};
         }
-
-        private void SetCursorPosition(int x, int y)
-        {
-            if (!enableCursor) return;
         
-            var cursorPos = OptionsGrid[x, y].Transform.localPosition;
-            cursor.SetPosition(cursorPos.x, cursorPos.y);
-        }
-    
-        private void SetDefaultFontColor()
+        protected override void SetDefaultFontColor()
         {
             if(!enableHighlight) return;
             
             OptionsGrid.GetRowsFlattened()
                 .ToList()
                 .ForEach(value => value.Option.Text.color = fontColour);
-        }
-    
-        private void SetNewHighlightedOption(IMenuItem<T> prev, IMenuItem<T> next)
-        {
-            if(!enableHighlight) return;
-        
-            if(prev != null) prev.Text.color = fontColour;
-            if(next != null) next.Text.color = highlightColour;
         }
     }
 }

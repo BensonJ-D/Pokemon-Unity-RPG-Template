@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu
+namespace System.Window.Menu
 {
     public class MenuCursor : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-namespace ActionMenu
+namespace Menus.ActionMenu
 {
     public enum ActionMenuOption
     {

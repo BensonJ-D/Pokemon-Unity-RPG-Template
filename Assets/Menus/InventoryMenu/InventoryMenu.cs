@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Window.Menu;
+using System.Window.Menu.ScrollMenu;
 using Battle;
 using Battle.SubSystems.Party;
 using Inventory;
-using Menu;
+using MyBox;
 using Player;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,8 +15,12 @@ namespace Menus.InventoryMenu
 {
     public class InventoryMenu : ScrollMenu<InventoryData>
     {
+        [Separator("Inventory Menu Settings")]
         [SerializeField] private ItemDetails itemDetails;
         [SerializeField] private List<InventoryMenuItem> itemSlots;
+
+        [Separator("Test data")] 
+        [SerializeField] private bool useTestData;
         [SerializeField] private List<InventoryData> testInventory;
         
         public void Start()
@@ -23,9 +29,10 @@ namespace Menus.InventoryMenu
 
             OptionMenuItems = new List<IMenuItem<InventoryData>>();
             itemSlots.ForEach(slot => OptionMenuItems.Add(slot));
+
+            if (!useTestData) return;
             
             OptionsList = testInventory;
-
             StartCoroutine(ShowWindow());
         }
         

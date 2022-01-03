@@ -2,7 +2,7 @@ using PokemonScripts.Moves;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu
+namespace Menus.MoveMenu
 {
     public class MoveDetails : MonoBehaviour
     {

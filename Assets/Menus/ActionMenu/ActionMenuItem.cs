@@ -1,10 +1,9 @@
 using System;
-using Menu;
-using PokemonScripts.Moves;
+using System.Window.Menu;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ActionMenu
+namespace Menus.ActionMenu
 {
     [Serializable]
     public class ActionMenuItem : MonoBehaviour, IMenuItem<ActionMenuOption>

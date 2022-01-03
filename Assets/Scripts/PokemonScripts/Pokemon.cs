@@ -61,7 +61,7 @@ namespace PokemonScripts
         public int Level { get; private set; }
         public int CurrentExperience { get; set; }
         public int BaseLevelExperience => ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1];
-        public int NextLevelExperience => ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level];
+        public int NextLevelExperience => Level < 100 ? ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level] : ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1] + 1;
 
         public PrimaryStatusCondition PrimaryCondition { get; private set; } = PrimaryStatusCondition.None;
         public List<SecondaryStatusCondition> SecondaryConditions { get; private set; } = new List<SecondaryStatusCondition>();

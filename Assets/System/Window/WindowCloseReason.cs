@@ -1,4 +1,4 @@
-namespace Menu
+namespace System.Window
 {
     public enum WindowCloseReason
     {

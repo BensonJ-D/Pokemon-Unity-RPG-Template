@@ -1,10 +1,6 @@
-using System;
-using ActionMenu;
 using Menus.PopupMenu;
-using UnityEngine;
-using UnityEngine.UI;
 
-namespace Menu
+namespace Menus.PartyMenu
 {
     public class PartyPopupMenuItem : PopupMenuItem<PartyPopupMenuOption> { }
 }

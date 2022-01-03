@@ -2,26 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using ActionMenu;
-using Menus.PopupMenu;
+using System.Utlilities;
+using System.Window;
+using System.Window.Menu;
+using System.Window.Menu.ScrollMenu;
 using MyBox;
-using PokemonScripts;
-using PokemonScripts.Moves;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-namespace Menu
+namespace Menus.PopupMenu
 { 
     public class PopupMenu<T> : ScrollMenu<T> where T : Enum
     {
-        [Separator("Move UI")] 
+        [Separator("Popup Menu Settings")] 
         [SerializeField] private float width;
         [SerializeField] private float spacing;
         [SerializeField] private float border;
         [SerializeField] private Vector2 padding;
         
         protected List<IMenuItem<T>> PopupMenuItems;
+        private bool _closeOnConfirm = true;
 
         public virtual void Start()
         {
@@ -31,11 +30,21 @@ namespace Menu
             PopupMenuItems.ForEach(option => OptionMenuItems.Add(option));
         }
 
-        public IEnumerator ShowWindow(List<T> options)
+        public IEnumerator ShowWindow(List<T> options, bool closeOnConfirm = true)
         {
+            _closeOnConfirm = closeOnConfirm;
+            
             SetMenu(options);
             SetWindowSize();
             yield return base.ShowWindow();
+        }
+
+        protected override IEnumerator OnConfirm() => _closeOnConfirm ? base.OnConfirm() : OnConfirmNoClose();
+
+        private IEnumerator OnConfirmNoClose()
+        {
+            CloseReason = WindowCloseReason.Complete;
+            yield return null;
         }
 
         private void SetWindowSize()
@@ -45,8 +54,7 @@ namespace Menu
             var menuIndex = OptionsList.Count - 1;
             OptionMenuItems.ForEach(menuItem => menuItem.Transform.localPosition = new Vector3(padding.x, padding.y + spacing * menuIndex--));
         }
-        
-        
+
         private void SetMenu(List<T> options)
         {
             var nonNullOptions = options.Where(option => option.IsNotDefault()).ToList();

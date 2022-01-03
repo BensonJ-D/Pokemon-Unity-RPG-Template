@@ -1,21 +1,18 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using ActionMenu;
+using System.Window.Menu;
+using Menus.PopupMenu;
 using MyBox;
-using PokemonScripts;
-using PokemonScripts.Moves;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-namespace Menu
+namespace Menus.PartyMenu
 { 
     public class PartyPopupMenu : PopupMenu<PartyPopupMenuOption>
     {
-        [Separator("Move UI")] 
+        [Separator("Party Menu Action Items")] 
         [SerializeField] private List<PartyPopupMenuItem> menuItems;
+
+        [Separator("Test data")] 
+        [SerializeField] private bool useTestData;
         [SerializeField] private List<PartyPopupMenuOption> exampleItems;
         
         public override void Start()
@@ -25,7 +22,7 @@ namespace Menu
             
             base.Start();
             
-            StartCoroutine(ShowWindow(exampleItems));
+            if(useTestData) StartCoroutine(ShowWindow(exampleItems));
         }
     }
 }

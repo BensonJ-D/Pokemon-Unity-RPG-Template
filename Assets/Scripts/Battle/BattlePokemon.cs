@@ -1,5 +1,6 @@
 ﻿using System.Collections;
- using PokemonScripts;
+using Menus.PartyMenu;
+using PokemonScripts;
  using UnityEngine;
  using UnityEngine.UI;
 
@@ -11,8 +12,9 @@
         [SerializeField] private Image image;
         [SerializeField] private Animator animator;
         [SerializeField] private PartyMenuDetails hud;
-        
-        private LevelUpWindow LevelUpWindow { get; set; }
+        [SerializeField] private LevelUpWindow levelUpWindow;
+
+        private LevelUpWindow LevelUpWindow => levelUpWindow;
 
         private static readonly int ReturnToIdle = Animator.StringToHash("ReturnToIdle");
         public Pokemon Pokemon { get; private set; }
@@ -23,7 +25,6 @@
             hud.SetData(pokemon);
             
             image.sprite = displayFront ? Pokemon.Base.FrontSprite : Pokemon.Base.BackSprite;
-            LevelUpWindow = FindObjectOfType<LevelUpWindow>();
         }
 
         private IEnumerator PlayAnimation(string animationName, bool reset = true)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using PokemonScripts.Moves;
 using UnityEngine;
 
 namespace PokemonScripts
@@ -13,6 +14,7 @@ namespace PokemonScripts
 
         [SerializeField] private Sprite front;
         [SerializeField] private Sprite back;
+        [SerializeField] private Sprite icon;
 
         [SerializeField] private int number;
         [SerializeField] private PokemonType type1;
@@ -35,6 +37,7 @@ namespace PokemonScripts
         public string Description => description;
         public Sprite FrontSprite => front;
         public Sprite BackSprite => back;
+        public Sprite Icon => icon;
         public PokemonType Type1 => type1;
         public PokemonType Type2 => type2;
         public int MaxHp => maxHp;
