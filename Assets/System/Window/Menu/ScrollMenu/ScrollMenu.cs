@@ -59,9 +59,10 @@ namespace System.Window.Menu.ScrollMenu
             yield return null;
         }
 
-        protected override void OnClose(WindowCloseReason closeReason)
+        protected override IEnumerator OnClose()
         {
-            Choice = closeReason == WindowCloseReason.Complete ? CurrentOption : null;
+            Choice = CloseReason == WindowCloseReason.Complete ? CurrentOption : null;
+            yield break;
             // Debug.Log($"Close reason {closeReason}");
             // Debug.Log($"Choice {Choice.ToString()}");
         }

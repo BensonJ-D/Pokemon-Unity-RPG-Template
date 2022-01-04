@@ -13,8 +13,6 @@ namespace System.Window
         [SerializeField] protected Canvas canvas;
         [SerializeField] protected Image background;
 
-        public WindowCloseReason CloseReason { get; protected set; }
-        
         protected bool WindowOpen { get; private set; }
         protected Vector3 DefaultPosition { get; private set; }
         protected bool IsCloseable { get; private set; }
@@ -48,14 +46,10 @@ namespace System.Window
             WindowOpen = true;
             
             IsCloseable = isCloseable;
-
-            yield return TransitionController.Instance.WaitForTransitionCompletion();
-            OnOpen();
+            yield return OnOpen();
         }
 
-        public virtual IEnumerator CloseWindow(WindowCloseReason closeReason) => HideWindow(closeReason);
-        
-        protected virtual IEnumerator HideWindow(WindowCloseReason closeReason)
+        public virtual IEnumerator CloseWindow()
         {
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.transform.position = CanvasOrigin;
@@ -63,14 +57,10 @@ namespace System.Window
             canvas.enabled = false;
             WindowOpen = false;
 
-            CloseReason = closeReason;
-            OnClose(closeReason);
+            yield return OnClose();
         }
-        
-        protected virtual IEnumerator OnConfirm() { return HideWindow(WindowCloseReason.Complete); }
-        protected virtual IEnumerator OnCancel() { return HideWindow(WindowCloseReason.Cancel); }
 
-        protected virtual void OnOpen() { }
-        protected virtual void OnClose(WindowCloseReason closeReason) { }
+        protected virtual IEnumerator OnOpen() => null;
+        protected virtual IEnumerator OnClose() => null;
     }
 }

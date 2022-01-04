@@ -42,8 +42,8 @@ public class LevelUpWindow : Window
         
         yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.X));
-        HideWindow(WindowCloseReason.Complete);
-
+        
+        yield return CloseWindow();
     }
 
     private void SetStatLabels(Stats stats)

@@ -19,6 +19,8 @@ namespace Menus.PopupMenu
         [SerializeField] private float border;
         [SerializeField] private Vector2 padding;
         
+        public Func<IEnumerator> OnCloseAction { get; set; }
+        
         protected List<IMenuItem<T>> PopupMenuItems;
         private bool _closeOnConfirm = true;
 
