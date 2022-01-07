@@ -133,7 +133,7 @@ namespace Battle.SubSystems.Party
                     {MenuOptions.Summary, null},
                     {MenuOptions.Cancel, null}
                 });
-                yield return optionWindow.ShowWindow();
+                yield return optionWindow.OpenWindow();
 
                 var action = optionWindow.Choice;
                 switch (action)

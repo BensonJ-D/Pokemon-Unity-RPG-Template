@@ -93,7 +93,7 @@ namespace Inventory
                         {MenuOptions.Use},
                         {MenuOptions.Cancel}
                     });
-                    yield return OptionWindow.Instance.ShowWindow();
+                    yield return OptionWindow.Instance.OpenWindow();
 
                     if (OptionWindow.Instance.Choice == MenuOptions.Use)
                     {

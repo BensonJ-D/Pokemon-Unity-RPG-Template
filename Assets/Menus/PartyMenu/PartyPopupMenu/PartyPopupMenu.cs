@@ -22,7 +22,7 @@ namespace Menus.PartyMenu
             
             base.Start();
             
-            if(useTestData) StartCoroutine(ShowWindow(exampleItems));
+            // if(useTestData) StartCoroutine(ShowWindow(exampleItems));
         }
     }
 }

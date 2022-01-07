@@ -33,7 +33,7 @@ namespace Menus.InventoryMenu
             if (!useTestData) return;
             
             OptionsList = testInventory;
-            StartCoroutine(ShowWindow());
+            StartCoroutine(OpenWindow());
         }
         
         protected override void OnOptionChange(IMenuItem<InventoryData> previousOption, IMenuItem<InventoryData> newOption, bool cursorShifted)

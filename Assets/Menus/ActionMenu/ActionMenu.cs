@@ -21,7 +21,7 @@ namespace Menus.ActionMenu
                 {menuItems[1], menuItems[3]}
             };
             
-            StartCoroutine(ShowWindow());
+            StartCoroutine(OpenWindow());
         }
     }
 }

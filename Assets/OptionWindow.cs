@@ -60,9 +60,9 @@ public class OptionWindow : Window
         cursor.transform.localPosition = cursorPos;
     }
 
-    protected override IEnumerator ShowWindow(Vector2 pos, bool isCloseable = true)
+    protected override IEnumerator OpenWindow(Vector2 pos, bool isCloseable = true)
     {
-        yield return base.ShowWindow(pos, isCloseable);
+        yield return base.OpenWindow(pos, isCloseable);
 
         while (Choice == null)
         {

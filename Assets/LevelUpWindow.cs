@@ -26,7 +26,7 @@ public class LevelUpWindow : Window
     
     private IEnumerator ShowWindow(Stats before, Stats after, Vector3 pos)
     {
-        yield return base.ShowWindow(pos);
+        yield return base.OpenWindow(pos);
 
         SetStatLabels(before);
         changeLabels.SetActive(false); 

@@ -37,23 +37,18 @@ namespace Menus.PartyMenu
         public IEnumerator ShowWindow(PokemonParty pokemon)
         {
             SetParty(pokemon.Party);
-            yield return base.ShowWindow();
+            yield return base.OpenWindow();
         }
 
         protected override IEnumerator OnConfirm()
         {
             var option = new List<PartyPopupMenuOption> {PartyPopupMenuOption.Shift, PartyPopupMenuOption.Summary};
-            yield return popupMenu.ShowWindow(option, false);
-            
-            if(popupMenu.CloseReason == WindowCloseReason.Cancel) yield break;
-
-            yield return HandlePopupMenuResult();
-            yield return OnConfirm();
+            yield return popupMenu.ShowWindow(option, HandlePopupMenuResult);
         }
 
-        private IEnumerator HandlePopupMenuResult()
+        private IEnumerator HandlePopupMenuResult(PartyPopupMenuOption choice)
         {
-            if (popupMenu.Choice.Value == PartyPopupMenuOption.Summary)
+            if (choice == PartyPopupMenuOption.Summary)
             {
                 StartCoroutine(TransitionController.Instance.RunTransition(Transition.BattleEnter));
                 yield return TransitionController.Instance.WaitForTransitionPeak();

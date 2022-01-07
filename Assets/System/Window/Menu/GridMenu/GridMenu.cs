@@ -8,7 +8,7 @@ namespace System.Window.Menu.GridMenu
     {
         public IMenuItem<T>[,] OptionsGrid { get; protected set; }
         
-        protected override IEnumerator ShowWindow(Vector2 pos, bool isCloseable = true)
+        protected override IEnumerator OpenWindow(Vector2 pos, bool isCloseable = true)
         {
             if (OptionsGrid == null) yield break;
 
@@ -21,7 +21,7 @@ namespace System.Window.Menu.GridMenu
             SetDefaultFontColor();
             SetNewHighlightedOption(null, CurrentOption);
         
-            yield return base.ShowWindow(pos, isCloseable);
+            yield return base.OpenWindow(pos, isCloseable);
 
             while (WindowOpen) yield return RunWindow();
         }

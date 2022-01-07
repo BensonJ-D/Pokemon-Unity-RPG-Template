@@ -35,10 +35,12 @@ namespace System.Window
             background.rectTransform.ForceUpdateRectTransforms();
         }
 
-        public virtual IEnumerator ShowWindow(bool isCloseable = true) => ShowWindow(DefaultPosition, isCloseable);
+        public virtual IEnumerator OpenWindow(bool isCloseable = true) => OpenWindow(DefaultPosition, isCloseable);
 
-        protected virtual IEnumerator ShowWindow(Vector2 pos, bool isCloseable = true)
+        protected virtual IEnumerator OpenWindow(Vector2 pos, bool isCloseable = true)
         {
+            yield return BeforeOpen();
+            
             transform.position = pos;
             canvas.renderMode = RenderMode.ScreenSpaceCamera;
             yield return null;
@@ -51,6 +53,8 @@ namespace System.Window
 
         public virtual IEnumerator CloseWindow()
         {
+            yield return BeforeClose();
+            
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.transform.position = CanvasOrigin;
             yield return null;
@@ -60,7 +64,10 @@ namespace System.Window
             yield return OnClose();
         }
 
+        protected virtual IEnumerator BeforeOpen() => null;
         protected virtual IEnumerator OnOpen() => null;
+        
+        protected virtual IEnumerator BeforeClose() => null;
         protected virtual IEnumerator OnClose() => null;
     }
 }

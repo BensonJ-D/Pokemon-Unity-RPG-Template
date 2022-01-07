@@ -35,7 +35,7 @@ namespace Menus.StringGridMenu
                 col++;
             });
 
-            StartCoroutine(ShowWindow());
+            StartCoroutine(OpenWindow());
         }
     }
 }

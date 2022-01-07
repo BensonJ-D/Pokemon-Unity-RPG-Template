@@ -28,10 +28,10 @@ namespace Menus.SummaryMenu
         public IEnumerator ShowWindow(Pokemon pokemon)
         {
             SetPokemon(pokemon);
-            yield return base.ShowWindow();
+            yield return base.OpenWindow();
         }
 
-        protected override IEnumerator OnConfirm() => null;
+        protected override IEnumerator OnCancel() => CloseWindow();
 
         private void SetPokemon(Pokemon pokemon)
         {

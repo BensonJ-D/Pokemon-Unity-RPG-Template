@@ -10,7 +10,7 @@ namespace System.Window.Menu.ScrollMenu
         public List<T> OptionsList { get; protected set; }
         public int CurrentListPosition { get; private set; }
     
-        protected override IEnumerator ShowWindow(Vector2 pos, bool isCloseable = true)
+        protected override IEnumerator OpenWindow(Vector2 pos, bool isCloseable = true)
         {
             if (OptionsList == null) yield break;
 
@@ -24,7 +24,7 @@ namespace System.Window.Menu.ScrollMenu
             SetDefaultFontColor();
             SetNewHighlightedOption(null, CurrentOption);
             
-            yield return base.ShowWindow(pos, isCloseable);
+            yield return base.OpenWindow(pos, isCloseable);
 
             while (WindowOpen) yield return RunWindow();
         }
@@ -66,16 +66,7 @@ namespace System.Window.Menu.ScrollMenu
             // Debug.Log($"Close reason {closeReason}");
             // Debug.Log($"Choice {Choice.ToString()}");
         }
-    
-        private void ClearOptions()
-        {
-            foreach (var pair in OptionMenuItems) {
-                Destroy(pair.Transform.gameObject);
-            }
-
-            OptionsList.Clear();
-        }
-
+        
         private void SetCursorPosition(int index)
         {
             if (!enableCursor) return;
@@ -97,11 +88,7 @@ namespace System.Window.Menu.ScrollMenu
             for (var i = 0; i < OptionMenuItems.Count; i++)
             {
                 var listIndex = CurrentListPosition - cursorPosition + i;
-                if (listIndex >= OptionsList.Count) { 
-                    OptionMenuItems[i].SetMenuItem(default);
-                } else {
-                    OptionMenuItems[i].SetMenuItem(OptionsList[listIndex]);
-                }
+                OptionMenuItems[i].SetMenuItem(listIndex >= OptionsList.Count ? default : OptionsList[listIndex]);
             }
         }
     }

@@ -18,11 +18,11 @@ namespace Menus.PopupMenu
         [SerializeField] private float spacing;
         [SerializeField] private float border;
         [SerializeField] private Vector2 padding;
-        
-        public Func<IEnumerator> OnCloseAction { get; set; }
-        
+
+        public delegate IEnumerator OnConfirmFunc(T choice);
+        private OnConfirmFunc _onConfirm;
+
         protected List<IMenuItem<T>> PopupMenuItems;
-        private bool _closeOnConfirm = true;
 
         public virtual void Start()
         {
@@ -32,22 +32,17 @@ namespace Menus.PopupMenu
             PopupMenuItems.ForEach(option => OptionMenuItems.Add(option));
         }
 
-        public IEnumerator ShowWindow(List<T> options, bool closeOnConfirm = true)
+        public IEnumerator ShowWindow(List<T> options, OnConfirmFunc onConfirmCallback)
         {
-            _closeOnConfirm = closeOnConfirm;
+            _onConfirm = onConfirmCallback;
             
             SetMenu(options);
             SetWindowSize();
-            yield return base.ShowWindow();
+            yield return base.OpenWindow();
         }
 
-        protected override IEnumerator OnConfirm() => _closeOnConfirm ? base.OnConfirm() : OnConfirmNoClose();
-
-        private IEnumerator OnConfirmNoClose()
-        {
-            CloseReason = WindowCloseReason.Complete;
-            yield return null;
-        }
+        protected override IEnumerator OnConfirm() => _onConfirm(CurrentOption.Value);
+        protected override IEnumerator OnCancel() => CloseWindow();
 
         private void SetWindowSize()
         {

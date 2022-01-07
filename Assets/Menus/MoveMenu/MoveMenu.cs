@@ -41,7 +41,7 @@ namespace Menus.MoveMenu
         public IEnumerator ShowWindow(List<Move> moves)
         {
             SetMoves(moves);
-            yield return base.ShowWindow();
+            yield return base.OpenWindow();
         }
 
         protected override void OnOptionChange(IMenuItem<Move> previousOption, IMenuItem<Move> newOption)
