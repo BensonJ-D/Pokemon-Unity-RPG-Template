@@ -32,7 +32,6 @@ namespace Menus.PartyMenu
             {
                 transform.gameObject.SetActive(true);
                 pokemonDetails.SetData(Value); 
-                backplate.SetNotSelected(Value.IsFainted);
                 pokemonIcon.sprite = Value.Base.Icon;
             }
         }

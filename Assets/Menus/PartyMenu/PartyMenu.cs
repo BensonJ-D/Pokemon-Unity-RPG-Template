@@ -83,6 +83,22 @@ namespace Menus.PartyMenu
             yield return popupMenu.RunWindow();
         }
 
+        protected override IEnumerator OnCancel()
+        {
+            if (_state == MenuState.Switch)
+            {
+                var fromSlot = (PartyMenuItem) _switchFrom;
+                var toSlot = (PartyMenuItem) CurrentOption;
+                
+                fromSlot.SetNotSelected();
+                toSlot.SetSelected();
+
+                _state = MenuState.Normal;
+            }
+
+            yield return null;
+        }
+        
         private IEnumerator OnPopupConfirm(PartyPopupMenuOption choice)
         {
             if (choice == PartyPopupMenuOption.Summary)
@@ -146,6 +162,7 @@ namespace Menus.PartyMenu
                 enumPokemon.MoveNext();
                 // ReSharper disable once PossibleNullReferenceException
                 enumMenuItems.Current.SetMenuItem(enumPokemon.Current);
+                if(enumPokemon.Current != null) enumMenuItems.Current.SetNotSelected();
             }
         }
     }
