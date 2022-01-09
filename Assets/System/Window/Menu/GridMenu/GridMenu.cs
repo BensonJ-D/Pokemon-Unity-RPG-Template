@@ -8,8 +8,9 @@ namespace System.Window.Menu.GridMenu
     {
         public IMenuItem<T>[,] OptionsGrid { get; protected set; }
         
-        protected override IEnumerator OpenWindow(Vector2 pos, bool isCloseable = true)
+        public override IEnumerator OpenWindow(Vector2 pos = default, OnConfirmFunc onConfirmCallback = null, OnCancelFunc onCancelCallback = null)
         {
+            if (!Initialised) Initialise();
             if (OptionsGrid == null) yield break;
 
             var defaultSelection = this.GetInitialMatrixPosition(false);
@@ -21,9 +22,7 @@ namespace System.Window.Menu.GridMenu
             SetDefaultFontColor();
             SetNewHighlightedOption(null, CurrentOption);
         
-            yield return base.OpenWindow(pos, isCloseable);
-
-            while (WindowOpen) yield return RunWindow();
+            yield return base.OpenWindow(pos, onConfirmCallback, onCancelCallback);
         }
         
         protected virtual void OnOptionChange(IMenuItem<T> previousOption, IMenuItem<T> newOption)
@@ -33,29 +32,31 @@ namespace System.Window.Menu.GridMenu
             if (enableHighlight) SetNewHighlightedOption(previousOption, CurrentOption);
         }
 
-        private IEnumerator RunWindow()
+        public IEnumerator RunWindow()
         {
-            var updatedChoice = this.GetNextGridMenuOption();
-        
-            var previousOption = CurrentOption;
-            CurrentCursorPosition = (updatedChoice.Col, updatedChoice.Row);
-            CurrentOption = updatedChoice.Option;
+            while (WindowOpen)
+            {
 
-            if (previousOption != CurrentOption) 
-                OnOptionChange(previousOption, CurrentOption);
+                var updatedChoice = this.GetNextGridMenuOption();
 
-            if (Input.GetKeyDown(KeyCode.Z)) yield return OnConfirm();
-            if (Input.GetKeyDown(KeyCode.X) && IsCloseable) yield return OnCancel();
-                
-            yield return null;
+                var previousOption = CurrentOption;
+                CurrentCursorPosition = (updatedChoice.Col, updatedChoice.Row);
+                CurrentOption = updatedChoice.Option;
+
+                if (previousOption != CurrentOption)
+                    OnOptionChange(previousOption, CurrentOption);
+
+                if (Input.GetKeyDown(KeyCode.Z)) yield return OnConfirm();
+                if (Input.GetKeyDown(KeyCode.X)) yield return OnCancel();
+
+                yield return null;
+            }
         }
 
         protected override IEnumerator OnClose()
         {
             Choice = CloseReason == WindowCloseReason.Complete ? CurrentOption : null;
             yield break;
-            // Debug.Log($"Close reason {closeReason}");
-            // Debug.Log($"Choice {Choice.ToString()}");
         }
     
         private void ClearOptions()

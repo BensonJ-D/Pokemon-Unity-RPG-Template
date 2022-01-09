@@ -25,7 +25,7 @@ namespace Menus.InventoryMenu
         
         public void Start()
         {
-            Initiate();
+            Initialise();
 
             OptionMenuItems = new List<IMenuItem<InventoryData>>();
             itemSlots.ForEach(slot => OptionMenuItems.Add(slot));

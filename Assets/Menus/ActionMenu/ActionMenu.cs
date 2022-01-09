@@ -13,7 +13,7 @@ namespace Menus.ActionMenu
         
         public void Start()
         {
-            Initiate();
+            Initialise();
             
             OptionsGrid = new IMenuItem<ActionMenuOption>[,]
             {

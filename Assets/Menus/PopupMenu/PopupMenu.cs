@@ -19,30 +19,22 @@ namespace Menus.PopupMenu
         [SerializeField] private float border;
         [SerializeField] private Vector2 padding;
 
-        public delegate IEnumerator OnConfirmFunc(T choice);
-        private OnConfirmFunc _onConfirm;
-
         protected List<IMenuItem<T>> PopupMenuItems;
 
         public virtual void Start()
         {
-            Initiate();
+            Initialise();
             
             OptionMenuItems = new List<IMenuItem<T>>();
             PopupMenuItems.ForEach(option => OptionMenuItems.Add(option));
         }
 
-        public IEnumerator ShowWindow(List<T> options, OnConfirmFunc onConfirmCallback)
+        public IEnumerator OpenWindow(List<T> options, OnConfirmFunc onConfirmCallback = null, OnCancelFunc onCancelCallback = null)
         {
-            _onConfirm = onConfirmCallback;
-            
             SetMenu(options);
             SetWindowSize();
-            yield return base.OpenWindow();
+            yield return base.OpenWindow(onConfirmCallback: onConfirmCallback, onCancelCallback: onCancelCallback);
         }
-
-        protected override IEnumerator OnConfirm() => _onConfirm(CurrentOption.Value);
-        protected override IEnumerator OnCancel() => CloseWindow();
 
         private void SetWindowSize()
         {

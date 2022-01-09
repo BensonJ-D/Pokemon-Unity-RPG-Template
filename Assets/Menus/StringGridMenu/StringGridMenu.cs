@@ -16,7 +16,7 @@ namespace Menus.StringGridMenu
         
         public void Start()
         {
-            Initiate();
+            Initialise();
 
             OptionsGrid = new IMenuItem<string>[rows, cols];
             var row = 0;

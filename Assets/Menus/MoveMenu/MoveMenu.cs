@@ -21,7 +21,7 @@ namespace Menus.MoveMenu
 
         public void Start()
         {
-            Initiate();
+            Initialise();
             
             OptionsGrid = new IMenuItem<Move>[,]
             {

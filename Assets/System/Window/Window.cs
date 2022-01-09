@@ -13,13 +13,13 @@ namespace System.Window
         [SerializeField] protected Canvas canvas;
         [SerializeField] protected Image background;
 
+        protected bool Initialised { get; private set; }
         protected bool WindowOpen { get; private set; }
-        protected Vector3 DefaultPosition { get; private set; }
-        protected bool IsCloseable { get; private set; }
+        private Vector3 DefaultPosition { get; set; }
         
         private Vector3 CanvasOrigin { get; set; }
 
-        protected void Initiate()
+        protected virtual void Initialise()
         {
             DefaultPosition = transform.position;
             CanvasOrigin = canvas.transform.position;
@@ -35,10 +35,10 @@ namespace System.Window
             background.rectTransform.ForceUpdateRectTransforms();
         }
 
-        public virtual IEnumerator OpenWindow(bool isCloseable = true) => OpenWindow(DefaultPosition, isCloseable);
-
-        protected virtual IEnumerator OpenWindow(Vector2 pos, bool isCloseable = true)
+        protected IEnumerator OpenWindow(Vector2 pos = default)
         {
+            if (pos == default) pos = DefaultPosition;
+            
             yield return BeforeOpen();
             
             transform.position = pos;
@@ -47,7 +47,6 @@ namespace System.Window
             canvas.enabled = true;
             WindowOpen = true;
             
-            IsCloseable = isCloseable;
             yield return OnOpen();
         }
 

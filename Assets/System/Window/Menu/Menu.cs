@@ -19,7 +19,21 @@ namespace System.Window.Menu
         public (int, int) CurrentCursorPosition { get; protected set; }
         public IMenuItem<T> CurrentOption { get; protected set; }
         public IMenuItem<T> Choice { get; protected set; }
+        
+        public delegate IEnumerator OnConfirmFunc(T choice);
+        public delegate IEnumerator OnCancelFunc();
+        protected OnConfirmFunc _onConfirm;
+        protected OnCancelFunc _onCancel;
 
+        public virtual IEnumerator OpenWindow(Vector2 pos = default, OnConfirmFunc onConfirmCallback = null,
+            OnCancelFunc onCancelCallback = null)
+        {
+            _onConfirm = onConfirmCallback;
+            _onCancel = onCancelCallback;
+            
+            yield return base.OpenWindow(pos);
+        }
+        
         protected void SetCursorPosition(int x, int y)
         {
             if (!enableCursor) return;
@@ -34,8 +48,8 @@ namespace System.Window.Menu
             if(prev != null) prev.Text.color = fontColour;
             if(next != null) next.Text.color = highlightColour;
         }
-
-        protected virtual IEnumerator OnConfirm() => null;
-        protected virtual IEnumerator OnCancel() => null;
+        
+        protected virtual IEnumerator OnConfirm() => _onConfirm?.Invoke(CurrentOption.Value);
+        protected virtual IEnumerator OnCancel() => _onCancel?.Invoke();
     }
 }

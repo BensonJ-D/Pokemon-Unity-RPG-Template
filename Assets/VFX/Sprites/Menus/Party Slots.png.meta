@@ -133,8 +133,8 @@ TextureImporter:
       name: Party Slots_1
       rect:
         serializedVersion: 2
-        x: 4
-        y: 61
+        x: 5
+        y: 62
         width: 150
         height: 24
       alignment: 0
@@ -155,9 +155,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 87
+        y: 146
         width: 150
-        height: 22
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,8 +175,8 @@ TextureImporter:
       name: Party Slots_4
       rect:
         serializedVersion: 2
-        x: 159
-        y: 61
+        x: 160
+        y: 62
         width: 84
         height: 57
       alignment: 0
@@ -196,8 +196,8 @@ TextureImporter:
       name: Party Slots_6
       rect:
         serializedVersion: 2
-        x: 248
-        y: 61
+        x: 249
+        y: 62
         width: 84
         height: 57
       alignment: 0
@@ -220,7 +220,7 @@ TextureImporter:
         x: 5
         y: 28
         width: 150
-        height: 22
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,7 +239,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5
-        y: 2
+        y: 3
         width: 150
         height: 24
       alignment: 0
@@ -259,9 +259,9 @@ TextureImporter:
       name: Party Slots_11
       rect:
         serializedVersion: 2
-        x: 161
-        y: 2
-        width: 83
+        x: 160
+        y: 3
+        width: 84
         height: 57
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -281,7 +281,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 249
-        y: 2
+        y: 3
         width: 84
         height: 57
       alignment: 0
@@ -293,6 +293,90 @@ TextureImporter:
       bones: []
       spriteID: 7f915cdca98177cc0800000000000000
       internalID: -3713472314587407881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Party Slots_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 121
+        width: 150
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4c75308896b2e060800000000000000
+      internalID: 6981343138479963213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Party Slots_2
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 87
+        width: 150
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6665aca1c52f62d40800000000000000
+      internalID: 5559397267435837030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Party Slots_5
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 121
+        width: 84
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b140dc56a5e625d0800000000000000
+      internalID: -3087527991831412300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Party Slots_8
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 121
+        width: 84
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25487b1cc79b46d50800000000000000
+      internalID: 6729707688675476562
       vertices: []
       indices: 
       edges: []

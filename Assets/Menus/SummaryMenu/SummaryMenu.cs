@@ -17,7 +17,7 @@ namespace Menus.SummaryMenu
         
         public void Start()
         {
-            Initiate();
+            Initialise();
             
             OptionsGrid = new IMenuItem<Pokemon>[,]
             {
@@ -25,13 +25,11 @@ namespace Menus.SummaryMenu
             };
         }
         
-        public IEnumerator ShowWindow(Pokemon pokemon)
+        public IEnumerator OpenWindow(Pokemon pokemon, OnConfirmFunc onConfirmCallback = null, OnCancelFunc onCancelCallback = null)
         {
             SetPokemon(pokemon);
-            yield return base.OpenWindow();
+            yield return base.OpenWindow(onConfirmCallback: onConfirmCallback, onCancelCallback: onCancelCallback);
         }
-
-        protected override IEnumerator OnCancel() => CloseWindow();
 
         private void SetPokemon(Pokemon pokemon)
         {

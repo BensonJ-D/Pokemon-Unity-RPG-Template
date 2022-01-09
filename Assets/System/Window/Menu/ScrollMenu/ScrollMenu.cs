@@ -10,9 +10,12 @@ namespace System.Window.Menu.ScrollMenu
         public List<T> OptionsList { get; protected set; }
         public int CurrentListPosition { get; private set; }
     
-        protected override IEnumerator OpenWindow(Vector2 pos, bool isCloseable = true)
+        public override IEnumerator OpenWindow(Vector2 pos = default, OnConfirmFunc onConfirmCallback = null, OnCancelFunc onCancelCallback = null)
         {
             if (OptionsList == null) yield break;
+            
+            _onConfirm = onConfirmCallback;
+            _onCancel = onCancelCallback;
 
             var defaultSelection = this.GetInitialScrollPosition();
             CurrentOption = defaultSelection.Option;
@@ -24,9 +27,7 @@ namespace System.Window.Menu.ScrollMenu
             SetDefaultFontColor();
             SetNewHighlightedOption(null, CurrentOption);
             
-            yield return base.OpenWindow(pos, isCloseable);
-
-            while (WindowOpen) yield return RunWindow();
+            yield return base.OpenWindow(pos, onConfirmCallback, onCancelCallback);
         }
         
         protected virtual void OnOptionChange(IMenuItem<T> previousOption, IMenuItem<T> newOption, bool cursorShifted)
@@ -40,31 +41,32 @@ namespace System.Window.Menu.ScrollMenu
             if (enableHighlight) SetNewHighlightedOption(previousOption, newOption);
         }
 
-        private IEnumerator RunWindow()
+        public IEnumerator RunWindow()
         {
-            var updatedChoice = this.GetNextScrollMenuOption();
-        
-            var previousOption = CurrentOption;
-            var previousPosition = CurrentListPosition;
-            CurrentCursorPosition = (0, updatedChoice.CursorIndex);
-            CurrentListPosition = updatedChoice.ScrollIndex;
-            CurrentOption = updatedChoice.Option;
+            while (WindowOpen)
+            {
+                var updatedChoice = this.GetNextScrollMenuOption();
 
-            if (previousOption != CurrentOption || previousPosition != CurrentListPosition) 
-                OnOptionChange(previousOption, CurrentOption, previousPosition != CurrentListPosition);
+                var previousOption = CurrentOption;
+                var previousPosition = CurrentListPosition;
+                CurrentCursorPosition = (0, updatedChoice.CursorIndex);
+                CurrentListPosition = updatedChoice.ScrollIndex;
+                CurrentOption = updatedChoice.Option;
 
-            if (Input.GetKeyDown(KeyCode.Z)) yield return OnConfirm();
-            if (Input.GetKeyDown(KeyCode.X) && IsCloseable) yield return OnCancel();
-            
-            yield return null;
+                if (previousOption != CurrentOption || previousPosition != CurrentListPosition)
+                    OnOptionChange(previousOption, CurrentOption, previousPosition != CurrentListPosition);
+
+                if (Input.GetKeyDown(KeyCode.Z)) yield return OnConfirm();
+                if (Input.GetKeyDown(KeyCode.X)) yield return OnCancel();
+
+                yield return null;
+            }
         }
 
         protected override IEnumerator OnClose()
         {
             Choice = CloseReason == WindowCloseReason.Complete ? CurrentOption : null;
             yield break;
-            // Debug.Log($"Close reason {closeReason}");
-            // Debug.Log($"Choice {Choice.ToString()}");
         }
         
         private void SetCursorPosition(int index)

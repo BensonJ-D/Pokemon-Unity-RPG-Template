@@ -7,6 +7,7 @@ namespace Menus.PartyMenu
         None,
         Shift,
         Summary,
+        Switch,
         [Description("Give Item")]
         GiveItem,
         [Description("Take Item")]

@@ -193,7 +193,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7748227630377009176}
   - component: {fileID: 7748227630377009178}
-  - component: {fileID: 7748227630377009179}
   m_Layer: 5
   m_Name: PartyWindow
   m_TagString: Untagged
@@ -243,25 +242,7 @@ MonoBehaviour:
   - {fileID: 8163944650316776020}
   - {fileID: 8163944651484017052}
   popupMenu: {fileID: 3604762374086797892}
-  useTestData: 0
-  examplePokemon: {fileID: 7748227630377009179}
---- !u!114 &7748227630377009179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7748227630377009181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd14841a030b485bb524c182fba97b10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  party:
-  - pokemonBase: {fileID: 11400000, guid: d56e49705f4d1b645960c762b5279e13, type: 2}
-    initialLevel: 5
-  - pokemonBase: {fileID: 11400000, guid: d73402c190f2b1e4492298ba5d8adc9a, type: 2}
-    initialLevel: 10
+  summaryMenu: {fileID: 0}
 --- !u!1001 &814489973347300492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -376,6 +357,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7748227630300432152}
     m_Modifications:
+    - target: {fileID: 3856364257690883761, guid: 635ae84cf6778b84e8749fcec2ed436f,
+        type: 3}
+      propertyPath: selectedSprite
+      value: 
+      objectReference: {fileID: 6729707688675476562, guid: eff732e4578cfe5428fc9a1c8990171c,
+        type: 3}
+    - target: {fileID: 3856364257690883761, guid: 635ae84cf6778b84e8749fcec2ed436f,
+        type: 3}
+      propertyPath: notSelectedSprite
+      value: 
+      objectReference: {fileID: -3087527991831412300, guid: eff732e4578cfe5428fc9a1c8990171c,
+        type: 3}
+    - target: {fileID: 3856364257690883761, guid: 635ae84cf6778b84e8749fcec2ed436f,
+        type: 3}
+      propertyPath: selectedFaintedSprite
+      value: 
+      objectReference: {fileID: -5184186844742097250, guid: eff732e4578cfe5428fc9a1c8990171c,
+        type: 3}
+    - target: {fileID: 3856364257690883761, guid: 635ae84cf6778b84e8749fcec2ed436f,
+        type: 3}
+      propertyPath: notSelectedFaintedSprite
+      value: 
+      objectReference: {fileID: -159505216373970567, guid: eff732e4578cfe5428fc9a1c8990171c,
+        type: 3}
+    - target: {fileID: 3856364257690883766, guid: 635ae84cf6778b84e8749fcec2ed436f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6729707688675476562, guid: eff732e4578cfe5428fc9a1c8990171c,
+        type: 3}
     - target: {fileID: 3856364258418553665, guid: 635ae84cf6778b84e8749fcec2ed436f,
         type: 3}
       propertyPath: m_Name
