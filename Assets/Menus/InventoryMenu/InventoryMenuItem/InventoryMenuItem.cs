@@ -20,8 +20,14 @@ namespace Menus.InventoryMenu
         public void SetMenuItem(InventoryData itemData)
         {
             Value = itemData;
-        
-            if (itemData == null) return;
+
+            if (itemData == null)
+            {
+                itemName.enabled = false;
+                itemMultiplier.enabled = false;
+                itemQuantity.enabled = false;
+                return;
+            }
             
             itemName.text = Value.Name;
             itemQuantity.text = Value.quantity.ToString();

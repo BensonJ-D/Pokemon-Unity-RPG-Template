@@ -31,6 +31,15 @@ namespace System.Window.Menu.ScrollMenu
             
             var originalChoice = new ScrollMenuOption<T>(cursorPosition, scrollPosition, option);
             var newChoice = new ScrollMenuOption<T>(cursorPosition, scrollPosition, option);
+
+            if (!originalChoice.Option.IsNotNullOrEmpty() && scrollPosition > 0)
+            {
+                scrollPosition--;
+                cursorPosition = Math.Max(cursorPosition - 1, 0);
+
+                newChoice = new ScrollMenuOption<T>(cursorPosition, scrollPosition, optionMenuItems[cursorPosition]);
+                return newChoice.Option == null ? originalChoice : newChoice;
+            }
             
             if (!DirectionPressed) return originalChoice;
 
@@ -59,9 +68,11 @@ namespace System.Window.Menu.ScrollMenu
             return newChoice.Option == null ? originalChoice : newChoice;
         }
         
-        public static ScrollMenuOption<T> GetInitialScrollPosition<T>(this ScrollMenu<T> scrollMenu)
+        public static ScrollMenuOption<T> GetInitialScrollPosition<T>(this ScrollMenu<T> scrollMenu, bool useFirstElement = true)
         {
-            return new ScrollMenuOption<T>(0, 0, scrollMenu.OptionMenuItems[0]);
+            return useFirstElement ? 
+                new ScrollMenuOption<T>(0, 0, scrollMenu.OptionMenuItems[0]) : 
+                new ScrollMenuOption<T>(scrollMenu.OptionMenuItems.Count - 1, scrollMenu.OptionsList.Count - 1, scrollMenu.OptionMenuItems.Last());
         }
         
         private static bool DirectionPressed => Input.GetKeyDown(KeyCode.UpArrow) 

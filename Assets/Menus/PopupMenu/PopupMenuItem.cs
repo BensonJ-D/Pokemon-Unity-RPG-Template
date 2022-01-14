@@ -15,7 +15,7 @@ namespace Menus.PopupMenu
         public Transform Transform => transform;
         public Text Text => label;
         
-        public void SetMenuItem(T option)
+        public virtual void SetMenuItem(T option)
         {
             Value = option;
             

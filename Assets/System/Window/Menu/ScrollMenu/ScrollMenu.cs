@@ -6,6 +6,8 @@ namespace System.Window.Menu.ScrollMenu
 {
     public abstract class ScrollMenu<T> : Menu<T>
     {
+        protected bool UseFirstElementAsDefault = true;
+        
         public List<IMenuItem<T>> OptionMenuItems { get; protected set; }
         public List<T> OptionsList { get; protected set; }
         public int CurrentListPosition { get; private set; }
@@ -17,7 +19,7 @@ namespace System.Window.Menu.ScrollMenu
             _onConfirm = onConfirmCallback;
             _onCancel = onCancelCallback;
 
-            var defaultSelection = this.GetInitialScrollPosition();
+            var defaultSelection = this.GetInitialScrollPosition(UseFirstElementAsDefault);
             CurrentOption = defaultSelection.Option;
             CurrentCursorPosition = (0, defaultSelection.CursorIndex);
             CurrentListPosition = defaultSelection.ScrollIndex;
@@ -56,7 +58,7 @@ namespace System.Window.Menu.ScrollMenu
                 if (previousOption != CurrentOption || previousPosition != CurrentListPosition)
                     OnOptionChange(previousOption, CurrentOption, previousPosition != CurrentListPosition);
 
-                if (Input.GetKeyDown(KeyCode.Z)) yield return OnConfirm();
+                if (Input.GetKeyDown(KeyCode.Z) && CurrentOption.IsNotNullOrEmpty()) yield return OnConfirm();
                 if (Input.GetKeyDown(KeyCode.X)) yield return OnCancel();
 
                 yield return null;
@@ -72,6 +74,14 @@ namespace System.Window.Menu.ScrollMenu
         private void SetCursorPosition(int index)
         {
             if (!enableCursor) return;
+
+            if (!OptionMenuItems[index].IsNotNullOrEmpty())
+            {
+                cursor.gameObject.SetActive(false);
+                return;
+            }
+            
+            if (!cursor.gameObject.activeSelf) cursor.gameObject.SetActive(true);
         
             var cursorPos = OptionMenuItems[index].Transform.localPosition;
             cursor.SetPosition(cursorPos.x, cursorPos.y);
