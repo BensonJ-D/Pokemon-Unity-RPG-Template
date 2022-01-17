@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Transition;
 using Battle.SubSystems;
 using Battle.SubSystems.Party;
 using Inventory;

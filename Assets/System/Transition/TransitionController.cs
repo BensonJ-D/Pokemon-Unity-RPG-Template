@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-namespace VFX
+namespace System.Transition
 {
     public enum Transition { BattleEnter }
     public enum TransitionState { None, Start, Pause, End }

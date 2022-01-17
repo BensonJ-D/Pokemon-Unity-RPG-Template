@@ -14,6 +14,7 @@ namespace PokemonScripts
     public class Pokemon
     {
         [SerializeField] private PokemonBase pokemonBase;
+        [SerializeField] private float baseHealth;
         [SerializeField] private int initialLevel;
 
         public void Initialization()
@@ -27,7 +28,7 @@ namespace PokemonScripts
             Level = level;
             Name = @base.Species;
 
-            CurrentHp = MaxHp();
+            CurrentHp = (int)(MaxHp() * (baseHealth / 100));
             CurrentExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1];
 
             Moves = new List<Move>();

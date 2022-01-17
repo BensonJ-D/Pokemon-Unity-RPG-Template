@@ -1,4 +1,5 @@
 using System.Collections;
+using PokemonScripts;
 using UnityEngine;
 
 namespace Inventory
@@ -14,7 +15,7 @@ namespace Inventory
         public Sprite Icon => icon;
 
         public abstract IEnumerator BeforeUse();
-        public abstract bool ValidateUse();
+        public abstract ItemUseValidation ValidateUse(Pokemon target);
         public abstract void OnUse();
         public abstract void AfterUse();
     }

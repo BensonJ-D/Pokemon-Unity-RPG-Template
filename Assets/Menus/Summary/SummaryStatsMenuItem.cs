@@ -1,12 +1,14 @@
-﻿using Battle;
+using System;
+using System.Window.Menu;
+using Battle;
 using PokemonScripts;
 using UnityEngine;
 using UnityEngine.UI;
-using VFX;
 
-namespace Menus
+namespace Menus.Summary
 {
-    public class SummaryMenu : SceneWindow
+    [Serializable]
+    public class SummaryStatsMenuItem : MonoBehaviour, IMenuItem<Pokemon>
     {
         [SerializeField] private Image pokemonSprite;
         [SerializeField] private HealthBar healthBar;
@@ -17,14 +19,12 @@ namespace Menus
         [SerializeField] private Text speedText;
         [SerializeField] private ExperienceBar expBar;
 
-        public override void Init()
-        {
-            Scene = Scene.SummaryView;
-            base.Init();
-        }
+        public Pokemon Value { get; set; }
+    
+        public Transform Transform => transform;
+        public Text Text => null;
 
-        public void SetPokemonData(Pokemon pokemon)
-        {
+        public void SetMenuItem(Pokemon pokemon) {
             pokemonSprite.sprite = pokemon.Base.FrontSprite;
             healthBar.Setup(pokemon);
             attackText.text = pokemon.Attack().ToString();
@@ -33,6 +33,11 @@ namespace Menus
             spDefText.text = pokemon.SpDefence().ToString();
             speedText.text = pokemon.Speed().ToString();
             expBar.Setup(pokemon);
+
+            Value = pokemon;
         }
+
+        public override string ToString() => Value.ToString();
+        public bool IsNotNullOrEmpty() => Value != null;
     }
 }

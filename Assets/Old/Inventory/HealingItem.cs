@@ -13,10 +13,23 @@ namespace Inventory
         [SerializeField] private List<PrimaryStatusCondition> primaryStatusConditionsHealed;
         [SerializeField] private List<SecondaryStatusCondition> secondaryStatusConditionsHealed;
 
-        private Pokemon _target;
-
         public override IEnumerator BeforeUse() { yield return null; }
-        public override bool ValidateUse() { return true; }
+
+        public override ItemUseValidation ValidateUse(Pokemon target)
+        {
+            if (target.CurrentHp == target.MaxHp())
+            {
+                return new ItemUseValidation{
+                    Successful = false, 
+                    ResponseMessage = "Pokemon's HP is already full!"
+                };
+            }
+
+            return new ItemUseValidation{
+                Successful = true, 
+                ResponseMessage = $"You used {Name} on {target.Name}"
+            };
+        }
         public override void OnUse() {}
         public override void AfterUse() {}
     }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Menus;
 using PokemonScripts;
-using Scripts.Menus;
 using UnityEngine;
 using UnityEngine.UI;
 using VFX;

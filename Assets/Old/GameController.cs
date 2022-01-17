@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using System.Transition;
 using Battle;
 using Encounters;
 using Misc;

@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Menus.PartyMenu;
+using Menus.Party.MenuItem;
 using PokemonScripts;
  using UnityEngine;
  using UnityEngine.UI;

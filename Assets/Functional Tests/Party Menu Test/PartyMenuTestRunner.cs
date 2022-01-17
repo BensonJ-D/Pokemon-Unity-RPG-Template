@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
-using Menus.PartyMenu;
+using Menus.Party;
 using MyBox;
 using PokemonScripts;
 using UnityEngine;
