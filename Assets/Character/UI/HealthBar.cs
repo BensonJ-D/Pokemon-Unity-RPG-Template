@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using PokemonScripts;
+using Character.Monsters;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Battle
+namespace Character.UI
 {
     public class HealthBar : MonoBehaviour
     {

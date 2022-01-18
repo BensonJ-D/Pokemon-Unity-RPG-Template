@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using PokemonScripts;
+using Character.Monsters;
 using PokemonScripts.Conditions;
 using UnityEngine;
 
@@ -30,7 +30,12 @@ namespace Inventory
                 ResponseMessage = $"You used {Name} on {target.Name}"
             };
         }
-        public override void OnUse() {}
+
+        public override IEnumerator OnUse(Pokemon target)
+        {
+            yield return target.UpdateHealth(amountHealed);
+        }
+
         public override void AfterUse() {}
     }
 }
