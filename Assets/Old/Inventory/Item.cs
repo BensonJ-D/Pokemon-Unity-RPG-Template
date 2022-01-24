@@ -1,5 +1,5 @@
 using System.Collections;
-using Character.Monsters;
+using Characters.Monsters;
 using UnityEngine;
 
 namespace Inventory

@@ -2,7 +2,7 @@ using System;
 using PokemonScripts.Moves;
 using UnityEngine;
 
-namespace Character
+namespace Characters
 {
     [Serializable]
     public class LearnableMove

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Transition;
 using System.Window.Menu;
 using System.Window.Menu.Scroll;
+using Characters.Monsters;
+using Characters.Party.PokemonParty;
 using Inventory;
 using Menus.Inventory.MenuItem;
 using Menus.Inventory.PopupMenu;
 using Menus.NumberSelector;
 using Menus.Party;
 using MyBox;
-using PokemonScripts;
 using UnityEngine;
 
 namespace Menus.Inventory

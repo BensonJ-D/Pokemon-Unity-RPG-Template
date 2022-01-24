@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Window.Menu;
-using PokemonScripts;
+using Characters.Monsters;
 using UnityEngine;
 using UnityEngine.UI;
 

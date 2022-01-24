@@ -1,10 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Inventory;
+using Characters.Party.PokemonParty;
 using Menus.Inventory;
 using MyBox;
-using PokemonScripts;
 using UnityEngine;
 
 namespace Functional_Tests.Inventory_Menu_Test

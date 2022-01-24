@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Window.Menu;
 using System.Window.Menu.Grid;
+using Characters.Monsters;
 using MyBox;
-using PokemonScripts;
 using UnityEngine;
 
 namespace Menus.Summary

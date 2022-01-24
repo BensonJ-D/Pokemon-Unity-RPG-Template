@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Character.Monsters;
+using Characters.Monsters;
 using PokemonScripts.Conditions;
 using UnityEngine;
 

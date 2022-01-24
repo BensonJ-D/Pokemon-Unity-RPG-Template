@@ -1,7 +1,7 @@
 using System;
 using System.Window.Menu;
-using Battle;
-using PokemonScripts;
+using Characters.Monsters;
+using Characters.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +17,7 @@ namespace Menus.Summary
         [SerializeField] private Text spAtkText;
         [SerializeField] private Text spDefText;
         [SerializeField] private Text speedText;
-        [SerializeField] private ExperienceBar expBar;
+        // [SerializeField] private ExperienceBar expBar;
 
         public Pokemon Value { get; set; }
     
@@ -32,7 +32,7 @@ namespace Menus.Summary
             spAtkText.text = pokemon.SpAttack().ToString();
             spDefText.text = pokemon.SpDefence().ToString();
             speedText.text = pokemon.Speed().ToString();
-            expBar.Setup(pokemon);
+            // expBar.Setup(pokemon);
 
             Value = pokemon;
         }

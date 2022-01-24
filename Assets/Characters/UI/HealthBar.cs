@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using Character.Monsters;
+using Characters.Monsters;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Character.UI
+namespace Characters.UI
 {
     public class HealthBar : MonoBehaviour
     {

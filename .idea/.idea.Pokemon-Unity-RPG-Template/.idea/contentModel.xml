@@ -5,21 +5,85 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Characters" t="Include">
+          <e p="LearnableMove.cs" t="Include" />
+          <e p="Monsters" t="Include">
+            <e p="Pokemon.cs" t="Include" />
+            <e p="PokemonBase.cs" t="Include" />
+          </e>
+          <e p="Party" t="Include">
+            <e p="Party.cs" t="Include" />
+            <e p="PokemonParty" t="Include">
+              <e p="PokemonParty.cs" t="Include" />
+            </e>
+          </e>
+          <e p="UI" t="Include">
+            <e p="HealthBar.cs" t="Include" />
+          </e>
+        </e>
         <e p="Editor" t="Include">
           <e p="CsvToSo.cs" t="Include" />
         </e>
-        <e p="GridMenu.cs" t="Include" />
+        <e p="Functional Tests" t="Include">
+          <e p="Inventory Menu Test" t="Include">
+            <e p="InventoryMenuTestRunner.cs" t="Include" />
+          </e>
+          <e p="Party Menu Test" t="Include">
+            <e p="PartyMenuTestRunner.cs" t="Include" />
+          </e>
+        </e>
         <e p="Label.cs" t="Include" />
         <e p="LevelUpWindow.cs" t="Include" />
-        <e p="MenuCursor.cs" t="Include" />
-        <e p="MenuOption.cs" t="Include" />
-        <e p="OptionWindow.cs" t="Include" />
-        <e p="Scripts" t="Include">
+        <e p="Menus" t="Include">
+          <e p="Action" t="Include">
+            <e p="ActionMenu.cs" t="Include" />
+            <e p="ActionMenuItem.cs" t="Include" />
+            <e p="ActionMenuOption.cs" t="Include" />
+          </e>
+          <e p="Inventory" t="Include">
+            <e p="InventoryMenu.cs" t="Include" />
+            <e p="ItemDetails.cs" t="Include" />
+            <e p="MenuItem" t="Include">
+              <e p="InventoryMenuItem.cs" t="Include" />
+            </e>
+            <e p="PopupMenu" t="Include">
+              <e p="InventoryPopupMenu.cs" t="Include" />
+              <e p="InventoryPopupMenuItem.cs" t="Include" />
+              <e p="InventoryPopupMenuOption.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Move" t="Include">
+            <e p="MoveDetails.cs" t="Include" />
+            <e p="MoveMenu.cs" t="Include" />
+            <e p="MoveMenuItem.cs" t="Include" />
+          </e>
+          <e p="NumberSelector" t="Include">
+            <e p="NumberSelectorMenu.cs" t="Include" />
+            <e p="NumberSelectorMenuItem.cs" t="Include" />
+          </e>
+          <e p="Party" t="Include">
+            <e p="MenuItem" t="Include">
+              <e p="PartyMenuDetails.cs" t="Include" />
+              <e p="PartyMenuItem.cs" t="Include" />
+              <e p="PartyMenuItemPlate.cs" t="Include" />
+            </e>
+            <e p="PartyMenu.cs" t="Include" />
+            <e p="PopupMenu" t="Include">
+              <e p="PartyPopupMenu.cs" t="Include" />
+              <e p="PartyPopupMenuItem.cs" t="Include" />
+              <e p="PartyPopupMenuOption.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Summary" t="Include">
+            <e p="SummaryMenu.cs" t="Include" />
+            <e p="SummaryStatsMenuItem.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Old" t="Include">
           <e p="Battle" t="Include">
             <e p="BattleController.cs" t="Include" />
             <e p="BattleDialogBox.cs" t="Include" />
             <e p="BattlePokemon.cs" t="Include" />
-            <e p="BattleStatus.cs" t="Include" />
             <e p="ExperienceBar.cs" t="Include" />
             <e p="HealthBar.cs" t="Include" />
             <e p="SubSystems" t="Include">
@@ -45,12 +109,15 @@
             <e p="InventoryMenu.cs" t="Include" />
             <e p="Item.cs" t="Include" />
             <e p="ItemSlot.cs" t="Include" />
+            <e p="ItemUseValidation.cs" t="Include" />
           </e>
           <e p="Menus" t="Include">
             <e p="SummaryMenu.cs" t="Include" />
           </e>
           <e p="Misc" t="Include">
             <e p="Task.cs" t="Include" />
+            <e p="TaskController.cs" t="Include" />
+            <e p="TaskState.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
             <e p="PlayerController.cs" t="Include" />
@@ -83,10 +150,42 @@
           <e p="Utils.cs" t="Include" />
           <e p="VFX" t="Include">
             <e p="SceneWindow.cs" t="Include" />
-            <e p="TransitionController.cs" t="Include" />
           </e>
         </e>
-        <e p="Window.cs" t="Include" />
+        <e p="OptionWindow.cs" t="Include" />
+        <e p="Stats.cs" t="Include" />
+        <e p="System" t="Include">
+          <e p="Transition" t="Include">
+            <e p="TransitionController.cs" t="Include" />
+          </e>
+          <e p="Utlilities" t="Include">
+            <e p="EnumExtensionFunctions.cs" t="Include" />
+          </e>
+          <e p="Window" t="Include">
+            <e p="Dialog" t="Include">
+              <e p="TextBox.cs" t="Include" />
+            </e>
+            <e p="Menu" t="Include">
+              <e p="Grid" t="Include">
+                <e p="GridMenu.cs" t="Include" />
+                <e p="GridMenuOption.cs" t="Include" />
+              </e>
+              <e p="IMenuItem.cs" t="Include" />
+              <e p="MenuBase.cs" t="Include" />
+              <e p="MenuCursor.cs" t="Include" />
+              <e p="Scroll" t="Include">
+                <e p="Popup" t="Include">
+                  <e p="PopupMenu.cs" t="Include" />
+                  <e p="PopupMenuItem.cs" t="Include" />
+                </e>
+                <e p="ScrollMenu.cs" t="Include" />
+                <e p="ScrollMenuOption.cs" t="Include" />
+              </e>
+            </e>
+            <e p="WindowBase.cs" t="Include" />
+            <e p="WindowCloseReason.cs" t="Include" />
+          </e>
+        </e>
       </e>
       <e p="Cinemachine.csproj" t="IncludeRecursive" />
       <e p="com.unity.cinemachine.editor.csproj" t="IncludeRecursive" />

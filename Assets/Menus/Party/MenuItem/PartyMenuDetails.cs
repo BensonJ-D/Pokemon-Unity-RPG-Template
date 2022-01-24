@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using Battle;
+using Characters.Monsters;
 using MyBox;
-using PokemonScripts;
 using PokemonScripts.Conditions;
 using UnityEngine;
 using UnityEngine.UI;
+using HealthBar = Characters.UI.HealthBar;
 
 namespace Menus.Party.MenuItem
 {
@@ -18,7 +19,7 @@ namespace Menus.Party.MenuItem
         [SerializeField] private HealthBar hpBar;
 
         [SerializeField] private bool hasExperienceBar;
-        [ConditionalField(nameof(hasExperienceBar))] [SerializeField] private ExperienceBar expBar;
+        // [ConditionalField(nameof(hasExperienceBar))] [SerializeField] private ExperienceBar expBar;
 
         public void SetData(Pokemon pokemon)
         {
@@ -26,7 +27,7 @@ namespace Menus.Party.MenuItem
             levelText.text = pokemon.Level.ToString();
             hpBar.Setup(pokemon);
          
-            if(hasExperienceBar) expBar.Setup(pokemon);
+            // if(hasExperienceBar) expBar.Setup(pokemon);
             // UpdateStatus(pokemon);
         }
 
@@ -42,23 +43,23 @@ namespace Menus.Party.MenuItem
             }
         }
         
-        public void ResetExperienceBar(Pokemon pokemon)
-        {
-            expBar.Setup(pokemon);
-        }
-        
-        public IEnumerator UpdateExperienceBar(int experienceGained)
-        {
-            var targetExp = expBar.CurrentExperience + experienceGained;
-            while(expBar.CurrentExperience < targetExp)
-            {
-                var expStep = (expBar.NextLevelExperience - expBar.BaseLevelExperience) / 100f;
-                var newExp = expBar.CurrentExperience + expStep;
-                expBar.SetExp(newExp);
-                yield return new WaitForSeconds(0.05f);
-            }
-        }
-        
+        // public void ResetExperienceBar(Pokemon pokemon)
+        // {
+        //     expBar.Setup(pokemon);
+        // }
+        //
+        // public IEnumerator UpdateExperienceBar(int experienceGained)
+        // {
+        //     var targetExp = expBar.CurrentExperience + experienceGained;
+        //     while(expBar.CurrentExperience < targetExp)
+        //     {
+        //         var expStep = (expBar.NextLevelExperience - expBar.BaseLevelExperience) / 100f;
+        //         var newExp = expBar.CurrentExperience + expStep;
+        //         expBar.SetExp(newExp);
+        //         yield return new WaitForSeconds(0.05f);
+        //     }
+        // }
+        //
         public void UpdateStatus(Pokemon pokemon)
         {
             statusCondition.enabled = pokemon.PrimaryCondition != PrimaryStatusCondition.None;

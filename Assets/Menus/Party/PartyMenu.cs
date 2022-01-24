@@ -4,10 +4,11 @@ using System.Transition;
 using System.Window.Dialog;
 using System.Window.Menu;
 using System.Window.Menu.Grid;
+using Characters.Monsters;
+using Characters.Party.PokemonParty;
 using Menus.Party.MenuItem;
 using Misc;
 using MyBox;
-using PokemonScripts;
 using UnityEngine;
 
 namespace Menus.Party
@@ -41,7 +42,7 @@ namespace Menus.Party
         public IEnumerator OpenWindow(PokemonParty pokemon, OnConfirmFunc onConfirmCallback = null, OnCancelFunc onCancelCallback = null)
         {
             _party = pokemon;
-            SetSlots(pokemon.Party);
+            SetSlots(pokemon.PartyMembers);
             yield return base.OpenWindow(
                 onConfirmCallback: onConfirmCallback ?? DefaultOnConfirmCallback, 
                 onCancelCallback: onCancelCallback ?? DefaultOnCancelCallback
@@ -69,7 +70,7 @@ namespace Menus.Party
                 fromSlot.SetMenuItem(newFromPokemon);
                 toSlot.SetMenuItem(newToPokemon);
                 
-                _party.SwitchPokemon(fromSlot.Value, toSlot.Value);
+                _party.SwitchPartyMembers(fromSlot.Value, toSlot.Value);
 
                 Task switchFromAnimateIn = new Task(fromSlot.ShiftIn());
                 Task switchToAnimateIn = new Task(toSlot.ShiftIn());

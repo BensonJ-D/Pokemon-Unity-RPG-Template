@@ -22,7 +22,7 @@ using PokemonScripts;
         public void Setup(Pokemon pokemon)
         {
             Pokemon = pokemon;
-            hud.SetData(pokemon);
+            // hud.SetData(pokemon);
             
             image.sprite = displayFront ? Pokemon.Base.FrontSprite : Pokemon.Base.BackSprite;
         }
@@ -88,12 +88,12 @@ using PokemonScripts;
                 }
 
                 experienceGain -= expStep;
-                yield return hud.UpdateExperienceBar(expStep);
+                // yield return hud.UpdateExperienceBar(expStep);
                 Pokemon.CurrentExperience += expStep;
                 var levelUp = Pokemon.CheckForLevel();
 
                 if (!levelUp) continue;
-                hud.SetData(Pokemon);
+                // hud.SetData(Pokemon);
                 yield return new WaitForSeconds(1f);
                 // yield return LevelUpWindow.ShowWindow(Pokemon.GetStats(Pokemon.Level - 1), Pokemon.GetStats());
             }
@@ -101,7 +101,7 @@ using PokemonScripts;
 
         public void UpdateStatus()
         {
-            hud.UpdateStatus(Pokemon);
+            // hud.UpdateStatus(Pokemon);
         }
     }
 }

@@ -2,14 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Battle;
-using PokemonScripts;
+using Characters.UI;
 using PokemonScripts.Conditions;
 using PokemonScripts.Moves;
 using UnityEngine;
-using HealthBar = Character.UI.HealthBar;
 
-namespace Character.Monsters
+namespace Characters.Monsters
 {
     public enum Stat { Hp, Attack, Defence, SpAttack, SpDefence, Speed, Accuracy, Evasion }
 
@@ -22,7 +20,7 @@ namespace Character.Monsters
         [SerializeField] private int initialLevel;
         
         [SerializeField] private HealthBar healthBar;
-        [SerializeField] private ExperienceBar experienceBar;
+        // [SerializeField] private ExperienceBar experienceBar;
 
         public void Initialization()
         {

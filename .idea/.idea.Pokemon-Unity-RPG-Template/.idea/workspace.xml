@@ -33,31 +33,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ea9d48f-65fa-438b-b3d1-f3786e6b3ec4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/GridMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/GridMenu.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MenuCursor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MenuCursor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MenuOption.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MenuOption.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SubSystems/MoveMenu2.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SubSystems/MoveMenu2.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Menus.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Menus/SummaryMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Menus/SummaryMenu.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Label.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Label.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/OptionWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/OptionWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleDialogBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleDialogBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/ExperienceBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/ExperienceBar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SubSystems/Party/PartyMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SubSystems/Party/PartyMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SummaryMenu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SummaryMenu.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Window.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Window.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Characters/Party.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Characters/Party/Party.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Characters/Party/Party.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Characters/Party/PokemonParty.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Characters/Party/PokemonParty/PokemonParty.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Characters/Party/PokemonParty/PokemonParty.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character/LearnableMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/LearnableMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character/LearnableMove.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/LearnableMove.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character/Monsters.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Monsters.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character/Monsters/Pokemon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character/Monsters/Pokemon.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character/Monsters/PokemonBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Monsters/PokemonBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character/Monsters/PokemonBase.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Monsters/PokemonBase.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character/UI.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/UI.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character/UI/HealthBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/UI/HealthBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character/UI/HealthBar.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/UI/HealthBar.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menus/Inventory/InventoryMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Inventory/InventoryMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/Inventory/HealingItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Inventory/HealingItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/Inventory/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Inventory/Item.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +71,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E22351E3-95F4-4D7B-8C48-60FCA2DCEE71/b0/dacaff21/IPartition`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7D0BC631-CADD-4A07-BF74-717847E90CFA/ED/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7D0BC631-CADD-4A07-BF74-717847E90CFA/509/Dictionary.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file:///Applications/Unity/Hub/Editor/2020.1.13f1/Unity.app/Contents/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/Text.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Label.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -103,6 +99,11 @@
         <option value="$PROJECT_DIR$/Assets/GridMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Window.cs" />
+        <option value="$PROJECT_DIR$/Assets/Menus/Inventory/InventoryMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Characters/UI/HealthBar.cs" />
+        <option value="$PROJECT_DIR$/Assets/Characters/Party/Party.cs" />
+        <option value="$PROJECT_DIR$/Assets/Characters/Party/PokemonParty/PokemonParty.cs" />
       </list>
     </option>
   </component>
@@ -131,10 +132,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="1120">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="1120" />
+      <option name="pid" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -193,10 +194,10 @@
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
     <state x="2560" y="-11" key="#Plugins/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640075996917" />
-    <state x="719" y="467" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1" timestamp="1639657489460">
+    <state x="719" y="467" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1" timestamp="1642758550319">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="719" y="467" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1/0.0.1920.1200@0.0.1920.1200" timestamp="1639657489460" />
+    <state x="719" y="467" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1/0.0.1920.1200@0.0.1920.1200" timestamp="1642758550319" />
     <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog" timestamp="1639985542499">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
@@ -328,27 +329,13 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Battle/ExperienceBar.cs</url>
           <line>28</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Battle/ExperienceBar.cs" initialLine="28">
-            <startOffsets>
-              <option value="1067" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1131" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Battle/ExperienceBar.cs" initialLine="28" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/GridMenu.cs</url>
           <line>148</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/GridMenu.cs" initialLine="135">
-            <startOffsets>
-              <option value="5069" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5193" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/GridMenu.cs" initialLine="135" />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>

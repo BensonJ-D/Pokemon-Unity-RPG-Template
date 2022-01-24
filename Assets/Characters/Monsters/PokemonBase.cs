@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using PokemonScripts;
-using PokemonScripts.Moves;
 using UnityEngine;
 
-namespace Character.Monsters
+namespace Characters.Monsters
 {
     [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new pokemon")]
     public class PokemonBase : ScriptableObject
@@ -31,7 +29,7 @@ namespace Character.Monsters
         [SerializeField] private ExperienceGroup experienceGroup;
         [SerializeField] private int experienceYield;
 
-        [SerializeField] private LearnableMove[] learnableMoves;
+        [SerializeField] private PokemonScripts.LearnableMove[] learnableMoves;
 
         public int Number => number;
         public string Species => species;
@@ -50,6 +48,6 @@ namespace Character.Monsters
 
         public ExperienceGroup ExperienceGroup => experienceGroup;
         public int ExperienceYield => experienceYield;
-        public IEnumerable<LearnableMove> LearnableMoves => learnableMoves;
+        public IEnumerable<PokemonScripts.LearnableMove> LearnableMoves => learnableMoves;
     }
 }
