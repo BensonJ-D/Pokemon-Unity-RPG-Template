@@ -6,6 +6,7 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Characters" t="Include">
+          <e p="ExperienceGroups.cs" t="Include" />
           <e p="LearnableMove.cs" t="Include" />
           <e p="Monsters" t="Include">
             <e p="Pokemon.cs" t="Include" />
@@ -17,8 +18,9 @@
               <e p="PokemonParty.cs" t="Include" />
             </e>
           </e>
+          <e p="Stats.cs" t="Include" />
           <e p="UI" t="Include">
-            <e p="HealthBar.cs" t="Include" />
+            <e p="FillableBar.cs" t="Include" />
           </e>
         </e>
         <e p="Editor" t="Include">
@@ -153,7 +155,6 @@
           </e>
         </e>
         <e p="OptionWindow.cs" t="Include" />
-        <e p="Stats.cs" t="Include" />
         <e p="System" t="Include">
           <e p="Transition" t="Include">
             <e p="TransitionController.cs" t="Include" />

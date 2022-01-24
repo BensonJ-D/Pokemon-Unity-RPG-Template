@@ -3,11 +3,11 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using Battle;
 using Characters.Monsters;
+using Characters.UI;
 using MyBox;
 using PokemonScripts.Conditions;
 using UnityEngine;
 using UnityEngine.UI;
-using HealthBar = Characters.UI.HealthBar;
 
 namespace Menus.Party.MenuItem
 {
@@ -16,7 +16,7 @@ namespace Menus.Party.MenuItem
         [SerializeField] private Text nameText;
         [SerializeField] private Text levelText;
         [SerializeField] private Image statusCondition;
-        [SerializeField] private HealthBar hpBar;
+        [SerializeField] private FillableBar hpBar;
 
         [SerializeField] private bool hasExperienceBar;
         // [ConditionalField(nameof(hasExperienceBar))] [SerializeField] private ExperienceBar expBar;
@@ -25,7 +25,7 @@ namespace Menus.Party.MenuItem
         {
             nameText.text = pokemon.Base.Species;
             levelText.text = pokemon.Level.ToString();
-            hpBar.Setup(pokemon);
+            hpBar.SetValue(pokemon.CurrentHp, pokemon.MaxHp());
          
             // if(hasExperienceBar) expBar.Setup(pokemon);
             // UpdateStatus(pokemon);
@@ -34,13 +34,13 @@ namespace Menus.Party.MenuItem
         [SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
         public IEnumerator UpdateHealthBar(DamageDetails dmgDetails)
         {
-            var targetHp = hpBar.Hp - dmgDetails.DamageDealt > 0 ? hpBar.Hp - dmgDetails.DamageDealt : 0;
-            while(hpBar.Hp > targetHp)
-            {
-                var newHp = hpBar.Hp - (hpBar.MaxHp / 100f) > 0 ? hpBar.Hp - (hpBar.MaxHp / 100f) : 0;
-                hpBar.SetHp(newHp);
+            // var targetHp = hpBar.CurrentValue - dmgDetails.DamageDealt > 0 ? hpBar.CurrentValue - dmgDetails.DamageDealt : 0;
+            // while(hpBar.CurrentValue > targetHp)
+            // {
+                // var newHp = hpBar.CurrentValue - (hpBar.MaximumValue / 100f) > 0 ? hpBar.CurrentValue - (hpBar.MaximumValue / 100f) : 0;
+                // hpBar.SetHp(newHp);
                 yield return new WaitForSeconds(0.05f / dmgDetails.Multiplier);
-            }
+            // }
         }
         
         // public void ResetExperienceBar(Pokemon pokemon)

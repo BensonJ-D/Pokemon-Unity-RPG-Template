@@ -19,7 +19,7 @@ namespace Characters.Monsters
         [SerializeField] private float baseHealth;
         [SerializeField] private int initialLevel;
         
-        [SerializeField] private HealthBar healthBar;
+        [SerializeField] private FillableBar healthBar;
         // [SerializeField] private ExperienceBar experienceBar;
 
         public void Initialization()
@@ -158,13 +158,13 @@ namespace Characters.Monsters
         }
 
 
-        public HealthBar HealthBar
+        public FillableBar HealthBar
         {
             get => healthBar;
             set
             {
                 healthBar = value;
-                healthBar.Setup(this);
+                healthBar.SetValue(CurrentHp, MaxHp());
             }
         }
 
