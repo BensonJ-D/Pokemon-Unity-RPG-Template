@@ -266,6 +266,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestParty
       objectReference: {fileID: 0}
+    - target: {fileID: 1916113617684198289, guid: db60caa5b9be1e1408308b7d6bf0ce2b,
+        type: 3}
+      propertyPath: partyMembers.Array.data[0].baseExp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916113617684198289, guid: db60caa5b9be1e1408308b7d6bf0ce2b,
+        type: 3}
+      propertyPath: partyMembers.Array.data[0].baseHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916113617684198289, guid: db60caa5b9be1e1408308b7d6bf0ce2b,
+        type: 3}
+      propertyPath: partyMembers.Array.data[0].initialLevel
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5575441392472334167, guid: db60caa5b9be1e1408308b7d6bf0ce2b,
         type: 3}
       propertyPath: party.Array.data[0].baseHealth
@@ -338,18 +353,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db60caa5b9be1e1408308b7d6bf0ce2b, type: 3}
---- !u!114 &737040339 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5575441392472334167, guid: db60caa5b9be1e1408308b7d6bf0ce2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 737040338}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd14841a030b485bb524c182fba97b10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &737040340 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8432491784499170921, guid: db60caa5b9be1e1408308b7d6bf0ce2b,
@@ -402,6 +405,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42cd16fa9ba94be5b3d0836a9c3ac9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1130250933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1916113617684198289, guid: db60caa5b9be1e1408308b7d6bf0ce2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 737040338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1eac594a8dd453d9a4c78b4389afb28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1326193867
@@ -564,7 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 1000085514}
   exampleInventory: {fileID: 8651473170399563712}
-  examplePokemon: {fileID: 737040339}
+  examplePokemon: {fileID: 1130250933}
 --- !u!4 &1735698525
 Transform:
   m_ObjectHideFlags: 0
@@ -1498,6 +1513,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1735698525}
     m_Modifications:
+    - target: {fileID: 408352158680989973, guid: 35d1c7ab9bdec244cabea7879e8856a9,
+        type: 3}
+      propertyPath: items.Array.data[0].quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 408352158680989973, guid: 35d1c7ab9bdec244cabea7879e8856a9,
+        type: 3}
+      propertyPath: items.Array.data[1].quantity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 408352158680989973, guid: 35d1c7ab9bdec244cabea7879e8856a9,
+        type: 3}
+      propertyPath: items.Array.data[2].quantity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 827632534267081875, guid: 35d1c7ab9bdec244cabea7879e8856a9,
         type: 3}
       propertyPath: m_Name

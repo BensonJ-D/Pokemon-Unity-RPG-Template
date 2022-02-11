@@ -21,6 +21,8 @@ namespace Menus.Party.MenuItem
         [SerializeField] private bool hasExperienceBar;
         // [ConditionalField(nameof(hasExperienceBar))] [SerializeField] private ExperienceBar expBar;
 
+        public FillableBar HealthBar => hpBar;
+        
         public void SetData(Pokemon pokemon)
         {
             nameText.text = pokemon.Base.Species;

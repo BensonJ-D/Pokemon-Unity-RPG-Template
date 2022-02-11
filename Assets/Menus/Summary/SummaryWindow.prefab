@@ -58,13 +58,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonSprite: {fileID: 288218454020452761}
-  healthBar: {fileID: 288218454973744873}
+  healthBar: {fileID: 7917105454461159096}
   attackText: {fileID: 288218454140601825}
   defenceText: {fileID: 288218454739887320}
   spAtkText: {fileID: 288218453482454825}
   spDefText: {fileID: 288218453913069070}
   speedText: {fileID: 288218454328439827}
-  expBar: {fileID: 288218454984498215}
 --- !u!1 &288218453426010120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,7 +1238,7 @@ GameObject:
   - component: {fileID: 288218454973744878}
   - component: {fileID: 288218454973744872}
   - component: {fileID: 288218454973744879}
-  - component: {fileID: 288218454973744873}
+  - component: {fileID: 7917105454461159096}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -1306,7 +1305,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &288218454973744873
+--- !u!114 &7917105454461159096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1315,12 +1314,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 288218454973744877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b07e867329701349bd426a6f69235d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 79263872406c4abd9971919fdb43a29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpLabel: {fileID: 288218453426010122}
-  maxHpLabel: {fileID: 288218453562285710}
-  healthImage: {fileID: 288218455204857473}
+  currentValueLabel: {fileID: 288218453426010122}
+  maximumValueLabel: {fileID: 288218453562285710}
+  baseFillImage: {fileID: 288218455204857473}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1 &288218454984498214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1360,7 @@ GameObject:
   - component: {fileID: 288218454984498208}
   - component: {fileID: 288218454984498210}
   - component: {fileID: 288218454984498209}
-  - component: {fileID: 288218454984498215}
+  - component: {fileID: 5904749811921918117}
   m_Layer: 5
   m_Name: Experience
   m_TagString: Untagged
@@ -1399,7 +1427,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &288218454984498215
+--- !u!114 &5904749811921918117
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1408,12 +1436,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 288218454984498214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac983d1375864354b4def4106448e3fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 79263872406c4abd9971919fdb43a29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalExperienceLabel: {fileID: 288218455372586837}
-  nextLevelExperienceLabel: {fileID: 288218455071454753}
-  experienceImage: {fileID: 288218453486961295}
+  currentValueLabel: {fileID: 288218455372586837}
+  maximumValueLabel: {fileID: 288218455071454753}
+  baseFillImage: {fileID: 288218453486961295}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.3137255, g: 0.627451, b: 0.909804, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1 &288218455028112775
 GameObject:
   m_ObjectHideFlags: 0

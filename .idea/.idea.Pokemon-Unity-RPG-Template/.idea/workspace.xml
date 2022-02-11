@@ -36,11 +36,37 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/UI/HealthBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/UI/HealthBar.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functional Tests/Inventory Menu Test/InventoryMenuTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functional Tests/Inventory Menu Test/InventoryMenuTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functional Tests/Party Menu Test/PartyMenuTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functional Tests/Party Menu Test/PartyMenuTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functional Tests/Party Menu Test/PartyMenuTestRunner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functional Tests/Party Menu Test/PartyMenuTestRunner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functional Tests/TestParty.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functional Tests/TestParty.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Items/Hyper Potion.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Items/Hyper Potion.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Items/Potion.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Items/Potion.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Items/Super Potion.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Items/Super Potion.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/1_Bulbasaur.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/1_Bulbasaur.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menus/Inventory/InventoryMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Inventory/InventoryMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuDetails.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuDetails.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItem.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItem.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItemLeader.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItemLeader.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menus/Party/PartyMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Party/PartyMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryStatsMenuItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryStatsMenuItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryWindow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryWindow.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/Battle/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Battle/BattleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/Battle/SubSystems/Party/PartyMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Battle/SubSystems/Party/PartyMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/GameController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/Inventory/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Inventory/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/Menus/SummaryMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Menus/OldSummaryMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/Menus/SummaryMenu.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Menus/OldSummaryMenu.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/PokemonScripts/PokemonBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/PokemonScripts/PokemonBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/PokemonScripts/PokemonParty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/PokemonScripts/OldPokemonParty.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Old/PokemonScripts/PokemonParty.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/PokemonScripts/OldPokemonParty.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/System/Window/Menu/Scroll/ScrollMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/System/Window/Menu/Scroll/ScrollMenu.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +77,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/99258562-0D64-4271-98DD-F3A0E1467733/2a/74f0bc3b/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E22351E3-95F4-4D7B-8C48-60FCA2DCEE71/06/2f956573/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FCFB6FCD-3E9A-4E12-8C14-260F742E2185/3c/452b4986/Cursor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7D0BC631-CADD-4A07-BF74-717847E90CFA/6e/11d8a104/IEnumerator.cs" root0="SKIP_HIGHLIGHTING" />
@@ -92,17 +119,24 @@
         <option value="$PROJECT_DIR$/Assets/Characters/Monsters/PokemonBase.cs" />
         <option value="$PROJECT_DIR$/Assets/Characters/ExperienceGroups.cs" />
         <option value="$PROJECT_DIR$/Assets/Functional Tests/Inventory Menu Test/InventoryMenuTestRunner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Menus/Inventory/InventoryMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/Menus/Party/PartyMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Menus/Summary/SummaryMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/Functional Tests/Party Menu Test/PartyMenuTestRunner.cs" />
         <option value="$PROJECT_DIR$/Assets/Old/Battle/BattlePokemon.cs" />
         <option value="$PROJECT_DIR$/Assets/Characters/UI/HealthBar.cs" />
-        <option value="$PROJECT_DIR$/Assets/Menus/Summary/SummaryStatsMenuItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Old/Menus/SummaryMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Old/Menus/OldSummaryMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Old/PokemonScripts/OldPokemonParty.cs" />
+        <option value="$PROJECT_DIR$/Assets/Old/PokemonScripts/PokemonBase.cs" />
+        <option value="$PROJECT_DIR$/Assets/Functional Tests/Party Menu Test/PartyMenuTestRunner.cs" />
         <option value="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuDetails.cs" />
+        <option value="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Menus/Party/PartyMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Old/Inventory/Item.cs" />
+        <option value="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" />
+        <option value="$PROJECT_DIR$/Assets/System/Window/Menu/Scroll/ScrollMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Menus/Inventory/InventoryMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Menus/Summary/SummaryStatsMenuItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Menus/Summary/SummaryMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" />
+        <option value="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" />
       </list>
     </option>
   </component>
@@ -131,10 +165,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="1601">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="1601" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -155,7 +189,7 @@
       <workItem from="1640068917336" duration="2509000" />
       <workItem from="1640076021272" duration="15660000" />
       <workItem from="1640223961252" duration="5072000" />
-      <workItem from="1643024129597" duration="2677000" />
+      <workItem from="1643024129597" duration="13037000" />
     </task>
     <servers />
   </component>
@@ -202,102 +236,102 @@
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1639985542499" />
-    <state width="1878" height="529" key="GridCell.Tab.0.bottom" timestamp="1640223939193">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.0.bottom" timestamp="1644469135785">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939193" />
+    <state width="1878" height="244" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1643174026023" />
     <state width="2518" height="529" key="GridCell.Tab.0.bottom/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956820" />
-    <state width="1878" height="451" key="GridCell.Tab.0.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486947" />
-    <state width="1878" height="529" key="GridCell.Tab.0.center" timestamp="1640223939191">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.0.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1644469135785" />
+    <state width="1878" height="244" key="GridCell.Tab.0.center" timestamp="1644469135768">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939191" />
+    <state width="1878" height="244" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1643174026023" />
     <state width="2518" height="529" key="GridCell.Tab.0.center/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956819" />
-    <state width="1878" height="451" key="GridCell.Tab.0.center/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486945" />
-    <state width="1878" height="529" key="GridCell.Tab.0.left" timestamp="1640223939190">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.0.center/0.23.1920.1177@0.23.1920.1177" timestamp="1644469135768" />
+    <state width="1878" height="244" key="GridCell.Tab.0.left" timestamp="1644469135765">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939190" />
+    <state width="1878" height="244" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1643174026022" />
     <state width="2518" height="529" key="GridCell.Tab.0.left/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956818" />
-    <state width="1878" height="451" key="GridCell.Tab.0.left/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486945" />
-    <state width="1878" height="529" key="GridCell.Tab.0.right" timestamp="1640223939192">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.0.left/0.23.1920.1177@0.23.1920.1177" timestamp="1644469135765" />
+    <state width="1878" height="244" key="GridCell.Tab.0.right" timestamp="1644469135781">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939192" />
+    <state width="1878" height="244" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1643174026023" />
     <state width="2518" height="529" key="GridCell.Tab.0.right/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956820" />
-    <state width="1878" height="451" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486946" />
-    <state width="1878" height="529" key="GridCell.Tab.1.bottom" timestamp="1640223939195">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1644469135781" />
+    <state width="1878" height="244" key="GridCell.Tab.1.bottom" timestamp="1644469135809">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.1.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939195" />
+    <state width="1878" height="244" key="GridCell.Tab.1.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025909" />
     <state width="2518" height="529" key="GridCell.Tab.1.bottom/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077973873" />
-    <state width="1878" height="529" key="GridCell.Tab.1.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1640182675040" />
-    <state width="1878" height="529" key="GridCell.Tab.1.center" timestamp="1640223939194">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.1.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1644469135809" />
+    <state width="1878" height="244" key="GridCell.Tab.1.center" timestamp="1644469135796">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.1.center/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939194" />
+    <state width="1878" height="244" key="GridCell.Tab.1.center/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025908" />
     <state width="2518" height="529" key="GridCell.Tab.1.center/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077973872" />
-    <state width="1878" height="529" key="GridCell.Tab.1.center/0.23.1920.1177@0.23.1920.1177" timestamp="1640182675039" />
-    <state width="1878" height="529" key="GridCell.Tab.1.left" timestamp="1640223939193">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.1.center/0.23.1920.1177@0.23.1920.1177" timestamp="1644469135796" />
+    <state width="1878" height="244" key="GridCell.Tab.1.left" timestamp="1644469135791">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.1.left/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939193" />
+    <state width="1878" height="244" key="GridCell.Tab.1.left/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025908" />
     <state width="2518" height="529" key="GridCell.Tab.1.left/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077973872" />
-    <state width="1878" height="529" key="GridCell.Tab.1.left/0.23.1920.1177@0.23.1920.1177" timestamp="1640182675039" />
-    <state width="1878" height="529" key="GridCell.Tab.1.right" timestamp="1640223939194">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.1.left/0.23.1920.1177@0.23.1920.1177" timestamp="1644469135791" />
+    <state width="1878" height="244" key="GridCell.Tab.1.right" timestamp="1644469135803">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.1.right/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939194" />
+    <state width="1878" height="244" key="GridCell.Tab.1.right/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025908" />
     <state width="2518" height="529" key="GridCell.Tab.1.right/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077973873" />
-    <state width="1878" height="529" key="GridCell.Tab.1.right/0.23.1920.1177@0.23.1920.1177" timestamp="1640182675040" />
-    <state width="1878" height="529" key="GridCell.Tab.2.bottom" timestamp="1640223939196">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.1.right/0.23.1920.1177@0.23.1920.1177" timestamp="1644469135803" />
+    <state width="1878" height="244" key="GridCell.Tab.2.bottom" timestamp="1644469133164">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.2.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939196" />
+    <state width="1878" height="244" key="GridCell.Tab.2.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025910" />
     <state width="2518" height="529" key="GridCell.Tab.2.bottom/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956630" />
-    <state width="1878" height="451" key="GridCell.Tab.2.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486806" />
-    <state width="1878" height="529" key="GridCell.Tab.2.center" timestamp="1640223939195">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.2.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1644469133164" />
+    <state width="1878" height="244" key="GridCell.Tab.2.center" timestamp="1644469135816">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.2.center/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939195" />
+    <state width="1878" height="244" key="GridCell.Tab.2.center/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025910" />
     <state width="2518" height="529" key="GridCell.Tab.2.center/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956629" />
-    <state width="1878" height="451" key="GridCell.Tab.2.center/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486805" />
-    <state width="1878" height="529" key="GridCell.Tab.2.left" timestamp="1640223939195">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.2.center/0.23.1920.1177@0.23.1920.1177" timestamp="1644469135816" />
+    <state width="1878" height="244" key="GridCell.Tab.2.left" timestamp="1644469135813">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.2.left/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939195" />
+    <state width="1878" height="244" key="GridCell.Tab.2.left/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025909" />
     <state width="2518" height="529" key="GridCell.Tab.2.left/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956628" />
-    <state width="1878" height="451" key="GridCell.Tab.2.left/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486805" />
-    <state width="1878" height="529" key="GridCell.Tab.2.right" timestamp="1640223939196">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.2.left/0.23.1920.1177@0.23.1920.1177" timestamp="1644469135813" />
+    <state width="1878" height="244" key="GridCell.Tab.2.right" timestamp="1644469133136">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.2.right/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939196" />
+    <state width="1878" height="244" key="GridCell.Tab.2.right/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025910" />
     <state width="2518" height="529" key="GridCell.Tab.2.right/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956630" />
-    <state width="1878" height="451" key="GridCell.Tab.2.right/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486806" />
-    <state width="1878" height="529" key="GridCell.Tab.3.bottom" timestamp="1640223939198">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.2.right/0.23.1920.1177@0.23.1920.1177" timestamp="1644469133136" />
+    <state width="1878" height="244" key="GridCell.Tab.3.bottom" timestamp="1644469133178">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.3.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939198" />
+    <state width="1878" height="244" key="GridCell.Tab.3.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025912" />
     <state width="2518" height="529" key="GridCell.Tab.3.bottom/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956633" />
-    <state width="1878" height="451" key="GridCell.Tab.3.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486808" />
-    <state width="1878" height="529" key="GridCell.Tab.3.center" timestamp="1640223939197">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.3.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1644469133178" />
+    <state width="1878" height="244" key="GridCell.Tab.3.center" timestamp="1644469133170">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.3.center/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939197" />
+    <state width="1878" height="244" key="GridCell.Tab.3.center/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025911" />
     <state width="2518" height="529" key="GridCell.Tab.3.center/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956632" />
-    <state width="1878" height="451" key="GridCell.Tab.3.center/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486807" />
-    <state width="1878" height="529" key="GridCell.Tab.3.left" timestamp="1640223939197">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.3.center/0.23.1920.1177@0.23.1920.1177" timestamp="1644469133170" />
+    <state width="1878" height="244" key="GridCell.Tab.3.left" timestamp="1644469133166">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.3.left/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939197" />
+    <state width="1878" height="244" key="GridCell.Tab.3.left/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025911" />
     <state width="2518" height="529" key="GridCell.Tab.3.left/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956631" />
-    <state width="1878" height="451" key="GridCell.Tab.3.left/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486807" />
-    <state width="1878" height="529" key="GridCell.Tab.3.right" timestamp="1640223939197">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1878" height="244" key="GridCell.Tab.3.left/0.23.1920.1177@0.23.1920.1177" timestamp="1644469133166" />
+    <state width="1878" height="244" key="GridCell.Tab.3.right" timestamp="1644469133175">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1878" height="529" key="GridCell.Tab.3.right/0.0.1920.1200@0.0.1920.1200" timestamp="1640223939197" />
+    <state width="1878" height="244" key="GridCell.Tab.3.right/0.0.1920.1200@0.0.1920.1200" timestamp="1643174025912" />
     <state width="2518" height="529" key="GridCell.Tab.3.right/0.23.1680.1027/1680.-367.2560.1417@1680.-367.2560.1417" timestamp="1640077956632" />
-    <state width="1878" height="451" key="GridCell.Tab.3.right/0.23.1920.1177@0.23.1920.1177" timestamp="1640001486808" />
+    <state width="1878" height="244" key="GridCell.Tab.3.right/0.23.1920.1177@0.23.1920.1177" timestamp="1644469133175" />
     <state x="633" y="396" key="LayersDialog" timestamp="1639484657796">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
@@ -338,6 +372,153 @@
           <line>148</line>
           <properties documentPath="$PROJECT_DIR$/Assets/GridMenu.cs" initialLine="135" />
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs</url>
+          <line>81</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" initialLine="81">
+            <startOffsets>
+              <option value="2032" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2093" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs</url>
+          <line>83</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" initialLine="83">
+            <startOffsets>
+              <option value="2107" />
+              <option value="2124" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2123" />
+              <option value="2131" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs</url>
+          <line>176</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" initialLine="175">
+            <startOffsets>
+              <option value="6725" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6791" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs</url>
+          <line>178</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" initialLine="177">
+            <startOffsets>
+              <option value="6805" />
+              <option value="6829" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6828" />
+              <option value="6841" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs</url>
+          <line>34</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" initialLine="31">
+            <startOffsets>
+              <option value="1374" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1454" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs</url>
+          <line>35</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" initialLine="32">
+            <startOffsets>
+              <option value="1467" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1499" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs</url>
+          <line>36</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" initialLine="33">
+            <startOffsets>
+              <option value="1512" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1569" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs</url>
+          <line>39</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" initialLine="36">
+            <startOffsets>
+              <option value="1660" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1708" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs</url>
+          <line>41</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" initialLine="38">
+            <startOffsets>
+              <option value="1739" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1953" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs</url>
+          <line>45</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" initialLine="40">
+            <startOffsets>
+              <option value="1994" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2041" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs</url>
+          <line>46</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" initialLine="41">
+            <startOffsets>
+              <option value="2058" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2116" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

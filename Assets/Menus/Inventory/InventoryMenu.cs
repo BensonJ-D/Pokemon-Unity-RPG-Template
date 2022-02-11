@@ -49,7 +49,7 @@ namespace Menus.Inventory
         private IEnumerator DefaultOnConfirmCallback(InventoryData choice)
         {
             var options = new List<InventoryPopupMenuOption> {InventoryPopupMenuOption.Use, InventoryPopupMenuOption.Toss};
-            yield return popupMenu.OpenWindow(options, onConfirmCallback: OnPopupConfirm, onCancelCallback: () => popupMenu.CloseWindow());
+            yield return popupMenu.OpenWindow(options, OnPopupConfirm, OnPopupCancel);
             yield return popupMenu.RunWindow();
         }
 
@@ -60,7 +60,7 @@ namespace Menus.Inventory
                 StartCoroutine(TransitionController.Instance.RunTransition(Transition.BattleEnter));
                 
                 yield return TransitionController.Instance.WaitForTransitionPeak();
-                yield return partyMenu.OpenWindow(_party, onConfirmCallback: OnPartyConfirm, onCancelCallback: OnPartyCancel);
+                yield return partyMenu.OpenWindow(_party, OnPartyConfirm, OnPartyCancel);
                 yield return popupMenu.CloseWindow();
                 
                 yield return TransitionController.Instance.WaitForTransitionCompletion();
@@ -70,30 +70,37 @@ namespace Menus.Inventory
             else if (choice == InventoryPopupMenuOption.Toss)
             {
                 yield return popupMenu.CloseWindow();
-                yield return numberSelector.OpenWindow(1, CurrentOption.Value.quantity, OnTossConfirm,
-                    () => numberSelector.CloseWindow());
+                yield return numberSelector.OpenWindow(1, CurrentOption.Value.quantity, OnTossConfirm, OnTossCancel);
                 yield return numberSelector.RunWindow();
             }
 
             yield return null;
         }
 
-        private IEnumerator OnTossConfirm(int choice)
+        private IEnumerator OnPopupCancel() => popupMenu.CloseWindow();
+
+        private IEnumerator OnTossConfirm(int numberToToss)
         {
-            InventoryData removalData = new InventoryData(CurrentOption.Value.item, choice);
-            _inventory.Remove(removalData);
-            SetVisibleItems();
-            
-            if(_inventory.Items.Count == 0) cursor.gameObject.SetActive(false);
+            var item = CurrentOption.Value.item;
+            RemoveItemFromInventory(item, numberToToss);
 
             yield return numberSelector.CloseWindow();
         }
+
+        private IEnumerator OnTossCancel() => numberSelector.CloseWindow();
         
         private IEnumerator OnPartyConfirm(Pokemon choice)
         {
-            var itemUseValidation = CurrentOption.Value.item.ValidateUse(choice);
-
+            var item = CurrentOption.Value.item;
+            var itemUseValidation = item.ValidateUse(choice);
+            
+            if (itemUseValidation.Successful) yield return item.OnUse(choice);
+            
             yield return partyMenu.TypeMessage(itemUseValidation.ResponseMessage);
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+
+            if (item.Consumable) RemoveItemFromInventory(item);
+            if (itemUseValidation.Successful) yield return OnPartyCancel();
         }
         
         private IEnumerator OnPartyCancel()
@@ -110,6 +117,14 @@ namespace Menus.Inventory
         {
             base.OnOptionChange(previousOption, newOption, cursorShifted);
             itemDetails.SetItemDetails(newOption.Value.item);
+        }
+
+        private void RemoveItemFromInventory(Item item, int count = 1)
+        {
+            _inventory.Remove(item, count);
+            UpdateVisibleItems();
+            
+            if(_inventory.Items.Count == 0) cursor.gameObject.SetActive(false);
         }
     }
 }

@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace PokemonScripts
 {
-    public class PokemonParty : MonoBehaviour
+    public class OldPokemonParty : MonoBehaviour
     {
         [SerializeField] private List<Pokemon> party;
         
         public List<Pokemon> Party => party;
         private List<int> BattlePokemon { get; set; }
 
-        public PokemonParty(List<Pokemon> party)
+        public OldPokemonParty(List<Pokemon> party)
         {
             this.party = party;
         }

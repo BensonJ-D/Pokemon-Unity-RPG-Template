@@ -76,6 +76,18 @@ namespace Inventory
                 Items.RemoveAt(index);
             }
         }
+        
+        public void Remove(Item item, int count)
+        {
+            var index = Items.FindIndex(data => Equals(item, data.item));
+
+            if (index == -1) return;
+            
+            Items[index].quantity -= count;
+            if (Items[index].quantity < 1) {
+                Items.RemoveAt(index);
+            }
+        }
     }
 }
 

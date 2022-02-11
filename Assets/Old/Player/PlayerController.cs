@@ -9,10 +9,10 @@ namespace Player
     {
         [SerializeField] private int speed;
         [SerializeField] private Grid grid;
-        [SerializeField] private PokemonParty party;
+        [SerializeField] private OldPokemonParty party;
         [SerializeField] private Inventory.Inventory inventory;
 
-        public PokemonParty Party => party;
+        public OldPokemonParty Party => party;
         public Inventory.Inventory Inventory => inventory;
 
         private bool _moving;

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 973c8cb149ad4d2da346270365ce8329, type: 3}
-  m_Name: 1_Bulbasaur
+  m_Name: 1_Bulbasaur_OLD
   m_EditorClassIdentifier: 
   species: Bulbasaur
   description: 

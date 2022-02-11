@@ -6,7 +6,7 @@ using VFX;
 
 namespace Menus
 {
-    public class SummaryMenu : SceneWindow
+    public class OldSummaryMenu : SceneWindow
     {
         [SerializeField] private Image pokemonSprite;
         [SerializeField] private HealthBar healthBar;

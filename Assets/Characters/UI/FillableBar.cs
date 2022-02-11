@@ -12,33 +12,38 @@ namespace Characters.UI
         [SerializeField] private Image baseFillImage;
         [SerializeField] private Gradient gradient;
 
+        private int MinimumValue { get; set; }
         private float CurrentValue { get; set; }
         private int MaximumValue { get; set; }
-        
-        public void SetValue(float currentValue, int maximumValue)
+
+        public void SetValue(float currentValue, int maximumValue) => SetValue(0, currentValue, maximumValue); 
+        public void SetValue(int minimumValue, float currentValue, int maximumValue)
         {
+            MinimumValue = minimumValue;
             CurrentValue = currentValue;
             MaximumValue = maximumValue;
             currentValueLabel.text = $"{Mathf.Round(CurrentValue)}";
             maximumValueLabel.text = $"{MaximumValue}";
             
-            var hpNormalise = CurrentValue / MaximumValue;
-            baseFillImage.transform.localScale = new Vector3(hpNormalise, 1f, 1f);
-            baseFillImage.color = gradient.Evaluate(hpNormalise);
+            var valueNormalised = (CurrentValue - MinimumValue) / (MaximumValue - MinimumValue);
+            baseFillImage.transform.localScale = new Vector3(valueNormalised, 1f, 1f);
+            baseFillImage.color = gradient.Evaluate(valueNormalised);
         }
 
-        public IEnumerator UpdateHealth(int delta, uint updatePercentageSpeed = 100)
+        public IEnumerator UpdateBar(int delta, uint updatePercentageSpeed = 100)
         {
-            var targetValue = Mathf.Clamp(delta + CurrentValue, 0, MaximumValue);
-            var deltaDirection = Mathf.Abs(delta) / delta;
-            var deltaStepSize = MaximumValue / 100f;
+            var targetValue = Mathf.Clamp(delta + CurrentValue, MinimumValue, MaximumValue);
+            var isPositiveDelta = delta > 0;
+            var deltaStepSize = (MaximumValue - MinimumValue) / 100f;
             
             var updateMultiplier = updatePercentageSpeed / 100f;
             while(Mathf.Abs(targetValue - CurrentValue) > 0)
             {
-                var newValue = Mathf.Clamp(CurrentValue + deltaStepSize * deltaDirection, 0, MaximumValue);       
+                var newValue =  isPositiveDelta ?
+                    Mathf.Clamp(CurrentValue + deltaStepSize, MinimumValue, targetValue) :
+                    Mathf.Clamp(CurrentValue + deltaStepSize, targetValue, MaximumValue);       
                 
-                SetValue(newValue, MaximumValue);
+                SetValue(MinimumValue, newValue, MaximumValue);
                 yield return new WaitForSeconds(0.05f / updateMultiplier);
                 
             }

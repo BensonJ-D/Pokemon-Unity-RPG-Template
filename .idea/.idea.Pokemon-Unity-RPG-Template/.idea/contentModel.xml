@@ -114,7 +114,7 @@
             <e p="ItemUseValidation.cs" t="Include" />
           </e>
           <e p="Menus" t="Include">
-            <e p="SummaryMenu.cs" t="Include" />
+            <e p="OldSummaryMenu.cs" t="Include" />
           </e>
           <e p="Misc" t="Include">
             <e p="Task.cs" t="Include" />
@@ -142,10 +142,10 @@
               <e p="MoveBase.cs" t="Include" />
               <e p="MoveEffects.cs" t="Include" />
             </e>
+            <e p="OldPokemonParty.cs" t="Include" />
             <e p="Pokemon.cs" t="Include" />
             <e p="PokemonBase.cs" t="Include" />
             <e p="PokemonEnums.cs" t="Include" />
-            <e p="PokemonParty.cs" t="Include" />
             <e p="Stats.cs" t="Include" />
           </e>
           <e p="SceneController.cs" t="Include" />

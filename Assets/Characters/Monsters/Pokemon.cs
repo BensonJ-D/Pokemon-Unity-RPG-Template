@@ -17,9 +17,11 @@ namespace Characters.Monsters
     {
         [SerializeField] private PokemonBase pokemonBase;
         [SerializeField] private float baseHealth;
+        [SerializeField] private float baseExp;
         [SerializeField] private int initialLevel;
         
-        [SerializeField] private FillableBar healthBar;
+        private FillableBar _healthBar;
+        private FillableBar _experienceBar;
         // [SerializeField] private ExperienceBar experienceBar;
 
         public void Initialization()
@@ -34,7 +36,9 @@ namespace Characters.Monsters
             Name = @base.Species;
 
             CurrentHp = (int)(MaxHp() * (baseHealth / 100));
-            CurrentExperience = ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1];
+            
+            var percentageToNextLevel = (int)((NextLevelExperience - BaseLevelExperience) * (baseExp / 100));
+            CurrentExperience = BaseLevelExperience + percentageToNextLevel;
 
             Moves = new List<Move>();
             foreach (var move in Base.LearnableMoves)
@@ -160,11 +164,11 @@ namespace Characters.Monsters
 
         public FillableBar HealthBar
         {
-            get => healthBar;
+            get => _healthBar;
             set
             {
-                healthBar = value;
-                healthBar.SetValue(CurrentHp, MaxHp());
+                _healthBar = value;
+                _healthBar.SetValue(CurrentHp, MaxHp());
             }
         }
 
@@ -172,9 +176,36 @@ namespace Characters.Monsters
         {
             CurrentHp = Mathf.Clamp(healthAdjustment + CurrentHp, 0, MaxHp());
 
-            if (healthBar == null) yield break;
+            if (_healthBar == null) yield break;
             
-            yield return healthBar.UpdateHealth(healthAdjustment, speedMultiplier);
+            yield return _healthBar.UpdateBar(healthAdjustment, speedMultiplier);
+        }
+        
+        public FillableBar ExperienceBar
+        {
+            get => _experienceBar;
+            set
+            {
+                _experienceBar = value;
+                _experienceBar.SetValue(BaseLevelExperience, CurrentExperience, NextLevelExperience);
+            }
+        }
+
+        public IEnumerator UpdateExp(int expAdjustment, uint speedMultiplier = 500)
+        {
+            var targetExp = CurrentExperience + expAdjustment;
+            
+            do
+            {
+                CurrentExperience = Mathf.Clamp(targetExp, 0, NextLevelExperience);
+                
+                if (_experienceBar != null) yield return _experienceBar.UpdateBar(expAdjustment, speedMultiplier);
+                if (CurrentExperience < NextLevelExperience) continue;
+                
+                Level++;
+                _experienceBar.SetValue(BaseLevelExperience, CurrentExperience, NextLevelExperience);
+            } 
+            while (CurrentExperience < targetExp);
         }
     }
 }

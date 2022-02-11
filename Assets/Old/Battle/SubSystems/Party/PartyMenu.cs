@@ -16,14 +16,14 @@ namespace Battle.SubSystems.Party
         [SerializeField] private Text messageText;
         [SerializeField] private GameObject childWindow;
         [SerializeField] private List<PartySlot> partySlots;
-        [SerializeField] private SummaryMenu summaryMenu;
+        [SerializeField] private OldSummaryMenu summaryMenu;
         // [SerializeField] private OptionWindow optionWindow;
 
         public enum PokemonChoice { Pokemon1 = 0, Pokemon2 = 1, Pokemon3 = 2, Pokemon4 = 3, Pokemon5 = 4, Pokemon6 = 5, Back = 6}
         public Dictionary<Participant, PokemonChoice> Choice { get; private set; }
         
         private List<int> _orderOfPokemon;
-        private PokemonParty _party;
+        private OldPokemonParty _party;
 
         private static class MenuOptions
         {
@@ -52,7 +52,7 @@ namespace Battle.SubSystems.Party
             State[Participant.Opponent] = SubsystemState.Closed;
         }
 
-        public void SetPartyData(PokemonParty newParty)
+        public void SetPartyData(OldPokemonParty newParty)
         {
             _party = newParty;
             _orderOfPokemon = _party.GetCurrentBattleOrder();

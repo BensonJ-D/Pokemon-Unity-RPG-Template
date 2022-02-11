@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Window.Menu;
 using Characters.Monsters;
+using Characters.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,8 @@ namespace Menus.Party.MenuItem
         public Pokemon Value { get; private set; }
         public Transform Transform => transform;
         public Text Text => null;
+
+        public FillableBar HealthBar => pokemonDetails.HealthBar;
 
         public void SetMenuItem(Pokemon pokemon)
         {

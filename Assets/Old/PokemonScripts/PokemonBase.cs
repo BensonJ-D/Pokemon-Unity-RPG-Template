@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PokemonScripts
 {
-    [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new pokemon")]
+    // [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new pokemon")]
     public class PokemonBase : ScriptableObject
     {
         [SerializeField] private string species;

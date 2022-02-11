@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private IEnumerator StartBattle(PokemonParty playerPokemon, Inventory.Inventory playerInventory, Pokemon wildPokemon)
+    private IEnumerator StartBattle(OldPokemonParty playerOldPokemon, Inventory.Inventory playerInventory, Pokemon wildPokemon)
     {
         GameState = GameState.Battle;
         
@@ -78,7 +78,7 @@ public class GameController : MonoBehaviour
             () =>
             {
                 battleController.gameObject.SetActive(true);
-                StartCoroutine(battleController.SetupBattle(playerPokemon, playerInventory, wildPokemon));
+                StartCoroutine(battleController.SetupBattle(playerOldPokemon, playerInventory, wildPokemon));
                 sceneController.SetActiveScene(Scene.BattleView);
             }
         );

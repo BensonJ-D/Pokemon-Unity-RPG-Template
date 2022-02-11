@@ -35,7 +35,7 @@ namespace Battle
         public event Action<bool> OnBattleOver;
 
         private BattleState BattleState { get; set; } = BattleState.Start;
-        private Dictionary<Participant, PokemonParty> _party;
+        private Dictionary<Participant, OldPokemonParty> _party;
         private Dictionary<Participant, Inventory.Inventory> _inventory;
         private Dictionary<Participant, TurnState> _turnState;
         private Dictionary<Participant, BattlePokemon> _pokemon;
@@ -53,7 +53,7 @@ namespace Battle
                 {Participant.Player, TurnState.Busy},
                 {Participant.Opponent, TurnState.Busy}
             };
-            _party = new Dictionary<Participant, PokemonParty>
+            _party = new Dictionary<Participant, OldPokemonParty>
             {
                 {Participant.Player, null},
                 {Participant.Opponent, null}
@@ -74,7 +74,7 @@ namespace Battle
             gameObject.SetActive(false);
         }
 
-        public IEnumerator SetupBattle(PokemonParty playerPokemon, Inventory.Inventory playerInventory, Pokemon wildPokemon)
+        public IEnumerator SetupBattle(OldPokemonParty playerOldPokemon, Inventory.Inventory playerInventory, Pokemon wildPokemon)
         {
             BattleState = BattleState.Start;
 
@@ -83,7 +83,7 @@ namespace Battle
             partyMenu.Reset();
             _actions.Clear();
             
-            _party[Participant.Player] = playerPokemon;
+            _party[Participant.Player] = playerOldPokemon;
             _party[Participant.Player].ResetBattleOrder();
 
             _inventory[Participant.Player] = playerInventory;

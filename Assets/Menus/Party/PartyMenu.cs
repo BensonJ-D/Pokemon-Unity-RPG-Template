@@ -7,6 +7,7 @@ using System.Window.Menu.Grid;
 using Characters.Monsters;
 using Characters.Party.PokemonParty;
 using Menus.Party.MenuItem;
+using Menus.Summary;
 using Misc;
 using MyBox;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace Menus.Party
         [Separator("Party Menu")]
         [SerializeField] private List<PartyMenuItem> menuItems;
         [SerializeField] private PartyPopupMenu popupMenu;
-        [SerializeField] private Summary.SummaryMenu summaryMenu;
+        [SerializeField] private SummaryMenu summaryMenu;
         [SerializeField] private TextBox messageTextBox; 
 
         private PokemonParty _party;
@@ -158,7 +159,8 @@ namespace Menus.Party
                 if(next != null) next.SetSelected();
             }
         }
-
+        
+        // ReSharper disable once PossibleNullReferenceException
         private void SetSlots(List<Pokemon> pokemon)
         {
             using var enumMenuItems = menuItems.GetEnumerator();
@@ -166,9 +168,12 @@ namespace Menus.Party
             while (enumMenuItems.MoveNext())
             {
                 enumPokemon.MoveNext();
-                // ReSharper disable once PossibleNullReferenceException
                 enumMenuItems.Current.SetMenuItem(enumPokemon.Current);
-                if(enumPokemon.Current != null) enumMenuItems.Current.SetNotSelected();
+                
+                if (enumPokemon.Current == null) continue;
+                
+                enumPokemon.Current.HealthBar = enumMenuItems.Current.HealthBar;
+                enumMenuItems.Current.SetNotSelected();
             }
         }
 

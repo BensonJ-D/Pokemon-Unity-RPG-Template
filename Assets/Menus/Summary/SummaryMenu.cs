@@ -25,12 +25,16 @@ namespace Menus.Summary
         public IEnumerator OpenWindow(Pokemon pokemon, OnConfirmFunc onConfirmCallback = null, OnCancelFunc onCancelCallback = null)
         {
             SetPokemon(pokemon);
-            yield return base.OpenWindow(onConfirmCallback: onConfirmCallback, onCancelCallback: onCancelCallback);
+            yield return base.OpenWindow(onConfirmCallback: BoostExp, onCancelCallback: onCancelCallback);
         }
 
         private void SetPokemon(Pokemon pokemon)
         {
             statsSummaryView.SetMenuItem(pokemon);
+            pokemon.HealthBar = statsSummaryView.HealthBar;
+            pokemon.ExperienceBar = statsSummaryView.ExperienceBar;
         }
+
+        private IEnumerator BoostExp(Pokemon pokemon) => pokemon.UpdateExp(9999);
     }
 }

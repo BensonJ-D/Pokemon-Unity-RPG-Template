@@ -34,7 +34,7 @@ namespace System.Window.Menu.Scroll
         
         protected virtual void OnOptionChange(IMenuItem<T> previousOption, IMenuItem<T> newOption, bool cursorShifted)
         {
-            SetVisibleItems();
+            UpdateVisibleItems();
             
             if (!cursorShifted) return;
 
@@ -94,7 +94,7 @@ namespace System.Window.Menu.Scroll
             OptionMenuItems.ForEach(value => value.Text.color = fontColour);
         }
         
-        protected virtual void SetVisibleItems()
+        protected void UpdateVisibleItems()
         {
             var (_, cursorPosition) = CurrentCursorPosition;
             for (var i = 0; i < OptionMenuItems.Count; i++)
