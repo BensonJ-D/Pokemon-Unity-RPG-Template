@@ -96,6 +96,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -676,6 +677,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Poemon_Gen1_Icon_1_10: -5207871664975195872
+      Poemon_Gen1_Icon_1_0: 1409197665194987906
+      Poemon_Gen1_Icon_1_19: 2960231117571837694
+      Poemon_Gen1_Icon_1_22: -7309622525708458945
+      Poemon_Gen1_Icon_1_3: 7925232292727658325
+      Poemon_Gen1_Icon_1_18: -1349533190962085677
+      Poemon_Gen1_Icon_1_1: -3005460136129298411
+      Poemon_Gen1_Icon_1_4: 1971907686727396430
+      Poemon_Gen1_Icon_1_14: -6349958360920388565
+      Poemon_Gen1_Icon_1_9: 6652385248537036535
+      Poemon_Gen1_Icon_1_12: 1477881999680117721
+      Poemon_Gen1_Icon_1_2: 455029921340082826
+      Poemon_Gen1_Icon_1_21: -7013085578746806290
+      Poemon_Gen1_Icon_1_13: 7435789856386905847
+      Poemon_Gen1_Icon_1_16: 2666398544213077730
+      Poemon_Gen1_Icon_1_8: -6475720778233500771
+      Poemon_Gen1_Icon_1_11: 8678104621594872949
+      Poemon_Gen1_Icon_1_20: 9216977015515656387
+      Poemon_Gen1_Icon_1_5: -7035106168028776149
+      Poemon_Gen1_Icon_1_6: 8197979685581630374
+      Poemon_Gen1_Icon_1_15: 8158400023239790944
+      Poemon_Gen1_Icon_1_23: 324116041011599524
+      Poemon_Gen1_Icon_1_7: -6407965160216180440
+      Poemon_Gen1_Icon_1_17: -7373871181229742438
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

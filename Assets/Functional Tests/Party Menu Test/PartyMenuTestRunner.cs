@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Characters.Party.PokemonParty;
 using Menus.Party;
@@ -16,6 +18,7 @@ namespace Functional_Tests.Party_Menu_Test
         // Start is called before the first frame update
         private void Start()
         {
+            examplePokemon.Initialization();
             // examplePokemon.PartyMembers.Last().CurrentHp = 0;
             StartCoroutine(Test());
         }

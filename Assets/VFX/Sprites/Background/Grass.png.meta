@@ -57,6 +57,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -66,8 +67,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -88,6 +89,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -137,7 +140,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1d556c9a2abff0910800000000000000
-      internalID: 1805938651650479569
+      internalID: -1347532211411968617
       vertices: []
       indices: 
       edges: []
@@ -158,7 +161,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: f12f34c8e48be9410800000000000000
-      internalID: 1485827574579065375
+      internalID: -7645372005702169758
       vertices: []
       indices: 
       edges: []
@@ -179,7 +182,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 23970b322f9cc1f20800000000000000
-      internalID: 3394810260948547890
+      internalID: 6891631753638271631
       vertices: []
       indices: 
       edges: []
@@ -200,7 +203,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: bf8f6293e9f610230800000000000000
-      internalID: 3603283902227478779
+      internalID: 475435623110610922
       vertices: []
       indices: 
       edges: []
@@ -221,7 +224,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 92fbb55d12ca221d0800000000000000
-      internalID: -3376947509260992727
+      internalID: 5299400320964040512
       vertices: []
       indices: 
       edges: []
@@ -257,6 +260,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Grass_5: -7255497285719700247
+      Grass_0: -1347532211411968617
+      Grass_2: 6891631753638271631
+      Grass_1: -7645372005702169758
+      Grass_3: 475435623110610922
+      Grass_4: 5299400320964040512
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

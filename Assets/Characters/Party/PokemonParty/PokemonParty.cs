@@ -2,18 +2,20 @@ using System;
 using System.Collections.Generic;
 using Battle;
 using Characters.Monsters;
+using UnityEditor;
 using UnityEngine;
 
 namespace Characters.Party.PokemonParty
 {
+    [Serializable]
     public class PokemonParty : Party<Pokemon>
     {
         private List<int> BattlePokemon { get; set; }
         
-        private void Start()
+        public void Initialization()
         {
             BattlePokemon = new List<int>();
-            foreach (var pokemon in partyMembers)
+            foreach (var pokemon in PartyMembers)
             {
                 pokemon.Initialization();
                 ResetBattleOrder();
@@ -23,7 +25,7 @@ namespace Characters.Party.PokemonParty
         public void ResetBattleOrder()
         {
             BattlePokemon.Clear();
-            for(var i = 0; i < partyMembers.Count; i++)
+            for(var i = 0; i < PartyMembers.Count; i++)
             {
                 BattlePokemon.Add(i);
             }
@@ -31,9 +33,9 @@ namespace Characters.Party.PokemonParty
 
         public Pokemon GetFirstBattleReadyPokemon()
         {
-            var indexOfFirstHealthyPokemon = BattlePokemon.FindIndex(index => partyMembers[index].CurrentHp > 0);
+            var indexOfFirstHealthyPokemon = BattlePokemon.FindIndex(index => PartyMembers[index].CurrentHp > 0);
             if (indexOfFirstHealthyPokemon != 0) { SetPokemonToBattleLeader(indexOfFirstHealthyPokemon); }
-            return partyMembers[BattlePokemon[0]];
+            return PartyMembers[BattlePokemon[0]];
         }
 
         public void SetPokemonToBattleLeader(int index)
@@ -46,10 +48,6 @@ namespace Characters.Party.PokemonParty
         public List<int> GetCurrentBattleOrder()
         {
             return BattlePokemon;
-        }
-
-        public PokemonParty(List<Pokemon> partyMembers) : base(partyMembers)
-        {
         }
     }
 }

@@ -384,6 +384,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -393,8 +394,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -415,6 +416,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -464,7 +467,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 2ce7e344556f66b40800000000000000
-      internalID: 5433300846546681538
+      internalID: 1769429448931828106
       vertices: []
       indices: 
       edges: []
@@ -485,7 +488,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 4efdce3c65665f650800000000000000
-      internalID: 6266026979396214756
+      internalID: -4732131389061371210
       vertices: []
       indices: 
       edges: []
@@ -506,7 +509,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 9b2443776bce02e50800000000000000
-      internalID: 6782681307248083641
+      internalID: -4277343822309770070
       vertices: []
       indices: 
       edges: []
@@ -527,7 +530,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: e0118b027f0d2b880800000000000000
-      internalID: -8596578978872422130
+      internalID: -657182110463708883
       vertices: []
       indices: 
       edges: []
@@ -548,7 +551,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5074f871072759020800000000000000
-      internalID: 2347908606500751109
+      internalID: -1827526445838835693
       vertices: []
       indices: 
       edges: []
@@ -569,7 +572,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 4303c018344a4d6f0800000000000000
-      internalID: -660722635481796556
+      internalID: 4422032505096542742
       vertices: []
       indices: 
       edges: []
@@ -590,7 +593,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: e13df121733c4f360800000000000000
-      internalID: 7202596345366958878
+      internalID: 2754896833546307751
       vertices: []
       indices: 
       edges: []
@@ -611,7 +614,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5628e25befa3457b0800000000000000
-      internalID: -5236495601089215899
+      internalID: 1106511937541109406
       vertices: []
       indices: 
       edges: []
@@ -632,7 +635,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: dcfe5dbbbee6b2c60800000000000000
-      internalID: 7794445538842505165
+      internalID: 5627729976014493891
       vertices: []
       indices: 
       edges: []
@@ -653,7 +656,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: bb1f930d8d571ad70800000000000000
-      internalID: 9052646300058251707
+      internalID: 560493919683478708
       vertices: []
       indices: 
       edges: []
@@ -674,7 +677,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 4afd28ab29460af00800000000000000
-      internalID: 1126010488199765924
+      internalID: 4463900163318786688
       vertices: []
       indices: 
       edges: []
@@ -695,7 +698,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 31354ffec5665e0c0800000000000000
-      internalID: -4547115699411856621
+      internalID: 5237200589228584036
       vertices: []
       indices: 
       edges: []
@@ -710,6 +713,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Battle Backgrounds_2: -4277343822309770070
+      Battle Backgrounds_3: -657182110463708883
+      Battle Backgrounds_6: 2754896833546307751
+      Battle Backgrounds_8: 5627729976014493891
+      Battle Backgrounds_11: 5237200589228584036
+      Battle Backgrounds_5: 4422032505096542742
+      Battle Backgrounds_7: 1106511937541109406
+      Battle Backgrounds_4: -1827526445838835693
+      Battle Backgrounds_10: 4463900163318786688
+      Battle Backgrounds_1: -4732131389061371210
+      Battle Backgrounds_0: 1769429448931828106
+      Battle Backgrounds_9: 560493919683478708
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
