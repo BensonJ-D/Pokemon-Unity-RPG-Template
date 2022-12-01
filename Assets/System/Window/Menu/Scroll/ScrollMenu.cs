@@ -14,6 +14,7 @@ namespace System.Window.Menu.Scroll
     
         public override IEnumerator OpenWindow(Vector2 pos = default, OnConfirmFunc onConfirmCallback = null, OnCancelFunc onCancelCallback = null)
         {
+            if (!Initialised) Initialise();
             if (OptionsList == null) yield break;
             
             _onConfirm = onConfirmCallback;

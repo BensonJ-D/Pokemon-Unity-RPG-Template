@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using Characters.Monsters;
-using PokemonScripts.Moves.Effects;
+using Menus.Move.Effects;
 using UnityEngine;
 
 namespace Characters.Moves
@@ -23,8 +23,8 @@ namespace Characters.Moves
         [SerializeField] private int accuracy;
         [SerializeField] private int priority;
         [SerializeField] private MoveCategory category;
-        [SerializeField] private List<PrimaryStatusEffect> primaryStatusEffects;
-        [SerializeField] private List<StatModifierEffect> statModifierEffects;
+        // [SerializeField] private List<PrimaryStatusEffect> primaryStatusEffects;
+        // [SerializeField] private List<StatModifierEffect> statModifierEffects;
         [SerializeField] private MoveTarget target;
         [SerializeField] private int effectChance;
 
@@ -40,8 +40,8 @@ namespace Characters.Moves
         public MoveTarget Target => target;
         
         public int EffectChance => effectChance;
-        public List<StatModifierEffect> StatModifierEffects => statModifierEffects;
-        public List<PrimaryStatusEffect> PrimaryStatusEffects => primaryStatusEffects;
+        // public List<StatModifierEffect> StatModifierEffects => statModifierEffects;
+        // public List<PrimaryStatusEffect> PrimaryStatusEffects => primaryStatusEffects;
 
         public static readonly ReadOnlyDictionary<(PokemonType, PokemonType), float> TypeChart =
             new ReadOnlyDictionary<(PokemonType, PokemonType), float>(

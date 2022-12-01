@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Characters.Inventory;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace Inventory
+namespace Old.Inventory
 {
     public class ItemSlot : MonoBehaviour
     {

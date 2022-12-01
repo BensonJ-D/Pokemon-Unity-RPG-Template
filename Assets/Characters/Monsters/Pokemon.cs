@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Characters.Moves;
 using Characters.UI;
 using PokemonScripts.Conditions;
-using PokemonScripts.Moves;
+using Popup;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Characters.Monsters
 {
@@ -20,8 +22,11 @@ namespace Characters.Monsters
         [SerializeField] private float baseExp;
         [SerializeField] private int initialLevel;
         
-        private FillableBar _healthBar;
-        private FillableBar _experienceBar;
+        private const int MinimumLevel = 1;
+        private const int MaximumLevel = 100;
+
+        private CharacterStatus _statusUI;
+
         // [SerializeField] private ExperienceBar experienceBar;
 
         public void Initialization()
@@ -35,9 +40,9 @@ namespace Characters.Monsters
             Level = level;
             Name = @base.Species;
 
-            CurrentHp = (int)(MaxHp() * (baseHealth / 100));
-            
-            var percentageToNextLevel = (int)((NextLevelExperience - BaseLevelExperience) * (baseExp / 100));
+            CurrentHp = (int) (MaxHp() * (baseHealth / 100));
+
+            var percentageToNextLevel = (int) ((NextLevelExperience - BaseLevelExperience) * (baseExp / 100));
             CurrentExperience = BaseLevelExperience + percentageToNextLevel;
 
             Moves = new List<Move>();
@@ -67,16 +72,24 @@ namespace Characters.Monsters
 
         public PokemonBase Base { get; private set; }
         public bool IsFainted => CurrentHp <= 0;
-        
+
         public int Level { get; private set; }
         public int CurrentExperience { get; set; }
-        public int BaseLevelExperience => ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1];
-        public int NextLevelExperience => Level < 100 
-            ? ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level] 
-            : ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1] + 1;
 
-        public PrimaryStatusCondition PrimaryCondition { get; private set; } = PrimaryStatusCondition.None;
-        public List<SecondaryStatusCondition> SecondaryConditions { get; private set; } = new List<SecondaryStatusCondition>();
+        public int BaseLevelExperience => Level switch
+            {
+                MaximumLevel => ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 2],
+                _            => ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1]
+            };
+
+        public int NextLevelExperience => Level switch
+            {
+                MaximumLevel => ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level - 1],
+                _            => ExperienceGroups.GetExperienceList[Base.ExperienceGroup][Level]
+            };
+
+        // public PrimaryStatusCondition PrimaryCondition { get; private set; } = PrimaryStatusCondition.None;
+        // public List<SecondaryStatusCondition> SecondaryConditions { get; private set; } = new List<SecondaryStatusCondition>();
         
         private int MaxHp(int level) => Mathf.FloorToInt((2 * Base.MaxHp * level) / 100f) + 10 + level;
         private int Attack(int level) => Mathf.FloorToInt((2 * Base.Attack * level) / 100f) + 5; 
@@ -114,18 +127,18 @@ namespace Characters.Monsters
         public void ApplyStatChange(Stat stat, int steps) =>
             StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] + steps, -6, 6);
 
-        public bool ApplyPrimaryCondition(PrimaryStatusCondition newCondition)
-        {
-            if (PrimaryCondition != PrimaryStatusCondition.None) return false;
-            PrimaryCondition = newCondition;
-            return true;
-        }
-        
-        public void ApplySecondaryCondition(SecondaryStatusCondition newCondition)
-        {
-            if (SecondaryConditions.Contains(newCondition)) return;
-            SecondaryConditions.Add(newCondition);
-        }
+        // public bool ApplyPrimaryCondition(PrimaryStatusCondition newCondition)
+        // {
+        //     if (PrimaryCondition != PrimaryStatusCondition.None) return false;
+        //     PrimaryCondition = newCondition;
+        //     return true;
+        // }
+        //
+        // public void ApplySecondaryCondition(SecondaryStatusCondition newCondition)
+        // {
+        //     if (SecondaryConditions.Contains(newCondition)) return;
+        //     SecondaryConditions.Add(newCondition);
+        // }
 
         public bool CheckForLevel()
         {
@@ -161,51 +174,102 @@ namespace Characters.Monsters
             };
         }
 
-
-        public FillableBar HealthBar
+        public CharacterStatus StatusUI
         {
-            get => _healthBar;
+            get => _statusUI;
             set
             {
-                _healthBar = value;
-                _healthBar.SetValue(CurrentHp, MaxHp());
+                _statusUI = value;
+
+                if (_statusUI?.Name) _statusUI.Name.text = Name;
+
+                _statusUI?.HealthBar?.SetValue(0, CurrentHp, MaxHp());
+                _statusUI?.ExpBar?.SetValue(BaseLevelExperience, CurrentExperience, NextLevelExperience);
+                
+                if (_statusUI?.Level) _statusUI.Level.text = Level.ToString();
+                UpdateStats();
             }
         }
 
+        private void UpdateStats()
+        {
+            if (_statusUI?.Stats == null) return;
+            
+            _statusUI.Stats.AttackText.text = Attack().ToString();
+            _statusUI.Stats.DefenceText.text = Defence().ToString();
+            _statusUI.Stats.SpAtkText.text = SpAttack().ToString();
+            _statusUI.Stats.SpDefText.text = SpDefence().ToString();
+            _statusUI.Stats.SpeedText.text = Speed().ToString();
+        }
+
+        private void SetLevel(int level)
+        {
+            var updatedHealth = level != Level ? CurrentHp + MaxHp(level) - MaxHp(Level) : CurrentHp;
+
+            Level = level;
+            UpdateStats();
+            SetHealth(updatedHealth);
+            if (_statusUI?.Level) _statusUI.Level.text = Level.ToString();
+        }
+        
+        public void SetHealth(int newHealth)
+        {
+            CurrentHp = Mathf.Clamp(newHealth, 0, MaxHp());
+
+            _statusUI?.HealthBar?.SetValue(newHealth);
+        }
+        
         public IEnumerator UpdateHealth(int healthAdjustment, uint speedMultiplier = 100)
         {
             CurrentHp = Mathf.Clamp(healthAdjustment + CurrentHp, 0, MaxHp());
-
-            if (_healthBar == null) yield break;
             
-            yield return _healthBar.UpdateBar(healthAdjustment, speedMultiplier);
+            yield return _statusUI?.HealthBar?.UpdateBar(healthAdjustment, speedMultiplier);
+        }
+
+        public void SetExp(int newExp)
+        {
+            CurrentExperience = Mathf.Clamp(newExp, 0, ExperienceGroups.GetExperienceList[Base.ExperienceGroup][100]);
+            while (CurrentExperience < BaseLevelExperience) SetLevel(Level - 1);
+            while (CurrentExperience > NextLevelExperience) SetLevel(Level + 1);
+
+            SetHealth(CurrentHp);
+            _statusUI?.HealthBar?.SetValue(newExp);
         }
         
-        public FillableBar ExperienceBar
-        {
-            get => _experienceBar;
-            set
-            {
-                _experienceBar = value;
-                _experienceBar.SetValue(BaseLevelExperience, CurrentExperience, NextLevelExperience);
-            }
-        }
-
         public IEnumerator UpdateExp(int expAdjustment, uint speedMultiplier = 500)
         {
+            var previousLevel = Level;
+            var isPositiveDelta = expAdjustment > 0;
             var targetExp = CurrentExperience + expAdjustment;
-            
             do
             {
-                CurrentExperience = Mathf.Clamp(targetExp, 0, NextLevelExperience);
+                var delta = targetExp - CurrentExperience;
+                CurrentExperience = Mathf.Clamp(targetExp, BaseLevelExperience, NextLevelExperience);
                 
-                if (_experienceBar != null) yield return _experienceBar.UpdateBar(expAdjustment, speedMultiplier);
-                if (CurrentExperience < NextLevelExperience) continue;
+                yield return _statusUI?.ExpBar?.UpdateBar(delta, speedMultiplier);
                 
-                Level++;
-                _experienceBar.SetValue(BaseLevelExperience, CurrentExperience, NextLevelExperience);
+                if (CurrentExperience > BaseLevelExperience && CurrentExperience < NextLevelExperience) continue;
+                
+                if (CurrentExperience <= BaseLevelExperience && Level > MinimumLevel) SetLevel(Level - 1);
+                else if (CurrentExperience >= NextLevelExperience && Level < MaximumLevel) SetLevel(Level + 1);
+
+                if (Level == 100 && isPositiveDelta) targetExp = NextLevelExperience;
+                if (Level == 1 && !isPositiveDelta) targetExp = BaseLevelExperience;
+
+                _statusUI?.HealthBar?.SetValue(0, CurrentHp, MaxHp());
+                _statusUI?.ExpBar?.SetValue(BaseLevelExperience, CurrentExperience, NextLevelExperience);
             } 
-            while (CurrentExperience < targetExp);
+            while (isPositiveDelta ? CurrentExperience < targetExp : CurrentExperience > targetExp);
+
+            if (previousLevel == Level) yield break;
+            
+            var levelUpWindow = Object.Instantiate(Resources.Load("Prefabs/LevelUpWindow")) as GameObject;
+            if (levelUpWindow != null)
+            {
+                yield return levelUpWindow.GetComponent<LevelUpWindow>().ShowWindow(GetStats(previousLevel), GetStats(Level));
+                Object.Destroy(levelUpWindow.gameObject);
+            }
+            else { Object.Destroy(levelUpWindow); }
         }
     }
 }

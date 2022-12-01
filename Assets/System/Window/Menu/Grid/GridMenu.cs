@@ -31,12 +31,19 @@ namespace System.Window.Menu.Grid
             if (enableCursor) SetCursorPosition(row, col);
             if (enableHighlight) SetNewHighlightedOption(previousOption, CurrentOption);
         }
+        
+        protected override void SetCursorPosition(int x, int y)
+        {
+            if (!enableCursor) return;
+        
+            var cursorPos = OptionsGrid[x, y].Transform.localPosition;
+            cursor.SetPosition(cursorPos.x, cursorPos.y);
+        }
 
         public IEnumerator RunWindow()
         {
             while (WindowOpen)
             {
-
                 var updatedChoice = this.GetNextGridMenuOption();
 
                 var previousOption = CurrentOption;

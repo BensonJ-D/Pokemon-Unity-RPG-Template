@@ -11,31 +11,19 @@ namespace Menus.Summary
     public class SummaryStatsMenuItem : MonoBehaviour, IMenuItem<Pokemon>
     {
         [SerializeField] private Image pokemonSprite;
-        [SerializeField] private FillableBar healthBar;
-        [SerializeField] private Text attackText;
-        [SerializeField] private Text defenceText;
-        [SerializeField] private Text spAtkText;
-        [SerializeField] private Text spDefText;
-        [SerializeField] private Text speedText;
-        [SerializeField] private FillableBar expBar;
+        [SerializeField] private CharacterStatus pokemonStatus;
 
         public Pokemon Value { get; set; }
 
-        public FillableBar HealthBar => healthBar;
-        public FillableBar ExperienceBar => expBar;
+        public CharacterStatus PokemonStatus => pokemonStatus;
 
         public Transform Transform => transform;
         public Text Text => null;
 
-        public void SetMenuItem(Pokemon pokemon) {
+        public void SetMenuItem(Pokemon pokemon)
+        {
+            pokemon.StatusUI = pokemonStatus;
             pokemonSprite.sprite = pokemon.Base.FrontSprite;
-            healthBar.SetValue(pokemon.CurrentHp, pokemon.MaxHp());
-            attackText.text = pokemon.Attack().ToString();
-            defenceText.text = pokemon.Defence().ToString();
-            spAtkText.text = pokemon.SpAttack().ToString();
-            spDefText.text = pokemon.SpDefence().ToString();
-            speedText.text = pokemon.Speed().ToString();
-            expBar.SetValue(pokemon.CurrentExperience, pokemon.NextLevelExperience);
 
             Value = pokemon;
         }

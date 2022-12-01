@@ -2,7 +2,6 @@ using System.Collections;
 using MyBox;
 using UnityEngine;
 using UnityEngine.UI;
-using VFX;
 
 namespace System.Window
 {
@@ -10,7 +9,8 @@ namespace System.Window
     {
         [Separator("Window Settings")]
         // [SerializeField] protected Vector2 size;
-        [SerializeField] protected Canvas canvas;
+        [SerializeField] protected bool isChildWindow;
+        [ConditionalField(nameof(isChildWindow), true)] [SerializeField] protected Canvas canvas;
         [SerializeField] protected Image background;
 
         protected bool Initialised { get; private set; }
@@ -19,11 +19,12 @@ namespace System.Window
         
         private Vector3 CanvasOrigin { get; set; }
 
-        protected virtual void Initialise()
+        public virtual void Initialise()
         {
-            DefaultPosition = transform.position;
-            CanvasOrigin = canvas.transform.position;
-            canvas.enabled = false;
+            Initialised = true;
+            DefaultPosition = transform.localPosition;
+            SetVisibility(false);
+            if(!isChildWindow) CanvasOrigin = canvas.transform.position;
         }
 
         protected void SetSize(float width, float height)
@@ -41,10 +42,10 @@ namespace System.Window
             
             yield return BeforeOpen();
             
-            transform.position = pos;
-            canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            transform.localPosition = pos;
+            if(!isChildWindow) canvas.renderMode = RenderMode.ScreenSpaceCamera;
             yield return null;
-            canvas.enabled = true;
+            SetVisibility(true);
             WindowOpen = true;
             
             yield return OnOpen();
@@ -53,11 +54,15 @@ namespace System.Window
         public virtual IEnumerator CloseWindow()
         {
             yield return BeforeClose();
-            
-            canvas.renderMode = RenderMode.WorldSpace;
-            canvas.transform.position = CanvasOrigin;
+
+            if (!isChildWindow)
+            {
+                canvas.renderMode = RenderMode.WorldSpace;
+                canvas.transform.position = CanvasOrigin;
+            }
+
             yield return null;
-            canvas.enabled = false;
+            SetVisibility(false);
             WindowOpen = false;
 
             yield return OnClose();
@@ -68,5 +73,17 @@ namespace System.Window
         
         protected virtual IEnumerator BeforeClose() => null;
         protected virtual IEnumerator OnClose() => null;
+
+        private void SetVisibility(bool visible)
+        {
+            if (isChildWindow)
+            {
+                gameObject.SetActive(visible);
+            }
+            else
+            {
+                canvas.enabled = visible;
+            }
+        }
     }
 }

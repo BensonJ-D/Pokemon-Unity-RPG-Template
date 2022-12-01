@@ -1,5 +1,5 @@
 using System;
-using PokemonScripts.Moves;
+using Characters.Moves;
 using UnityEngine;
 
 namespace Characters

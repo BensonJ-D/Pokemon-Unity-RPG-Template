@@ -31,10 +31,9 @@ namespace Menus.Summary
         private void SetPokemon(Pokemon pokemon)
         {
             statsSummaryView.SetMenuItem(pokemon);
-            pokemon.HealthBar = statsSummaryView.HealthBar;
-            pokemon.ExperienceBar = statsSummaryView.ExperienceBar;
+            pokemon.StatusUI = statsSummaryView.PokemonStatus;
         }
 
-        private IEnumerator BoostExp(Pokemon pokemon) => pokemon.UpdateExp(9999);
+        private IEnumerator BoostExp(Pokemon pokemon) => pokemon.UpdateExp(5000);
     }
 }

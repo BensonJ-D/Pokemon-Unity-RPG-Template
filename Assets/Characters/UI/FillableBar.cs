@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Characters.Monsters;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Characters.UI
 {
-    public class FillableBar : MonoBehaviour
+    [Serializable]
+    public class FillableBar
     {
         [SerializeField] private Text currentValueLabel;
         [SerializeField] private Text maximumValueLabel;
@@ -16,16 +18,21 @@ namespace Characters.UI
         private float CurrentValue { get; set; }
         private int MaximumValue { get; set; }
 
-        public void SetValue(float currentValue, int maximumValue) => SetValue(0, currentValue, maximumValue); 
+        public void SetValue(int newValue) => SetValue(MinimumValue, newValue, MaximumValue);
+        public void SetValue(float currentValue, int maximumValue) => SetValue(0, currentValue, maximumValue);
+
         public void SetValue(int minimumValue, float currentValue, int maximumValue)
         {
             MinimumValue = minimumValue;
             CurrentValue = currentValue;
             MaximumValue = maximumValue;
-            currentValueLabel.text = $"{Mathf.Round(CurrentValue)}";
-            maximumValueLabel.text = $"{MaximumValue}";
-            
+            if (currentValueLabel) currentValueLabel.text = $"{Mathf.Round(CurrentValue)}";
+            if (maximumValueLabel) maximumValueLabel.text = $"{MaximumValue}";
+
             var valueNormalised = (CurrentValue - MinimumValue) / (MaximumValue - MinimumValue);
+            
+            if (!baseFillImage) return;
+            
             baseFillImage.transform.localScale = new Vector3(valueNormalised, 1f, 1f);
             baseFillImage.color = gradient.Evaluate(valueNormalised);
         }
@@ -41,7 +48,7 @@ namespace Characters.UI
             {
                 var newValue =  isPositiveDelta ?
                     Mathf.Clamp(CurrentValue + deltaStepSize, MinimumValue, targetValue) :
-                    Mathf.Clamp(CurrentValue + deltaStepSize, targetValue, MaximumValue);       
+                    Mathf.Clamp(CurrentValue - deltaStepSize, targetValue, MaximumValue);       
                 
                 SetValue(MinimumValue, newValue, MaximumValue);
                 yield return new WaitForSeconds(0.05f / updateMultiplier);

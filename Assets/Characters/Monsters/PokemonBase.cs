@@ -29,7 +29,7 @@ namespace Characters.Monsters
         [SerializeField] private ExperienceGroup experienceGroup;
         [SerializeField] private int experienceYield;
 
-        [SerializeField] private PokemonScripts.LearnableMove[] learnableMoves;
+        [SerializeField] private LearnableMove[] learnableMoves;
 
         public int Number => number;
         public string Species => species;
@@ -48,6 +48,6 @@ namespace Characters.Monsters
 
         public ExperienceGroup ExperienceGroup => experienceGroup;
         public int ExperienceYield => experienceYield;
-        public IEnumerable<PokemonScripts.LearnableMove> LearnableMoves => learnableMoves;
+        public IEnumerable<LearnableMove> LearnableMoves => learnableMoves;
     }
 }

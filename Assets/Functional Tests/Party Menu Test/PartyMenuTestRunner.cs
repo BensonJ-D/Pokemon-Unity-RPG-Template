@@ -18,7 +18,7 @@ namespace Functional_Tests.Party_Menu_Test
         // Start is called before the first frame update
         private void Start()
         {
-            examplePokemon.Initialization();
+            examplePokemon.Initialise();
             // examplePokemon.PartyMembers.Last().CurrentHp = 0;
             StartCoroutine(Test());
         }

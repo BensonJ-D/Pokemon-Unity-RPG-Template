@@ -5,7 +5,7 @@ namespace System.Window.Dialog
 {
     public class TextBox : MonoBehaviour
     {
-        [SerializeField] private int lettersPerSecond;
+        [SerializeField] private int defaultLettersPerSecond;
         [SerializeField] private UnityEngine.UI.Text dialogText;
 
         private float _lettersPerSecondMultiplier = 1f;
@@ -21,7 +21,9 @@ namespace System.Window.Dialog
     
         public void ClearText() { dialogText.text = ""; }
         public void SetText(string text) { dialogText.text = text; }
-        public IEnumerator TypeDialog(string dialog)
+
+        public IEnumerator TypeDialog(string dialog) => TypeDialog(dialog, defaultLettersPerSecond);
+        public IEnumerator TypeDialog(string dialog, float lettersPerSecond)
         {
             _lettersPerSecondMultiplier = 1f;
             dialogText.text = "";

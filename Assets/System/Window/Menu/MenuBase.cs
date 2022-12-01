@@ -15,7 +15,7 @@ namespace System.Window.Menu
         [SerializeField] protected bool enableCursor;
         [ConditionalField(nameof(enableCursor))] [SerializeField] protected MenuCursor cursor;
         
-        public WindowCloseReason CloseReason { get; protected set; }
+        public WindowCloseReason? CloseReason { get; protected set; }
         public (int, int) CurrentCursorPosition { get; protected set; }
         public IMenuItem<T> CurrentOption { get; protected set; }
         public IMenuItem<T> Choice { get; protected set; }
@@ -28,13 +28,16 @@ namespace System.Window.Menu
         public virtual IEnumerator OpenWindow(Vector2 pos = default, OnConfirmFunc onConfirmCallback = null,
             OnCancelFunc onCancelCallback = null)
         {
+            Choice = null;
+            CloseReason = null;
+            
             _onConfirm = onConfirmCallback;
             _onCancel = onCancelCallback;
             
             yield return base.OpenWindow(pos);
         }
         
-        protected void SetCursorPosition(int x, int y)
+        protected virtual void SetCursorPosition(int x, int y)
         {
             if (!enableCursor) return;
             cursor.SetPosition(x, y);
@@ -51,5 +54,11 @@ namespace System.Window.Menu
         
         protected virtual IEnumerator OnConfirm() => _onConfirm?.Invoke(CurrentOption.Value);
         protected virtual IEnumerator OnCancel() => _onCancel?.Invoke();
+        
+        public void Reset()
+        {
+            Choice = null;
+            CloseReason = null;
+        }
     }
 }
