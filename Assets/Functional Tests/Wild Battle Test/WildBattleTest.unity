@@ -2440,8 +2440,6 @@ MonoBehaviour:
   textBox: {fileID: 1285215651}
   combatants:
   - {fileID: 6857787790528442225}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 6466929171498066766}
 --- !u!1 &1317515906
 GameObject:

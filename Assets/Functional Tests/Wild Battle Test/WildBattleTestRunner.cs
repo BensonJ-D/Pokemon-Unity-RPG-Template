@@ -25,7 +25,7 @@ namespace Functional_Tests.Wild_Battle_Test
 
         private IEnumerator Test()
         {
-            var battlePlayers = new List<Player> {localPlayer, localPlayer, localPlayer, wildPokemonAI};
+            var battlePlayers = new List<Player> {localPlayer, wildPokemonAI};
                 
             StartCoroutine(TransitionController.Instance.RunTransition(Transition.BattleEnter));
             yield return TransitionController.Instance.WaitForTransitionPeak();
