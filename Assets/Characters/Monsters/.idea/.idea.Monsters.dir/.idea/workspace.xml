@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="10f3bec0-f5ac-47ca-b2e6-55988b4c4ff3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Battle/Domain/Team.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Battle/Domain/Team.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/.idea.Pokemon-Unity-RPG-Template/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/.idea.Pokemon-Unity-RPG-Template/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/.idea.Pokemon-Unity-RPG-Template/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/.idea.Pokemon-Unity-RPG-Template/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/.idea.Pokemon-Unity-RPG-Template/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/.idea.Pokemon-Unity-RPG-Template/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Battle/BattleWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Battle/BattleWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Battle/Controller/LocalBattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Battle/Controller/LocalBattleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Battle/Controller/PlayerBattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Battle/Controller/PlayerBattleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Battle/Controller/WildBattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Battle/Controller/WildBattleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Battle/Domain/BattleActionPriority.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Battle/Domain/BattleActionPriority.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Battle/Combatant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Battle/Combatant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Battle/Pokemon/PokemonCombatant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Battle/Pokemon/PokemonCombatant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pokemon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pokemon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UI/FillableBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/FillableBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Functional Tests/Wild Battle Test/WildBattleTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../../Functional Tests/Wild Battle Test/WildBattleTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Functional Tests/Wild Battle Test/WildBattleTestRunner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Functional Tests/Wild Battle Test/WildBattleTestRunner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Game/Resources/Pokemon/Bulbasaur.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../Game/Resources/Pokemon/Bulbasaur.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Game/Resources/Pokemon/Charmander 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../Game/Resources/Pokemon/Charmander 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Menus/ActionMenu/ActionMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Menus/ActionMenu/ActionMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Menus/ActionMenu/ActionMenuItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Menus/ActionMenu/ActionMenuItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Menus/PartyMenu/PartyMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Menus/PartyMenu/PartyMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../System/Transition/TransitionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../System/Transition/TransitionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Pokemon.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="2LXtqTDtZZY0qNcfmSsgDsXR8Zm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="10f3bec0-f5ac-47ca-b2e6-55988b4c4ff3" name="Default Changelist" comment="" />
+      <created>1676029450108</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676029450108</updated>
+      <workItem from="1676029456778" duration="16000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

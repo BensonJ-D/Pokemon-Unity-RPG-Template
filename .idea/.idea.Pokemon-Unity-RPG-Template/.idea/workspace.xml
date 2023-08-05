@@ -34,39 +34,82 @@
   <component name="ChangeListManager">
     <list default="true" id="2ea9d48f-65fa-438b-b3d1-f3786e6b3ec4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pokemon-Unity-RPG-Template/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Functional Tests/Inventory Menu Test/InventoryMenuTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functional Tests/Inventory Menu Test/InventoryMenuTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Functional Tests/Party Menu Test/PartyMenuTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functional Tests/Party Menu Test/PartyMenuTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Functional Tests/Party Menu Test/PartyMenuTestRunner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functional Tests/Party Menu Test/PartyMenuTestRunner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Functional Tests/TestParty.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functional Tests/TestParty.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Items/Hyper Potion.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Items/Hyper Potion.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Items/Potion.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Items/Potion.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Items/Super Potion.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Items/Super Potion.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/1_Bulbasaur.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/1_Bulbasaur.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menus/Inventory/InventoryMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Inventory/InventoryMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuDetails.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuDetails.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItem.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItem.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItemLeader.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Party/MenuItem/PartyMenuItemLeader.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menus/Party/PartyMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Party/PartyMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryStatsMenuItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryStatsMenuItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryWindow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Menus/Summary/SummaryWindow.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/Battle/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Battle/BattleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/Battle/SubSystems/Party/PartyMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Battle/SubSystems/Party/PartyMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/GameController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/Inventory/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Inventory/Item.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/Menus/SummaryMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Menus/OldSummaryMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/Menus/SummaryMenu.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Menus/OldSummaryMenu.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/PokemonScripts/PokemonBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/PokemonScripts/PokemonBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/PokemonScripts/PokemonParty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/PokemonScripts/OldPokemonParty.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Old/PokemonScripts/PokemonParty.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Old/PokemonScripts/OldPokemonParty.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/System/Window/Menu/Scroll/ScrollMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/System/Window/Menu/Scroll/ScrollMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Battle/Controller/PlayerBattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Battle/Controller/PlayerBattleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/Battle/Pokemon/PokemonCombatant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Battle/Pokemon/PokemonCombatant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functional Tests/Wild Battle Test/WildBattleTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functional Tests/Wild Battle Test/WildBattleTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functional Tests/Wild Battle Test/WildBattleTestRunner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functional Tests/Wild Battle Test/WildBattleTestRunner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/108_Smokescreen.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/108_Smokescreen.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/10_Scratch.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/10_Scratch.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/110_Withdraw.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/110_Withdraw.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/145_Bubble.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/145_Bubble.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/16_Gust.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/16_Gust.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/17_Wing Attack.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/17_Wing Attack.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/18_Whirlwind.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/18_Whirlwind.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/22_Vine Whip.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/22_Vine Whip.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/28_Sand Attack.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/28_Sand Attack.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/31_Fury Attack.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/31_Fury Attack.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/33_Tackle.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/33_Tackle.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/39_Tail Whip.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/39_Tail Whip.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/41_Twineedle.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/41_Twineedle.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/45_Growl.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/45_Growl.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/52_Ember.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/52_Ember.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/542_Hurricane.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/542_Hurricane.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/55_Water Gun.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/55_Water Gun.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/73_Leech Seed.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/73_Leech Seed.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/77_Poison Powder.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/77_Poison Powder.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/82_Dragon Rage.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/82_Dragon Rage.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/93_Confusion.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/93_Confusion.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/98_Quick Attack.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/98_Quick Attack.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/99_Rage.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Moves/99_Rage.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/12_Butterfree.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/12_Butterfree.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/15_Beedrill.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/15_Beedrill.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/16_Pidgey.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/16_Pidgey.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/17_Pidgeotto.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/17_Pidgeotto.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/18_Pidgeot.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/18_Pidgeot.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/1_Bulbasaur_OLD.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/1_Bulbasaur_OLD.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/4_Charmander.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/4_Charmander.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/7_Squirtle.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/7_Squirtle.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/Charmander 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/Charmander 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/Charmander.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Pokemon/Charmander.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/System/Window/Dialog/TextBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/System/Window/Dialog/TextBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,16 +124,18 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E22351E3-95F4-4D7B-8C48-60FCA2DCEE71/06/2f956573/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FCFB6FCD-3E9A-4E12-8C14-260F742E2185/3c/452b4986/Cursor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7D0BC631-CADD-4A07-BF74-717847E90CFA/6e/11d8a104/IEnumerator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5A41D6B7-1898-42EC-A409-FD0B1C3E3DCF/80/2fb85153/IList`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E22351E3-95F4-4D7B-8C48-60FCA2DCEE71/b0/dacaff21/IPartition`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7D0BC631-CADD-4A07-BF74-717847E90CFA/ED/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7D0BC631-CADD-4A07-BF74-717847E90CFA/509/Dictionary.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Label.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A41D6B7-1898-42EC-A409-FD0B1C3E3DCF/0/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A41D6B7-1898-42EC-A409-FD0B1C3E3DCF/0/System.Linq.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5A41D6B7-1898-42EC-A409-FD0B1C3E3DCF/fc/0c5e26ce/List`1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/VFX/SceneWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Inventory/InventoryMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Misc/Task.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SceneController.cs" />
@@ -137,6 +182,11 @@
         <option value="$PROJECT_DIR$/Assets/Menus/Summary/SummaryMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Characters/UI/FillableBar.cs" />
         <option value="$PROJECT_DIR$/Assets/Characters/Monsters/Pokemon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Editor/CsvToSo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Characters/Battle/Pokemon/PokemonCombatant.cs" />
+        <option value="$PROJECT_DIR$/Assets/System/Window/Dialog/TextBox.cs" />
+        <option value="$PROJECT_DIR$/Assets/Battle/Controller/PlayerBattleController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Functional Tests/Wild Battle Test/WildBattleTestRunner.cs" />
       </list>
     </option>
   </component>
@@ -165,10 +215,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="1601">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="1601" />
+      <option name="pid" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -376,29 +426,13 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs</url>
           <line>81</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" initialLine="81">
-            <startOffsets>
-              <option value="2032" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2093" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" initialLine="81" />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs</url>
           <line>83</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" initialLine="83">
-            <startOffsets>
-              <option value="2107" />
-              <option value="2124" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2123" />
-              <option value="2131" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Old/Inventory/Inventory.cs" initialLine="83" />
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">

@@ -10,10 +10,11 @@ namespace System.Window.Dialog
 
         private float _lettersPerSecondMultiplier = 1f;
         private bool _typing;
+        private bool _skippable;
         
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Z) && _typing)
+            if (Input.GetKeyDown(KeyCode.Z) && _typing && _skippable)
             {
                 _lettersPerSecondMultiplier = 10f;
             }
@@ -22,9 +23,10 @@ namespace System.Window.Dialog
         public void ClearText() { dialogText.text = ""; }
         public void SetText(string text) { dialogText.text = text; }
 
-        public IEnumerator TypeDialog(string dialog) => TypeDialog(dialog, defaultLettersPerSecond);
-        public IEnumerator TypeDialog(string dialog, float lettersPerSecond)
+        public IEnumerator TypeDialog(string dialog, bool skippable = true) => TypeDialog(dialog, defaultLettersPerSecond, skippable);
+        public IEnumerator TypeDialog(string dialog, float lettersPerSecond, bool skippable = true)
         {
+            _skippable = skippable;
             _lettersPerSecondMultiplier = 1f;
             dialogText.text = "";
             yield return new WaitForSeconds(1f / lettersPerSecond);

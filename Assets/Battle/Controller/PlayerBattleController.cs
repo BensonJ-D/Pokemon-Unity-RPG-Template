@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Window.Dialog;
@@ -41,6 +42,10 @@ namespace Battle.Controller
             yield return TextBox.TypeDialog($"{attacker.Pokemon.Base.Species} used {move.Base.Name}!");
             yield return attacker.PlayBasicHitAnimation();
             yield return defender.PlayDamageAnimation();
+            
+            Task applyDamage = new Task(defender.ApplyDamage(damageDetails));
+            Task displayDamageMessages = new Task(DisplayDamageText(damageDetails));
+            yield return new WaitWhile(() => applyDamage.Running || displayDamageMessages.Running);
         }
         
         protected IEnumerator PerformSwitch(PokemonCombatant activeCombatant, int targetPokemonIndex)
@@ -60,6 +65,31 @@ namespace Battle.Controller
             TextTask = new Task(TextBox.TypeDialog($"Let's go, {activeCombatant.Pokemon.Name}!!"));
             yield return new WaitWhile(() => enterAnimation.Running || TextTask.Running);
             yield return new WaitForSeconds(1f);
+        }
+
+        private IEnumerator DisplayDamageText(DamageDetails damageDetails)
+        {
+            if (damageDetails.Critical)
+            {
+                yield return TextBox.TypeDialog("It's a critical hit!", false);
+                yield return new WaitForSeconds(1f);
+            }
+
+            switch (damageDetails.Effective)
+            {
+                case AttackEffectiveness.NoEffect:
+                    yield return TextBox.TypeDialog("The move had no effect ...", false);
+                    yield return new WaitForSeconds(1f);
+                    break;
+                case AttackEffectiveness.NotVeryEffective:
+                    yield return TextBox.TypeDialog("It's not very effective ...", false);
+                    yield return new WaitForSeconds(1f);
+                    break;
+                case AttackEffectiveness.SuperEffective:
+                    yield return TextBox.TypeDialog("It's super effective!", false);
+                    yield return new WaitForSeconds(1f);
+                    break;
+            }
         }
     }
 }
