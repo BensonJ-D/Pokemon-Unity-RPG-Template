@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Utilities;
+using System.Utilities.Input;
 using UnityEngine;
 
 namespace System.Window.Dialog
@@ -14,7 +16,7 @@ namespace System.Window.Dialog
         
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Z) && _typing && _skippable)
+            if (InputController.ConfirmOrCancel && _typing && _skippable)
             {
                 _lettersPerSecondMultiplier = 10f;
             }

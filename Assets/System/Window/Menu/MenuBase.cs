@@ -1,6 +1,7 @@
 using System.Collections;
 using MyBox;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace System.Window.Menu
 {
@@ -14,6 +15,7 @@ namespace System.Window.Menu
     
         [SerializeField] protected bool enableCursor;
         [ConditionalField(nameof(enableCursor))] [SerializeField] protected MenuCursor cursor;
+
         
         public WindowCloseReason? CloseReason { get; protected set; }
         public (int, int) CurrentCursorPosition { get; protected set; }
@@ -22,8 +24,8 @@ namespace System.Window.Menu
         
         public delegate IEnumerator OnConfirmFunc(T choice);
         public delegate IEnumerator OnCancelFunc();
-        protected OnConfirmFunc _onConfirm;
-        protected OnCancelFunc _onCancel;
+        protected OnConfirmFunc OnConfirmCallback;
+        protected OnCancelFunc OnCancelCallback;
 
         public virtual IEnumerator OpenWindow(Vector2 pos = default, OnConfirmFunc onConfirmCallback = null,
             OnCancelFunc onCancelCallback = null)
@@ -31,8 +33,8 @@ namespace System.Window.Menu
             Choice = null;
             CloseReason = null;
             
-            _onConfirm = onConfirmCallback;
-            _onCancel = onCancelCallback;
+            OnConfirmCallback = onConfirmCallback;
+            OnCancelCallback = onCancelCallback;
             
             yield return base.OpenWindow(pos);
         }
@@ -52,8 +54,8 @@ namespace System.Window.Menu
             if(next != null) next.Text.color = highlightColour;
         }
         
-        protected virtual IEnumerator OnConfirm() => _onConfirm?.Invoke(CurrentOption.Value);
-        protected virtual IEnumerator OnCancel() => _onCancel?.Invoke();
+        protected virtual IEnumerator OnConfirm() => OnConfirmCallback?.Invoke(CurrentOption.Value);
+        protected virtual IEnumerator OnCancel() => OnCancelCallback?.Invoke();
         
         public void Reset()
         {

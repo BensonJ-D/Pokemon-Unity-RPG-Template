@@ -62,7 +62,8 @@ namespace System.Window.Menu.Grid
                 .ToArray();
         }
         
-        public static GridMenuOption<T> GetNextGridMenuOption<T>(this GridMenu<T> gridMenu, bool allowEmptyRows = false)
+        public static GridMenuOption<T> GetNextGridMenuOption<T>(this GridMenu<T> gridMenu, Vector2Int inputDirection,
+            bool allowEmptyRows = false)
         {
             var (col, row) = gridMenu.CurrentCursorPosition;
             
@@ -72,7 +73,7 @@ namespace System.Window.Menu.Grid
             var originalChoice = new GridMenuOption<T>(col, row, option);
             var newChoice = new GridMenuOption<T>(col, row, option);
             
-            if (!DirectionPressed) return originalChoice;
+            if (inputDirection == Vector2Int.zero) return originalChoice;
 
             var rowSize = gridMenu.OptionsGrid.GetLength(0);
             var colSize = gridMenu.OptionsGrid.GetLength(1);
@@ -83,7 +84,7 @@ namespace System.Window.Menu.Grid
             var allRows = gridMenu.GetRowsFlattened(allowEmptyRows);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
             var allCols = gridMenu.GetColumnsFlattened(allowEmptyRows);
             
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (inputDirection.y < 0)
             {
                 var orderedCol = curCol
                     .Where(value => value.Row > row)
@@ -103,9 +104,14 @@ namespace System.Window.Menu.Grid
                     .ToArray();
                 
                 newChoice = orderedCol.Concat(orderedColumns).Concat(orderedRows).FirstOrDefault();
+                if (newChoice != null)
+                {
+                    curCol = optionMenuItems.GetColumn(newChoice.Col, allowEmptyRows);
+                    curRow = optionMenuItems.GetRow(newChoice.Row, allowEmptyRows);
+                }
             } 
             
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (inputDirection.y > 0)
             {
                 var orderedCol = curCol
                     .Where(value => value.Row < row)
@@ -125,9 +131,10 @@ namespace System.Window.Menu.Grid
                     .ToArray();
                 
                 newChoice = orderedCol.Concat(orderedColumns).Concat(orderedRows).FirstOrDefault();
+                if (newChoice != null) curRow = optionMenuItems.GetRow(newChoice.Row, allowEmptyRows);  
             }
             
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (inputDirection.x > 0)
             {
                 var orderedRow = curRow
                     .Where(value => value.Col > col)
@@ -147,9 +154,10 @@ namespace System.Window.Menu.Grid
                     .ToArray();
 
                 newChoice = orderedRow.Concat(orderedRows).Concat(orderedColumns).FirstOrDefault();
+                if (newChoice != null) curRow = optionMenuItems.GetRow(newChoice.Row, allowEmptyRows);  
             }
             
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (inputDirection.x < 0)
             {
                 var orderedRow = curRow
                     .Where(value => value.Col < col)
@@ -181,10 +189,5 @@ namespace System.Window.Menu.Grid
             var rows = gridMenu.GetRowsFlattened();
             return allowEmptyFields ? rows.First() : rows.First(matrixValue => matrixValue.Option.IsNotNullOrEmpty());
         }
-
-        private static bool DirectionPressed => Input.GetKeyDown(KeyCode.UpArrow) 
-                                           || Input.GetKeyDown(KeyCode.LeftArrow)
-                                           || Input.GetKeyDown(KeyCode.DownArrow) 
-                                           || Input.GetKeyDown(KeyCode.RightArrow);
     }
 }

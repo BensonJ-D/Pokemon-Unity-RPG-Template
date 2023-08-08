@@ -19,7 +19,8 @@ namespace System.Window.Menu.Scroll
 
     public static class ScrollMenuExtensionFunctions
     {
-        public static ScrollMenuOption<T> GetNextScrollMenuOption<T>(this ScrollMenu<T> scrollMenu, bool allowEmptyRows = false)
+        public static ScrollMenuOption<T> GetNextScrollMenuOption<T>(this ScrollMenu<T> scrollMenu, int inputDirection, 
+            bool allowEmptyRows = false)
         {
             var optionMenuItems = scrollMenu.OptionMenuItems.Where(item => item.IsNotNullOrEmpty()).ToList();
             var option = scrollMenu.CurrentOption;
@@ -29,8 +30,8 @@ namespace System.Window.Menu.Scroll
             var (_, cursorPosition) = scrollMenu.CurrentCursorPosition;
             var scrollPosition = scrollMenu.CurrentListPosition;
             
+            ScrollMenuOption<T> newChoice;
             var originalChoice = new ScrollMenuOption<T>(cursorPosition, scrollPosition, option);
-            var newChoice = new ScrollMenuOption<T>(cursorPosition, scrollPosition, option);
 
             if (!originalChoice.Option.IsNotNullOrEmpty() && scrollPosition > 0)
             {
@@ -41,28 +42,16 @@ namespace System.Window.Menu.Scroll
                 return newChoice.Option == null ? originalChoice : newChoice;
             }
             
-            if (!DirectionPressed) return originalChoice;
+            if (inputDirection == 0) return originalChoice;
 
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                if (scrollPosition + 1 > scrollSize) return originalChoice;
+            if (scrollPosition - inputDirection > scrollSize ||
+                scrollPosition - inputDirection < 0) return originalChoice;
 
-                scrollPosition++;
-                cursorPosition = Math.Min(cursorPosition + 1, cursorSize);
+            scrollPosition -= inputDirection;
+            cursorPosition = Math.Clamp(cursorPosition - inputDirection, 0, cursorSize);
 
-                newChoice = new ScrollMenuOption<T>(cursorPosition, scrollPosition, optionMenuItems[cursorPosition]);
-            } 
-            
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if (scrollPosition - 1 < 0) return originalChoice;
+            newChoice = new ScrollMenuOption<T>(cursorPosition, scrollPosition, optionMenuItems[cursorPosition]);
 
-                scrollPosition--;
-                cursorPosition = Math.Max(cursorPosition - 1, 0);
-
-                newChoice = new ScrollMenuOption<T>(cursorPosition, scrollPosition, optionMenuItems[cursorPosition]);
-            }
-        
             if (allowEmptyRows) return newChoice;
             
             return newChoice.Option == null ? originalChoice : newChoice;
@@ -74,8 +63,5 @@ namespace System.Window.Menu.Scroll
                 new ScrollMenuOption<T>(0, 0, scrollMenu.OptionMenuItems[0]) : 
                 new ScrollMenuOption<T>(scrollMenu.OptionMenuItems.Count - 1, scrollMenu.OptionsList.Count - 1, scrollMenu.OptionMenuItems.Last());
         }
-        
-        private static bool DirectionPressed => Input.GetKeyDown(KeyCode.UpArrow) 
-                                           || Input.GetKeyDown(KeyCode.DownArrow);
     }
 }

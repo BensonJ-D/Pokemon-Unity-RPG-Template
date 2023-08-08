@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Transition;
+using System.Utilities.Input;
 using System.Window.Menu;
 using System.Window.Menu.Scroll;
 using Characters.Inventory;
@@ -97,7 +98,7 @@ namespace Menus.InventoryMenu
             if (itemUseValidation.Successful) yield return item.OnUse(choice);
             
             yield return partyMenu.TypeMessage(itemUseValidation.ResponseMessage);
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+            yield return InputController.WaitForConfirm;
 
             if (!itemUseValidation.Successful) yield break;
                 

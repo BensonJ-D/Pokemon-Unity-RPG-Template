@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Utilities;
+using System.Utilities.Input;
 using UnityEngine;
 
 namespace System.Window.Menu.Scroll
@@ -17,8 +19,8 @@ namespace System.Window.Menu.Scroll
             if (!Initialised) Initialise();
             if (OptionsList == null) yield break;
             
-            _onConfirm = onConfirmCallback;
-            _onCancel = onCancelCallback;
+            OnConfirmCallback = onConfirmCallback;
+            OnCancelCallback = onCancelCallback;
 
             var defaultSelection = this.GetInitialScrollPosition(UseFirstElementAsDefault);
             CurrentOption = defaultSelection.Option;
@@ -48,19 +50,22 @@ namespace System.Window.Menu.Scroll
         {
             while (WindowOpen)
             {
-                var updatedChoice = this.GetNextScrollMenuOption();
-
-                var previousOption = CurrentOption;
-                var previousPosition = CurrentListPosition;
-                CurrentCursorPosition = (0, updatedChoice.CursorIndex);
-                CurrentListPosition = updatedChoice.ScrollIndex;
-                CurrentOption = updatedChoice.Option;
-
-                if (previousOption != CurrentOption || previousPosition != CurrentListPosition)
+                if (InputController.NavigateVertical)
+                {
+                    var inputDirection = InputController.GetVerticalNavigateInput;
+                    var updatedChoice = this.GetNextScrollMenuOption(inputDirection);
+                
+                    var previousOption = CurrentOption;
+                    var previousPosition = CurrentListPosition;
+                    CurrentCursorPosition = (0, updatedChoice.CursorIndex);
+                    CurrentListPosition = updatedChoice.ScrollIndex;
+                    CurrentOption = updatedChoice.Option;
+                    
                     OnOptionChange(previousOption, CurrentOption, previousPosition != CurrentListPosition);
-
-                if (Input.GetKeyDown(KeyCode.Z) && CurrentOption.IsNotNullOrEmpty()) yield return OnConfirm();
-                if (Input.GetKeyDown(KeyCode.X)) yield return OnCancel();
+                }
+                
+                if (InputController.Confirm && CurrentOption.IsNotNullOrEmpty()) yield return OnConfirm();
+                if (InputController.Cancel) yield return OnCancel();
 
                 yield return null;
             }

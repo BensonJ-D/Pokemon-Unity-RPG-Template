@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Utilities.Input;
 using System.Window.Menu.Single;
 using Characters;
 using Characters.UI;
@@ -22,18 +23,18 @@ namespace Popup
             SetStatLabels(before);
             SetActiveSignedLabels(false); 
 
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+            yield return InputController.WaitForConfirm;
             SetActiveSignedLabels(true);
             SetSignedLabels(after - before);
             SetStatLabels(after - before);
         
             yield return new WaitForSeconds(0.5f);
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+            yield return InputController.WaitForConfirm;
             SetActiveSignedLabels(false); 
             SetStatLabels(after);
         
             yield return new WaitForSeconds(0.5f);
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+            yield return InputController.WaitForConfirm;
         
             yield return CloseWindow();
         }

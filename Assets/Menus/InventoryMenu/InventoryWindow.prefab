@@ -840,7 +840,10 @@ MonoBehaviour:
   fontColour: {r: 0, g: 0, b: 0, a: 1}
   enableCursor: 1
   cursor: {fileID: 8046457814522133165}
-  itemDetails: {fileID: 8046457815765405129}
+  itemDetails:
+    itemName: {fileID: 0}
+    description: {fileID: 8046457814176952087}
+    icon: {fileID: 8046457815490780741}
   numberSelector: {fileID: 7460806030322419741}
   popupMenu: {fileID: 1419788606729272710}
   itemSlots:
@@ -1353,7 +1356,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8046457815765405130}
-  - component: {fileID: 8046457815765405129}
   m_Layer: 5
   m_Name: ItemDetails
   m_TagString: Untagged
@@ -1378,21 +1380,6 @@ Transform:
   m_Father: {fileID: 7745139918469566409}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8046457815765405129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8046457815765405131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc28cdca81df47268661b4d7fb7053ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: {fileID: 0}
-  description: {fileID: 8046457814176952087}
-  icon: {fileID: 8046457815490780741}
 --- !u!1001 &117847951827299252
 PrefabInstance:
   m_ObjectHideFlags: 0

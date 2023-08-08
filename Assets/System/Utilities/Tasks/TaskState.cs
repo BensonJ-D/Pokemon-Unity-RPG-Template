@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 
-namespace Misc
+namespace System.Utilities.Tasks
 {
     public class TaskState
     {

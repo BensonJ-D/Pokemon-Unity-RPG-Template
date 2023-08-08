@@ -1,9 +1,6 @@
-
-
 using System.Collections;
-using UnityEngine;
 
-namespace Misc
+namespace System.Utilities.Tasks
 {
 	public class Task 
 	{

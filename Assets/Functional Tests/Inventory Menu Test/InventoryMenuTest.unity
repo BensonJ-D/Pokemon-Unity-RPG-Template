@@ -342,6 +342,12 @@ MonoBehaviour:
       quantity: 10
     - item: {fileID: 11400000, guid: f101abb40560440d890e05a2382b7be8, type: 2}
       quantity: 5
+    - item: {fileID: 11400000, guid: 5ab44254a0f8b4b4e9de7794a0b49e5e, type: 2}
+      quantity: 20
+    - item: {fileID: 11400000, guid: f101abb40560440d890e05a2382b7be8, type: 2}
+      quantity: 25
+    - item: {fileID: 11400000, guid: 91130ea51f07e1547b5ced559d1cb730, type: 2}
+      quantity: 1
   examplePokemon:
     _partyMembers:
     - pokemonBase: {fileID: 11400000, guid: e6d501bdedcde4fd888112b603e76aaa, type: 2}

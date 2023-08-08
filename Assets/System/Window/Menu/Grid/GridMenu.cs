@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Linq;
+using System.Utilities;
+using System.Utilities.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace System.Window.Menu.Grid
 {
@@ -44,17 +47,20 @@ namespace System.Window.Menu.Grid
         {
             while (WindowOpen)
             {
-                var updatedChoice = this.GetNextGridMenuOption();
-
-                var previousOption = CurrentOption;
-                CurrentCursorPosition = (updatedChoice.Col, updatedChoice.Row);
-                CurrentOption = updatedChoice.Option;
-
-                if (previousOption != CurrentOption)
+                if (InputController.Navigate)
+                {
+                    var inputDirection = InputController.GetNavigateVector;
+                    var updatedChoice = this.GetNextGridMenuOption(inputDirection);
+                
+                    var previousOption = CurrentOption;
+                    CurrentCursorPosition = (updatedChoice.Col, updatedChoice.Row);
+                    CurrentOption = updatedChoice.Option;
+                
                     OnOptionChange(previousOption, CurrentOption);
+                }
 
-                if (Input.GetKeyDown(KeyCode.Z)) yield return OnConfirm();
-                if (Input.GetKeyDown(KeyCode.X)) yield return OnCancel();
+                if (InputController.Confirm) yield return OnConfirm();
+                if (InputController.Cancel) yield return OnCancel();
 
                 yield return null;
             }
