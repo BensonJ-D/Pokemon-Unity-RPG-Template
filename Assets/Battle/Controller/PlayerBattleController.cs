@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Utilities.Tasks;
 using System.Window.Dialog;
 using Battle.Domain;
@@ -19,40 +20,58 @@ namespace Battle.Controller
     {
         protected TextBox TextBox { get; set; }
         protected Task TextTask;
-        
-        public void Initialise(Player player)
+
+        public void Initialise(Player player, ApplyDamageCallback applyDamageCallbackCallback)
         {
             name = player?.Name;
             party = player?.Party;
             inventory = player?.Inventory;
             controllerType = player?.ControllerType ?? ControllerType.Wild;
+            _applyDamageCallback = applyDamageCallbackCallback;
             
             ChosenActions = new List<BattleAction>();
         }
 
-        public PlayerBattleController() : this(null) { }
-        public PlayerBattleController(Player player) { Initialise(player); }
+        public PlayerBattleController() : this(null, null) { }
+        public PlayerBattleController(Player player, ApplyDamageCallback applyDamageCallbackCallback) 
+            { Initialise(player, applyDamageCallbackCallback); }
         
+        public delegate IEnumerator ApplyDamageCallback(PokemonCombatant attacker, List<PokemonCombatant> targets, Move move);
+        private ApplyDamageCallback _applyDamageCallback;
+        
+        private bool _ableToBattle = true;
+        public bool AbleToBattle => _ableToBattle;
         public List<BattleAction> ChosenActions { get; protected set; }
         public abstract IEnumerator ChooseActions(List<PokemonCombatant> combatants, List<PokemonCombatant> targets);
         
-        protected IEnumerator PerformMove(PokemonCombatant attacker, PokemonCombatant defender, Move move)
+        public IEnumerator OnDefeat()
         {
-            var damageDetails = DamageDetails.CalculateDamage(attacker.Pokemon, defender.Pokemon, move);
+            _ableToBattle = false;
+            yield break;
+        } 
+        
+        protected IEnumerator PerformMove(PokemonCombatant attacker, List<PokemonCombatant> targets, Move move)
+        {
             yield return TextBox.TypeDialog($"{attacker.Pokemon.Base.Species} used {move.Base.Name}!");
             yield return attacker.PlayBasicHitAnimation();
-            yield return defender.PlayDamageAnimation();
+
+            var targetAnimationTasks = targets.Select(target => new Task(target.PlayDamageAnimation())).ToList();
+            yield return new WaitWhile(() => targetAnimationTasks.Any(task => task.Running));
             
-            Task applyDamage = new Task(defender.ApplyDamage(damageDetails));
-            Task displayDamageMessages = new Task(DisplayDamageText(damageDetails));
-            yield return new WaitWhile(() => applyDamage.Running || displayDamageMessages.Running);
+            var applyDamage = new Task(_applyDamageCallback(attacker, targets, move));
+            yield return new WaitWhile(() => applyDamage.Running);
         }
         
         protected IEnumerator PerformSwitch(PokemonCombatant activeCombatant, int targetPokemonIndex)
         {
+            yield return PerformSwitchOut(activeCombatant);
+            yield return PerformSwitchIn(activeCombatant, targetPokemonIndex);
+        }
+        
+        protected IEnumerator PerformSwitchOut(PokemonCombatant activeCombatant)
+        {
             yield return TextBox.TypeDialog($"Good job, {activeCombatant.Pokemon.Name}!");
             yield return activeCombatant.PlayFaintAnimation();
-            yield return PerformSwitchIn(activeCombatant, targetPokemonIndex);
         }
         
         private IEnumerator PerformSwitchIn(PokemonCombatant activeCombatant, int targetPokemonIndex)
@@ -65,31 +84,6 @@ namespace Battle.Controller
             TextTask = new Task(TextBox.TypeDialog($"Let's go, {activeCombatant.Pokemon.Name}!!"));
             yield return new WaitWhile(() => enterAnimation.Running || TextTask.Running);
             yield return new WaitForSeconds(1f);
-        }
-
-        private IEnumerator DisplayDamageText(DamageDetails damageDetails)
-        {
-            if (damageDetails.Critical)
-            {
-                yield return TextBox.TypeDialog("It's a critical hit!", false);
-                yield return new WaitForSeconds(1f);
-            }
-
-            switch (damageDetails.Effective)
-            {
-                case AttackEffectiveness.NoEffect:
-                    yield return TextBox.TypeDialog("The move had no effect ...", false);
-                    yield return new WaitForSeconds(1f);
-                    break;
-                case AttackEffectiveness.NotVeryEffective:
-                    yield return TextBox.TypeDialog("It's not very effective ...", false);
-                    yield return new WaitForSeconds(1f);
-                    break;
-                case AttackEffectiveness.SuperEffective:
-                    yield return TextBox.TypeDialog("It's super effective!", false);
-                    yield return new WaitForSeconds(1f);
-                    break;
-            }
         }
     }
 }

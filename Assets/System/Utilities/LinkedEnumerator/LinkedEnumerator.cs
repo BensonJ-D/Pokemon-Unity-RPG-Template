@@ -1,16 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 
-namespace System.Utilities.DoubleLinkedList
+namespace System.Utilities.LinkedEnumerator
 {
     public class LinkedEnumerator<T> where T : class
     {
-        public class Node<T> {
-            public T Value { get; }
-            public Node<T> Previous { get; set; }
-            public Node<T> Next { get; set; }
+        public class Node<TU> {
+            public TU Value { get; }
+            public Node<TU> Previous { get; set; }
+            public Node<TU> Next { get; set; }
             
-            public Node(T value) { Value = value; }
+            public Node(TU value) { Value = value; }
             public bool IsEmpty => Value == null;
         }
         
@@ -56,7 +55,7 @@ namespace System.Utilities.DoubleLinkedList
         private Node<T> First { get; set; }
         private Node<T> Last { get; set; }
         
-        private void Append(T value)
+        public void Append(T value)
         {
             Node<T> node = new Node<T>(value);
             Append(node);

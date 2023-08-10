@@ -41,7 +41,7 @@ namespace System.Window.Dialog
                 yield return new WaitForSeconds(1f / lettersPerSecond / _lettersPerSecondMultiplier);
             }
 
-            yield return new WaitForSeconds(1f / _lettersPerSecondMultiplier);
+            yield return new WaitForSeconds(1f / lettersPerSecond);
             _typing = false;
         }
     }

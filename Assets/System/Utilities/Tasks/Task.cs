@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 
 namespace System.Utilities.Tasks
 {
@@ -36,5 +37,19 @@ namespace System.Utilities.Tasks
 		}
 
 		private readonly TaskState _task;
+
+		public Task QueueTask(IEnumerator newTask) => new Task(QueuedTask(newTask));
+
+		private IEnumerator QueuedTask(IEnumerator newTask)
+		{
+			yield return new WaitWhile(() => Running);
+			yield return newTask;
+		}
+		
+		public static Task EmptyTask => new Task(EmptyTaskFn());
+		private static IEnumerator EmptyTaskFn()
+		{
+			yield break;
+		}
 	}
 }

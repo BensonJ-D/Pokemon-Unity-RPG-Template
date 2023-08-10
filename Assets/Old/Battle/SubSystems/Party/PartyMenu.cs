@@ -78,7 +78,7 @@
 //         // {
 //         //     if (participant == Participant.Player)
 //         //     {
-//         //         yield return TransitionController.Instance.RunTransition(Transition.BattleEnter,
+//         //         yield return TransitionController.RunTransition(Transition.BattleEnter,
 //         //             OnTransitionPeak: () =>
 //         //             {
 //         //                 source = sourceScene;

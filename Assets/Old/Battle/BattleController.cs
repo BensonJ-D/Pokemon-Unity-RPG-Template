@@ -249,7 +249,7 @@
 //             yield return DisplayText($"{attacker.Pokemon.Base.Species} used {move.Base.Name}!");
 //             yield return attacker.PlayBasicHitAnimation();
 //             yield return defender.PlayDamageAnimation();
-//             yield return ApplyDamage(defender, damageDetails);
+//             yield return ApplyDamageCallback(defender, damageDetails);
 //             yield return CheckForFaintedPokemon(attacker, defender, damageDetails);
 //             yield return ApplyEffects(move, attacker, defender, damageDetails);
 //         }
@@ -266,7 +266,7 @@
 //             }
 //         }
 //         
-//         private IEnumerator ApplyDamage(BattlePokemon defender, DamageDetails attackResult)
+//         private IEnumerator ApplyDamageCallback(BattlePokemon defender, DamageDetails attackResult)
 //         {
 //             yield return defender.UpdateHealth(attackResult);
 //

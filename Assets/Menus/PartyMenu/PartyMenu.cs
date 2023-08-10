@@ -28,6 +28,8 @@ namespace Menus.Party
         public PartyMenuState State { get; private set; }
         private PokemonParty _party;
         private IMenuItem<Pokemon> _switchFrom;
+
+        private OnCancelFunc _onCancelCallback;
         
         public override void Initialise()
         {
@@ -49,9 +51,10 @@ namespace Menus.Party
 
             SetSlots(isBattle ? pokemon.GetCurrentBattleOrder() : pokemon.PartyMembers);
 
+            _onCancelCallback = onCancelCallback;
             yield return base.OpenWindow(
                 onConfirmCallback: onConfirmCallback ?? DefaultOnConfirmCallback, 
-                onCancelCallback: onCancelCallback ?? DefaultOnCancelCallback
+                onCancelCallback: onCancelCallback
             );
         }
 
@@ -78,8 +81,8 @@ namespace Menus.Party
                 
                 _party.SwitchPartyMembers(fromSlot.Value, toSlot.Value);
 
-                Task switchFromAnimateIn = new Task(fromSlot.ShiftIn());
-                Task switchToAnimateIn = new Task(toSlot.ShiftIn());
+                var switchFromAnimateIn = new Task(fromSlot.ShiftIn());
+                var switchToAnimateIn = new Task(toSlot.ShiftIn());
                 
                 yield return new WaitWhile( () => switchFromAnimateIn.Running || switchToAnimateIn.Running);
                 
@@ -97,41 +100,44 @@ namespace Menus.Party
             yield return popupMenu.RunWindow();
         }
 
-        private IEnumerator DefaultOnCancelCallback()
+        private IEnumerator OnSwitchCancelCallback()
         {
-            if (State == PartyMenuState.Switch)
-            {
-                var fromSlot = (PartyMenuItem) _switchFrom;
-                var toSlot = (PartyMenuItem) CurrentOption;
-                
-                fromSlot.SetNotSelected();
-                toSlot.SetSelected();
+            var fromSlot = (PartyMenuItem) _switchFrom;
+            var toSlot = (PartyMenuItem) CurrentOption;
+            
+            fromSlot.SetNotSelected();
+            toSlot.SetSelected();
 
-                State = PartyMenuState.Normal;
-            }
-            else
-            {
-                CloseReason = WindowCloseReason.Cancel;
-                yield return base.OnCancel();
-            }
+            State = PartyMenuState.Normal;
+            OnCancelCallback = _onCancelCallback;
+            yield return null;
+        }
+
+        protected override IEnumerator OnCancel()
+        {
+            if (State == PartyMenuState.Switch) yield break;
+            
+            CloseReason = WindowCloseReason.Cancel;
+            yield return base.OnCancel();
         }
         
         private IEnumerator OnPopupConfirm(PartyPopupMenuOption choice)
         {
             if (choice == PartyPopupMenuOption.Summary)
             {
-                StartCoroutine(TransitionController.Instance.RunTransition(Transition.BattleEnter));
+                StartCoroutine(TransitionController.RunTransition(Transition.BattleEnter));
                 
-                yield return TransitionController.Instance.WaitForTransitionPeak();
+                yield return TransitionController.WaitForTransitionPeak;
                 yield return summaryMenu.OpenWindow(CurrentOption.Value, onCancelCallback: OnSummaryCancel);
                 
-                yield return TransitionController.Instance.WaitForTransitionCompletion();
+                yield return TransitionController.WaitForTransitionCompletion;
                 yield return summaryMenu.RunWindow();
             }
             
             if (choice == PartyPopupMenuOption.Switch)
             {
                 State = PartyMenuState.Switch;
+                OnCancelCallback = OnSwitchCancelCallback;
                 _switchFrom = CurrentOption;
                 ((PartyMenuItem)_switchFrom).SetShiftFrom();
 
@@ -161,12 +167,12 @@ namespace Menus.Party
 
         private IEnumerator OnSummaryCancel()
         {
-            StartCoroutine(TransitionController.Instance.RunTransition(Transition.BattleEnter));
+            StartCoroutine(TransitionController.RunTransition(Transition.BattleEnter));
                 
-            yield return TransitionController.Instance.WaitForTransitionPeak();
+            yield return TransitionController.WaitForTransitionPeak;
             yield return summaryMenu.CloseWindow();
                 
-            yield return TransitionController.Instance.WaitForTransitionCompletion();
+            yield return TransitionController.WaitForTransitionCompletion;
         }
         
         protected override void OnOptionChange(IMenuItem<Pokemon> previousOption, IMenuItem<Pokemon> newOption)

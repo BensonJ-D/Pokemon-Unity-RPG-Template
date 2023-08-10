@@ -36,7 +36,7 @@
 //         public virtual IEnumerator OpenMenu(Participant participant, Scene newParentScene)
 //         {
 //             _parentScene = newParentScene;
-//             yield return TransitionController.Instance.RunTransitionWithEffect(Transition.BattleEnter,
+//             yield return TransitionController.RunTransitionWithEffect(Transition.BattleEnter,
 //                 () => OnOpen(participant)
 //             );
 //         }
@@ -45,7 +45,7 @@
 //         {
 //             if (participant == Participant.Player)
 //             {
-//                 yield return TransitionController.Instance.RunTransitionWithEffect(Transition.BattleEnter,
+//                 yield return TransitionController.RunTransitionWithEffect(Transition.BattleEnter,
 //                     () => OnClose(participant)
 //                 );
 //             }

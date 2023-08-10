@@ -52,7 +52,7 @@ namespace Characters.Monsters
 
                 if (Moves.Exists(oldMove => move.Base.Number == oldMove.Base.Number)) continue;
 
-                Move newMove = new Move(move.Base);
+                var newMove = new Move(move.Base);
                 Moves.Add(newMove);
 
                 if (Moves.Count > 4) Moves.RemoveAt(0);

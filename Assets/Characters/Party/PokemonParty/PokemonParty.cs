@@ -19,13 +19,11 @@ namespace Characters.Party.PokemonParty
         public void Initialise()
         {
             _initialised = true;
-            
             BattlePokemon = new List<int>();
-            foreach (var pokemon in PartyMembers)
-            {
-                pokemon.Initialization();
-                ResetBattleOrder();
-            }
+            
+            foreach (var pokemon in PartyMembers) { pokemon.Initialization(); }
+            
+            ResetBattleOrder();
         }
 
         public void ResetBattleOrder()

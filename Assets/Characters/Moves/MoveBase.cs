@@ -32,7 +32,7 @@ namespace Characters.Moves
         public string Name => moveName;
         public string Description => description;
         public PokemonType Type => type;
-        public int Power => power;
+        public int Power => category == MoveCategory.Status ? 0 : power;
         public int Pp => pp;
         public int Accuracy => accuracy;
         public int Priority => priority;

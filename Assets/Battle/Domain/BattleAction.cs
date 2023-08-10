@@ -3,7 +3,7 @@ using Characters.Battle.Pokemon;
 
 namespace Battle.Domain
 {
-    public struct BattleAction
+    public class BattleAction
     {
         public BattleActionPriority Priority;
         public IEnumerator Action;

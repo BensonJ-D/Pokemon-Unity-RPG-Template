@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Utilities.DoubleLinkedList;
 using System.Window;
 using System.Window.Dialog;
 using Battle.Domain;
@@ -21,9 +20,9 @@ namespace Battle.Controller
 {
     public class WildBattleController : PlayerBattleController
     {
-        public WildBattleController(Player player, TextBox textBox)
+        public WildBattleController(Player player, ApplyDamageCallback applyDamageCallbackCallback, TextBox textBox)
         {
-            Initialise(player);
+            Initialise(player, applyDamageCallbackCallback);
             TextBox = textBox;
         }
 
@@ -35,7 +34,7 @@ namespace Battle.Controller
             {
                 var pokemon = combatant.Pokemon;
                 var moves = pokemon.Moves;
-                var moveIndex = Random.Range(0, moves.Count - 1);
+                var moveIndex = Random.Range(0, moves.Count);
                 
                 var enemies = (from target in targets
                     where target.Team != combatant.Team
@@ -49,7 +48,7 @@ namespace Battle.Controller
                 var newAction = new BattleAction
                 {
                     Priority = BattleActionPriority.Move,
-                    Action = PerformMove(combatant, enemies.First(), combatant.Pokemon.Moves[moveIndex]),
+                    Action = PerformMove(combatant, enemies.ToList(), combatant.Pokemon.Moves[moveIndex]),
                     Combatant = combatant
                 };
 
@@ -57,7 +56,7 @@ namespace Battle.Controller
                 yield return null;
             }
         }
-
+        
         private static IEnumerator DebugAttack(Pokemon pokemon, Move move)
         {
             Debug.Log($"Wild {pokemon.Name} used {move}");

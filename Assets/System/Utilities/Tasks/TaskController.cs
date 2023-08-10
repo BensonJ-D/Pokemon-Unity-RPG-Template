@@ -10,11 +10,8 @@ namespace System.Utilities.Tasks
         #region Singleton setup
 
         private static TaskController _instance;
-        public static TaskController Instance { 
-            get => GetInstance();
-            private set => _instance = value;
-        }
-
+        public static TaskController Instance => GetInstance();
+        
         private static TaskController GetInstance()
         {
             if (_instance != null) return _instance;

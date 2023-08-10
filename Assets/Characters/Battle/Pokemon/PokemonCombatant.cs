@@ -29,8 +29,8 @@ namespace Characters.Battle.Pokemon
         public IEnumerator ApplyDamage(DamageDetails damageDetails)
         {
             var decayMultiplier = 100U;
-            decayMultiplier += (uint) (damageDetails.Multiplier * 25U);
-            decayMultiplier += damageDetails.Critical ? 50U : 0U;
+            decayMultiplier += (uint) (damageDetails.Multiplier * 150U);
+            decayMultiplier += damageDetails.Critical ? 150U : 0U;
             yield return Pokemon.UpdateHealth(-damageDetails.DamageDealt, decayMultiplier);
         }
     }

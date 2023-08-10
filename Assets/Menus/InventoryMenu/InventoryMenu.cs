@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Transition;
 using System.Utilities.Input;
+using System.Window;
 using System.Window.Menu;
 using System.Window.Menu.Scroll;
 using Characters.Inventory;
@@ -58,13 +59,13 @@ namespace Menus.InventoryMenu
         {
             if (choice == InventoryPopupMenuOption.Use)
             {
-                StartCoroutine(TransitionController.Instance.RunTransition(Transition.BattleEnter));
+                StartCoroutine(TransitionController.RunTransition(Transition.BattleEnter));
                 
-                yield return TransitionController.Instance.WaitForTransitionPeak();
+                yield return TransitionController.WaitForTransitionPeak;
                 yield return partyMenu.OpenWindow(_party, false, OnPartyConfirm, OnPartyCancel);
                 yield return popupMenu.CloseWindow();
                 
-                yield return TransitionController.Instance.WaitForTransitionCompletion();
+                yield return TransitionController.WaitForTransitionCompletion;
                 yield return partyMenu.RunWindow();
             }
             
@@ -109,12 +110,13 @@ namespace Menus.InventoryMenu
         
         private IEnumerator OnPartyCancel()
         {
-            StartCoroutine(TransitionController.Instance.RunTransition(Transition.BattleEnter));
+            CloseReason = WindowCloseReason.Cancel;
+            StartCoroutine(TransitionController.RunTransition(Transition.BattleEnter));
                 
-            yield return TransitionController.Instance.WaitForTransitionPeak();
+            yield return TransitionController.WaitForTransitionPeak;
             yield return partyMenu.CloseWindow();
                 
-            yield return TransitionController.Instance.WaitForTransitionCompletion();
+            yield return TransitionController.WaitForTransitionCompletion;
         }
         
         protected override void OnOptionChange(IMenuItem<InventoryData> previousOption, IMenuItem<InventoryData> newOption, bool cursorShifted)

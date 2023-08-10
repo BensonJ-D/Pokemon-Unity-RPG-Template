@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transition;
+using System.Utilities.LinkedEnumerator;
 using System.Utilities.Tasks;
 using System.Window;
 using System.Window.Dialog;
 using Battle.Controller;
 using Battle.Domain;
 using Characters.Battle.Pokemon;
+using Characters.Moves;
 using Characters.Player;
 using Menus.ActionMenu;
 using Menus.InventoryMenu;
@@ -24,8 +26,7 @@ namespace Battle
 
     public class BattleWindow : WindowBase
     {
-        [Separator("Menus")] 
-        [SerializeField] private ActionMenu actionMenu;
+        [Separator("Menus")] [SerializeField] private ActionMenu actionMenu;
         [SerializeField] private MoveMenu moveMenu;
         [SerializeField] private PartyMenu partyMenu;
         [SerializeField] private InventoryMenu inventoryMenu;
@@ -56,16 +57,19 @@ namespace Battle
             switch (participant.ControllerType)
             {
                 case ControllerType.Local:
-                    return new LocalBattleController(participant, actionMenu, moveMenu, partyMenu, inventoryMenu, textBox);
-                
+                    return new LocalBattleController(participant, ApplyDamage, actionMenu, moveMenu, partyMenu, inventoryMenu,
+                        textBox);
+
                 case ControllerType.Wild:
-                    return new WildBattleController(participant, textBox);
-                
+                    var controller = new WildBattleController(participant, ApplyDamage, textBox);
+                    _wildPokemon = controller;
+                    return controller;
+
                 default:
-                    return new WildBattleController(null, null);
+                    return new WildBattleController(null, null, null);
             }
         }
-        
+
         public IEnumerator OpenWindow(List<Player> participants, bool isWildBattle)
         {
             _actions ??= new List<BattleAction>();
@@ -85,9 +89,6 @@ namespace Battle
                 combatant.Setup(pokemon);
             }
 
-            if (_isWildBattle)
-                _wildPokemon = uniqueParticipants.First(player => player.ControllerType == ControllerType.Wild);
-
             yield return base.OpenWindow();
         }
 
@@ -95,7 +96,7 @@ namespace Battle
         {
             var pokemonEntryAnimationTasks =
                 (from combatant in combatants
-                where combatant.Pokemon != null 
+                where combatant.Pokemon != null
                 select new Task(combatant.PlayEnterAnimation()))
                 .ToList();
 
@@ -106,13 +107,16 @@ namespace Battle
             yield return new WaitForSeconds(1f);
             
             BattleState = BattleState.Start;
-            yield return RunTurn();
+            while (BattleState != BattleState.End)
+            {
+                yield return RunTurn();
+            }
         }
 
         private IEnumerator RunTurn()
         {
             if (BattleState != BattleState.Start) yield break;
-        
+
             BattleState = BattleState.Turn;
 
             var combatGroups =
@@ -136,16 +140,19 @@ namespace Battle
             _actions.AddRange(newActions);
             _actions.Sort(PrioritizeActions);
             
-            var actionEnumerator = _actions.GetEnumerator();
-            while(actionEnumerator.MoveNext())
+            var actionEnumerator = new LinkedEnumerator<BattleAction>(_actions);
+            while (actionEnumerator.MoveNext())
             {
                 yield return actionEnumerator.Current.Action;
             }
-            actionEnumerator.Dispose();
+            
+            if (combatGroups[_wildPokemon][0].Pokemon.IsFainted)
+            {
+                BattleState = BattleState.End;
+                yield break;
+            }
 
             BattleState = BattleState.Start;
-            
-            StartCoroutine(RunTurn());
         }
 
         // public enum BattleAction { NewPokemon = -3, Weather = -2, PersistentDamage = -1, Move = 0, Item = 1, Switch = 2, Run = 3 }
@@ -166,6 +173,40 @@ namespace Battle
         
             if(speed2 != speed1) { return speed1 - speed2; }
             return coinFlip;
+        }
+
+        private IEnumerator ApplyDamage(PokemonCombatant attacker, List<PokemonCombatant> targets, Move move)
+        {
+            var damageDetails = DamageDetails.CalculateDamage(attacker, targets, move);
+            var damageTasks = damageDetails.Select(result => new Task(result.Target.ApplyDamage(result))).ToList();
+            var lastQueuedMessageTask = damageDetails.Aggregate(Task.EmptyTask, 
+                (previousTask, result) => previousTask.QueueTask(DisplayDamageText(result)));
+            yield return new WaitWhile(() => damageTasks.Any(task => task.Running) || lastQueuedMessageTask.Running);
+        }
+
+        private IEnumerator DisplayDamageText(DamageDetails damageDetails)
+        {
+            if (damageDetails.Critical)
+            {
+                yield return textBox.TypeDialog("It's a critical hit!", false);
+                yield return new WaitForSeconds(1f);
+            }
+
+            switch (damageDetails.Effective)
+            {
+                case AttackEffectiveness.NoEffect:
+                    yield return textBox.TypeDialog("The move had no effect ...", false);
+                    yield return new WaitForSeconds(1f);
+                    break;
+                case AttackEffectiveness.NotVeryEffective:
+                    yield return textBox.TypeDialog("It's not very effective ...", false);
+                    yield return new WaitForSeconds(1f);
+                    break;
+                case AttackEffectiveness.SuperEffective:
+                    yield return textBox.TypeDialog("It's super effective!", false);
+                    yield return new WaitForSeconds(1f);
+                    break;
+            }
         }
     }
 }

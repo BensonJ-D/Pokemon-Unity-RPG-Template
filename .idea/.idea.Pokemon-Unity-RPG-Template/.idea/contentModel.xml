@@ -6,7 +6,6 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Battle" t="Include">
-          <e p="BattleWindow - Copy.cs" t="Include" />
           <e p="BattleWindow.cs" t="Include" />
           <e p="Controller" t="Include">
             <e p="LocalBattleController.cs" t="Include" />
@@ -84,6 +83,14 @@
         </e>
         <e p="Game" t="Include">
           <e p="Resources" t="Include">
+            <e p="Animations" t="Include">
+              <e p="Battle" t="Include" />
+              <e p="Player" t="Include" />
+              <e p="TIles" t="Include">
+                <e p="Grass" t="Include" />
+              </e>
+              <e p="Transition" t="Include" />
+            </e>
             <e p="Items" t="Include" />
             <e p="Moves" t="Include" />
             <e p="Pokemon" t="Include" />
@@ -216,13 +223,13 @@
             <e p="TransitionController.cs" t="Include" />
           </e>
           <e p="Utilities" t="Include">
-            <e p="DoubleLinkedList" t="Include">
-              <e p="LinkedEnumerator.cs" t="Include" />
-              <e p="Node.cs" t="Include" />
-            </e>
             <e p="EnumExtensionFunctions.cs" t="Include" />
             <e p="Input" t="Include">
               <e p="InputController.cs" t="Include" />
+            </e>
+            <e p="LinkedEnumerator" t="Include">
+              <e p="LinkedEnumerator.cs" t="Include" />
+              <e p="Node.cs" t="Include" />
             </e>
             <e p="Tasks" t="Include">
               <e p="Task.cs" t="Include" />
@@ -259,14 +266,6 @@
           </e>
         </e>
         <e p="VFX" t="Include">
-          <e p="Animations" t="Include">
-            <e p="Battle" t="Include" />
-            <e p="Player" t="Include" />
-            <e p="TIles" t="Include">
-              <e p="Grass" t="Include" />
-            </e>
-            <e p="Transition" t="Include" />
-          </e>
           <e p="Battle" t="Include" />
           <e p="Items" t="Include" />
           <e p="Sprites" t="Include">

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transition;
-using System.Utilities.DoubleLinkedList;
+using System.Utilities.LinkedEnumerator;
 using System.Utilities.Tasks;
 using System.Window;
 using System.Window.Dialog;
@@ -31,11 +31,12 @@ namespace Battle.Controller
         private InventoryMenu InventoryMenu { get; set; }
         private Task _actionMenuTask;
         private Task _partyMenuTask;
+        private Task _inventoryMenuTask;
 
-        public LocalBattleController(Player player, ActionMenu actionMenu, MoveMenu moveMenu, PartyMenu partyMenu,
+        public LocalBattleController(Player player, ApplyDamageCallback applyDamageCallbackCallback, ActionMenu actionMenu, MoveMenu moveMenu, PartyMenu partyMenu,
             InventoryMenu inventoryMenu, TextBox textBox)
         {
-            Initialise(player);
+            Initialise(player, applyDamageCallbackCallback);
             
             ActionMenu = actionMenu;
             MoveMenu = moveMenu;
@@ -94,11 +95,9 @@ namespace Battle.Controller
                     break;
                 case ActionMenuOption.Bag:
                     yield return ChooseItem();
-                    // StartCoroutine(ChooseItem(participant));
                     break;
                 case ActionMenuOption.Pokemon:
                     yield return ChoosePokemon(combatant);
-                    // StartCoroutine(ChoosePokemon(participant));
                     break;
                 case ActionMenuOption.Run:
                     _actionMenuTask.Stop();
@@ -129,14 +128,14 @@ namespace Battle.Controller
 
 
             var allies = (from target in targets
-                where target.Team != currentCombatant.Team
+                where target.Team == currentCombatant.Team && target != currentCombatant
                 select target);
 
             var pokemon = currentCombatant.Pokemon;
             var newAction = new BattleAction
             {
                 Priority = BattleActionPriority.Move,
-                Action = PerformMove(currentCombatant, enemies.First(), MoveMenu.Choice.Value),
+                Action = PerformMove(currentCombatant, enemies.ToList(), MoveMenu.Choice.Value),
                 Combatant = currentCombatant
             };
 
@@ -149,11 +148,11 @@ namespace Battle.Controller
         {
             _actionMenuTask.Pause();
             
-            var task = new Task(TransitionController.Instance.RunTransition(Transition.BattleEnter));
+            var task = new Task(TransitionController.RunTransition(Transition.BattleEnter));
             yield return null;
-            yield return TransitionController.Instance.WaitForTransitionPeak();
+            yield return TransitionController.WaitForTransitionPeak;
             yield return OpenPartyMenu();
-            yield return TransitionController.Instance.WaitForTransitionCompletion();
+            yield return TransitionController.WaitForTransitionCompletion;
 
             _partyMenuTask = new Task(PartyMenu.RunWindow());
             yield return new WaitWhile(() => PartyMenu.CloseReason == null);
@@ -175,12 +174,12 @@ namespace Battle.Controller
             TextTask?.Stop();
             TextBox.ClearText();
             
-            task = new Task(TransitionController.Instance.RunTransition(Transition.BattleEnter));
+            task = new Task(TransitionController.RunTransition(Transition.BattleEnter));
             yield return null;
-            yield return TransitionController.Instance.WaitForTransitionPeak();
+            yield return TransitionController.WaitForTransitionPeak;
             yield return PartyMenu.CloseWindow();
             yield return ActionMenu.CloseWindow();
-            yield return TransitionController.Instance.WaitForTransitionCompletion();
+            yield return TransitionController.WaitForTransitionCompletion;
         }
 
         private IEnumerator OpenPartyMenu()
@@ -195,27 +194,28 @@ namespace Battle.Controller
         
         private IEnumerator OnPartyCancel()
         {
-            var task = new Task(TransitionController.Instance.RunTransition(Transition.BattleEnter));
+            var task = new Task(TransitionController.RunTransition(Transition.BattleEnter));
             yield return null;
-            yield return TransitionController.Instance.WaitForTransitionPeak();
+            yield return TransitionController.WaitForTransitionPeak;
             yield return PartyMenu.CloseWindow();
-            yield return TransitionController.Instance.WaitForTransitionCompletion();
+            yield return TransitionController.WaitForTransitionCompletion;
         }
         
         private IEnumerator ChooseItem()
         {
             _actionMenuTask.Pause();
             
-            var task = new Task(TransitionController.Instance.RunTransition(Transition.BattleEnter));
+            var task = new Task(TransitionController.RunTransition(Transition.BattleEnter));
             yield return null;
-            yield return TransitionController.Instance.WaitForTransitionPeak();
+            yield return TransitionController.WaitForTransitionPeak;
             yield return InventoryMenu.OpenWindow(Inventory, Party, onCancelCallback: OnInventoryCancel);
-            yield return TransitionController.Instance.WaitForTransitionCompletion();
+            yield return TransitionController.WaitForTransitionCompletion;
             
             TextTask.Stop();
             TextBox.ClearText();
             
-            yield return InventoryMenu.RunWindow();
+            _inventoryMenuTask = new Task(InventoryMenu.RunWindow());
+            yield return new WaitWhile(() => InventoryMenu.CloseReason == null);
             
             
             // if (partyMenu.Choice[participant] == PartyMenu.PokemonChoice.Back)
@@ -231,11 +231,11 @@ namespace Battle.Controller
         
         private IEnumerator OnInventoryCancel()
         {
-            var task = new Task(TransitionController.Instance.RunTransition(Transition.BattleEnter));
+            var task = new Task(TransitionController.RunTransition(Transition.BattleEnter));
             yield return null;
-            yield return TransitionController.Instance.WaitForTransitionPeak();
+            yield return TransitionController.WaitForTransitionPeak;
             yield return InventoryMenu.CloseWindow();
-            yield return TransitionController.Instance.WaitForTransitionCompletion();
+            yield return TransitionController.WaitForTransitionCompletion;
         }
     }
 }

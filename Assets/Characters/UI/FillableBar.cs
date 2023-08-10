@@ -37,7 +37,7 @@ namespace Characters.UI
             baseFillImage.color = gradient.Evaluate(valueNormalised);
         }
 
-        public IEnumerator UpdateBar(int delta, uint updatePercentageSpeed = 100)
+        public IEnumerator UpdateBar(int delta, uint updatePercentageSpeed = 300)
         {
             var targetValue = Mathf.Clamp(delta + CurrentValue, MinimumValue, MaximumValue);
             var isPositiveDelta = delta > 0;
