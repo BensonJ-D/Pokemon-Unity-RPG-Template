@@ -36,7 +36,7 @@
 //     
 //         public void ClearText() { dialogText.text = ""; }
 //         public void SetText(string text) { dialogText.text = text; }
-//         public IEnumerator TypeDialog(string dialog)
+//         public IEnumerator TypeMessage(string dialog)
 //         {
 //             _lettersPerSecondMultiplier = 1f;
 //             dialogText.text = "";

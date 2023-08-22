@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Potion
   description: Heals a small amount of HP.
-  icon: {fileID: 0}
+  icon: {fileID: -6885498132332409789, guid: f64ca9a0e50d2214aa7054deb58e16bc, type: 3}
   consumable: 1
   amountHealed: 20
-  primaryStatusConditionsHealed: 
-  secondaryStatusConditionsHealed: 

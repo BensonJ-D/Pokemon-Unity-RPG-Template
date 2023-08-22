@@ -2,6 +2,8 @@ using System;
 using System.Window.Menu;
 using Characters.Monsters;
 using Characters.UI;
+using GameSystem.Window.Menu;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +20,7 @@ namespace Menus.Summary
         public CharacterStatus PokemonStatus => pokemonStatus;
 
         public Transform Transform => transform;
-        public Text Text => null;
+        public TextMeshProUGUI Text => null;
 
         public void SetMenuItem(Pokemon pokemon)
         {

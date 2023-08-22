@@ -8,6 +8,7 @@ using System.Window.Menu.Scroll;
 using Characters.Inventory;
 using Characters.Monsters;
 using Characters.Party.PokemonParty;
+using GameSystem.Window.Menu;
 using Menus.Inventory.PopupMenu;
 using Menus.InventoryMenu.MenuItem;
 using Menus.NumberSelector;
@@ -24,7 +25,7 @@ namespace Menus.InventoryMenu
         [SerializeField] private NumberSelectorMenu numberSelector;
         [SerializeField] private InventoryPopupMenu popupMenu;
         [SerializeField] private List<InventoryMenuItem> itemSlots;
-        [SerializeField] private PartyMenu partyMenu;
+        [SerializeField] private Party.PartyMenu partyMenu;
 
         private Characters.Inventory.Inventory _inventory;
         private PokemonParty _party;

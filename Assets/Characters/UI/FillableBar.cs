@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Characters.Monsters;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +10,8 @@ namespace Characters.UI
     [Serializable]
     public class FillableBar
     {
-        [SerializeField] private Text currentValueLabel;
-        [SerializeField] private Text maximumValueLabel;
+        [SerializeField] private TextMeshProUGUI currentValueLabel;
+        [SerializeField] private TextMeshProUGUI maximumValueLabel;
         [SerializeField] private Image baseFillImage;
         [SerializeField] private Gradient gradient;
 

@@ -656,6 +656,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1053896845630193906, guid: 329a97c30b70875489b17ca9c8e02416,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 48
+      objectReference: {fileID: 0}
     - target: {fileID: 1521343381643023603, guid: 329a97c30b70875489b17ca9c8e02416,
         type: 3}
       propertyPath: m_Name
@@ -725,6 +730,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Camera
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590711716690623849, guid: 329a97c30b70875489b17ca9c8e02416,
+        type: 3}
+      propertyPath: m_Text
+      value: Charmander
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665120142745371310, guid: 329a97c30b70875489b17ca9c8e02416,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906903245734013667, guid: 329a97c30b70875489b17ca9c8e02416,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 48
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 329a97c30b70875489b17ca9c8e02416, type: 3}

@@ -31,16 +31,16 @@ namespace Characters.Monsters
 
         public void Initialization()
         {
-            Initialization(pokemonBase, initialLevel);
+            Initialization(pokemonBase, initialLevel, baseHealth);
         }
 
-        public void Initialization(PokemonBase @base, int level)
+        public void Initialization(PokemonBase @base, int level, float health = 100f)
         {
             Base = @base;
             Level = level;
             Name = @base.Species;
 
-            CurrentHp = (int) (MaxHp() * (baseHealth / 100));
+            CurrentHp = (int) (MaxHp() * (health / 100));
 
             var percentageToNextLevel = (int) ((NextLevelExperience - BaseLevelExperience) * (baseExp / 100));
             CurrentExperience = BaseLevelExperience + percentageToNextLevel;
@@ -238,7 +238,6 @@ namespace Characters.Monsters
         
         public IEnumerator UpdateExp(int expAdjustment, uint speedMultiplier = 500)
         {
-            var previousLevel = Level;
             var isPositiveDelta = expAdjustment > 0;
             var targetExp = CurrentExperience + expAdjustment;
             do
@@ -260,16 +259,6 @@ namespace Characters.Monsters
                 _statusUI?.ExpBar?.SetValue(BaseLevelExperience, CurrentExperience, NextLevelExperience);
             } 
             while (isPositiveDelta ? CurrentExperience < targetExp : CurrentExperience > targetExp);
-
-            if (previousLevel == Level) yield break;
-            
-            var levelUpWindow = Object.Instantiate(Resources.Load("Prefabs/LevelUpWindow")) as GameObject;
-            if (levelUpWindow != null)
-            {
-                yield return levelUpWindow.GetComponent<LevelUpWindow>().ShowWindow(GetStats(previousLevel), GetStats(Level));
-                Object.Destroy(levelUpWindow.gameObject);
-            }
-            else { Object.Destroy(levelUpWindow); }
         }
     }
 }

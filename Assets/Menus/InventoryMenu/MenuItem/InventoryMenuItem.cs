@@ -1,5 +1,7 @@
 ﻿using System.Window.Menu;
 using Characters.Inventory;
+using GameSystem.Window.Menu;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +9,13 @@ namespace Menus.InventoryMenu.MenuItem
 {
     public class InventoryMenuItem : MonoBehaviour, IMenuItem<InventoryData>
     {
-        [SerializeField] private Text itemName;
-        [SerializeField] private Text itemMultiplier; 
-        [SerializeField] private Text itemQuantity;
+        [SerializeField] private TextMeshProUGUI itemName;
+        [SerializeField] private TextMeshProUGUI itemMultiplier; 
+        [SerializeField] private TextMeshProUGUI itemQuantity;
 
         public InventoryData Value { get; private set; }
         public Transform Transform => transform;
-        public Text Text => itemName;
+        public TextMeshProUGUI Text => itemName;
         
         public bool IsNotNullOrEmpty() => Value != null && Value.item != null;
 

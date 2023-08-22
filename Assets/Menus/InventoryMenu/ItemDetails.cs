@@ -1,5 +1,6 @@
 using System;
 using Characters.Inventory;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,8 @@ namespace Menus.InventoryMenu
     [Serializable]
     public class ItemDetails
     {
-        [SerializeField] private Text itemName;
-        [SerializeField] private Text description;
+        [SerializeField] private TextMeshProUGUI itemName;
+        [SerializeField] private TextMeshProUGUI description;
         [SerializeField] private Image icon;
 
         public void SetItemDetails(Item item)

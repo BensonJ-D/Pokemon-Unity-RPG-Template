@@ -18,22 +18,22 @@ namespace Popup
         
         public IEnumerator ShowWindow(Stats before, Stats after, Vector3 pos = default)
         {
-            yield return base.OpenWindow(pos);
-
             SetStatLabels(before);
             SetActiveSignedLabels(false); 
+            
+            yield return base.OpenWindow(pos);
 
             yield return InputController.WaitForConfirm;
             SetActiveSignedLabels(true);
             SetSignedLabels(after - before);
             SetStatLabels(after - before);
+            yield return null;
         
-            yield return new WaitForSeconds(0.5f);
             yield return InputController.WaitForConfirm;
             SetActiveSignedLabels(false); 
             SetStatLabels(after);
+            yield return null;
         
-            yield return new WaitForSeconds(0.5f);
             yield return InputController.WaitForConfirm;
         
             yield return CloseWindow();
@@ -51,12 +51,12 @@ namespace Popup
         
         private void SetSignedLabels(Stats values)
         {
-            signedLabels.MaxHealth.text = values.MaxHp > 0 ? "+" : "-";
-            signedLabels.AttackText.text = values.Attack > 0 ? "+" : "-";
-            signedLabels.DefenceText.text = values.Defence > 0 ? "+" : "-";
-            signedLabels.SpAtkText.text = values.SpAttack > 0 ? "+" : "-";
-            signedLabels.SpDefText.text = values.SpDefence > 0 ? "+" : "-";
-            signedLabels.SpeedText.text = values.Speed > 0 ? "+" : "-";
+            signedLabels.MaxHealth.text = values.MaxHp >= 0 ? "+" : "-";
+            signedLabels.AttackText.text = values.Attack >= 0 ? "+" : "-";
+            signedLabels.DefenceText.text = values.Defence >= 0 ? "+" : "-";
+            signedLabels.SpAtkText.text = values.SpAttack >= 0 ? "+" : "-";
+            signedLabels.SpDefText.text = values.SpDefence >= 0 ? "+" : "-";
+            signedLabels.SpeedText.text = values.Speed >= 0 ? "+" : "-";
         }
         
         private void SetStatLabels(Stats values)

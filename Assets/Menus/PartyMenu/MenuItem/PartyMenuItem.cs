@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
-using System.Window.Menu;
 using Characters.Monsters;
 using Characters.UI;
+using GameSystem.Window.Menu;
+using Menus.Party.MenuItem;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menus.Party.MenuItem
+namespace Menus.PartyMenu.MenuItem
 {
     [Serializable]
     public class PartyMenuItem : MonoBehaviour, IMenuItem<Pokemon>
@@ -22,7 +24,7 @@ namespace Menus.Party.MenuItem
         public int PositionInOrder => positionInOrder;
         public Pokemon Value { get; private set; }
         public Transform Transform => transform;
-        public Text Text => null;
+        public TextMeshProUGUI Text => null;
 
         public CharacterStatus PokemonStatus => pokemonStatus;
 

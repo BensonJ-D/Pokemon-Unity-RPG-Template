@@ -15,6 +15,8 @@ namespace Characters.Party.PokemonParty
     {
         private List<int> BattlePokemon { get; set; }
         private bool _initialised;
+
+        public bool HasNoBattleReadyPokemon() => PartyMembers.All(member => !member.IsFainted);
         
         public void Initialise()
         {

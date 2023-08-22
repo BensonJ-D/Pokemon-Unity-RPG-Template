@@ -4,13 +4,15 @@ using System.Linq;
 using System.Transition;
 using System.Utilities.Tasks;
 using System.Window;
-using System.Window.Dialog;
 using System.Window.Menu;
 using System.Window.Menu.Grid;
 using Characters.Monsters;
 using Characters.Party.PokemonParty;
+using GameSystem.Window.Dialog;
+using GameSystem.Window.Menu;
 using Menus.Party.Domain;
 using Menus.Party.MenuItem;
+using Menus.PartyMenu.MenuItem;
 using Menus.Summary;
 using MyBox;
 using UnityEngine;
@@ -151,11 +153,11 @@ namespace Menus.Party
                 var pokemon = CurrentOption.Value;
                 if (pokemon.IsFainted)
                 {
-                    yield return messageTextBox.TypeDialog($"{pokemon.Name} has fainted and is unable to battle!");
+                    yield return messageTextBox.TypeMessage($"{pokemon.Name} has fainted and is unable to battle!");
                 } 
                 else if ((PartyMenuItem) CurrentOption == menuItems.First())
                 {
-                    yield return messageTextBox.TypeDialog($"{pokemon.Name} is already in battle!");   
+                    yield return messageTextBox.TypeMessage($"{pokemon.Name} is already in battle!");   
                 }
                 else
                 {
@@ -213,6 +215,6 @@ namespace Menus.Party
             }
         }
 
-        public IEnumerator TypeMessage(string message) => messageTextBox.TypeDialog(message);
+        public IEnumerator TypeMessage(string message) => messageTextBox.TypeMessage(message);
     }
 }

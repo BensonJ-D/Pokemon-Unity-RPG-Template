@@ -2,6 +2,7 @@ using System;
 using Characters.Monsters;
 using JetBrains.Annotations;
 using MyBox;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -11,8 +12,8 @@ namespace Characters.UI
     [Serializable]
     public class CharacterStatus
     {
-        [SerializeField] [CanBeNull] private Text characterName;
-        [SerializeField] [CanBeNull] private Text characterLevel;
+        [SerializeField] [CanBeNull] private TextMeshProUGUI characterName;
+        [SerializeField] [CanBeNull] private TextMeshProUGUI characterLevel;
         [SerializeField] [CanBeNull] private Image statusCondition;
         
         [SerializeField] protected bool hasHealthBar;
@@ -27,8 +28,8 @@ namespace Characters.UI
         [SerializeField] [ConditionalField(nameof(hasStats))]
         private CharacterStats stats;
         
-        public Text Name => characterName;
-        public Text Level => characterLevel;
+        public TextMeshProUGUI Name => characterName;
+        public TextMeshProUGUI Level => characterLevel;
         [CanBeNull] public FillableBar HealthBar => hasHealthBar ? healthBar : null;
         [CanBeNull] public FillableBar ExpBar => hasExpBar ? expBar : null;
         [CanBeNull] public CharacterStats Stats => hasStats ? stats : null;
@@ -37,18 +38,18 @@ namespace Characters.UI
     [Serializable]
     public class CharacterStats
     {
-        [SerializeField] private Text maxHealth;
-        [SerializeField] private Text attackText;
-        [SerializeField] private Text defenceText;
-        [SerializeField] private Text spAtkText;
-        [SerializeField] private Text spDefText;
-        [SerializeField] private Text speedText;
+        [SerializeField] private TextMeshProUGUI maxHealth;
+        [SerializeField] private TextMeshProUGUI attackText;
+        [SerializeField] private TextMeshProUGUI defenceText;
+        [SerializeField] private TextMeshProUGUI spAtkText;
+        [SerializeField] private TextMeshProUGUI spDefText;
+        [SerializeField] private TextMeshProUGUI speedText;
 
-        public Text MaxHealth => maxHealth;
-        public Text AttackText => attackText;
-        public Text DefenceText => defenceText;
-        public Text SpAtkText => spAtkText;
-        public Text SpDefText => spDefText;
-        public Text SpeedText => speedText;
+        public TextMeshProUGUI MaxHealth => maxHealth;
+        public TextMeshProUGUI AttackText => attackText;
+        public TextMeshProUGUI DefenceText => defenceText;
+        public TextMeshProUGUI SpAtkText => spAtkText;
+        public TextMeshProUGUI SpDefText => spDefText;
+        public TextMeshProUGUI SpeedText => speedText;
     }
 }

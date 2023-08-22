@@ -1,22 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transition;
+using System.Utilities.Input;
 using System.Utilities.LinkedEnumerator;
 using System.Utilities.Tasks;
 using System.Window;
-using System.Window.Dialog;
 using Battle.Controller;
 using Battle.Domain;
 using Characters.Battle.Pokemon;
 using Characters.Moves;
 using Characters.Player;
+using GameSystem.Window.Dialog;
 using Menus.ActionMenu;
 using Menus.InventoryMenu;
 using Menus.MoveMenu;
 using Menus.Party;
 using MyBox;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace Battle
 {
@@ -26,7 +30,8 @@ namespace Battle
 
     public class BattleWindow : WindowBase
     {
-        [Separator("Menus")] [SerializeField] private ActionMenu actionMenu;
+        [Separator("Menus")] 
+        [SerializeField] private ActionMenu actionMenu;
         [SerializeField] private MoveMenu moveMenu;
         [SerializeField] private PartyMenu partyMenu;
         [SerializeField] private InventoryMenu inventoryMenu;
@@ -41,8 +46,17 @@ namespace Battle
         private bool _isWildBattle;
 
         private Player _wildPokemon;
+        private Player _localPlayer;
         private List<PlayerBattleController> _participants;
         private List<BattleAction> _actions;
+        private LinkedEnumerator<BattleAction> _actionsEnumerator;
+        
+        public delegate void OnSwitchTrigger(PokemonCombatant combatant);
+        public delegate void OnSwitchCallback(PokemonCombatant combatant, IEnumerable<PokemonCombatant> activeCombatants);
+        private event OnSwitchCallback OnSwitch;
+        
+        public delegate IEnumerator OnFaintCallback(IEnumerable<PokemonCombatant> faintedCombatants);
+        private event OnFaintCallback OnFaint;
 
         private Dictionary<Player, PlayerBattleController> GetBattleControllers(List<Player> participants)
         {
@@ -56,26 +70,31 @@ namespace Battle
         {
             switch (participant.ControllerType)
             {
-                case ControllerType.Local:
-                    return new LocalBattleController(participant, ApplyDamage, actionMenu, moveMenu, partyMenu, inventoryMenu,
-                        textBox);
+                case ControllerType.Local: {
+                    var controller = new LocalBattleController(participant, ApplyDamage, 
+                        actionMenu, moveMenu, partyMenu, inventoryMenu, textBox,
+                        ref OnSwitch, OnSwitchFunc, ref OnFaint);
+                    _localPlayer = controller;
+                    return controller;
+                }
 
-                case ControllerType.Wild:
+                case ControllerType.Wild: {
                     var controller = new WildBattleController(participant, ApplyDamage, textBox);
                     _wildPokemon = controller;
                     return controller;
+                }
 
                 default:
                     return new WildBattleController(null, null, null);
             }
         }
 
-        public IEnumerator OpenWindow(List<Player> participants, bool isWildBattle)
-        {
+        public IEnumerator OpenWindow(List<Player> participants, bool isWildBattle) {
             _actions ??= new List<BattleAction>();
             _actions.Clear();
             textBox.ClearText();
-
+            OnSwitch = null;
+                
             var uniqueParticipants = participants.Distinct().ToList();
             var controllersDict = GetBattleControllers(uniqueParticipants);
             _participants = (from controllerPair in controllersDict select controllerPair.Value).ToList();
@@ -100,11 +119,14 @@ namespace Battle
                 select new Task(combatant.PlayEnterAnimation()))
                 .ToList();
 
+            combatants.ForEach(OnSwitchFunc);
+            
             yield return new WaitWhile(() => TransitionController.TransitionState != TransitionState.None
                                              || pokemonEntryAnimationTasks.Any(task => task.Running));
             
-            if(_isWildBattle) yield return textBox.TypeDialog($"{_wildPokemon.Name} appeared!");
-            yield return new WaitForSeconds(1f);
+            if(_isWildBattle) yield return textBox.TypeDialog($"{_wildPokemon.Party.PartyMembers.First().Name} appeared!");
+            yield return null;
+            if(_isWildBattle) yield return textBox.TypeDialog($"This is a message ending in g and getting a much longer line.");
             
             BattleState = BattleState.Start;
             while (BattleState != BattleState.End)
@@ -117,6 +139,8 @@ namespace Battle
         {
             if (BattleState != BattleState.Start) yield break;
 
+            _actions.Clear();
+            
             BattleState = BattleState.Turn;
 
             var combatGroups =
@@ -140,13 +164,13 @@ namespace Battle
             _actions.AddRange(newActions);
             _actions.Sort(PrioritizeActions);
             
-            var actionEnumerator = new LinkedEnumerator<BattleAction>(_actions);
-            while (actionEnumerator.MoveNext())
+            _actionsEnumerator = new LinkedEnumerator<BattleAction>(_actions);
+            while (_actionsEnumerator.MoveNext())
             {
-                yield return actionEnumerator.Current.Action;
+                yield return _actionsEnumerator.CurrentValue?.Action;
             }
             
-            if (combatGroups[_wildPokemon][0].Pokemon.IsFainted)
+            if (_participants.Any(participant => !participant.AbleToBattle))
             {
                 BattleState = BattleState.End;
                 yield break;
@@ -182,31 +206,69 @@ namespace Battle
             var lastQueuedMessageTask = damageDetails.Aggregate(Task.EmptyTask, 
                 (previousTask, result) => previousTask.QueueTask(DisplayDamageText(result)));
             yield return new WaitWhile(() => damageTasks.Any(task => task.Running) || lastQueuedMessageTask.Running);
+            
+            var faintedCombatants = combatants.Where(combatant => combatant.Pokemon.IsFainted).ToList();
+
+            if (faintedCombatants.IsNullOrEmpty()) yield break;
+            _actionsEnumerator.RemoveNext(action => faintedCombatants.Contains(action.Combatant));
+
+            _actionsEnumerator.InsertNext(new BattleAction {
+                Priority = 0,
+                Action = OnFaint?.Invoke(faintedCombatants),
+                Combatant = null
+            });
+            
+            faintedCombatants.ForEach(combatant =>
+                _actionsEnumerator.InsertNext(new BattleAction{
+                    Priority = 0,
+                    Action = (combatant.ControllingPlayer as PlayerBattleController)?.PerformFaint(combatant),
+                    Combatant = combatant
+                })
+            );
+
+            _participants.ForEach(participant => {
+                if (participant.Party.HasNoBattleReadyPokemon())
+                    _actionsEnumerator.Append(new BattleAction {
+                        Priority = 0,
+                        Action = participant.OnDefeat(),
+                        Combatant = null
+                    });
+            });
         }
 
         private IEnumerator DisplayDamageText(DamageDetails damageDetails)
         {
             if (damageDetails.Critical)
             {
-                yield return textBox.TypeDialog("It's a critical hit!", false);
+                yield return textBox.TypeMessage("It's a critical hit!", false);
                 yield return new WaitForSeconds(1f);
             }
 
             switch (damageDetails.Effective)
             {
                 case AttackEffectiveness.NoEffect:
-                    yield return textBox.TypeDialog("The move had no effect ...", false);
+                    yield return textBox.TypeMessage("The move had no effect ...", false);
                     yield return new WaitForSeconds(1f);
                     break;
                 case AttackEffectiveness.NotVeryEffective:
-                    yield return textBox.TypeDialog("It's not very effective ...", false);
+                    yield return textBox.TypeMessage("It's not very effective ...", false);
                     yield return new WaitForSeconds(1f);
                     break;
                 case AttackEffectiveness.SuperEffective:
-                    yield return textBox.TypeDialog("It's super effective!", false);
+                    yield return textBox.TypeMessage("It's super effective!", false);
                     yield return new WaitForSeconds(1f);
                     break;
             }
+        }
+
+        private void OnSwitchFunc(PokemonCombatant combatant) {
+            OnSwitch?.Invoke(combatant, combatants);
+        }
+
+        protected override IEnumerator OnClose() {
+            OnSwitch = null;
+            _participants.ForEach(p => p.Party.ResetBattleOrder());
+            yield return base.OnClose();
         }
     }
 }

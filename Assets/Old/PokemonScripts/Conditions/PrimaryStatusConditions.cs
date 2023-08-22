@@ -35,7 +35,7 @@
 //             var updateHealthBar = new Task(battlePokemon.UpdateHealth(dmgDetails));
 //             var playDamageAnimation = new Task(battlePokemon.PlayDamageAnimation());
 //             yield return new WaitWhile(() => updateHealthBar.Running || playDamageAnimation.Running);
-//             yield return battleDialogBox.TypeDialog($"{pokemon.Name} is hurt by poison!");
+//             yield return battleDialogBox.TypeMessage($"{pokemon.Name} is hurt by poison!");
 //         }
 //     }
 //     
@@ -50,7 +50,7 @@
 //             var updateHealthBar = new Task(battlePokemon.UpdateHealth(dmgDetails));
 //             var playDamageAnimation = new Task(battlePokemon.PlayDamageAnimation());
 //             yield return new WaitWhile(() => updateHealthBar.Running || playDamageAnimation.Running);
-//             yield return battleDialogBox.TypeDialog($"{pokemon.Name} is hurt by burn!");
+//             yield return battleDialogBox.TypeMessage($"{pokemon.Name} is hurt by burn!");
 //         }
 //     }
 // }

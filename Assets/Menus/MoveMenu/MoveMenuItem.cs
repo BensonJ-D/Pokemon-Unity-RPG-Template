@@ -1,5 +1,7 @@
 using System;
 using System.Window.Menu;
+using GameSystem.Window.Menu;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +10,11 @@ namespace Menus.MoveMenu
     [Serializable]
     public class MoveMenuItem : MonoBehaviour, IMenuItem<Characters.Moves.Move>
     {
-        [SerializeField] private Text text;
+        [SerializeField] private TextMeshProUGUI text;
         
         public Characters.Moves.Move Value { get; private set; }
         public Transform Transform => transform;
-        public Text Text => text;
+        public TextMeshProUGUI Text => text;
 
         public void SetMenuItem(Characters.Moves.Move move)
         {

@@ -11,11 +11,11 @@
 //
 //     public IEnumerator TypeBattleDialog(string dialog)
 //     {
-//         yield return battleDialog.TypeDialog(dialog);
+//         yield return battleDialog.TypeMessage(dialog);
 //     }
 //     
 //     public IEnumerator TypeBattleDialog(IEnumerable<string> messages)
 //     {
-//         return messages.Select(message => battleDialog.TypeDialog(message)).GetEnumerator();
+//         return messages.Select(message => battleDialog.TypeMessage(message)).GetEnumerator();
 //     }
 // }

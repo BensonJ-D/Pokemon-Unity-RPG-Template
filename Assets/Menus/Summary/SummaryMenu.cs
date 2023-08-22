@@ -2,6 +2,7 @@ using System.Collections;
 using System.Window.Menu;
 using System.Window.Menu.Grid;
 using Characters.Monsters;
+using GameSystem.Window.Menu;
 using MyBox;
 using UnityEngine;
 
@@ -12,9 +13,9 @@ namespace Menus.Summary
         [Separator("Summary UI")]
         [SerializeField] private SummaryStatsMenuItem statsSummaryView;
         
-        public void Start()
+        public override void Initialise()
         {
-            Initialise();
+            base.Initialise();
             
             OptionsGrid = new IMenuItem<Pokemon>[,]
             {

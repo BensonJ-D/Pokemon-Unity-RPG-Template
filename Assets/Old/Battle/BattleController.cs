@@ -348,7 +348,7 @@
 //             _pokemon[participant].Setup(newPokemon);
 //             Task enterAnimation = new Task(_pokemon[participant].PlayEnterAnimation());
 //             Task enterText =
-//             new Task(dialogBox.TypeDialog($"Let's go, {_pokemon[participant].Pokemon.Base.Species}!!"));
+//             new Task(dialogBox.TypeMessage($"Let's go, {_pokemon[participant].Pokemon.Base.Species}!!"));
 //             yield return new WaitWhile(() => enterAnimation.Running || enterText.Running);
 //             yield return new WaitForSeconds(1f);
 //         }
@@ -380,7 +380,7 @@
 //
 //         private IEnumerator DisplayText(string text)
 //         {
-//             yield return dialogBox.TypeDialog(text);
+//             yield return dialogBox.TypeMessage(text);
 //         }
 //
 //         private void SetText(string text)

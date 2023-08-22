@@ -1,4 +1,6 @@
 using System.Window.Menu;
+using GameSystem.Window.Menu;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,11 +8,11 @@ namespace Menus.NumberSelector
 {
     public class NumberSelectorMenuItem : MonoBehaviour, IMenuItem<int>
     {
-        [SerializeField] private Text label;
+        [SerializeField] private TextMeshProUGUI label;
 
         public int Value { get; protected set; }
         public Transform Transform => transform;
-        public Text Text => label;
+        public TextMeshProUGUI Text => label;
         
         public void SetMenuItem(int option)
         {
