@@ -1,4 +1,7 @@
 namespace PokemonScripts.Conditions
 {
-    public enum SecondaryStatusCondition { None, Confusion, Flinched }
+    public enum SecondaryStatusCondition
+    {
+        None, Confusion, Flinched
+    }
 }

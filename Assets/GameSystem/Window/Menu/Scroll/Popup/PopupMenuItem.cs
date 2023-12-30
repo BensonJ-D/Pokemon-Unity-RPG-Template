@@ -1,5 +1,5 @@
 using System;
-using System.Utlilities;
+using GameSystem.Utilities;
 using TMPro;
 using UnityEngine;
 
@@ -13,16 +13,20 @@ namespace GameSystem.Window.Menu.Scroll.Popup
         public T Value { get; protected set; }
         public Transform Transform => transform;
         public TextMeshProUGUI Text => label;
-        
-        public virtual void SetMenuItem(T option)
-        {
+
+        public virtual void SetMenuItem(T option) {
             Value = option;
-            
+
             transform.gameObject.SetActive(IsNotNullOrEmpty());
             Text.text = Value.GetDescription();
         }
-        
-        public override string ToString() => Value.GetDescription();
-        public bool IsNotNullOrEmpty() => Value.IsNotDefault();
+
+        public override string ToString() {
+            return Value.GetDescription();
+        }
+
+        public bool IsNotNullOrEmpty() {
+            return Value.IsNotDefault();
+        }
     }
 }

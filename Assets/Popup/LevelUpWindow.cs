@@ -1,26 +1,21 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Utilities.Input;
 using System.Window.Menu.Single;
 using Characters;
 using Characters.UI;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Popup
-{ 
+{
     public class LevelUpWindow : SingleWindow
     {
         [SerializeField] private CharacterStats stats;
         [SerializeField] private CharacterStats signedLabels;
-        
-        public IEnumerator ShowWindow(Stats before, Stats after, Vector3 pos = default)
-        {
+
+        public IEnumerator ShowWindow(Stats before, Stats after, Vector3 pos = default) {
             SetStatLabels(before);
-            SetActiveSignedLabels(false); 
-            
+            SetActiveSignedLabels(false);
+
             yield return base.OpenWindow(pos);
 
             yield return InputController.WaitForConfirm;
@@ -28,19 +23,18 @@ namespace Popup
             SetSignedLabels(after - before);
             SetStatLabels(after - before);
             yield return null;
-        
+
             yield return InputController.WaitForConfirm;
-            SetActiveSignedLabels(false); 
+            SetActiveSignedLabels(false);
             SetStatLabels(after);
             yield return null;
-        
+
             yield return InputController.WaitForConfirm;
-        
+
             yield return CloseWindow();
         }
-        
-        private void SetActiveSignedLabels(bool active)
-        {
+
+        private void SetActiveSignedLabels(bool active) {
             signedLabels.MaxHealth.gameObject.SetActive(active);
             signedLabels.AttackText.gameObject.SetActive(active);
             signedLabels.DefenceText.gameObject.SetActive(active);
@@ -48,9 +42,8 @@ namespace Popup
             signedLabels.SpDefText.gameObject.SetActive(active);
             signedLabels.SpeedText.gameObject.SetActive(active);
         }
-        
-        private void SetSignedLabels(Stats values)
-        {
+
+        private void SetSignedLabels(Stats values) {
             signedLabels.MaxHealth.text = values.MaxHp >= 0 ? "+" : "-";
             signedLabels.AttackText.text = values.Attack >= 0 ? "+" : "-";
             signedLabels.DefenceText.text = values.Defence >= 0 ? "+" : "-";
@@ -58,9 +51,8 @@ namespace Popup
             signedLabels.SpDefText.text = values.SpDefence >= 0 ? "+" : "-";
             signedLabels.SpeedText.text = values.Speed >= 0 ? "+" : "-";
         }
-        
-        private void SetStatLabels(Stats values)
-        {
+
+        private void SetStatLabels(Stats values) {
             stats.MaxHealth.text = Mathf.Abs(values.MaxHp).ToString();
             stats.AttackText.text = Mathf.Abs(values.Attack).ToString();
             stats.DefenceText.text = Mathf.Abs(values.Defence).ToString();

@@ -1,7 +1,4 @@
 namespace Characters.Moves
 {
-    public class DamageType
-    {
-        
-    }
+    public class DamageType { }
 }

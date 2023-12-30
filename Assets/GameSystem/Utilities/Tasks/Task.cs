@@ -1,55 +1,51 @@
 using System.Collections;
 using UnityEngine;
 
-namespace System.Utilities.Tasks
+namespace GameSystem.Utilities.Tasks
 {
-	public class Task 
-	{
-		public bool Running => _task.Running;
+    public class Task
+    {
+        private readonly TaskState _task;
 
-		public bool Paused => _task.Paused;
+        public Task(IEnumerator c, bool autoStart = true) {
+            _task = TaskController.CreateTask(c);
+            if (autoStart)
+                Start();
+        }
 
-		public Task(IEnumerator c, bool autoStart = true)
-		{
-			_task = TaskController.CreateTask(c);
-			if(autoStart)
-				Start();
-		}
+        public bool Running => _task.Running;
 
-		private void Start()
-		{
-			_task.Start();
-		}
+        public bool Paused => _task.Paused;
 
-		public void Stop()
-		{
-			_task.Stop();
-		}
-	
-		public void Pause()
-		{
-			_task.Pause();
-		}
-	
-		public void Unpause()
-		{
-			_task.Unpause();
-		}
+        public static Task EmptyTask => new Task(EmptyTaskFn());
 
-		private readonly TaskState _task;
+        private void Start() {
+            _task.Start();
+        }
 
-		public Task QueueTask(IEnumerator newTask) => new Task(QueuedTask(newTask));
+        public void Stop() {
+            _task.Stop();
+        }
 
-		private IEnumerator QueuedTask(IEnumerator newTask)
-		{
-			yield return new WaitWhile(() => Running);
-			yield return newTask;
-		}
-		
-		public static Task EmptyTask => new Task(EmptyTaskFn());
-		private static IEnumerator EmptyTaskFn()
-		{
-			yield break;
-		}
-	}
+        public void Pause() {
+            _task.Pause();
+        }
+
+        public void Unpause() {
+            _task.Unpause();
+        }
+
+        public Task QueueTask(IEnumerator newTask) {
+            return new Task(QueuedTask(newTask));
+        }
+
+        private IEnumerator QueuedTask(IEnumerator newTask) {
+            yield return new WaitWhile(() => Running);
+            yield return newTask;
+        }
+
+        private static IEnumerator EmptyTaskFn() {
+            yield break;
+        }
+    }
 }

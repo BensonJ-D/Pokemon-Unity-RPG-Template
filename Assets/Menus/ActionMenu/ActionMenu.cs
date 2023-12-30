@@ -1,43 +1,41 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Window;
-using System.Window.Menu;
-using System.Window.Menu.Grid;
 using GameSystem.Window.Menu;
+using GameSystem.Window.Menu.Grid;
 using MyBox;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Menus.ActionMenu
-{ 
+{
     public class ActionMenu : GridMenu<ActionMenuOption>
     {
-        [Separator("Action UI")]
-        [SerializeField] private List<ActionMenuItem> menuItems;
+        [Separator("Action UI")] [SerializeField]
+        private List<ActionMenuItem> menuItems;
 
-        [Separator("Dialog")] 
-        [SerializeField] private TextMeshProUGUI textField;
+        [Separator("Dialog")] [SerializeField] private TextMeshProUGUI textField;
+
         [SerializeField] protected bool resizeTextField;
-        [ConditionalField(nameof(resizeTextField))]
-        [SerializeField] private float dialogResize;
 
-        private float _previousDialogSize;
+        [ConditionalField(nameof(resizeTextField))] [SerializeField]
+        private float dialogResize;
+
         private bool _cancellable;
 
-        public override void Initialise()
-        {
-            OptionsGrid = new IMenuItem<ActionMenuOption>[,]
-            {
+        private float _previousDialogSize;
+
+        public override void Initialise() {
+            OptionsGrid = new IMenuItem<ActionMenuOption>[,] {
                 {menuItems[0], menuItems[2]},
                 {menuItems[1], menuItems[3]}
             };
-            
+
             base.Initialise();
         }
-        
-        public IEnumerator OpenWindow(bool cancellable = true, Vector2 pos = default, OnConfirmFunc onConfirmCallback = null, OnCancelFunc onCancelCallback = null) {
+
+        public IEnumerator OpenWindow(bool cancellable = true, Vector2 pos = default,
+            OnConfirmFunc onConfirmCallback = null, OnCancelFunc onCancelCallback = null) {
             if (resizeTextField) ResizeTextField();
             _cancellable = cancellable;
             yield return base.OpenWindow(pos, onConfirmCallback, onCancelCallback);
@@ -64,10 +62,10 @@ namespace Menus.ActionMenu
             CloseReason = WindowCloseReason.Complete;
             yield return base.OnConfirm();
         }
-        
+
         protected override IEnumerator OnCancel() {
             if (!_cancellable) yield break;
-            
+
             CloseReason = WindowCloseReason.Cancel;
             yield return base.OnCancel();
         }

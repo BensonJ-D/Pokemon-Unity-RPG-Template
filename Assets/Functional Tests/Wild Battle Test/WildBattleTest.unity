@@ -724,7 +724,7 @@ MonoBehaviour:
         baseHealth: 100
         baseExp: 0
         initialLevel: 10
-      - pokemonBase: {fileID: 11400000, guid: 48baea79646453c4ba311d237aceebbf, type: 2}
+      - pokemonBase: {fileID: 11400000, guid: 2b00c59a73c3f4049a8cde7ffdb29770, type: 2}
         baseHealth: 100
         baseExp: 0
         initialLevel: 10

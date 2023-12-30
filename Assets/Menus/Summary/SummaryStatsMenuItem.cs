@@ -1,5 +1,4 @@
 using System;
-using System.Window.Menu;
 using Characters.Monsters;
 using Characters.UI;
 using GameSystem.Window.Menu;
@@ -15,22 +14,26 @@ namespace Menus.Summary
         [SerializeField] private Image pokemonSprite;
         [SerializeField] private CharacterStatus pokemonStatus;
 
-        public Pokemon Value { get; set; }
-
         public CharacterStatus PokemonStatus => pokemonStatus;
+
+        public Pokemon Value { get; set; }
 
         public Transform Transform => transform;
         public TextMeshProUGUI Text => null;
 
-        public void SetMenuItem(Pokemon pokemon)
-        {
+        public void SetMenuItem(Pokemon pokemon) {
             pokemon.StatusUI = pokemonStatus;
             pokemonSprite.sprite = pokemon.Base.FrontSprite;
 
             Value = pokemon;
         }
 
-        public override string ToString() => Value.ToString();
-        public bool IsNotNullOrEmpty() => Value != null;
+        public override string ToString() {
+            return Value.ToString();
+        }
+
+        public bool IsNotNullOrEmpty() {
+            return Value != null;
+        }
     }
 }

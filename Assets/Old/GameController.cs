@@ -70,19 +70,19 @@
 //         }
 //     }
 //
-//     private IEnumerator StartBattle(OldPokemonParty playerOldPokemon, Characters.Inventory.Inventory playerInventory, Pokemon wildPokemon)
-//     {
-//         GameState = GameState.Battle;
-//         
-//         yield return transitionController.RunTransitionWithEffect(Transition.BattleEnter,
-//             () =>
-//             {
-//                 battleController.gameObject.SetActive(true);
-//                 StartCoroutine(battleController.SetupBattle(playerOldPokemon, playerInventory, wildPokemon));
-//                 sceneController.SetActiveScene(Scene.BattleView);
-//             }
-//         );
-//     }
+     // private IEnumerator StartBattle(OldPokemonParty playerOldPokemon, Characters.Inventory.Inventory playerInventoryImpl, Pokemon wildPokemon)
+     // {
+     //     GameState = GameState.Battle;
+     //     
+     //     yield return transitionController.RunTransitionWithEffect(Transition.BattleEnter,
+     //         () =>
+     //         {
+     //             battleController.gameObject.SetActive(true);
+     //             StartCoroutine(battleController.SetupBattle(playerOldPokemon, playerInventoryImpl, wildPokemon));
+     //             sceneController.SetActiveScene(Scene.BattleView);
+     //         }
+     //     );
+     // }
 //
 //     private IEnumerator EndBattle(bool won)
 //     {
@@ -111,3 +111,4 @@
 //     //     GameState = GameState.Moving;
 //     // }
 // }
+

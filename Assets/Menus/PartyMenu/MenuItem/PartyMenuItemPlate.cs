@@ -13,10 +13,20 @@ namespace Menus.Party.MenuItem
         [SerializeField] private Sprite switchToSprite;
         [SerializeField] private Image plateImage;
 
-        public void SetSelected(bool fainted) => plateImage.sprite = fainted ? selectedFaintedSprite : selectedSprite;
-        public void SetNotSelected(bool fainted) => plateImage.sprite = fainted ? notSelectedFaintedSprite : notSelectedSprite;
+        public void SetSelected(bool fainted) {
+            plateImage.sprite = fainted ? selectedFaintedSprite : selectedSprite;
+        }
 
-        public void SetShiftFrom() => plateImage.sprite = switchFromSprite;
-        public void SetShiftTo() => plateImage.sprite = switchToSprite;
+        public void SetNotSelected(bool fainted) {
+            plateImage.sprite = fainted ? notSelectedFaintedSprite : notSelectedSprite;
+        }
+
+        public void SetShiftFrom() {
+            plateImage.sprite = switchFromSprite;
+        }
+
+        public void SetShiftTo() {
+            plateImage.sprite = switchToSprite;
+        }
     }
 }

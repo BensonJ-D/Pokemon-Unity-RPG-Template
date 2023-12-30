@@ -16,9 +16,16 @@ namespace Menus.ActionMenu
         public Transform Transform => transform;
         public TextMeshProUGUI Text => text;
 
-        public void SetMenuItem(ActionMenuOption option) => throw new NotImplementedException();
+        public void SetMenuItem(ActionMenuOption option) {
+            throw new NotImplementedException();
+        }
 
-        public override string ToString() => Value.ToString();
-        public bool IsNotNullOrEmpty() => true;
+        public override string ToString() {
+            return Value.ToString();
+        }
+
+        public bool IsNotNullOrEmpty() {
+            return true;
+        }
     }
 }

@@ -1,10 +1,8 @@
 using System;
-using Characters.Monsters;
 using JetBrains.Annotations;
 using MyBox;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 namespace Characters.UI
@@ -15,19 +13,22 @@ namespace Characters.UI
         [SerializeField] [CanBeNull] private TextMeshProUGUI characterName;
         [SerializeField] [CanBeNull] private TextMeshProUGUI characterLevel;
         [SerializeField] [CanBeNull] private Image statusCondition;
-        
+
         [SerializeField] protected bool hasHealthBar;
+
         [SerializeField] [ConditionalField(nameof(hasHealthBar))]
         private FillableBar healthBar;
 
         [SerializeField] protected bool hasExpBar;
+
         [SerializeField] [ConditionalField(nameof(hasExpBar))]
         private FillableBar expBar;
 
         [SerializeField] protected bool hasStats;
+
         [SerializeField] [ConditionalField(nameof(hasStats))]
         private CharacterStats stats;
-        
+
         public TextMeshProUGUI Name => characterName;
         public TextMeshProUGUI Level => characterLevel;
         [CanBeNull] public FillableBar HealthBar => hasHealthBar ? healthBar : null;

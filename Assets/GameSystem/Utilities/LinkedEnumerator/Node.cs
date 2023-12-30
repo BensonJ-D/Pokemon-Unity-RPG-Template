@@ -1,4 +1,1 @@
-namespace System.Utilities.LinkedEnumerator
-{
-
-}
+namespace System.Utilities.LinkedEnumerator {}

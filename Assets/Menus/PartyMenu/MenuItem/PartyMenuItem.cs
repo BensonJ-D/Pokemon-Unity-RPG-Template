@@ -22,54 +22,61 @@ namespace Menus.PartyMenu.MenuItem
         [SerializeField] private int positionInOrder;
 
         public int PositionInOrder => positionInOrder;
+
+        public CharacterStatus PokemonStatus => pokemonStatus;
         public Pokemon Value { get; private set; }
         public Transform Transform => transform;
         public TextMeshProUGUI Text => null;
 
-        public CharacterStatus PokemonStatus => pokemonStatus;
-
-        public void SetMenuItem(Pokemon pokemon)
-        {
+        public void SetMenuItem(Pokemon pokemon) {
             Value = pokemon;
 
             if (Value == null) {
                 transform.gameObject.SetActive(false);
             }
-            else
-            {
+            else {
                 transform.gameObject.SetActive(true);
                 pokemon.StatusUI = pokemonStatus;
                 pokemonIcon.sprite = Value.Base.Icon;
             }
         }
 
-        public void SetSelected() => backplate.SetSelected(Value.IsFainted);
-        public void SetNotSelected() => backplate.SetNotSelected(Value.IsFainted);
-        
-        public void SetShiftFrom() => backplate.SetShiftFrom();
-        public void SetShiftTo() => backplate.SetShiftTo();
-        
-        public override string ToString()
-        {
+        public override string ToString() {
             return Value.Name;
         }
-        
-        public IEnumerator ShiftIn()
-        {
+
+        public bool IsNotNullOrEmpty() {
+            return Value != null;
+        }
+
+        public void SetSelected() {
+            backplate.SetSelected(Value.IsFainted);
+        }
+
+        public void SetNotSelected() {
+            backplate.SetNotSelected(Value.IsFainted);
+        }
+
+        public void SetShiftFrom() {
+            backplate.SetShiftFrom();
+        }
+
+        public void SetShiftTo() {
+            backplate.SetShiftTo();
+        }
+
+        public IEnumerator ShiftIn() {
             animator.Play(shiftIn.name);
 
             yield return null;
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         }
-        
-        public IEnumerator ShiftOut()
-        {
+
+        public IEnumerator ShiftOut() {
             animator.Play(shiftOut.name);
 
             yield return null;
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         }
-        
-        public bool IsNotNullOrEmpty() => Value != null;
     }
 }

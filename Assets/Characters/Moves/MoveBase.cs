@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using Characters.Monsters;
-using Menus.Move.Effects;
 using UnityEngine;
 
 namespace Characters.Moves
@@ -11,42 +10,12 @@ namespace Characters.Moves
     [SuppressMessage("ReSharper", "ParameterHidesMember")]
     public class MoveBase : ScriptableObject
     {
-        [SerializeField] private int number;
-        [SerializeField] private string moveName;
-        [SerializeField] private string description;
-
-        // [TextArea] [SerializeField] private string description;
-
-        [SerializeField] private PokemonType type;
-        [SerializeField] private int power;
-        [SerializeField] private int pp;
-        [SerializeField] private int accuracy;
-        [SerializeField] private int priority;
-        [SerializeField] private MoveCategory category;
-        // [SerializeField] private List<PrimaryStatusEffect> primaryStatusEffects;
-        // [SerializeField] private List<StatModifierEffect> statModifierEffects;
-        [SerializeField] private MoveTarget target;
-        [SerializeField] private int effectChance;
-
-        public int Number => number;
-        public string Name => moveName;
-        public string Description => description;
-        public PokemonType Type => type;
-        public int Power => category == MoveCategory.Status ? 0 : power;
-        public int Pp => pp;
-        public int Accuracy => accuracy;
-        public int Priority => priority;
-        public MoveCategory Category => category;
-        public MoveTarget Target => target;
-        
-        public int EffectChance => effectChance;
         // public List<StatModifierEffect> StatModifierEffects => statModifierEffects;
         // public List<PrimaryStatusEffect> PrimaryStatusEffects => primaryStatusEffects;
 
         public static readonly ReadOnlyDictionary<(PokemonType, PokemonType), float> TypeChart =
             new ReadOnlyDictionary<(PokemonType, PokemonType), float>(
-                new Dictionary<(PokemonType, PokemonType), float>
-                {
+                new Dictionary<(PokemonType, PokemonType), float> {
                     {(PokemonType.Normal, PokemonType.None), 1.0f},
                     {(PokemonType.Normal, PokemonType.Normal), 1.0f},
                     {(PokemonType.Normal, PokemonType.Fighting), 1.0f},
@@ -392,12 +361,9 @@ namespace Characters.Moves
                 }
             );
 
-        public static AttackEffectiveness GetEffectiveness(float modifier) => AttackEffectivenessLookup[modifier];
-
         private static readonly ReadOnlyDictionary<float, AttackEffectiveness> AttackEffectivenessLookup =
             new ReadOnlyDictionary<float, AttackEffectiveness>(
-                new Dictionary<float, AttackEffectiveness>
-                {
+                new Dictionary<float, AttackEffectiveness> {
                     {0f, AttackEffectiveness.NoEffect},
                     {0.25f, AttackEffectiveness.NotVeryEffective},
                     {0.5f, AttackEffectiveness.NotVeryEffective},
@@ -406,19 +372,52 @@ namespace Characters.Moves
                     {4f, AttackEffectiveness.SuperEffective}
                 }
             );
+
+        [SerializeField] private int number;
+        [SerializeField] private string moveName;
+        [SerializeField] private string description;
+
+        // [TextArea] [SerializeField] private string description;
+
+        [SerializeField] private PokemonType type;
+        [SerializeField] private int power;
+        [SerializeField] private int pp;
+        [SerializeField] private int accuracy;
+        [SerializeField] private int priority;
+
+        [SerializeField] private MoveCategory category;
+
+        // [SerializeField] private List<PrimaryStatusEffect> primaryStatusEffects;
+        // [SerializeField] private List<StatModifierEffect> statModifierEffects;
+        [SerializeField] private MoveTarget target;
+        [SerializeField] private int effectChance;
+
+        public int Number => number;
+        public string Name => moveName;
+        public string Description => description;
+        public PokemonType Type => type;
+        public int Power => category == MoveCategory.Status ? 0 : power;
+        public int Pp => pp;
+        public int Accuracy => accuracy;
+        public int Priority => priority;
+        public MoveCategory Category => category;
+        public MoveTarget Target => target;
+
+        public int EffectChance => effectChance;
+
+        public static AttackEffectiveness GetEffectiveness(float modifier) {
+            return AttackEffectivenessLookup[modifier];
+        }
     }
 
     public enum AttackEffectiveness
     {
-        NoEffect = 0,
-        NotVeryEffective = 1,
-        NormallyEffective = 2,
+        NoEffect = 0, NotVeryEffective = 1, NormallyEffective = 2,
         SuperEffective = 3
     }
 
     public enum MoveTarget
     {
-        Self,
-        Foe
+        Self, Foe
     }
 }

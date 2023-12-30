@@ -1,21 +1,22 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace System.Utilities.Tasks
+namespace GameSystem.Utilities.Tasks
 {
     public class TaskController : MonoBehaviour
     {
+        public static TaskState CreateTask(IEnumerator coroutine) {
+            return new TaskState(coroutine);
+        }
+
         #region Singleton setup
 
         private static TaskController _instance;
         public static TaskController Instance => GetInstance();
-        
-        private static TaskController GetInstance()
-        {
+
+        private static TaskController GetInstance() {
             if (_instance != null) return _instance;
-            
+
             var instance = new GameObject();
             _instance = instance.AddComponent<TaskController>();
             _instance.name = "TaskController";
@@ -23,17 +24,13 @@ namespace System.Utilities.Tasks
             return _instance;
         }
 
-        private void Awake()
-        {
+        private void Awake() {
             if (_instance != null && _instance != this)
-            {
                 Destroy(gameObject);
-            } else {
+            else
                 _instance = this;
-            }
         }
+
         #endregion
-        
-        public static TaskState CreateTask(IEnumerator coroutine) => new TaskState(coroutine);
     }
 }

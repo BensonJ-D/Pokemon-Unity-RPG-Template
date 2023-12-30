@@ -1,16 +1,22 @@
 using Characters.Monsters;
-using PokemonScripts.Conditions;
-using UnityEngine;
 
 namespace Characters.Moves
 {
     public class MoveEffect
     {
-        public virtual string ApplyEffect(Pokemon user, Pokemon target) { return ""; }
-        public virtual string ApplyEffect(Pokemon user, Pokemon target, object effect1) { return ""; }
-        public virtual string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect2) { return ""; }
+        public virtual string ApplyEffect(Pokemon user, Pokemon target) {
+            return "";
+        }
+
+        public virtual string ApplyEffect(Pokemon user, Pokemon target, object effect1) {
+            return "";
+        }
+
+        public virtual string ApplyEffect(Pokemon user, Pokemon target, object effect1, object effect2) {
+            return "";
+        }
     }
-    
+
     // public class ModifyPrimaryStatus : MoveEffect
     // {
     //     protected static bool ApplyPrimaryCondition(Pokemon user, Pokemon target, PrimaryStatusCondition condition)
@@ -21,7 +27,7 @@ namespace Characters.Moves
     //         return success;
     //     }
     // }
-    
+
     // public class ModifySecondaryStatus : MoveEffect
     // {
     //     protected static bool ApplySecondaryCondition(Pokemon user, Pokemon target, SecondaryStatusCondition condition)

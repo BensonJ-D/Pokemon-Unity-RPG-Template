@@ -10,3 +10,4 @@
 //         public virtual IEnumerator OnAfterTurn(BattlePokemon battlePokemon, BattleDialogBox battleDialogBox) { yield break; }
 //     }
 // }
+

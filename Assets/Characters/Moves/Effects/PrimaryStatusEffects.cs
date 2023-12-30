@@ -1,9 +1,4 @@
 using System;
-using Battle;
-using Characters.Monsters;
-using Characters.Moves;
-using PokemonScripts.Conditions;
-using UnityEngine;
 
 namespace Menus.Move.Effects
 {
@@ -14,7 +9,7 @@ namespace Menus.Move.Effects
 
         // public PrimaryStatusEffects.EffectType StatusCondition => statusCondition;
     }
-    
+
     // public class PoisonTarget : ModifyPrimaryStatus
     // {
     //     public override string ApplyEffect(Pokemon user, Pokemon target) { 

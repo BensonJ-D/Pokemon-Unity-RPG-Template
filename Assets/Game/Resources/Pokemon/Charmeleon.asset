@@ -17,17 +17,17 @@ MonoBehaviour:
   front: {fileID: -5148283425967732691, guid: 268e117737c0306468d076ae19e56b2a, type: 3}
   back: {fileID: -8885567257311186470, guid: ac86e4a4b39cf534fa919ffb3af93409, type: 3}
   icon: {fileID: 6652385248537036535, guid: d41696bb5dec70e43b17f0c04d72b521, type: 3}
-  number: 4
+  number: 5
   type1: 10
   type2: 0
-  maxHp: 39
-  attack: 52
-  defence: 43
-  spAttack: 60
-  spDefence: 50
-  speed: 65
+  maxHp: 58
+  attack: 64
+  defence: 54
+  spAttack: 80
+  spDefence: 65
+  speed: 80
   experienceGroup: 0
-  experienceYield: 62
+  experienceYield: 142
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: b5d9fb7b5f1d0f0479db450546d0efb2, type: 2}
     level: 1

@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Linq;
 using System.Utilities.Input;
-using System.Utilities.Tasks;
+using GameSystem.Utilities.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace GameSystem.Window.Dialog
         [SerializeField] private RectTransform caret;
         [SerializeField] private Animator caretAnimator;
         [SerializeField] private AnimationClip caretAnimation;
-        
+
         private bool _fastForward;
         private Task _fastForwardTask;
 
@@ -24,10 +23,18 @@ namespace GameSystem.Window.Dialog
             textField.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,   size.y);
         }
 
-        public void ClearText() { textField.text = ""; }
-        public void SetText(string text) { textField.text = text; }
+        public void ClearText() {
+            textField.text = "";
+        }
 
-        public IEnumerator TypeMessage(string text, bool skippable = true) => TypeMessage(text, defaultLettersPerSecond, skippable);
+        public void SetText(string text) {
+            textField.text = text;
+        }
+
+        public IEnumerator TypeMessage(string text, bool skippable = true) {
+            return TypeMessage(text, defaultLettersPerSecond, skippable);
+        }
+
         public IEnumerator TypeMessage(string text, float lettersPerSecond, bool skippable = true) {
             caret.gameObject.SetActive(false);
             var typeDelay = 1f / lettersPerSecond;
@@ -35,16 +42,15 @@ namespace GameSystem.Window.Dialog
             _fastForward = false;
             _fastForwardTask?.Stop();
             _fastForwardTask = new Task(OnFastForwardDown());
-            
+
             textField.text = "";
             yield return new WaitForSeconds(typeDelay);
-        
-            foreach (var letter in text.ToCharArray())
-            {
+
+            foreach (var letter in text.ToCharArray()) {
                 textField.text += letter;
                 yield return new WaitForSeconds(typeDelay / (_fastForward ? fastForwardMultiplier : 1f));
             }
-            
+
             _fastForwardTask?.Stop();
             yield return new WaitForSeconds(typeDelay);
         }
@@ -54,7 +60,7 @@ namespace GameSystem.Window.Dialog
 
             var lastCharacter = textField.textInfo.characterCount - 1;
             var characterPosX = textField.textInfo.characterInfo[lastCharacter].bottomRight.x;
-            
+
             var lastLine = textField.textInfo.lineCount - 1;
             var linePosY = textField.textInfo.lineInfo[lastLine].baseline;
 
@@ -74,7 +80,7 @@ namespace GameSystem.Window.Dialog
             _fastForward = true;
             _fastForwardTask = new Task(OnFastForwardUp());
         }
-        
+
         private IEnumerator OnFastForwardUp() {
             yield return new WaitUntil(() => InputController.ConfirmAndCancelUp);
             _fastForward = false;

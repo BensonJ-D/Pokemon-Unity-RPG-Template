@@ -1,20 +1,14 @@
-using System.Collections.Generic;
-using System.Linq;
-using Characters.Monsters;
-using Menus.Move.Effects;
-
 namespace Characters.Moves
 {
     public class Move
     {
-        public MoveBase Base { get; }
-        public int Pp { get; set; }
-
-        public Move(MoveBase pBase)
-        {
+        public Move(MoveBase pBase) {
             Base = pBase;
             Pp = pBase.Pp;
         }
+
+        public MoveBase Base { get; }
+        public int Pp { get; set; }
 
         // public IEnumerable<string> ApplyEffects(Pokemon user, Pokemon opponent)
         // {
@@ -37,13 +31,11 @@ namespace Characters.Moves
         //     return messages;
         // }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return Base.Name;
         }
 
-        public string DebugString()
-        {
+        public string DebugString() {
             return $"{Base.Name} - {Base.Type} - {Pp}/{Base.Pp}";
         }
     }

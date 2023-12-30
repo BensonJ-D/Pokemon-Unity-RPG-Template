@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using PokemonScripts;
 using UnityEngine;
 
 namespace Characters.Monsters
@@ -25,7 +24,7 @@ namespace Characters.Monsters
         [SerializeField] private int spAttack;
         [SerializeField] private int spDefence;
         [SerializeField] private int speed;
-        
+
         [SerializeField] private ExperienceGroup experienceGroup;
         [SerializeField] private int experienceYield;
 

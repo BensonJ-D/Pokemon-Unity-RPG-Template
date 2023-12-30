@@ -19,9 +19,8 @@ namespace Battle.Domain
         public readonly int DamageDealt;
         public readonly float Multiplier;
 
-        public DamageDetails(PokemonCombatant attacker, PokemonCombatant target, bool critical, 
-            AttackEffectiveness effective, bool fainted, int damageDealt, float multiplier)
-        {
+        public DamageDetails(PokemonCombatant attacker, PokemonCombatant target, bool critical,
+            AttackEffectiveness effective, bool fainted, int damageDealt, float multiplier) {
             Attacker = attacker;
             Target = target;
             Critical = critical;
@@ -31,27 +30,25 @@ namespace Battle.Domain
             Multiplier = multiplier;
         }
 
-        public static DamageDetails CalculateDamage(PokemonCombatant attacker, PokemonCombatant target, Move move)
-        {
+        public static DamageDetails CalculateDamage(PokemonCombatant attacker, PokemonCombatant target, Move move) {
             var atkPokemon = attacker.Pokemon;
             var defPokemon = target.Pokemon;
             var critical = Random.value <= 0.0625f;
-            
-            var sameTypeMultiplier = 
+
+            var sameTypeMultiplier =
                 move.Base.Type == atkPokemon.Base.Type1 || move.Base.Type == atkPokemon.Base.Type2 ? 1.5f : 1f;
-            
+
             var effectivenessMultiplier = MoveBase.TypeChart[(move.Base.Type, defPokemon.Base.Type1)] *
                                           MoveBase.TypeChart[(move.Base.Type, defPokemon.Base.Type2)];
-            
+
             var typeAdvantage = MoveBase.GetEffectiveness(effectivenessMultiplier);
-    
+
             var criticalMultiplier = critical ? 1.5f : 1.0f;
             var variability = Random.Range(85, 101);
-    
+
             var attack = 0;
             var defence = 0;
-            switch (move.Base.Category)
-            {
+            switch (move.Base.Category) {
                 case MoveCategory.Physical:
                     attack = atkPokemon.BoostedAttack;
                     defence = defPokemon.BoostedDefence;
@@ -65,25 +62,26 @@ namespace Battle.Domain
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-    
+
             var multiplier = effectivenessMultiplier * criticalMultiplier;
             var a = 2 * atkPokemon.Level / 5 + 2;
             var b = a * move.Base.Power * attack / defence;
             var damage = b / 50 + 2;
-            
-            damage = (int)(damage * criticalMultiplier);
+
+            damage = (int) (damage * criticalMultiplier);
             damage = damage * variability / 100;
-            damage = (int)(damage * sameTypeMultiplier);
-            damage = (int)(damage * effectivenessMultiplier);
-            
+            damage = (int) (damage * sameTypeMultiplier);
+            damage = (int) (damage * effectivenessMultiplier);
+
             Debug.Log($"damage dealt {damage}");
             var fainted = defPokemon.CurrentHp <= damage;
             return new DamageDetails(attacker, target, critical, typeAdvantage, fainted, damage, multiplier);
         }
 
         public static List<DamageDetails> CalculateDamage(PokemonCombatant attacker,
-            IEnumerable<PokemonCombatant> targets, Move move) =>
-            targets.Select(target => CalculateDamage(attacker, target, move))
+            IEnumerable<PokemonCombatant> targets, Move move) {
+            return targets.Select(target => CalculateDamage(attacker, target, move))
                 .ToList();
+        }
     }
 }

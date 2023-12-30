@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
-using Battle.Controller;
 using Battle.Domain;
-using MyBox;
+using Characters.Players;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,17 +15,15 @@ namespace Characters.Battle.Pokemon
         public int Team => team;
         public int Position => position;
         public Monsters.Pokemon Pokemon { get; private set; }
-        public Player.Player ControllingPlayer { get; set; }
+        public Player ControllingPlayer { get; set; }
 
-        public void Setup(Monsters.Pokemon pokemon)
-        {
+        public void Setup(Monsters.Pokemon pokemon) {
             pokemon.StatusUI = pokemonStatus;
             Pokemon = pokemon;
             image.sprite = displayFront ? Pokemon.Base.FrontSprite : Pokemon.Base.BackSprite;
         }
 
-        public IEnumerator ApplyDamage(DamageDetails damageDetails)
-        {
+        public IEnumerator ApplyDamage(DamageDetails damageDetails) {
             var decayMultiplier = 100U;
             decayMultiplier += (uint) (damageDetails.Multiplier * 150U);
             decayMultiplier += damageDetails.Critical ? 150U : 0U;

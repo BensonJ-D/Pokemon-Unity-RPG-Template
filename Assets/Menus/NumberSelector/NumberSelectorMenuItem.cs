@@ -1,8 +1,6 @@
-using System.Window.Menu;
 using GameSystem.Window.Menu;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Menus.NumberSelector
 {
@@ -13,16 +11,20 @@ namespace Menus.NumberSelector
         public int Value { get; protected set; }
         public Transform Transform => transform;
         public TextMeshProUGUI Text => label;
-        
-        public void SetMenuItem(int option)
-        {
+
+        public void SetMenuItem(int option) {
             Value = option;
-            
+
             transform.gameObject.SetActive(IsNotNullOrEmpty());
             Text.text = ToString();
         }
-        
-        public override string ToString() => Value.ToString().PadLeft(3, '0');
-        public bool IsNotNullOrEmpty() => true;
+
+        public override string ToString() {
+            return Value.ToString().PadLeft(3, '0');
+        }
+
+        public bool IsNotNullOrEmpty() {
+            return true;
+        }
     }
 }
